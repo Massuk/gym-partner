@@ -1,0 +1,59 @@
+<h1>Gimnasios</h1>
+
+<div class="card">
+  <div class="card-body">
+    Lista de gimnasios que has registrado bajo tu nombre. Puedes añadir tantos
+    como quieras y los podrás gestionar desde aquí
+
+    <div class="button-container">
+      <button class="button accept" routerLink="/gym/gym-insert">Agregar</button>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <table mat-table [dataSource]="dataSource" class="mat gym-table">
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.id }}
+      </td></ng-container
+    >
+    <!-- Name Column -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.nameGym }}
+      </td></ng-container
+    >
+    <!-- Code Column -->
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef>Código</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.codeGym }}
+      </td></ng-container
+    >
+    <!-- RUC Column -->
+    <ng-container matColumnDef="ruc">
+      <th mat-header-cell *matHeaderCellDef>RUC</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.rucGym }}
+      </td></ng-container
+    >
+    <!-- RS Column -->
+    <ng-container matColumnDef="razon">
+      <th mat-header-cell *matHeaderCellDef>Razón social</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.rsGym }}
+      </td></ng-container
+    >
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 15]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

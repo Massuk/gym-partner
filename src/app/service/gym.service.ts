@@ -1,0 +1,34 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Gym } from '../model/gym';
+import { Subject } from 'rxjs';
+
+const urlData = environment.base;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class GymService {
+  private url = `${urlData}/gyms`;
+  private listaCambio = new Subject<Gym[]>();
+  constructor(private http: HttpClient) {}
+
+  // Funcion de listar los gimnasios
+  list() {
+    return this.http.get<Gym[]>(this.url);
+  }
+
+    // Funcion para agregar registros nuevos
+    insert(gym: Gym) {
+      return this.http.post(this.url, gym);
+    }
+
+    getList() {
+      return this.listaCambio.asObservable();
+    }
+
+    setList(listaNueva: Gym[]) {
+      this.listaCambio.next(listaNueva);
+    }
+}

@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+@import "~@angular/cdk/overlay-prebuilt.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  background: #f4f7fa;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  margin: 1.25rem 0 1.25rem 0;
+  box-shadow: 0 0.25rem 0.5rem #e6edef;
+  color: #495057;
+
+  .card-head {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #edf1f7;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .card-body {
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    //box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end; // para alinear los botones a la derecha
+  margin-top: 0; // para darle un espacio entre el container y otros elementos
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  transition: background-color 0.1s ease-in-out, color 0.3s ease-in-out;
+
+  &.accept {
+    background-color: #263238;
+
+    &:hover {
+      background-color: #e6e600;
+      color: #263238;
+    }
+  }
+
+  &.cancel {
+    background-color: #b71c1c;
+    margin-left: 10px;
+
+    &:hover {
+      background-color: #eb1515;
+      color: #fff;
+    }
+  }
+}
+
+.separate {
+  margin-left: 2rem;
+}
+
+.tshadow {
+  text-shadow: 0px 4px 7px  black;
+}
