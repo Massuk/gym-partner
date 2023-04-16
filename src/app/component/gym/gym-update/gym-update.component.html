@@ -1,0 +1,45 @@
+<div class="mat-card">
+  <mat-card-header>
+    <mat-card-title>Actualizar Gimnasio</mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="form" (submit)="actualizar()">
+    <div class="form-group">
+      <mat-form-field style="margin-right: 20rem; width: 100%">
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="id" required />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field style="margin-right: 20rem; width: 100%">
+        <mat-label>Nombre del gimnasio</mat-label>
+        <input matInput formControlName="nameGym" required/>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field style="margin-right: 20rem; width: 100%">
+        <mat-label>Código del gimnasio</mat-label>
+        <input matInput formControlName="codeGym" />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field style="margin-right: 20rem; width: 100%">
+        <mat-label>RUC</mat-label>
+        <input matInput formControlName="rucGym" />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field style="margin-right: 20rem; width: 100%">
+        <mat-label>Razón social</mat-label>
+        <input matInput formControlName="rsGym" />
+      </mat-form-field>
+    </div>
+
+    <div class="button-container">
+      <div class="form-group">
+        <button class="button accept" type="submit">Guardar</button>
+        <button class="button cancel" routerLink="/gym">Cancelar</button>
+      </div>
+      <p>{{ mensaje }}</p>
+    </div>
+  </form>
+</div>

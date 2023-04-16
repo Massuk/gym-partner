@@ -26,11 +26,14 @@ import { MatRadioModule} from '@angular/material/radio'
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCard, MatCardActions, MatCardModule } from '@angular/material/card';
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { CommonModule } from '@angular/common';
+import { GymUpdateComponent } from './component/gym/gym-update/gym-update.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,8 @@ import { CommonModule } from '@angular/common';
     GymComponent,
     GymListComponent,
     HeaderComponent,
-    GymInsertComponent
+    GymInsertComponent,
+    GymUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +70,8 @@ import { CommonModule } from '@angular/common';
     MatSelectModule,
     MatIconModule,
     MatRadioModule,
-    CommonModule
+    CommonModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

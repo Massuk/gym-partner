@@ -16,7 +16,7 @@ export class GymListComponent implements OnInit{
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   lista: Gym[] = [];
-  displayedColumns: string[] = ['id', 'nombre', 'codigo', 'ruc', 'razon'];
+  displayedColumns: string[] = ['id', 'nombre', 'codigo', 'ruc', 'razon', 'edit'];
   dataSource: MatTableDataSource<Gym> = new MatTableDataSource();
 
   constructor(private gS: GymService) {
@@ -26,6 +26,5 @@ export class GymListComponent implements OnInit{
     });
 
   }
-
 
 }
