@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Gym } from '../model/gym';
 import { Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 const urlData = environment.base;
 
@@ -13,7 +13,6 @@ const urlData = environment.base;
 export class GymService {
   private url = `${urlData}/gyms`;
   private listaCambio = new Subject<Gym[]>();
-  private gymToUpdate = new Subject<Gym>();
 
   constructor(private http: HttpClient) {}
 
@@ -35,12 +34,20 @@ export class GymService {
     this.listaCambio.next(listaNueva);
   }
 
-  // Funcion para modificar registros nuevos
-  getGymToUpdate(id: number): Observable<Gym> {
-    return this.http.get<Gym>(`${this.url}/${id}`);
-  }
+    // Funcion para modificar registros nuevos
+    update(gym: Gym) {
+      return this.http.put(`${this.url}/${gym.id}`, gym)
+        .pipe(
+          tap(() => {
+            this.list().subscribe(data => this.setList(data));
+          })
+        );
+    }
 
-  update(id: number, gym: Gym): Observable<any> {
-    return this.http.put(`${this.url}/${id}`, gym);
-  }
+
+    get(id: number): Observable<Gym> {
+      return this.http.get<Gym>(`${this.url}/${id}`);
+    }
+
+
 }

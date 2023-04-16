@@ -12,12 +12,10 @@ import { GymService } from 'src/app/service/gym.service';
 export class GymListComponent implements OnInit{
 
   ngOnInit(): void {
+    this.gS.getList().subscribe((data) => {
+      this.dataSource.data = data;
+    });
   }
-
-  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
-  lista: Gym[] = [];
-  displayedColumns: string[] = ['id', 'nombre', 'codigo', 'ruc', 'razon', 'edit'];
-  dataSource: MatTableDataSource<Gym> = new MatTableDataSource();
 
   constructor(private gS: GymService) {
     this.gS.list().subscribe((data) => {
@@ -25,6 +23,18 @@ export class GymListComponent implements OnInit{
       this.dataSource.paginator = this.paginator;
     });
 
+    this.gS.getList().subscribe((data) => {
+      this.dataSource.data = data;
+    });
   }
+
+
+
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  lista: Gym[] = [];
+  displayedColumns: string[] = ['id', 'nombre', 'codigo', 'ruc', 'razon', 'edit'];
+  dataSource: MatTableDataSource<Gym> = new MatTableDataSource();
+
+
 
 }
