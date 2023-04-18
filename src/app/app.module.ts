@@ -27,6 +27,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCard, MatCardActions, MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -34,6 +36,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { CommonModule } from '@angular/common';
 import { GymUpdateComponent } from './component/gym/gym-update/gym-update.component';
+import { GymDeleteComponent } from './component/gym/gym-delete/gym-delete.component';
+import { ConfirmationDialogComponent } from './component/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +50,9 @@ import { GymUpdateComponent } from './component/gym/gym-update/gym-update.compon
     GymListComponent,
     HeaderComponent,
     GymInsertComponent,
-    GymUpdateComponent
+    GymUpdateComponent,
+    GymDeleteComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +77,9 @@ import { GymUpdateComponent } from './component/gym/gym-update/gym-update.compon
     MatIconModule,
     MatRadioModule,
     CommonModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

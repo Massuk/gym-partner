@@ -34,20 +34,22 @@ export class GymService {
     this.listaCambio.next(listaNueva);
   }
 
-    // Funcion para modificar registros nuevos
-    update(gym: Gym) {
-      return this.http.put(`${this.url}/${gym.id}`, gym)
-        .pipe(
-          tap(() => {
-            this.list().subscribe(data => this.setList(data));
-          })
-        );
-    }
+  // Funcion para modificar registros nuevos
 
+  get(id: number): Observable<Gym> {
+    return this.http.get<Gym>(`${this.url}/${id}`);
+  }
+  update(gym: Gym) {
+    return this.http.put(`${this.url}/${gym.id}`, gym).pipe(
+      tap(() => {
+        this.list().subscribe((data) => this.setList(data));
+      })
+    );
+  }
 
-    get(id: number): Observable<Gym> {
-      return this.http.get<Gym>(`${this.url}/${id}`);
-    }
-
-
+  // Funcion para eliminar un registro
+  delete(id: number): Observable<any> {
+    const url = `${this.url}/${id}`;
+    return this.http.delete(url);
+  }
 }

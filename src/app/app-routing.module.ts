@@ -6,6 +6,7 @@ import { GymComponent } from './component/gym/gym.component';
 import { GymListComponent } from './component/gym/gym-list/gym-list.component';
 import { GymInsertComponent } from './component/gym/gym-insert/gym-insert.component';
 import { GymUpdateComponent } from './component/gym/gym-update/gym-update.component';
+import { GymDeleteComponent } from './component/gym/gym-delete/gym-delete.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -23,11 +24,14 @@ const routes: Routes = [
         path: 'gym-update/:id',
         component: GymUpdateComponent,
       },
+      {
+        path: 'gym-delete/:id',
+        component: GymDeleteComponent
+      },
     ],
   },
-  { path: 'gym-list', component: GymListComponent }
+  { path: 'gym-list', component: GymListComponent },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

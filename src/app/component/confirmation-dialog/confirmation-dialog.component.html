@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>¿Seguro que desea eliminar este registro?</h2>
+<mat-dialog-content>
+	<p>
+		Nota: Esta acción es irreversible
+	</p>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+	<button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1">{{confirmButtonText}}</button>
+	<button mat-raised-button mat-dialog-close tabindex="-1">{{cancelButtonText}}</button>
+</mat-dialog-actions>
