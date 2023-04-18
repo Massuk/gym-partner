@@ -25,9 +25,9 @@ export const navbarData = [
     label: 'Rutinas',
   },
   {
-    routeLink: 'nutritional',
+    routeLink: 'nutritional-plans',
     icon: 'fal fa-user-md',
-    label: 'Nutricionista',
+    label: 'Planes Nutricionales',
   },
   {
     routeLink: 'foods',

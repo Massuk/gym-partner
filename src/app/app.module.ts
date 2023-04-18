@@ -41,6 +41,9 @@ import { ConfirmationDialogComponent } from './component/dashboard/confirmation-
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { AuthenticationComponent } from './component/authentication/authentication.component';
 import { EntitiesComponent } from './component/entities/entities.component';
+import { NutritionalPlanComponent } from './component/entities/nutritional-plan/nutritional-plan.component';
+import { NutritionalPlanListComponent } from './component/entities/nutritional-plan/nutritional-plan-list/nutritional-plan-list.component';
+import { NutritionalPlanInsertComponent } from './component/entities/nutritional-plan/nutritional-plan-insert/nutritional-plan-insert.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,10 @@ import { EntitiesComponent } from './component/entities/entities.component';
     ConfirmationDialogComponent,
     DashboardComponent,
     AuthenticationComponent,
-    EntitiesComponent
+    EntitiesComponent,
+    NutritionalPlanComponent,
+    NutritionalPlanListComponent,
+    NutritionalPlanInsertComponent
   ],
   imports: [
     BrowserModule,
