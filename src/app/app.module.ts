@@ -41,6 +41,9 @@ import { ConfirmationDialogComponent } from './component/dashboard/confirmation-
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { AuthenticationComponent } from './component/authentication/authentication.component';
 import { EntitiesComponent } from './component/entities/entities.component';
+import { ExerciseComponent } from './component/entities/exercise/exercise.component';
+import { ExerciseListComponent } from './component/entities/exercise/exercise-list/exercise-list.component';
+import { ExerciseInsertComponent } from './component/entities/exercise/exercise-insert/exercise-insert.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,10 @@ import { EntitiesComponent } from './component/entities/entities.component';
     ConfirmationDialogComponent,
     DashboardComponent,
     AuthenticationComponent,
-    EntitiesComponent
+    EntitiesComponent,
+    ExerciseComponent,
+    ExerciseListComponent,
+    ExerciseInsertComponent
   ],
   imports: [
     BrowserModule,
