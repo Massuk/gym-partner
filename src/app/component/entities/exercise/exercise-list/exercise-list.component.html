@@ -1,27 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-
-  <br>
-  <div class="container">
-
-    <div style="text-align: center;"><h1>Lista de Ejercicios</h1></div>
-
-
-
-
+<h1>Lista ejercicios registrados</h1>
     <div class="card">
       <div class="card-body">
-        Lista ejercicios registrados
 
+Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur itaque provident nam, officiis fugiat nemo molestias sequi ratione magni repellat inventore temporibus officia nisi minima minus maiores dolore, recusandae exercitationem?
         <div class="button-container">
-          <button mat-raised-button  routerLink="/exercises/exercise-insert">Agregar</button>
+          <button class="button accept"  routerLink="/exercises/exercise-insert">Agregar</button>
 
         </div>
       </div>
@@ -29,7 +12,7 @@
 
 
 
-
+<div class="card">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="id">
@@ -66,5 +49,3 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   </div>
-</body>
-</html>

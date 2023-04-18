@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
+<div>
   <br>
     <form [formGroup]="form" (submit)="aceptar()">
 
-      <div style="text-align: center;"><h1>Agregar Ejercicio</h1></div>
-
+      <h1>Agregar Ejercicio</h1>
+      <br>
 <!-- INPUT -->
       <mat-form-field class="example-full-width">
         <mat-label>No.</mat-label>
@@ -60,11 +52,11 @@
 
 <br>
    <!-- botones -->
-  <button mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
-  <button mat-raised-button color="warn" routerLink="/exercises">Cancelar</button>
+  <button class="button accept" (click)="aceptar()">Aceptar</button>
+  <button class="button accept" routerLink="/exercises">Cancelar</button>
 
    <!-- mensaje del ts-->
   <p>{{mensaje}}</p>
     </form>
-</body>
-</html>
+
+</div>
