@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { PanelComponent } from './component/panel/panel.component';
 import { ClientsComponent } from './component/clients/clients.component';
 import { GymComponent } from './component/gym/gym.component';
 import { GymListComponent } from './component/gym/gym-list/gym-list.component';
@@ -9,8 +9,8 @@ import { GymUpdateComponent } from './component/gym/gym-update/gym-update.compon
 import { GymDeleteComponent } from './component/gym/gym-delete/gym-delete.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: '', redirectTo: 'panel', pathMatch: 'full' },
+  { path: 'panel', component: PanelComponent },
   { path: 'clients', component: ClientsComponent },
   {
     path: 'gym',

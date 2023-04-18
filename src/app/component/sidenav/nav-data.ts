@@ -1,6 +1,6 @@
 export const navbarData = [
   {
-    routeLink: 'dashboard',
+    routeLink: 'panel',
     icon: 'fal fa-home',
     label: 'Panel',
   },
@@ -33,5 +33,5 @@ export const navbarData = [
     routeLink: 'foods',
     icon: 'fal fa-salad',
     label: 'Alimentos',
-  },
+  }
 ];

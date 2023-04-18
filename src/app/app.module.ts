@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BodyComponent } from './component/body/body.component';
 import { SidenavComponent } from './component/sidenav/sidenav.component';
-import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { PanelComponent } from './component/panel/panel.component';
 import { ClientsComponent } from './component/clients/clients.component';
 import { GymComponent } from './component/gym/gym.component';
 import { GymListComponent } from './component/gym/gym-list/gym-list.component';
@@ -44,7 +44,7 @@ import { ConfirmationDialogComponent } from './component/confirmation-dialog/con
     AppComponent,
     BodyComponent,
     SidenavComponent,
-    DashboardComponent,
+    PanelComponent,
     ClientsComponent,
     GymComponent,
     GymListComponent,
