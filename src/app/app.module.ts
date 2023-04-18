@@ -5,14 +5,16 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BodyComponent } from './component/body/body.component';
-import { SidenavComponent } from './component/sidenav/sidenav.component';
-import { PanelComponent } from './component/panel/panel.component';
-import { ClientsComponent } from './component/clients/clients.component';
-import { GymComponent } from './component/gym/gym.component';
-import { GymListComponent } from './component/gym/gym-list/gym-list.component';
-import { HeaderComponent } from './component/header/header.component';
-import { GymInsertComponent } from './component/gym/gym-insert/gym-insert.component';
+import { BodyComponent } from './component/dashboard/body/body.component';
+import { SidenavComponent } from './component//dashboard/sidenav/sidenav.component';
+import { PanelComponent } from './component/entities/panel/panel.component';
+import { ClientsComponent } from './component/entities/clients/clients.component';
+import { GymUpdateComponent } from './component/entities/gym/gym-update/gym-update.component';
+import { GymDeleteComponent } from './component/entities/gym/gym-delete/gym-delete.component';
+import { GymComponent } from './component/entities/gym/gym.component';
+import { GymListComponent } from './component/entities/gym/gym-list/gym-list.component';
+import { HeaderComponent } from './component/dashboard/header/header.component';
+import { GymInsertComponent } from './component/entities/gym/gym-insert/gym-insert.component';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -35,9 +37,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { CommonModule } from '@angular/common';
-import { GymUpdateComponent } from './component/gym/gym-update/gym-update.component';
-import { GymDeleteComponent } from './component/gym/gym-delete/gym-delete.component';
-import { ConfirmationDialogComponent } from './component/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from './component/dashboard/confirmation-dialog/confirmation-dialog.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { AuthenticationComponent } from './component/authentication/authentication.component';
+import { EntitiesComponent } from './component/entities/entities.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { ConfirmationDialogComponent } from './component/confirmation-dialog/con
     GymInsertComponent,
     GymUpdateComponent,
     GymDeleteComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    DashboardComponent,
+    AuthenticationComponent,
+    EntitiesComponent
   ],
   imports: [
     BrowserModule,

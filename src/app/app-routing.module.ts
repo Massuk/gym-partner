@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PanelComponent } from './component/panel/panel.component';
-import { ClientsComponent } from './component/clients/clients.component';
-import { GymComponent } from './component/gym/gym.component';
-import { GymListComponent } from './component/gym/gym-list/gym-list.component';
-import { GymInsertComponent } from './component/gym/gym-insert/gym-insert.component';
-import { GymUpdateComponent } from './component/gym/gym-update/gym-update.component';
-import { GymDeleteComponent } from './component/gym/gym-delete/gym-delete.component';
+import { PanelComponent } from './component/entities/panel/panel.component';
+import { ClientsComponent } from './component/entities/clients/clients.component';
+import { GymComponent } from './component/entities/gym/gym.component';
+import { GymListComponent } from './component/entities/gym/gym-list/gym-list.component';
+import { GymInsertComponent } from './component/entities/gym/gym-insert/gym-insert.component';
+import { GymUpdateComponent } from './component/entities/gym/gym-update/gym-update.component';
+import { GymDeleteComponent } from './component/entities/gym/gym-delete/gym-delete.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'panel', pathMatch: 'full' },

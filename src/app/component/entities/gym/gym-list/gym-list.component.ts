@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { Gym } from 'src/app/model/gym';
 import { GymService } from 'src/app/service/gym.service';
-import { ConfirmationDialogComponent } from '../../confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from '../../../dashboard/confirmation-dialog/confirmation-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -56,6 +56,7 @@ export class GymListComponent implements OnInit {
         this.gS.delete(id).subscribe(() => {
           this.gS.list().subscribe((data) => {
             this.dataSource = new MatTableDataSource(data);
+            this.dataSource.paginator = this.paginator;
           });
         });
         snack.dismiss();
