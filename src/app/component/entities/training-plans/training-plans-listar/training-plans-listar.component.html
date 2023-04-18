@@ -32,13 +32,13 @@
         <ng-container matColumnDef="startDate">
             <th mat-header-cell *matHeaderCellDef>Inicio </th>
             <td mat-cell *matCellDef="let element">
-                {{ element.startDate }}
+                {{ element.startDate | date: 'dd/MM/yyyy'}}
             </td>
         </ng-container>
         <ng-container matColumnDef="endDate">
             <th mat-header-cell *matHeaderCellDef>Fin</th>
             <td mat-cell *matCellDef="let element">
-                {{ element.endDate }}
+                {{ element.endDate | date: 'dd/MM/yyyy' }}
             </td>
         </ng-container>
         <ng-container matColumnDef="status">

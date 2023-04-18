@@ -6,5 +6,5 @@ export class TrainingPlan {
   level: string = "";
   startDate: Date = new Date(Date.now());
   endDate: Date = new Date(Date.now());
-  enable: boolean = false;
+  enable: string = "";
 }

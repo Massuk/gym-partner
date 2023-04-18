@@ -11,6 +11,10 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class TrainingPlansListarComponent implements OnInit {
 
+  lista: TrainingPlan[] = [];
+  displayedColumns: string[] = ['number', 'title', 'description', 'objective', 'level', 'startDate', 'endDate', 'status'];
+  dataSource: MatTableDataSource<TrainingPlan> = new MatTableDataSource();
+
   ngOnInit(): void {
     this.tpS.getList().subscribe((data) => {
       this.dataSource.data = data;
@@ -21,9 +25,7 @@ export class TrainingPlansListarComponent implements OnInit {
     })
   }
 
-  lista: TrainingPlan[] = [];
-  displayedColumns: string[] = ['number', 'title', 'description', 'objective', 'level', 'startDate', 'endDate', 'status'];
-  dataSource: MatTableDataSource<TrainingPlan> = new MatTableDataSource();
+  
 
   constructor(private tpS: TrainingPlansService) {
     this.tpS.list().subscribe((data) => {

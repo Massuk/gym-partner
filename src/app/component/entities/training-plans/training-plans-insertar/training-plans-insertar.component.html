@@ -1,5 +1,5 @@
 <div class="container">
-    <h1> Create new Training Plan</h1>
+    <h1> Crear nuevo Plan de Entrenamientoa</h1>
     <form [formGroup]="form" (submit)="aceptar()">
         <mat-form-field class="example-full-width">
             <mat-label>Código</mat-label>
@@ -65,8 +65,8 @@
             </mat-select>
         </mat-form-field>
         <br>
-        <button mat-raised-button color="primary" routerLink="/trainingPlans">Aceptar</button>
-        <button mat-button color="warn" routerLink="/trainingPlans">Cancelar</button>
+        <button type="submit" mat-raised-button color="primary">Aceptar</button>
+        <button type="button" mat-button color="warn" routerLink="/trainingPlans">Cancelar</button>
         <br>
         <p>{{ mensaje }}</p>
     </form>

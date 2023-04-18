@@ -51,6 +51,7 @@ export class TrainingPlansInsertarComponent implements OnInit {
           this.tpS.setList(data);
         })
       })
+      this.router.navigate(['trainingPlans'])
     }
     else {
       this.mensaje = 'Ingrese el titulo del plan de entrenamiento';

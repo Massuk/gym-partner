@@ -67,7 +67,7 @@ module.exports = function () {
         level: "Principiante",
         startDate: "2023-03-10",
         endDate: "2023-04-9",
-        enable: false,
+        enable: "Vencido",
       },
       {
         id: 2,
@@ -77,7 +77,7 @@ module.exports = function () {
         level: "Intermedio",
         startDate: "2023-04-10",
         endDate: "2023-05-9",
-        enable: true,
+        enable: "Activo",
       }
     ]
   };
