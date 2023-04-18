@@ -1,1 +1,4 @@
-<p>exercise works!</p>
+<router-outlet></router-outlet>
+<div [hidden]="route.children.length !== 0">
+    <app-exercise-list></app-exercise-list>
+</div>

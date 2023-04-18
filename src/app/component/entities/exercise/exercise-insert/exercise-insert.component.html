@@ -1,1 +1,70 @@
-<p>exercise-insert works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <br>
+    <form [formGroup]="form" (submit)="aceptar()">
+
+      <div style="text-align: center;"><h1>Agregar Ejercicio</h1></div>
+
+<!-- INPUT -->
+      <mat-form-field class="example-full-width">
+        <mat-label>No.</mat-label>
+        <input matInput required placeholder="No." formControlName="id">
+      </mat-form-field>
+
+<br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre del Ejercicio</mat-label>
+        <input matInput required placeholder="Nombre del Ejercicio" formControlName="nameExercise">
+      </mat-form-field>
+<br>
+
+  <!-- INPUT CON OPTION-->
+      <mat-form-field appearance="fill">
+        <mat-label>No Series</mat-label>
+        <mat-select formControlName="series">
+          <mat-option value="2">2</mat-option>
+          <mat-option value="4">4</mat-option>
+          <mat-option value="6">6</mat-option>
+          <mat-option value="8">8</mat-option>
+        </mat-select>
+      </mat-form-field>
+<br>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Cant. Kg</mat-label>
+      <mat-select formControlName="kilograms">
+        <mat-option value="2">2</mat-option>
+        <mat-option value="4">4</mat-option>
+        <mat-option value="6">6</mat-option>
+        <mat-option value="8">8</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+<br>
+     <mat-form-field appearance="fill">
+      <mat-label>No Repeticiones</mat-label>
+      <mat-select formControlName="repetitions">
+        <mat-option value="2">2</mat-option>
+        <mat-option value="4">4</mat-option>
+        <mat-option value="6">6</mat-option>
+        <mat-option value="8">8</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+<br>
+   <!-- botones -->
+  <button mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
+  <button mat-raised-button color="warn" routerLink="/exercises">Cancelar</button>
+
+   <!-- mensaje del ts-->
+  <p>{{mensaje}}</p>
+    </form>
+</body>
+</html>
