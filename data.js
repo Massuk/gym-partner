@@ -58,6 +58,28 @@ module.exports = function () {
         rsGym: "SPORT FITNESS PERU S.A.C",
       },
     ],
+    trainingPlans: [
+      {
+        id: 1,
+        title: "Entrenamiento PPL",
+        description: "Primer mes utilizando plan de entrenamiento enfocado en rutinas de push, pull, legs",
+        objective: "Ganar masa muscular",
+        level: "Principiante",
+        startDate: "2023-03-10",
+        endDate: "2023-04-9",
+        enable: false,
+      },
+      {
+        id: 2,
+        title: "Entrenamiento PPL",
+        description: "Segundo mes utilizando plan de entrenamiento enfocado en rutinas de push, pull, legs",
+        objective: "Ganar masa muscular",
+        level: "Intermedio",
+        startDate: "2023-04-10",
+        endDate: "2023-05-9",
+        enable: true,
+      }
+    ]
   };
   return data;
 };

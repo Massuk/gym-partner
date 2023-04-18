@@ -20,9 +20,9 @@ export const navbarData = [
     label: 'Ejercicios',
   },
   {
-    routeLink: 'routines',
+    routeLink: 'trainingPlans',
     icon: 'fal fa-paste',
-    label: 'Rutinas',
+    label: 'Planes de Entrenamiento',
   },
   {
     routeLink: 'nutritional',
