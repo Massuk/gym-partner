@@ -35,11 +35,14 @@ const routes: Routes = [
   { path: 'gym-list', component: GymListComponent },
 
   {
-    path:'exercises', component:ExerciseComponent, // es el padre
+    path:'exercises', component:ExerciseComponent,
     children:[
       {
-        path:'exercise-insert', component:ExerciseInsertComponent, // es para el hijo insertar
-      }
+        path:'exercise-insert', component:ExerciseInsertComponent,
+      },
+      {
+        path:'edicion/:id', component:ExerciseInsertComponent,
+      },
     ]
   }
 

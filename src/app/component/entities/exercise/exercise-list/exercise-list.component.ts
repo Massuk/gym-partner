@@ -12,10 +12,14 @@ import {MatTableDataSource} from '@angular/material/table'
 export class ExerciseListComponent implements OnInit{
   lista:exercise[]=[];
   dataSource:MatTableDataSource<exercise> = new MatTableDataSource();
-  displayedColumns:string[] = ['id','nameExercise','series','kilograms','repetitions']
+  displayedColumns:string[] = ['id','nameExercise','series','kilograms','repetitions','Editar']
   constructor(private eS:ExerciseService){}
   ngOnInit(): void {
     this.eS.list().subscribe(data=>{this.dataSource = new MatTableDataSource(data)})
     this.eS.getList().subscribe(data=>(this.dataSource=new MatTableDataSource(data)))
   }
+  filtrar(exercise:any){
+    this.dataSource.filter =exercise.target.value.trim();
+  }
+
 }

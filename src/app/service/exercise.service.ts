@@ -19,4 +19,8 @@ export class ExerciseService {
   private listaCambio = new Subject<exercise[]>()
   setList(listaNueva:exercise[]){this.listaCambio.next(listaNueva);}
   getList(){return this.listaCambio.asObservable();}
+
+
+  listId(id:number){ return  this.http.get<exercise>(`${this.url}/${id}`);}
+ update(exercise:exercise){ return this.http.put(this.url + '/'+ exercise.id,exercise);}
 }

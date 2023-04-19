@@ -1,62 +1,114 @@
-<div>
-  <br>
+<div class="card">
+  <div class="card-head">Agregar Ejercicio</div>
+  <div class="card-body">
     <form [formGroup]="form" (submit)="aceptar()">
 
-      <h1>Agregar Ejercicio</h1>
-      <br>
-<!-- INPUT -->
-      <mat-form-field class="example-full-width">
-        <mat-label>No.</mat-label>
-        <input matInput required placeholder="No." formControlName="id">
-      </mat-form-field>
 
-<br>
-      <mat-form-field class="example-full-width">
-        <mat-label>Nombre del Ejercicio</mat-label>
-        <input matInput required placeholder="Nombre del Ejercicio" formControlName="nameExercise">
-      </mat-form-field>
-<br>
+      <div class="form-group">
+         <mat-form-field class="example-full-width" style="margin-right: 20rem; width: 100%" appearance="outline">
+            <mat-label>No.</mat-label>
+            <input matInput required placeholder="No." formControlName="id" required/>
+          </mat-form-field>
+       </div>
+
+       <div class="form-group">
+          <mat-form-field class="example-full-width" style="margin-right: 20rem; width: 100%" appearance="outline">
+            <mat-label>Nombre del Ejercicio</mat-label>
+            <input matInput required placeholder="Nombre del Ejercicio" formControlName="nameExercise" required/>
+          </mat-form-field>
+        </div>
 
   <!-- INPUT CON OPTION-->
-      <mat-form-field appearance="fill">
-        <mat-label>No Series</mat-label>
-        <mat-select formControlName="series">
-          <mat-option value="2">2</mat-option>
-          <mat-option value="4">4</mat-option>
-          <mat-option value="6">6</mat-option>
-          <mat-option value="8">8</mat-option>
-        </mat-select>
-      </mat-form-field>
-<br>
+       <div class="form-group">
+           <mat-form-field class="example-full-width" style="margin-right: 20rem; width: 100%" appearance="outline">
+            <mat-label>No Series</mat-label>
+             <mat-select formControlName="series" required>
+                <mat-option value="2">2</mat-option>
+                <mat-option value="4">4</mat-option>
+                <mat-option value="6">6</mat-option>
+                <mat-option value="8">8</mat-option>
+           </mat-select>
+          </mat-form-field>
+        </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Cant. Kg</mat-label>
-      <mat-select formControlName="kilograms">
-        <mat-option value="2">2</mat-option>
-        <mat-option value="4">4</mat-option>
-        <mat-option value="6">6</mat-option>
-        <mat-option value="8">8</mat-option>
-      </mat-select>
-    </mat-form-field>
+        <div class="form-group">
+              <mat-form-field class="example-full-width" style="margin-right: 20rem; width: 100%" appearance="outline">
+                <mat-label>Cant. Kg</mat-label>
+                <mat-select formControlName="kilograms" required>
+                  <mat-option value="2">2</mat-option>
+                  <mat-option value="4">4</mat-option>
+                  <mat-option value="6">6</mat-option>
+                  <mat-option value="8">8</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
 
-<br>
-     <mat-form-field appearance="fill">
-      <mat-label>No Repeticiones</mat-label>
-      <mat-select formControlName="repetitions">
-        <mat-option value="2">2</mat-option>
-        <mat-option value="4">4</mat-option>
-        <mat-option value="6">6</mat-option>
-        <mat-option value="8">8</mat-option>
-      </mat-select>
-    </mat-form-field>
 
-<br>
+        <div class="form-group">
+            <mat-form-field class="example-full-width" style="margin-right: 20rem; width: 100%" appearance="outline">
+            <mat-label>No Repeticiones</mat-label>
+            <mat-select formControlName="repetitions" required>
+                <mat-option value="2">2</mat-option>
+                <mat-option value="4">4</mat-option>
+                <mat-option value="6">6</mat-option>
+                <mat-option value="8">8</mat-option>
+            </mat-select>
+            </mat-form-field>
+        </div>
+
+      <div class="button-container">
+        <div class="form-group">
    <!-- botones -->
-  <button class="button accept" (click)="aceptar()">Aceptar</button>
-  <button class="button accept" routerLink="/exercises">Cancelar</button>
+          <button class="button accept" (click)="aceptar()">Aceptar</button>
+          <button class="button cancel" routerLink="/exercises">Cancelar</button>
+        </div>
+          <div class="form-group"></div>
+            <!-- mensaje del ts-->
+            <p>{{mensaje}}</p>
+      </div>
+  </form>
+  <div class="card separate">
+    <div id="carouselSlideGymPartner" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselSlideGymPartner" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselSlideGymPartner" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselSlideGymPartner" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="../../../../assets/carousel/slide1.png" class="d-block w-100" alt="img1">
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="tshadow">Organiza tus gimnasios de manera sencilla</h5>
+            <p class="tshadow">Con Gym Partner podrás administrar fácilmente tus gimnasios y mantener un control de todas tus sucursales</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="../../../../assets/carousel/slide2.png" class="d-block w-100" alt="img2">
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="tshadow">Gestionar entrenadores nunca fue tan fácil</h5>
+            <p class="tshadow">Monitorea el progreso de tus entrenadores y mantén una comunicación efectiva con ellos</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="../../../../assets/carousel/slide3.png" class="d-block w-100" alt="img3">
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="tshadow">Gestionar nutricionistas es más sencillo de lo que imaginas</h5>
+            <p class="tshadow">Podrás hacer seguimiento a sus avances y monitorear su progreso en tiempo real</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselSlideGymPartner" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselSlideGymPartner" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+  </div>
 
-   <!-- mensaje del ts-->
-  <p>{{mensaje}}</p>
-    </form>
 
+
+  </div>
 </div>
