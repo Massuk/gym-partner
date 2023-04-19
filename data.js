@@ -58,6 +58,36 @@ module.exports = function () {
         rsGym: "SPORT FITNESS PERU S.A.C",
       },
     ],
+    exercises: [
+      {
+        id:1,
+        nameExercise: "Sentadilla Bulgara",
+	      series: 4,
+	      kilograms: 12,
+	      repetitions: 8,
+      },
+      {
+        id:2,
+        nameExercise: "Planchas",
+	      series: 2,
+	      kilograms: 4,
+	      repetitions: 2,
+      },
+      {
+        id:3,
+        nameExercise: "Abdominales",
+	      series: 3,
+	      kilograms: 2,
+	      repetitions: 5,
+      },
+      {
+        id:4,
+        nameExercise: "Sentadilla Normal",
+	      series: 5,
+	      kilograms: 2,
+	      repetitions: 3,
+      },
+    ],
     nutritionalPlans: [
       {
         id: 1,

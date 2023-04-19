@@ -15,7 +15,7 @@ export const navbarData = [
     label: 'Gimnasios',
   },
   {
-    routeLink: 'exercise',
+    routeLink: 'exercises',
     icon: 'fal fa-dumbbell',
     label: 'Ejercicios',
   },
