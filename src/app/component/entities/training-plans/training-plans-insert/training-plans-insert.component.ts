@@ -6,12 +6,12 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-training-plans-insertar',
-  templateUrl: './training-plans-insertar.component.html',
-  styleUrls: ['./training-plans-insertar.component.scss']
+  selector: 'app-training-plans-insert',
+  templateUrl: './training-plans-insert.component.html',
+  styleUrls: ['./training-plans-insert.component.scss']
 })
 export class TrainingPlansInsertarComponent implements OnInit {
-  
+
   form: FormGroup = new FormGroup({});
   tPlan: TrainingPlan = new TrainingPlan();
   mensaje: string = '';

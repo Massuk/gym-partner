@@ -5,9 +5,9 @@ import { TrainingPlansService } from 'src/app/service/training-plans.service';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-training-plans-listar',
-  templateUrl: './training-plans-listar.component.html',
-  styleUrls: ['./training-plans-listar.component.scss']
+  selector: 'app-training-plans-list',
+  templateUrl: './training-plans-list.component.html',
+  styleUrls: ['./training-plans-list.component.scss']
 })
 export class TrainingPlansListarComponent implements OnInit {
 
@@ -25,7 +25,7 @@ export class TrainingPlansListarComponent implements OnInit {
     })
   }
 
-  
+
 
   constructor(private tpS: TrainingPlansService) {
     this.tpS.list().subscribe((data) => {

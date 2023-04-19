@@ -13,7 +13,7 @@ import { NutritionalPlanComponent } from './component/entities/nutritional-plan/
 import { NutritionalPlanInsertComponent } from './component/entities/nutritional-plan/nutritional-plan-insert/nutritional-plan-insert.component';
 import { NutritionalPlanListComponent } from './component/entities/nutritional-plan/nutritional-plan-list/nutritional-plan-list.component';
 import { TrainingPlansComponent } from './component/entities/training-plans/training-plans.component';
-import { TrainingPlansInsertarComponent } from './component/entities/training-plans/training-plans-insertar/training-plans-insertar.component';
+import { TrainingPlansInsertarComponent } from './component/entities/training-plans/training-plans-insert/training-plans-insert.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'panel', pathMatch: 'full' },
