@@ -7,6 +7,11 @@ import { GymListComponent } from './component/entities/gym/gym-list/gym-list.com
 import { GymInsertComponent } from './component/entities/gym/gym-insert/gym-insert.component';
 import { GymUpdateComponent } from './component/entities/gym/gym-update/gym-update.component';
 import { GymDeleteComponent } from './component/entities/gym/gym-delete/gym-delete.component';
+import { ExerciseComponent } from './component/entities/exercise/exercise.component';
+import { ExerciseInsertComponent } from './component/entities/exercise/exercise-insert/exercise-insert.component';
+import { NutritionalPlanComponent } from './component/entities/nutritional-plan/nutritional-plan.component';
+import { NutritionalPlanInsertComponent } from './component/entities/nutritional-plan/nutritional-plan-insert/nutritional-plan-insert.component';
+import { NutritionalPlanListComponent } from './component/entities/nutritional-plan/nutritional-plan-list/nutritional-plan-list.component';
 import { TrainingPlansComponent } from './component/entities/training-plans/training-plans.component';
 import { TrainingPlansInsertarComponent } from './component/entities/training-plans/training-plans-insertar/training-plans-insertar.component';
 
@@ -28,11 +33,38 @@ const routes: Routes = [
       },
       {
         path: 'gym-delete/:id',
-        component: GymDeleteComponent
+        component: GymDeleteComponent,
       },
     ],
   },
   { path: 'gym-list', component: GymListComponent },
+
+  {
+    path: 'exercises',
+    component: ExerciseComponent,
+    children: [
+      {
+        path: 'exercise-insert',
+        component: ExerciseInsertComponent,
+      },
+      {
+        path: 'edicion/:id',
+        component: ExerciseInsertComponent,
+      },
+    ],
+  },
+
+  {
+    path: 'nutritional-plans',
+    component: NutritionalPlanComponent,
+    children: [
+      {
+        path: 'nutritional-plans-insert',
+        component: NutritionalPlanInsertComponent,
+      },
+    ],
+  },
+  { path: 'nutritional-plans-list', component: NutritionalPlanListComponent },
   {
     path: 'trainingPlans',
     component: TrainingPlansComponent,

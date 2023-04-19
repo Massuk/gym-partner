@@ -80,6 +80,50 @@ module.exports = function () {
         enable: "Activo",
       }
     ]
+    exercises: [
+      {
+        id:1,
+        nameExercise: "Sentadilla Bulgara",
+	      series: 4,
+	      kilograms: 12,
+	      repetitions: 8,
+      },
+      {
+        id:2,
+        nameExercise: "Planchas",
+	      series: 2,
+	      kilograms: 4,
+	      repetitions: 2,
+      },
+      {
+        id:3,
+        nameExercise: "Abdominales",
+	      series: 3,
+	      kilograms: 2,
+	      repetitions: 5,
+      },
+      {
+        id:4,
+        nameExercise: "Sentadilla Normal",
+	      series: 5,
+	      kilograms: 2,
+	      repetitions: 3,
+      },
+    ],
+    nutritionalPlans: [
+      {
+        id: 1,
+        titleNutritionalPlan: "Plan Nutricional de Stan Marsh Semana 1",
+        statusNutritionalPlan: "Activo",
+        objectiveNutritionalPlan: "Aumentar Masa Muscular",
+        descriptionNutritionalPlan:
+          "La dieta para aumentar la masa muscular incluye alimentos ricos en proteínas, grasas buenas y carbohidratos complejos ricos en fibras.",
+        startDateNutritionalPlan: "2023-04-10",
+        endDateNutritionalPlan: "2023-04-16",
+        recommendationsNutritionalPlan:
+          "Para cumplir el objetivo no debe saltarse las comidas y debe consumir más calorías de lo que gasta.",
+      },
+    ],
   };
   return data;
 };
