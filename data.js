@@ -79,7 +79,7 @@ module.exports = function () {
         endDate: "2023-05-9",
         enable: "Activo",
       }
-    ]
+    ],
     exercises: [
       {
         id:1,
