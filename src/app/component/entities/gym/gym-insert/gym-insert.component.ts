@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Gym } from 'src/app/model/gym';
 import * as moment from 'moment';
 import { GymService } from 'src/app/service/gym.service';
@@ -22,11 +22,11 @@ export class GymInsertComponent implements OnInit{
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      id: new FormControl(),
-      nameGym: new FormControl(),
-      codeGym: new FormControl(),
-      rucGym: new FormControl(),
-      rsGym: new FormControl()
+      id: new FormControl('', Validators.required),
+      nameGym: new FormControl('', Validators.required),
+      codeGym: new FormControl('', Validators.required),
+      rucGym: new FormControl('', Validators.required),
+      rsGym: new FormControl('', Validators.required)
     });
   }
 
@@ -43,9 +43,7 @@ export class GymInsertComponent implements OnInit{
           this.gS.setList(data);
         });
       });
-      this.router.navigate(['gym']);
-    } else {
-      this.mensaje = 'Ingrese el nombre del gimnasio';
+      this.router.navigate(['dashboard/gym']);
     }
   }
 

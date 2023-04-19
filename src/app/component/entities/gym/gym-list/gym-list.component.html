@@ -6,7 +6,7 @@
     como quieras y los podrás gestionar desde aquí
 
     <div class="button-container">
-      <button class="button accept" routerLink="/gym/gym-insert">
+      <button class="button accept" [routerLink]="['gym-insert']">
         Agregar
       </button>
     </div>
@@ -54,7 +54,7 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button color="primary" [routerLink]="['/gym/gym-update', element.id]">
+        <button mat-icon-button color="primary" [routerLink]="['gym-update', element.id]">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button color="warn" (click)="openConfirmationDialog(element.id)">

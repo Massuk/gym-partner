@@ -19,10 +19,9 @@
           <mat-label>Nombre del gimnasio</mat-label>
           <input
             matInput
-            formControlName="nameGym"
+            formControlName="nameGym" required
             #name
             maxlength="25"
-            required
           />
           <mat-hint align="end">{{ name.value.length }}/20</mat-hint>
         </mat-form-field>
@@ -70,7 +69,7 @@
       <div class="button-container">
         <div class="form-group">
           <button class="button accept" type="submit">Agregar</button>
-          <button class="button cancel" routerLink="/gym">Cancelar</button>
+          <button class="button cancel" routerLink="/dashboard/gym">Cancelar</button>
         </div>
         <div class="form-group"></div>
         <p>{{ mensaje }}</p>

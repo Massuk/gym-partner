@@ -41,6 +41,8 @@ import { ConfirmationDialogComponent } from './component/dashboard/confirmation-
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { AuthenticationComponent } from './component/authentication/authentication.component';
 import { EntitiesComponent } from './component/entities/entities.component';
+import { RegisterComponent } from './component/authentication/register/register.component';
+import { LoginComponent } from './component/authentication/login/login.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { EntitiesComponent } from './component/entities/entities.component';
     ConfirmationDialogComponent,
     DashboardComponent,
     AuthenticationComponent,
-    EntitiesComponent
+    EntitiesComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

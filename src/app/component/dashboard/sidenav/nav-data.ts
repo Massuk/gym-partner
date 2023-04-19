@@ -30,7 +30,7 @@ export const navbarData = [
     label: 'Nutricionista',
   },
   {
-    routeLink: 'foods',
+    routeLink: 'asd',
     icon: 'fal fa-salad',
     label: 'Alimentos',
   }
