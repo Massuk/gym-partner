@@ -41,6 +41,9 @@ import { ConfirmationDialogComponent } from './component/dashboard/confirmation-
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { AuthenticationComponent } from './component/authentication/authentication.component';
 import { EntitiesComponent } from './component/entities/entities.component';
+import { FoodsComponent } from './component/entities/foods/foods.component';
+import { FoodsListComponent } from './component/entities/foods/foods-list/foods-list.component';
+import { FoodsInsertComponent } from './component/entities/foods/foods-insert/foods-insert.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,10 @@ import { EntitiesComponent } from './component/entities/entities.component';
     ConfirmationDialogComponent,
     DashboardComponent,
     AuthenticationComponent,
-    EntitiesComponent
+    EntitiesComponent,
+    FoodsComponent,
+    FoodsListComponent,
+    FoodsInsertComponent
   ],
   imports: [
     BrowserModule,

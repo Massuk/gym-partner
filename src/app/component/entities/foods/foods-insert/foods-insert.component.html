@@ -1,0 +1,35 @@
+
+
+  <div class="card">
+    <form [formGroup]="form" (submit)="aceptar()">
+
+      <mat-form-field class="example-full-width">
+        <mat-label>id</mat-label>
+        <input matInput placeholder="id" formControlName="id" />
+      </mat-form-field>
+<br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre del Alimento</mat-label>
+        <input matInput placeholder="Name" formControlName="nameFood" />
+      </mat-form-field>
+
+<br>
+      <mat-form-field class="example-full-width">
+        <mat-label>N° Porciones</mat-label>
+        <input matInput placeholder="N° Porciones" formControlName="portionsFood" />
+      </mat-form-field>
+
+<br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Calorias</mat-label>
+        <input matInput placeholder="Calorias" formControlName="caloriesFood" />
+      </mat-form-field>
+
+<br>
+      <button mat-button color="primary">Aceptar</button>
+      <button mat-button color="warn" routerLink="/pets">Cancelar</button>
+      <br> <p>{{ mensaje }}</p>
+    </form>
+  </div>
+

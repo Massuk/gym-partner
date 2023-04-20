@@ -7,6 +7,7 @@ import { GymListComponent } from './component/entities/gym/gym-list/gym-list.com
 import { GymInsertComponent } from './component/entities/gym/gym-insert/gym-insert.component';
 import { GymUpdateComponent } from './component/entities/gym/gym-update/gym-update.component';
 import { GymDeleteComponent } from './component/entities/gym/gym-delete/gym-delete.component';
+import { FoodsComponent } from './component/entities/foods/foods.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'panel', pathMatch: 'full' },
@@ -31,6 +32,7 @@ const routes: Routes = [
     ],
   },
   { path: 'gym-list', component: GymListComponent },
+  { path: 'foods', component: FoodsComponent },
 ];
 
 @NgModule({
