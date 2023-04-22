@@ -1,28 +1,23 @@
-:host {
+@media (min-width: 1200px) {
+  .container{
+      max-width: 650px;
+  }
+}
+
+mat-card-title {
   display: flex;
   justify-content: center;
-  margin: 100px 0px;
+  align-items: center;
+  height: 3rem;
 }
-
-.mat-form-field {
-  width: 100%;
-  min-width: 300px;
-}
-
-mat-card-title,
 mat-card-content {
   display: flex;
   justify-content: center;
 }
 
-.error {
-  padding: 16px;
-  width: 300px;
-  color: white;
-  background-color: red;
-}
 
-.button {
-  display: flex;
-  justify-content: flex-end;
+.login-button {
+  display: block;
+  width: 230px;
+  margin: 10px auto;
 }
