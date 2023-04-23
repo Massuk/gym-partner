@@ -1,1 +1,88 @@
-<p>register works!</p>
+<div class="vh-100 d-flex align-items-center">
+  <div class="container">
+    <mat-card class="card">
+      <mat-card-title>
+        <img
+          class="logo"
+          src="../../../../assets/gp_logo.png"
+          alt="Logo circular"
+        />
+      </mat-card-title>
+
+      <div class="row">
+        <div class="col my-3">
+          <h2 class="text-center">Registrate</h2>
+        </div>
+      </div>
+
+      <mat-card-content>
+        <form action="">
+          <div class="row my-2">
+            <mat-form-field appearance="outline">
+              <mat-label class="box-text">Correo electrónico</mat-label>
+              <input
+                matInput
+                required
+                name="loginMail"
+                type="email"
+                ngModel
+                #email="ngModel"
+              />
+              <mat-error *ngIf="email.invalid"
+                >El correo es obligatorio</mat-error
+              >
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="row my-2">
+            <mat-form-field appearance="outline">
+              <mat-label class="box-text">Correo electrónico</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let option of options" [value]="option.value">
+                  {{option.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="row my-2">
+            <mat-form-field appearance="outline" >
+              <mat-label class="box-text">Contraseña</mat-label>
+              <input
+                matInput
+                type="password"
+                required
+                minlength="6"
+                name="loginPass"
+                ngModel
+                #password="ngModel"
+              />
+              <mat-error *ngIf="password.errors && password.errors['required']">
+                La contraseña es obligatoria
+              </mat-error>
+              <mat-error
+                *ngIf="password.errors && password.errors['minlength']"
+              >
+                La contraseña tiene un mínimo de 6 caracteres
+              </mat-error>
+              <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+          </div>
+          <mat-checkbox>Recordarme</mat-checkbox>
+          <div class="row d-flex justify-content-center buttons-container">
+            <button mat-raised-button class="button auth" routerLink="/dashboard/panel">
+              Ingresar
+            </button>
+          </div>
+
+          <div class="row d-flex justify-content-center">
+            <button mat-stroked-button class="button secondary" routerLink="/auth/register">
+              Registrarme
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

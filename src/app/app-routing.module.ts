@@ -22,6 +22,7 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
     ],
   },
+  { path: 'login', component: LoginComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -52,7 +53,7 @@ const routes: Routes = [
       },
     ],
   },
-  { path: 'login', component: LoginComponent },
+
 
 
 
