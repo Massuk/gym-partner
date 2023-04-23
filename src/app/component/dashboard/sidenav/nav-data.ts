@@ -15,7 +15,7 @@ export const navbarData = [
     label: 'Gimnasios',
   },
   {
-    routeLink: 'exercise',
+    routeLink: 'exercises',
     icon: 'fal fa-dumbbell',
     label: 'Ejercicios',
   },
@@ -25,9 +25,9 @@ export const navbarData = [
     label: 'Planes de Entrenamiento',
   },
   {
-    routeLink: 'nutritional',
+    routeLink: 'nutritional-plans',
     icon: 'fal fa-user-md',
-    label: 'Nutricionista',
+    label: 'Planes Nutricionales',
   },
   {
     routeLink: 'foods',

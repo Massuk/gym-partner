@@ -1,20 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TrainingPlan } from 'src/app/model/training-plans';
 import { TrainingPlansService } from 'src/app/service/training-plans.service';
 
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 
 @Component({
-  selector: 'app-training-plans-listar',
-  templateUrl: './training-plans-listar.component.html',
-  styleUrls: ['./training-plans-listar.component.scss'],
+  selector: 'app-training-plans-list',
+  templateUrl: './training-plans-list.component.html',
+  styleUrls: ['./training-plans-list.component.scss'],
 })
 export class TrainingPlansListarComponent implements OnInit {
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  
   lista: TrainingPlan[] = [];
   displayedColumns: string[] = [
     'number',
@@ -37,15 +32,15 @@ export class TrainingPlansListarComponent implements OnInit {
     this.tpS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
     });
-
   }
 
-  constructor(
-    private tpS: TrainingPlansService,
-  ) { }
+  constructor(private tpS: TrainingPlansService) {
+    this.tpS.list().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
+    });
+  }
 
   filtrar(e: any) {
     this.dataSource.filter = e.target.value.trim();
   }
-
 }

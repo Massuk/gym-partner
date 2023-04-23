@@ -6,12 +6,12 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-training-plans-insertar',
-  templateUrl: './training-plans-insertar.component.html',
-  styleUrls: ['./training-plans-insertar.component.scss']
+  selector: 'app-training-plans-insert',
+  templateUrl: './training-plans-insert.component.html',
+  styleUrls: ['./training-plans-insert.component.scss']
 })
 export class TrainingPlansInsertarComponent implements OnInit {
-  
+
   id: number = 0;
   edicion: boolean = false;
 
@@ -23,7 +23,7 @@ export class TrainingPlansInsertarComponent implements OnInit {
   constructor(
     private tpS: TrainingPlansService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
@@ -57,7 +57,6 @@ export class TrainingPlansInsertarComponent implements OnInit {
     this.tPlan.enable = this.form.value['enable'];
 
     if (this.form.value['title'].length > 0) {
-      
       if (this.edicion) {
         this.tpS.update(this.tPlan).subscribe(() => {
           this.tpS.list().subscribe((data) => {
@@ -72,7 +71,6 @@ export class TrainingPlansInsertarComponent implements OnInit {
         })
       })
       }
-
       this.router.navigate(['trainingPlans'])
     }
     else {
@@ -80,6 +78,7 @@ export class TrainingPlansInsertarComponent implements OnInit {
       console.log(this.mensaje);
     }
   }
+
 
   init() {
     if (this.edicion) {
@@ -92,10 +91,9 @@ export class TrainingPlansInsertarComponent implements OnInit {
           level: new FormControl(data.level),
           startDate: new FormControl(data.startDate),
           endDate: new FormControl(data.endDate),
-          enable: new FormControl(data.enable)
+          enable: new FormControl(data.enable),
         });
       });
     }
   }
-
 }

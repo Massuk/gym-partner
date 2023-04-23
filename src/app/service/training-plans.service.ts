@@ -31,7 +31,6 @@ export class TrainingPlansService {
     this.listaCambio.next(listaNueva);
   }
 
-
   listId(id: number) {
     return this.http.get<TrainingPlan>(`${this.url}/${id}`)
   }

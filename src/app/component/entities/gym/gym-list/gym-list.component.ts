@@ -60,7 +60,7 @@ export class GymListComponent implements OnInit {
           });
         });
         snack.dismiss();
-        this.snackBar.open('Se ha eliminado correctamente', 'Cerrar', {
+        this.snackBar.open('Se ha eliminado correctamente', 'Aceptar', {
           duration: 3000,
         });
       } else {
