@@ -40,7 +40,12 @@ const routes: Routes = [
       {
         path: 'tpInsertar',
         component: TrainingPlansInsertarComponent,
+      },
+      {
+        path: 'edicion/:id',
+        component: TrainingPlansInsertarComponent,
       }
+
     ]
   }
 ];

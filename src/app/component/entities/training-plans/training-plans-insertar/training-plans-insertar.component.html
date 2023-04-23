@@ -1,73 +1,88 @@
-<div class="container">
-    <h1> Crear nuevo Plan de Entrenamientoa</h1>
-    <form [formGroup]="form" (submit)="aceptar()">
-        <mat-form-field class="example-full-width">
-            <mat-label>Código</mat-label>
-            <input matInput placeholder="Código" formControlName="id" />
-        </mat-form-field>
-        <br>
-        <mat-form-field class="example-full-width">
-            <mat-label>Título</mat-label>
-            <input matInput placeholder="Title" formControlName="title" />
-        </mat-form-field>
-        <br>
-        <mat-form-field class="example-full-width">
-            <mat-label>Descripción</mat-label>
-            <input matInput placeholder="Description" formControlName="description" />
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill">
-            <mat-label>Objectivo</mat-label>
-            <mat-select placeholder="Objective" formControlName="objective">
-                <mat-option value="Lose weight">Bajar de peso</mat-option>
-                <mat-option value="Maintain mass">Mantener masa</mat-option>
-                <mat-option value="Gain muscle mass">Ganar masa muscular</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill">
-            <mat-label>Nivel</mat-label>
-            <mat-select placeholder="Level" formControlName="level">
-                <mat-option value="Beginner">Principiante</mat-option>
-                <mat-option value="Intermediate">Intermedio</mat-option>
-                <mat-option value="Advanced">Avanzado</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill">
-            <mat-label>Fecha de Inicio</mat-label>
-            <input matInput 
-                [matDatepicker]="picker" 
-                placeholder="Choose a date" 
-                formControlName="startDate"
-                [min]="Fecha"/>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field> 
-        <br>
-        <mat-form-field appearance="fill">
-            <mat-label>Fecha de Fin</mat-label>
-            <input matInput 
-                [matDatepicker]="picker2" 
-                placeholder="Choose a date" 
-                formControlName="endDate"
-                [min]="Fecha"
-                [max]="maxFecha" />
-            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill">
-            <mat-label>Estado</mat-label>
-            <mat-select placeholder="Status" formControlName="enable">
-                <mat-option value="Enable">Habilitado</mat-option>
-                <mat-option value="Disable">Deshabilitado</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <br>
-        <button type="submit" mat-raised-button color="primary">Aceptar</button>
-        <button type="button" mat-button color="warn" routerLink="/trainingPlans">Cancelar</button>
-        <br>
-        <p>{{ mensaje }}</p>
-    </form>
+<div class="card">
+    <div class="card-head">Registrar Plan de Entrenamiento</div>
+    <div class="card-body">
+        <form [formGroup]="form" (submit)="aceptar()">
+            <!-- <div class="form-group">
+                <mat-form-field class="example-full-width" style="margin-right: 20rem; width: 100%" appearance="outline">
+                    <mat-label>Código</mat-label>
+                    <input matInput placeholder="Código" formControlName="id" />
+                </mat-form-field>
+            </div> -->
+            
+            <div class="form-group">
+                <mat-form-field class="example-full-width" style="margin-right: 20rem; width: 100%" appearance="outline">
+                    <mat-label>Título</mat-label>
+                    <input matInput placeholder="Title" formControlName="title" required/>
+                </mat-form-field>
+            </div>
+            
+            <div class="form-group">
+                <mat-form-field class="example-full-width" style="margin-right: 20rem; width: 100%" appearance="outline">
+                    <mat-label>Descripción</mat-label>
+                    <input matInput placeholder="Description" formControlName="description" />
+                </mat-form-field>
+            </div>
+            
+            <div class="form-group">
+                <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
+                    <mat-label>Objetivomm</mat-label>
+                    <mat-select placeholder="Objective" formControlName="objective" required>
+                        <mat-option value="Lose weight">Bajar de peso</mat-option>
+                        <mat-option value="Maintain mass">Mantener masa</mat-option>
+                        <mat-option value="Gain muscle mass">Ganar masa muscular</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            
+            <div class="form-group">
+                <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
+                    <mat-label>Nivel</mat-label>
+                    <mat-select placeholder="Level" formControlName="level" required>
+                        <mat-option value="Beginner">Principiante</mat-option>
+                        <mat-option value="Intermediate">Intermedio</mat-option>
+                        <mat-option value="Advanced">Avanzado</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            
+            <div class="form-group">
+                <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
+                    <mat-label>Fecha de Inicio</mat-label>
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="startDate" [min]="Fecha" required/>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            
+            <div class="form-group">
+                <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
+                    <mat-label>Fecha de Fin</mat-label>
+                    <input matInput [matDatepicker]="picker2" placeholder="Choose a date" formControlName="endDate" [min]="Fecha"
+                        [max]="maxFecha" required/>
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+            </div>
+            
+            <div class="form-group">
+                <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
+                    <mat-label>Estado</mat-label>
+                    <mat-select placeholder="Status" formControlName="enable" required>
+                        <mat-option value="Activo">Habilitado</mat-option>
+                        <mat-option value="Vencido">Deshabilitado</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            
+            <div class="button-container">
+                <div class="form-group">
+                    <button class="button accept" type="submit">Agregar</button>
+                    <button class="button cancel" routerLink="/trainingPlans">Cancelar</button>
+                </div>
+                <div class="form-group"></div>
+                <p>{{ mensaje }}</p>
+            </div>
+
+        </form>
+    </div>
 </div>
