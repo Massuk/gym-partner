@@ -66,6 +66,7 @@ const routes: Routes = [
     ],
   },
   { path: 'nutritional-plans-list', component: NutritionalPlanListComponent },
+  
   {
     path: 'trainingPlans',
     component: TrainingPlansComponent,
