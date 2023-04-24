@@ -10,13 +10,22 @@ import { FoodService } from 'src/app/service/foods.service';
 })
 export class FoodsListComponent implements OnInit {
   lista: food[] = [];
-
   dataSource: MatTableDataSource<food> = new MatTableDataSource();
+  displayedColumns: string[] = ['id', 'Name', 'portions', 'calories','actions'];
+
   constructor(private fS: FoodService) {}
   ngOnInit(): void {
     this.fS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
     });
+
+    this.fS.getList().subscribe(data=>{
+      this.dataSource=new MatTableDataSource(data);
+    })
   }
-  displayedColumns: string[] = ['id', 'Name', 'portions', 'calories'];
+
+filtrar(e:any){
+    this.dataSource.filter=e.target.value.trim();
+
+  }
 }

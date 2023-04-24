@@ -10,7 +10,6 @@ const base_url = environment.base
 export class FoodService {
   private url=`${base_url}/foods`;
   private listaCambio = new Subject<food[]>();
-
   constructor(private http:HttpClient) { }
   list(){
     return this.http.get<food[]>(this.url);
@@ -25,5 +24,10 @@ export class FoodService {
   setList(listaNueva: food[]) {
     this.listaCambio.next(listaNueva);
   }
-
+  listId(id: number) {
+    return this.http.get<food>(`${this.url}/${id}`);
+  }
+  update(p: food) {
+    return this.http.put(this.url + '/' + p.id, p);
+  }
 }

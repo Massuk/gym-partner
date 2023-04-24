@@ -8,6 +8,8 @@ import { GymInsertComponent } from './component/entities/gym/gym-insert/gym-inse
 import { GymUpdateComponent } from './component/entities/gym/gym-update/gym-update.component';
 import { GymDeleteComponent } from './component/entities/gym/gym-delete/gym-delete.component';
 import { FoodsComponent } from './component/entities/foods/foods.component';
+import { FoodsInsertComponent } from './component/entities/foods/foods-insert/foods-insert.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'panel', pathMatch: 'full' },
@@ -32,7 +34,19 @@ const routes: Routes = [
     ],
   },
   { path: 'gym-list', component: GymListComponent },
-  { path: 'foods', component: FoodsComponent },
+  {
+    path: 'foods',
+    component: FoodsComponent,
+    children: [
+      {
+        path: 'foods-insert',
+        component: FoodsInsertComponent,
+      },
+      {
+        path:'edicion/:id',
+        component:FoodsInsertComponent}
+    ],
+  }
 ];
 
 @NgModule({
