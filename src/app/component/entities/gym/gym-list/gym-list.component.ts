@@ -24,6 +24,7 @@ export class GymListComponent implements OnInit {
   ];
   dataSource: MatTableDataSource<Gym> = new MatTableDataSource();
 
+
   ngOnInit(): void {
     this.gS.getList().subscribe((data) => {
       this.dataSource.data = data;
@@ -67,5 +68,11 @@ export class GymListComponent implements OnInit {
         snack.dismiss();
       }
     });
+
   }
+
+  filterResults(gym:any){
+    this.dataSource.filter =gym.target.value.trim();
+  }
+
 }
