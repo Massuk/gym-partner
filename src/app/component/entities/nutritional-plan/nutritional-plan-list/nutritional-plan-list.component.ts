@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { NutritionalPlan } from 'src/app/model/nutritionalPlan';
@@ -28,6 +28,9 @@ export class NutritionalPlanListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
     });
   }
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   ngOnInit(): void {
     this.pNP.getList().subscribe((data) => {
       this.dataSource.data = data;
@@ -35,6 +38,7 @@ export class NutritionalPlanListComponent implements OnInit {
 
     this.pNP.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
     });
   }
   filter(event: any) {
