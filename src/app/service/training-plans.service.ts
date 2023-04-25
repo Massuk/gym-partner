@@ -30,4 +30,13 @@ export class TrainingPlansService {
   setList(listaNueva: TrainingPlan[]) {
     this.listaCambio.next(listaNueva);
   }
+
+  listId(id: number) {
+    return this.http.get<TrainingPlan>(`${this.url}/${id}`)
+  }
+
+  update(tPlan: TrainingPlan) {
+    return this.http.put(this.url + "/" + tPlan.id, tPlan);
+  }
+
 }

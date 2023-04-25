@@ -7,29 +7,40 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-training-plans-list',
   templateUrl: './training-plans-list.component.html',
-  styleUrls: ['./training-plans-list.component.scss']
+  styleUrls: ['./training-plans-list.component.scss'],
 })
 export class TrainingPlansListarComponent implements OnInit {
-
   lista: TrainingPlan[] = [];
-  displayedColumns: string[] = ['number', 'title', 'description', 'objective', 'level', 'startDate', 'endDate', 'status'];
+  displayedColumns: string[] = [
+    'number',
+    'title',
+    'description',
+    'objective',
+    'level',
+    'startDate',
+    'endDate',
+    'status',
+    'actions',
+  ];
   dataSource: MatTableDataSource<TrainingPlan> = new MatTableDataSource();
 
   ngOnInit(): void {
     this.tpS.getList().subscribe((data) => {
       this.dataSource.data = data;
-    })
+    });
 
     this.tpS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data)
-    })
+      this.dataSource = new MatTableDataSource(data);
+    });
   }
-
-
 
   constructor(private tpS: TrainingPlansService) {
     this.tpS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data)
-    })
+      this.dataSource = new MatTableDataSource(data);
+    });
+  }
+
+  filtrar(e: any) {
+    this.dataSource.filter = e.target.value.trim();
   }
 }

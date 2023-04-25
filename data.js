@@ -150,7 +150,7 @@ module.exports = function () {
         objective: "Ganar masa muscular",
         level: "Principiante",
         startDate: "2023-03-10",
-        endDate: "2023-04-9",
+        endDate: "2023-04-09",
         enable: "Vencido",
       },
       {
@@ -160,8 +160,18 @@ module.exports = function () {
         objective: "Ganar masa muscular",
         level: "Intermedio",
         startDate: "2023-04-10",
-        endDate: "2023-05-9",
+        endDate: "2023-05-09",
         enable: "Activo",
+      },
+      {
+        id: 3,
+        title: "Entrenamiento PPL",
+        description: "Primer mes utilizando plan de entrenamiento enfocado en rutinas de push, pull, legs",
+        objective: "Ganar masa muscular",
+        level: "Principiante",
+        startDate: "2023-03-10",
+        endDate: "2023-04-9",
+        enable: "Vencido",
       }
     ],
     exercises: [

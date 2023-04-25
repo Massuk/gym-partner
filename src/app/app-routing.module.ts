@@ -12,6 +12,7 @@ import { ExerciseInsertComponent } from './component/entities/exercise/exercise-
 import { NutritionalPlanComponent } from './component/entities/nutritional-plan/nutritional-plan.component';
 import { NutritionalPlanInsertComponent } from './component/entities/nutritional-plan/nutritional-plan-insert/nutritional-plan-insert.component';
 import { NutritionalPlanListComponent } from './component/entities/nutritional-plan/nutritional-plan-list/nutritional-plan-list.component';
+
 import { TrainingPlansComponent } from './component/entities/training-plans/training-plans.component';
 import { TrainingPlansInsertarComponent } from './component/entities/training-plans/training-plans-insert/training-plans-insert.component';
 import { FoodsComponent } from './component/entities/foods/foods.component';
@@ -69,6 +70,7 @@ const routes: Routes = [
     ],
   },
   { path: 'nutritional-plans-list', component: NutritionalPlanListComponent },
+  
   {
     path: 'trainingPlans',
     component: TrainingPlansComponent,
@@ -76,7 +78,12 @@ const routes: Routes = [
       {
         path: 'tpInsertar',
         component: TrainingPlansInsertarComponent,
+      },
+      {
+        path: 'edicion/:id',
+        component: TrainingPlansInsertarComponent,
       }
+
     ]
   },
   {
