@@ -15,9 +15,22 @@
     </div>
   </div>
 </div>
-<mat-form-field>
-  <input matInput (keyup)="filter($event)" placeholder="Buscar" />
-</mat-form-field>
+
+<div class="search-container">
+  <div class="normal-search">
+    <input
+      type="search"
+      class="search"
+      name=""
+      id=""
+      placeholder="Buscar..."
+      matInput
+      (keyup)="filter($event)"
+    />
+    <i class="far fa-search search-icon"></i>
+  </div>
+</div>
+
 <div class="card">
   <table mat-table [dataSource]="dataSource" class="mat gym-table">
     <!--- Note that these columns can be defined in any order.
