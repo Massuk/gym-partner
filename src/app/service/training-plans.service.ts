@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { TrainingPlan } from '../model/training-plans';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 const base_url=environment.base
 
@@ -39,4 +39,12 @@ export class TrainingPlansService {
     return this.http.put(this.url + "/" + tPlan.id, tPlan);
   }
 
+  ////
+
+  delete(id: number): Observable<any> {
+    const url = `${this.url}/${id}`;
+    return this.http.delete(url);
+  }
+
+  
 }
