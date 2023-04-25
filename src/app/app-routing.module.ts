@@ -62,6 +62,7 @@ const routes: Routes = [
         path: 'nutritional-plans-insert',
         component: NutritionalPlanInsertComponent,
       },
+      { path: 'update/:id', component: NutritionalPlanInsertComponent },
     ],
   },
   { path: 'nutritional-plans-list', component: NutritionalPlanListComponent },

@@ -23,4 +23,11 @@ export class NutritionalPlanService {
   setList(listaNueva: NutritionalPlan[]) {
     this.listaCambio.next(listaNueva);
   }
+  listId(id: number) {
+    return this.http.get<NutritionalPlan>(`${this.url}/${id}`);
+  }
+
+  update(nutritionalPlan: NutritionalPlan) {
+    return this.http.put(this.url + '/' + nutritionalPlan.id, nutritionalPlan);
+  }
 }
