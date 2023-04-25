@@ -14,6 +14,9 @@ import { NutritionalPlanInsertComponent } from './component/entities/nutritional
 import { NutritionalPlanListComponent } from './component/entities/nutritional-plan/nutritional-plan-list/nutritional-plan-list.component';
 import { TrainingPlansComponent } from './component/entities/training-plans/training-plans.component';
 import { TrainingPlansInsertarComponent } from './component/entities/training-plans/training-plans-insert/training-plans-insert.component';
+import { FoodsComponent } from './component/entities/foods/foods.component';
+import { FoodsInsertComponent } from './component/entities/foods/foods-insert/foods-insert.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'panel', pathMatch: 'full' },
@@ -75,6 +78,19 @@ const routes: Routes = [
         component: TrainingPlansInsertarComponent,
       }
     ]
+  },
+  {
+    path: 'foods',
+    component: FoodsComponent,
+    children: [
+      {
+        path: 'foods-insert',
+        component: FoodsInsertComponent,
+      },
+      {
+        path:'edicion/:id',
+        component:FoodsInsertComponent}
+    ],
   }
 ];
 

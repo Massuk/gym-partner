@@ -208,6 +208,33 @@ module.exports = function () {
           "Para cumplir el objetivo no debe saltarse las comidas y debe consumir más calorías de lo que gasta.",
       },
     ],
+    foods: [
+      {
+        id:1,
+        nameFood: "Pollo",
+        portionsFood: "500 g",
+        caloriesFood:"100 Kcal",
+      },
+      {
+        id:2,
+        nameFood: "Carne",
+        portionsFood: "400 g",
+        caloriesFood:"200 Kcal",
+      },
+      {
+        id:3,
+        nameFood: "Huevo",
+        portionsFood: "80 g",
+        caloriesFood:"80 Kcal",
+      },
+      {
+        id:4,
+        nameFood: "Queso",
+        portionsFood: "100 g",
+        caloriesFood:"240 Kcal",
+      }
+    ],
+
   };
   return data;
 };
