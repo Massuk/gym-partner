@@ -40,9 +40,10 @@ export class GymUpdateComponent implements OnInit {
 
     // Guardar automáticamente los cambios localmente en el navegador para que no se pierda la información
     // al recargar la página. Esto se cambiará cuando usemos Post
+    /*
     this.form.valueChanges.subscribe(value => {
       localStorage.setItem('gym-update-form', JSON.stringify(value));
-    });
+    });*/
   }
 
   updateGym() {

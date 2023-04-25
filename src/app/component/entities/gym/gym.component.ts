@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -7,7 +7,20 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./gym.component.scss'],
 })
 export class GymComponent implements OnInit {
-  constructor(public route: ActivatedRoute) {}
+  innerWidth:any;
+  constructor(public route: ActivatedRoute) {
+    this.innerWidth = window.innerWidth;
+  }
   ngOnInit(): void {
+
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.innerWidth = window.innerWidth;
+  }
+
+  getClass() {
+    return this.innerWidth < 925 ? 'row-md' : 'row';
   }
 }
