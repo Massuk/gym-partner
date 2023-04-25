@@ -1,51 +1,98 @@
 <div class="card">
-  <div class="card-head">Actualizar información</div>
+  <div class="card-head">Registrar gimnasio</div>
   <div class="card-body">
-    <form [formGroup]="form" (submit)="updateGym()">
+    <form [formGroup]="form" (submit)="aceptar()">
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="example-full-width">
+            <mat-label>Id</mat-label>
+            <input matInput placeholder="Id" formControlName="id" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="example-full-width">
+            <mat-label>Titulo</mat-label>
+            <input
+              matInput
+              placeholder="Titulo"
+              formControlName="titleNutritionalPlan"
+            />
+          </mat-form-field>
+        </div>
+      </div>
 
-      <div class="form-group">
-        <mat-form-field
-          appearance="outline"
-          style="margin-right: 20rem; width: 100%"
-        >
-          <mat-label>Nombre del gimnasio</mat-label>
-          <input matInput formControlName="nameGym" required />
-        </mat-form-field>
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Estado</mat-label>
+            <mat-select
+              placeholder="Estado"
+              formControlName="statusNutritionalPlan"
+            >
+              <mat-option value="Activo">Activo</mat-option>
+              <mat-option value="Inactivo">Inactivo</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="example-full-width">
+            <mat-label>Objetivo</mat-label>
+            <input
+              matInput
+              placeholder="Objetivo"
+              formControlName="objectiveNutritionalPlan"
+            />
+          </mat-form-field>
+        </div>
       </div>
-      <div class="form-group">
-        <mat-form-field
-          appearance="outline"
-          style="margin-right: 20rem; width: 100%"
-        >
-          <mat-label>Código del gimnasio</mat-label>
-          <input matInput formControlName="codeGym" />
-        </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripcion</mat-label>
+        <textarea
+          matInput
+          placeholder="Descripcion"
+          formControlName="descriptionNutritionalPlan"
+        ></textarea>
+      </mat-form-field>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Inicio de Plan</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              placeholder="Elija una fecha"
+              formControlName="startDateNutritionalPlan"
+              [max]="maxFecha"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
       </div>
-      <div class="form-group">
-        <mat-form-field
-          appearance="outline"
-          style="margin-right: 20rem; width: 100%"
-        >
-          <mat-label>RUC</mat-label>
-          <input matInput formControlName="rucGym" />
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field
-          appearance="outline"
-          style="margin-right: 20rem; width: 100%"
-        >
-          <mat-label>Razón social</mat-label>
-          <input matInput formControlName="rsGym" />
-        </mat-form-field>
-      </div>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Recomendaciones</mat-label>
+        <textarea
+          matInput
+          placeholder="Recomendaciones"
+          formControlName="recommendationsNutritionalPlan"
+        ></textarea>
+      </mat-form-field>
 
       <div class="button-container">
         <div class="form-group">
-          <button class="button accept" type="submit">Guardar</button>
-          <button class="button cancel" routerLink="/gym">Cancelar</button>
+          <button class="button accept" type="submit">Agregar</button>
+          <button class="button cancel" routerLink="/nutritional-plans">
+            Cancelar
+          </button>
         </div>
-        <p></p>
+        <div class="form-group"></div>
+        <p>{{ mensaje }}</p>
       </div>
     </form>
 

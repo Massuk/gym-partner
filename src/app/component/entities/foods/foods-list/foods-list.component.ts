@@ -22,6 +22,7 @@ export class FoodsListComponent implements OnInit {
   ngOnInit(): void {
     this.fS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
     });
 
     this.fS.getList().subscribe(data=>{

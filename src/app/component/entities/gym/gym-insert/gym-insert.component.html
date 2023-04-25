@@ -2,34 +2,69 @@
   <div class="card-head">Registrar gimnasio</div>
   <div class="card-body">
     <form [formGroup]="form" (submit)="insertar()">
+
       <div class="form-group">
-        <mat-form-field style="margin-right: 20rem; width: 100%">
+        <mat-form-field
+          appearance="outline"
+          style="margin-right: 20rem; width: 100%"
+        >
           <mat-label>ID</mat-label>
-          <input matInput formControlName="id" />
+          <input matInput formControlName="id" required />
         </mat-form-field>
       </div>
       <div class="form-group">
-        <mat-form-field style="margin-right: 20rem; width: 100%">
+        <mat-form-field
+          appearance="outline"
+          style="margin-right: 20rem; width: 100%"
+        >
           <mat-label>Nombre del gimnasio</mat-label>
-          <input matInput formControlName="nameGym" />
+          <input
+            matInput
+            formControlName="nameGym"
+            #name
+            maxlength="25"
+            required
+          />
+          <mat-hint align="end">{{ name.value.length }}/20</mat-hint>
         </mat-form-field>
       </div>
       <div class="form-group">
-        <mat-form-field style="margin-right: 20rem; width: 100%">
+        <mat-form-field
+          appearance="outline"
+          style="margin-right: 20rem; width: 100%"
+        >
           <mat-label>Código del gimnasio</mat-label>
-          <input matInput formControlName="codeGym" />
+          <input matInput formControlName="codeGym" required />
         </mat-form-field>
       </div>
       <div class="form-group">
-        <mat-form-field style="margin-right: 20rem; width: 100%">
+        <mat-form-field
+          appearance="outline"
+          style="margin-right: 20rem; width: 100%"
+        >
           <mat-label>RUC</mat-label>
-          <input matInput formControlName="rucGym" />
+          <input
+            matInput
+            oninput="javascript: var maxLength = 11;
+            var minLength = 11; if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength)} "
+            type="number"
+            min="0"
+            minlength="11"
+            #ruc
+            maxlength="11"
+            formControlName="rucGym"
+            required
+          />
+          <mat-hint align="end">{{ ruc.value.length }}/11</mat-hint>
         </mat-form-field>
       </div>
       <div class="form-group">
-        <mat-form-field style="margin-right: 20rem; width: 100%">
+        <mat-form-field
+          appearance="outline"
+          style="margin-right: 20rem; width: 100%"
+        >
           <mat-label class="box-text">Razón social</mat-label>
-          <input matInput formControlName="rsGym" />
+          <input matInput formControlName="rsGym" required />
         </mat-form-field>
       </div>
 
@@ -44,44 +79,102 @@
     </form>
 
     <div class="card separate">
-      <div id="carouselSlideGymPartner" class="carousel slide" data-bs-ride="carousel">
+      <div
+        id="carouselSlideGymPartner"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
         <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselSlideGymPartner" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselSlideGymPartner" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselSlideGymPartner" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button
+            type="button"
+            data-bs-target="#carouselSlideGymPartner"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselSlideGymPartner"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselSlideGymPartner"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="../../../../assets/carousel/slide1.png" class="d-block w-100" alt="img1">
+            <img
+              src="../../../../assets/carousel/slide1.png"
+              class="d-block w-100"
+              alt="img1"
+            />
             <div class="carousel-caption d-none d-md-block">
               <h5 class="tshadow">Organiza tus gimnasios de manera sencilla</h5>
-              <p class="tshadow">Con Gym Partner podrás administrar fácilmente tus gimnasios y mantener un control de todas tus sucursales</p>
+              <p class="tshadow">
+                Con Gym Partner podrás administrar fácilmente tus gimnasios y
+                mantener un control de todas tus sucursales
+              </p>
             </div>
           </div>
           <div class="carousel-item">
-            <img src="../../../../assets/carousel/slide2.png" class="d-block w-100" alt="img2">
+            <img
+              src="../../../../assets/carousel/slide2.png"
+              class="d-block w-100"
+              alt="img2"
+            />
             <div class="carousel-caption d-none d-md-block">
-              <h5 class="tshadow">Gestionar entrenadores nunca fue tan fácil</h5>
-              <p class="tshadow">Monitorea el progreso de tus entrenadores y mantén una comunicación efectiva con ellos</p>
+              <h5 class="tshadow">
+                Gestionar entrenadores nunca fue tan fácil
+              </h5>
+              <p class="tshadow">
+                Monitorea el progreso de tus entrenadores y mantén una
+                comunicación efectiva con ellos
+              </p>
             </div>
           </div>
           <div class="carousel-item">
-            <img src="../../../../assets/carousel/slide3.png" class="d-block w-100" alt="img3">
+            <img
+              src="../../../../assets/carousel/slide3.png"
+              class="d-block w-100"
+              alt="img3"
+            />
             <div class="carousel-caption d-none d-md-block">
-              <h5 class="tshadow">Gestionar nutricionistas es más sencillo de lo que imaginas</h5>
-              <p class="tshadow">Podrás hacer seguimiento a sus avances y monitorear su progreso en tiempo real</p>
+              <h5 class="tshadow">
+                Gestionar nutricionistas es más sencillo de lo que imaginas
+              </h5>
+              <p class="tshadow">
+                Podrás hacer seguimiento a sus avances y monitorear su progreso
+                en tiempo real
+              </p>
             </div>
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselSlideGymPartner" data-bs-slide="prev">
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselSlideGymPartner"
+          data-bs-slide="prev"
+        >
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Anterior</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselSlideGymPartner" data-bs-slide="next">
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselSlideGymPartner"
+          data-bs-slide="next"
+        >
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Siguiente</span>
         </button>
       </div>
     </div>
+
+
   </div>
 </div>

@@ -22,7 +22,7 @@ $light-theme: mat.define-light-theme(
     (
         color: (
           primary: mat.define-palette(mat.$grey-palette, 900),
-          accent: mat.define-palette(mat.$light-green-palette, A400),
+          accent: mat.define-palette(mat.$yellow-palette, A400),
           // warn:
         ),
         typography: mat.define-typography-config(),
