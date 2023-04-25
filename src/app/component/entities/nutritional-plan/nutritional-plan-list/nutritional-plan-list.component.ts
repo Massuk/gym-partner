@@ -11,6 +11,7 @@ import { NutritionalPlanService } from 'src/app/service/nutritional-plan.service
 })
 export class NutritionalPlanListComponent implements OnInit {
   lista: NutritionalPlan[] = [];
+  dataSource: MatTableDataSource<NutritionalPlan> = new MatTableDataSource();
   displayedColumns: string[] = [
     'id',
     'titleNutritionalPlan',
@@ -20,9 +21,8 @@ export class NutritionalPlanListComponent implements OnInit {
     'startDateNutritionalPlan',
     'endDateNutritionalPlan',
     'recommendationsNutritionalPlan',
+    'edit',
   ];
-  dataSource: MatTableDataSource<NutritionalPlan> = new MatTableDataSource();
-
   constructor(private pNP: NutritionalPlanService) {
     this.pNP.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
@@ -36,5 +36,8 @@ export class NutritionalPlanListComponent implements OnInit {
     this.pNP.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
     });
+  }
+  filter(event: any) {
+    this.dataSource.filter = event.target.value.trim();
   }
 }

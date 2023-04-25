@@ -3,7 +3,8 @@ import { NutritionalPlan } from 'src/app/model/nutritionalPlan';
 import { NutritionalPlanService } from 'src/app/service/nutritional-plan.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import * as moment from 'moment';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-nutritional-plan-insert',
@@ -11,13 +12,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./nutritional-plan-insert.component.scss'],
 })
 export class NutritionalPlanInsertComponent {
+  id: number = 0;
+  edit: boolean = false;
   form: FormGroup = new FormGroup({});
   nutritionalPlan: NutritionalPlan = new NutritionalPlan();
   mensaje: string = '';
   maxFecha: Date = moment().add(-1, 'days').toDate();
-  constructor(private pNS: NutritionalPlanService, private router: Router) {}
+  constructor(
+    private pNS: NutritionalPlanService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edit = data['id'] != null;
+      this.init();
+    });
     this.form = new FormGroup({
       id: new FormControl(),
       titleNutritionalPlan: new FormControl(),
@@ -29,9 +41,8 @@ export class NutritionalPlanInsertComponent {
       recommendationsNutritionalPlan: new FormControl(),
     });
   }
-  aceptar(): void {
-    this.nutritionalPlan.id =
-      this.form.value['id'];
+  accept(): void {
+    this.nutritionalPlan.id = this.form.value['id'];
     this.nutritionalPlan.titleNutritionalPlan =
       this.form.value['titleNutritionalPlan'];
     this.nutritionalPlan.statusNutritionalPlan =
@@ -46,15 +57,62 @@ export class NutritionalPlanInsertComponent {
       this.form.value['endDateNutritionalPlan'];
     this.nutritionalPlan.recommendationsNutritionalPlan =
       this.form.value['recommendationsNutritionalPlan'];
-    if (this.form.value['titleNutritionalPlan'].length > 0) {
-      this.pNS.insert(this.nutritionalPlan).subscribe((data) => {
-        this.pNS.list().subscribe((data) => {
-          this.pNS.setList(data);
+    if (
+      this.form.value['id'].length > 0 &&
+      this.form.value['titleNutritionalPlan'].length > 0 &&
+      this.form.value['statusNutritionalPlan'].length > 0 &&
+      this.form.value['objectiveNutritionalPlan'].length > 0 &&
+      this.form.value['descriptionNutritionalPlan'].length > 0 &&
+      this.form.value['recommendationsNutritionalPlan'].length > 0
+    ) {
+      if (this.edit) {
+        //guardar lo actualizado
+        this.pNS.update(this.nutritionalPlan).subscribe(() => {
+          this.pNS.list().subscribe((data) => {
+            this.pNS.setList(data);
+          });
+        });
+        //
+      } else {
+        this.pNS.insert(this.nutritionalPlan).subscribe((data) => {
+          this.pNS.list().subscribe((data) => {
+            this.pNS.setList(data);
+          });
+        });
+      }
+      this.router.navigate(['nutritional-plans']);
+    }
+  }
+  updateEndDate(event: MatDatepickerInputEvent<Date>) {
+    const startDate = event.value;
+    if (startDate) {
+      const endDate = new Date(startDate);
+      endDate.setDate(startDate.getDate() + 6); // Agrega 7 días a la fecha de inicio
+      this.form.controls['endDateNutritionalPlan'].setValue(endDate);
+    }
+  }
+  init() {
+    if (this.edit) {
+      this.pNS.listId(this.id).subscribe((data) => {
+        this.form = new FormGroup({
+          id: new FormControl(data.id),
+          titleNutritionalPlan: new FormControl(data.titleNutritionalPlan),
+          statusNutritionalPlan: new FormControl(data.statusNutritionalPlan),
+          objectiveNutritionalPlan: new FormControl(
+            data.objectiveNutritionalPlan
+          ),
+          descriptionNutritionalPlan: new FormControl(
+            data.descriptionNutritionalPlan
+          ),
+          startDateNutritionalPlan: new FormControl(
+            data.startDateNutritionalPlan
+          ),
+          endDateNutritionalPlan: new FormControl(data.endDateNutritionalPlan),
+          recommendationsNutritionalPlan: new FormControl(
+            data.recommendationsNutritionalPlan
+          ),
         });
       });
-      this.router.navigate(['nutritional-plans']);
-    } else {
-      this.mensaje = 'Ingrese el titulo del plan!!';
     }
   }
 }

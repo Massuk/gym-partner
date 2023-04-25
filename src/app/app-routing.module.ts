@@ -34,6 +34,7 @@ const routes: Routes = [
     ],
   },
   { path: 'gym-list', component: GymListComponent },
+
   {
     path: 'nutritional-plans',
     component: NutritionalPlanComponent,
@@ -42,9 +43,9 @@ const routes: Routes = [
         path: 'nutritional-plans-insert',
         component: NutritionalPlanInsertComponent,
       },
+      { path: 'update/:id', component: NutritionalPlanInsertComponent },
     ],
   },
-  { path: 'nutritional-plans-list', component: NutritionalPlanListComponent },
 ];
 
 @NgModule({
