@@ -42,39 +42,30 @@ export class NutritionalPlanInsertComponent {
     });
   }
   accept(): void {
-    this.nutritionalPlan.id = this.form.value['id'];
-    this.nutritionalPlan.titleNutritionalPlan =
-      this.form.value['titleNutritionalPlan'];
-    this.nutritionalPlan.statusNutritionalPlan =
-      this.form.value['statusNutritionalPlan'];
-    this.nutritionalPlan.objectiveNutritionalPlan =
-      this.form.value['objectiveNutritionalPlan'];
-    this.nutritionalPlan.descriptionNutritionalPlan =
-      this.form.value['descriptionNutritionalPlan'];
-    this.nutritionalPlan.startDateNutritionalPlan =
-      this.form.value['startDateNutritionalPlan'];
-    this.nutritionalPlan.endDateNutritionalPlan =
-      this.form.value['endDateNutritionalPlan'];
-    this.nutritionalPlan.recommendationsNutritionalPlan =
-      this.form.value['recommendationsNutritionalPlan'];
-    if (
-      this.form.value['id'].length > 0 &&
-      this.form.value['titleNutritionalPlan'].length > 0 &&
-      this.form.value['statusNutritionalPlan'].length > 0 &&
-      this.form.value['objectiveNutritionalPlan'].length > 0 &&
-      this.form.value['descriptionNutritionalPlan'].length > 0 &&
-      this.form.value['recommendationsNutritionalPlan'].length > 0
-    ) {
+    console.log('Botón de actualizar presionado');
+
+    if (this.form.valid) {
+      const formValues = this.form.value;
+      const nutritionalPlanValues = {
+        id: formValues.id,
+        titleNutritionalPlan: formValues.titleNutritionalPlan,
+        statusNutritionalPlan: formValues.statusNutritionalPlan,
+        objectiveNutritionalPlan: formValues.objectiveNutritionalPlan,
+        descriptionNutritionalPlan: formValues.descriptionNutritionalPlan,
+        startDateNutritionalPlan: formValues.startDateNutritionalPlan,
+        endDateNutritionalPlan: formValues.endDateNutritionalPlan,
+        recommendationsNutritionalPlan: formValues.recommendationsNutritionalPlan
+      };
+
       if (this.edit) {
-        //guardar lo actualizado
-        this.pNS.update(this.nutritionalPlan).subscribe(() => {
+        // guardar lo actualizado
+        this.pNS.update(nutritionalPlanValues).subscribe(() => {
           this.pNS.list().subscribe((data) => {
             this.pNS.setList(data);
           });
         });
-        //
       } else {
-        this.pNS.insert(this.nutritionalPlan).subscribe((data) => {
+        this.pNS.insert(nutritionalPlanValues).subscribe((data) => {
           this.pNS.list().subscribe((data) => {
             this.pNS.setList(data);
           });
@@ -83,11 +74,13 @@ export class NutritionalPlanInsertComponent {
       this.router.navigate(['nutritional-plans']);
     }
   }
+
+
   updateEndDate(event: MatDatepickerInputEvent<Date>) {
     const startDate = event.value;
     if (startDate) {
       const endDate = new Date(startDate);
-      endDate.setDate(startDate.getDate() + 6); // Agrega 7 días a la fecha de inicio
+      endDate.setDate(startDate.getDate() + 6); // Agrega 6 días a la fecha de inicio
       this.form.controls['endDateNutritionalPlan'].setValue(endDate);
     }
   }

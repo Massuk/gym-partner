@@ -66,8 +66,8 @@ module.exports = function () {
         objectiveNutritionalPlan: "Aumentar Masa Muscular",
         descriptionNutritionalPlan:
           "La dieta para aumentar la masa muscular incluye alimentos ricos en proteínas, grasas buenas y carbohidratos complejos ricos en fibras.",
-        startDateNutritionalPlan: "2023-04-10",
-        endDateNutritionalPlan: "2023-04-16",
+        startDateNutritionalPlan: "2022-04-20",
+        endDateNutritionalPlan: "2022-04-26",
         recommendationsNutritionalPlan:
           "Para cumplir el objetivo no debe saltarse las comidas y debe consumir más calorías de lo que gasta.",
       },
