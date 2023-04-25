@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-head">Registrar</div>
+  <div class="card-head">Registrar plan de entrenamiento</div>
   <div class="card-body">
     <form [formGroup]="form" (submit)="aceptar()">
       <div class="row">
@@ -30,9 +30,9 @@
           <mat-form-field appearance="outline">
             <mat-label>Objetivo</mat-label>
             <mat-select placeholder="Objective" formControlName="objective">
-              <mat-option value="Lose weight">Bajar de peso</mat-option>
-              <mat-option value="Maintain mass">Mantener masa</mat-option>
-              <mat-option value="Gain muscle mass"
+              <mat-option value="Bajar de peso">Bajar de peso</mat-option>
+              <mat-option value="Mantener masa">Mantener masa</mat-option>
+              <mat-option value="Ganar masa muscular"
                 >Ganar masa muscular</mat-option
               >
             </mat-select>
@@ -42,9 +42,9 @@
           <mat-form-field appearance="outline">
             <mat-label>Nivel</mat-label>
             <mat-select placeholder="Level" formControlName="level">
-              <mat-option value="Beginner">Principiante</mat-option>
-              <mat-option value="Intermediate">Intermedio</mat-option>
-              <mat-option value="Advanced">Avanzado</mat-option>
+              <mat-option value="Principiante">Principiante</mat-option>
+              <mat-option value="Intermedio">Intermedio</mat-option>
+              <mat-option value="Avanzado">Avanzado</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -91,8 +91,8 @@
       <mat-form-field appearance="outline" style="width: 100%;">
         <mat-label>Estado</mat-label>
         <mat-select placeholder="Status" formControlName="enable">
-          <mat-option value="Enable">Habilitado</mat-option>
-          <mat-option value="Disable">Deshabilitado</mat-option>
+          <mat-option value="Activo">Activo</mat-option>
+          <mat-option value="Vencido">Vencido</mat-option>
         </mat-select>
       </mat-form-field>
 

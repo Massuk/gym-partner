@@ -1,46 +1,39 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { food } from 'src/app/model/food';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatDialog } from '@angular/material/dialog';
-import { Gym } from 'src/app/model/gym';
-import { GymService } from 'src/app/service/gym.service';
+import { FoodService } from 'src/app/service/foods.service';
+import { MatDialog } from '@angular/material/dialog'
 import { ConfirmationDialogComponent } from '../../../dashboard/confirmation-dialog/confirmation-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { MatPaginator } from '@angular/material/paginator';
 @Component({
-  selector: 'app-gym-list',
-  templateUrl: './gym-list.component.html',
-  styleUrls: ['./gym-list.component.scss'],
+  selector: 'app-foods-list',
+  templateUrl: './foods-list.component.html',
+  styleUrls: ['./foods-list.component.scss'],
 })
-export class GymListComponent implements OnInit {
-  lista: Gym[] = [];
-  displayedColumns: string[] = [
-    'id',
-    'nombre',
-    'codigo',
-    'ruc',
-    'razon',
-    'actions',
-  ];
-  dataSource: MatTableDataSource<Gym> = new MatTableDataSource();
+export class FoodsListComponent implements OnInit {
+  lista: food[] = [];
+  dataSource: MatTableDataSource<food> = new MatTableDataSource();
+  displayedColumns: string[] = ['id', 'Name', 'portions', 'calories','actions'];
 
 
+  constructor(private fS: FoodService, private dialog: MatDialog,
+    private snackBar: MatSnackBar ) {}
   ngOnInit(): void {
-    this.gS.getList().subscribe((data) => {
-      this.dataSource.data = data;
-    });
-
-    this.gS.list().subscribe((data) => {
+    this.fS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });
+
+    this.fS.getList().subscribe(data=>{
+      this.dataSource=new MatTableDataSource(data);
+    });
+
   }
 
-  constructor(
-    private gS: GymService,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar
-  ) {}
+filtrar(e:any){
+    this.dataSource.filter=e.target.value.trim();
+  }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -54,25 +47,20 @@ export class GymListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.gS.delete(id).subscribe(() => {
-          this.gS.list().subscribe((data) => {
+        this.fS.delete(id).subscribe(() => {
+          this.fS.list().subscribe((data) => {
             this.dataSource = new MatTableDataSource(data);
             this.dataSource.paginator = this.paginator;
           });
         });
         snack.dismiss();
-        this.snackBar.open('Se ha eliminado correctamente', 'Aceptar', {
+        this.snackBar.open('Se ha eliminado correctamente', 'Cerrar', {
           duration: 3000,
         });
       } else {
         snack.dismiss();
       }
     });
-
-  }
-
-  filterResults(gym:any){
-    this.dataSource.filter =gym.target.value.trim();
   }
 
 }

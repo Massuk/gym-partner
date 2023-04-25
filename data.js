@@ -150,7 +150,7 @@ module.exports = function () {
         objective: "Ganar masa muscular",
         level: "Principiante",
         startDate: "2023-03-10",
-        endDate: "2023-04-9",
+        endDate: "2023-04-09",
         enable: "Vencido",
       },
       {
@@ -160,8 +160,18 @@ module.exports = function () {
         objective: "Ganar masa muscular",
         level: "Intermedio",
         startDate: "2023-04-10",
-        endDate: "2023-05-9",
+        endDate: "2023-05-09",
         enable: "Activo",
+      },
+      {
+        id: 3,
+        title: "Entrenamiento PPL",
+        description: "Primer mes utilizando plan de entrenamiento enfocado en rutinas de push, pull, legs",
+        objective: "Ganar masa muscular",
+        level: "Principiante",
+        startDate: "2023-03-10",
+        endDate: "2023-04-9",
+        enable: "Vencido",
       }
     ],
     exercises: [
@@ -202,12 +212,39 @@ module.exports = function () {
         objectiveNutritionalPlan: "Aumentar Masa Muscular",
         descriptionNutritionalPlan:
           "La dieta para aumentar la masa muscular incluye alimentos ricos en proteínas, grasas buenas y carbohidratos complejos ricos en fibras.",
-        startDateNutritionalPlan: "2023-04-10",
-        endDateNutritionalPlan: "2023-04-16",
+        startDateNutritionalPlan: "2022-04-20",
+        endDateNutritionalPlan: "2022-04-26",
         recommendationsNutritionalPlan:
           "Para cumplir el objetivo no debe saltarse las comidas y debe consumir más calorías de lo que gasta.",
       },
     ],
+    foods: [
+      {
+        id:1,
+        nameFood: "Pollo",
+        portionsFood: "500 g",
+        caloriesFood:"100 Kcal",
+      },
+      {
+        id:2,
+        nameFood: "Carne",
+        portionsFood: "400 g",
+        caloriesFood:"200 Kcal",
+      },
+      {
+        id:3,
+        nameFood: "Huevo",
+        portionsFood: "80 g",
+        caloriesFood:"80 Kcal",
+      },
+      {
+        id:4,
+        nameFood: "Queso",
+        portionsFood: "100 g",
+        caloriesFood:"240 Kcal",
+      }
+    ],
+
   };
   return data;
 };

@@ -41,15 +41,21 @@ import { ConfirmationDialogComponent } from './component/dashboard/confirmation-
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { AuthenticationComponent } from './component/authentication/authentication.component';
 import { EntitiesComponent } from './component/entities/entities.component';
+
 import { TrainingPlansComponent } from './component/entities/training-plans/training-plans.component';
-import { TrainingPlansListarComponent } from './component/entities/training-plans/training-plans-list/training-plans-list.component';
-import { TrainingPlansInsertarComponent } from './component/entities/training-plans/training-plans-insert/training-plans-insert.component';
 import { NutritionalPlanComponent } from './component/entities/nutritional-plan/nutritional-plan.component';
 import { NutritionalPlanListComponent } from './component/entities/nutritional-plan/nutritional-plan-list/nutritional-plan-list.component';
 import { NutritionalPlanInsertComponent } from './component/entities/nutritional-plan/nutritional-plan-insert/nutritional-plan-insert.component';
+import { NutritionalPlanDeleteComponent } from './component/entities/nutritional-plan/nutritional-plan-delete/nutritional-plan-delete.component';
 import { ExerciseComponent } from './component/entities/exercise/exercise.component';
 import { ExerciseListComponent } from './component/entities/exercise/exercise-list/exercise-list.component';
 import { ExerciseInsertComponent } from './component/entities/exercise/exercise-insert/exercise-insert.component';
+import { TrainingPlansListarComponent } from './component/entities/training-plans/training-plans-list/training-plans-list.component';
+import { TrainingPlansInsertarComponent } from './component/entities/training-plans/training-plans-insert/training-plans-insert.component';
+import { FoodsComponent } from './component/entities/foods/foods.component';
+import { FoodsListComponent } from './component/entities/foods/foods-list/foods-list.component';
+import { FoodsInsertComponent } from './component/entities/foods/foods-insert/foods-insert.component';
+import { TrainingPlansDeleteComponent } from './component/entities/training-plans/training-plans-delete/training-plans-delete.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +77,15 @@ import { ExerciseInsertComponent } from './component/entities/exercise/exercise-
     NutritionalPlanComponent,
     NutritionalPlanListComponent,
     NutritionalPlanInsertComponent,
+    NutritionalPlanDeleteComponent,
+    NutritionalPlanInsertComponent,
+    ExerciseComponent,
+    ExerciseListComponent,
+    ExerciseInsertComponent,
+    EntitiesComponent,
+    NutritionalPlanComponent,
+    NutritionalPlanListComponent,
+    NutritionalPlanInsertComponent,
     ExerciseComponent,
     ExerciseListComponent,
     ExerciseInsertComponent,
@@ -78,6 +93,11 @@ import { ExerciseInsertComponent } from './component/entities/exercise/exercise-
     TrainingPlansComponent,
     TrainingPlansListarComponent,
     TrainingPlansInsertarComponent,
+    EntitiesComponent,
+    FoodsComponent,
+    FoodsListComponent,
+    FoodsInsertComponent,
+    TrainingPlansDeleteComponent
   ],
   imports: [
     BrowserModule,

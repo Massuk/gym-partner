@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { NutritionalPlan } from '../model/nutritionalPlan';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 const base_url = environment.base;
+
 @Injectable({
   providedIn: 'root',
 })
 export class NutritionalPlanService {
   private url = `${base_url}/nutritionalPlans`;
-  private listaCambio = new Subject<NutritionalPlan[]>();
+  private changeList = new Subject<NutritionalPlan[]>();
   constructor(private http: HttpClient) {}
   list() {
     return this.http.get<NutritionalPlan[]>(this.url);
@@ -18,9 +19,19 @@ export class NutritionalPlanService {
     return this.http.post(this.url, nutritionalPlan);
   }
   getList() {
-    return this.listaCambio.asObservable();
+    return this.changeList.asObservable();
   }
-  setList(listaNueva: NutritionalPlan[]) {
-    this.listaCambio.next(listaNueva);
+  setList(newList: NutritionalPlan[]) {
+    this.changeList.next(newList);
+  }
+  listId(id: number) {
+    return this.http.get<NutritionalPlan>(`${this.url}/${id}`);
+  }
+  update(nutritionalPlan: NutritionalPlan) {
+    return this.http.put(this.url + '/' + nutritionalPlan.id, nutritionalPlan);
+  }
+  delete(id: number): Observable<any> {
+    const url = `${this.url}/${id}`;
+    return this.http.delete(url);
   }
 }

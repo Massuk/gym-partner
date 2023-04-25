@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TrainingPlan } from 'src/app/model/training-plans';
 import { TrainingPlansService } from 'src/app/service/training-plans.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
@@ -12,6 +12,9 @@ import * as moment from 'moment';
 })
 export class TrainingPlansInsertarComponent implements OnInit {
 
+  id: number = 0;
+  edicion: boolean = false;
+
   form: FormGroup = new FormGroup({});
   tPlan: TrainingPlan = new TrainingPlan();
   mensaje: string = '';
@@ -19,10 +22,18 @@ export class TrainingPlansInsertarComponent implements OnInit {
   maxFecha: Date = moment().add( +30, 'days').toDate();
   constructor(
     private tpS: TrainingPlansService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
+
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = data['id'] != null;
+      this.init();
+    });
+
     this.form = new FormGroup({
       id: new FormControl(),
       title: new FormControl(),
@@ -46,11 +57,20 @@ export class TrainingPlansInsertarComponent implements OnInit {
     this.tPlan.enable = this.form.value['enable'];
 
     if (this.form.value['title'].length > 0) {
-      this.tpS.insert(this.tPlan).subscribe((data) => {
+      if (this.edicion) {
+        this.tpS.update(this.tPlan).subscribe(() => {
+          this.tpS.list().subscribe((data) => {
+            this.tpS.setList(data);
+          });
+        });
+      }
+      else {
+        this.tpS.insert(this.tPlan).subscribe((data) => {
         this.tpS.list().subscribe((data) => {
           this.tpS.setList(data);
         })
       })
+      }
       this.router.navigate(['trainingPlans'])
     }
     else {
@@ -59,4 +79,21 @@ export class TrainingPlansInsertarComponent implements OnInit {
     }
   }
 
+
+  init() {
+    if (this.edicion) {
+      this.tpS.listId(this.id).subscribe((data) => {
+        this.form = new FormGroup({
+          id: new FormControl(data.id),
+          title: new FormControl(data.title),
+          description: new FormControl(data.description),
+          objective: new FormControl(data.objective),
+          level: new FormControl(data.level),
+          startDate: new FormControl(data.startDate),
+          endDate: new FormControl(data.endDate),
+          enable: new FormControl(data.enable),
+        });
+      });
+    }
+  }
 }
