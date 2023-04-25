@@ -17,8 +17,8 @@ ngOnInit(): void {
 }
 
   options: Option[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
+    {value: 'Dueño de gimnasio', viewValue: 'Soy dueño de un gimnasio'},
+    {value: 'Entrenador', viewValue: 'Soy entrenador'},
+    {value: 'Nutricionista', viewValue: 'Soy nutricionista'},
   ];
 }
