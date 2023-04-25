@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Subject } from 'rxjs';
+import { Observable,Subject } from 'rxjs';
 import { food } from '../model/food';
 const base_url = environment.base
 @Injectable({
@@ -10,6 +10,9 @@ const base_url = environment.base
 export class FoodService {
   private url=`${base_url}/foods`;
   private listaCambio = new Subject<food[]>();
+  private confirmaEliminacion = new Subject<Boolean>()
+
+
   constructor(private http:HttpClient) { }
   list(){
     return this.http.get<food[]>(this.url);
@@ -24,10 +27,20 @@ export class FoodService {
   setList(listaNueva: food[]) {
     this.listaCambio.next(listaNueva);
   }
+
+
   listId(id: number) {
     return this.http.get<food>(`${this.url}/${id}`);
   }
+
+
   update(p: food) {
     return this.http.put(this.url + '/' + p.id, p);
+  }
+
+  // Funcion para eliminar un registro
+  delete(id: number): Observable<any> {
+    const url = `${this.url}/${id}`;
+    return this.http.delete(url);
   }
 }
