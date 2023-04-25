@@ -44,6 +44,7 @@ import { EntitiesComponent } from './component/entities/entities.component';
 import { NutritionalPlanComponent } from './component/entities/nutritional-plan/nutritional-plan.component';
 import { NutritionalPlanListComponent } from './component/entities/nutritional-plan/nutritional-plan-list/nutritional-plan-list.component';
 import { NutritionalPlanInsertComponent } from './component/entities/nutritional-plan/nutritional-plan-insert/nutritional-plan-insert.component';
+import { NutritionalPlanDeleteComponent } from './component/entities/nutritional-plan/nutritional-plan-delete/nutritional-plan-delete.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { NutritionalPlanInsertComponent } from './component/entities/nutritional
     EntitiesComponent,
     NutritionalPlanComponent,
     NutritionalPlanListComponent,
-    NutritionalPlanInsertComponent
+    NutritionalPlanInsertComponent,
+    NutritionalPlanDeleteComponent
   ],
   imports: [
     BrowserModule,
