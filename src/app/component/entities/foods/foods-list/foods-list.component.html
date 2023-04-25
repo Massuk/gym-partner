@@ -2,29 +2,26 @@
 
 <div class="card">
   <div class="card-body">
-    Lista de alimentos que has registrado bajo tu nombre. Puedes añadir tantos
-    como quieras y los podrás gestionar desde aquí
+    <div class="search-container">
+      <div class="normal-search">
+        <input
+          type="search"
+          class="search"
+          name=""
+          id=""
+          placeholder="Buscar..."
+          matInput
+          (keyup)="filtrar($event)"
+        />
+        <i class="far fa-search search-icon"></i>
+      </div>
+    </div>
 
     <div class="button-container">
       <button class="button accept" routerLink="/foods/foods-insert">
         Agregar
       </button>
     </div>
-  </div>
-</div>
-
-<div class="search-container">
-  <div class="normal-search">
-    <input
-      type="search"
-      class="search"
-      name=""
-      id=""
-      placeholder="Buscar..."
-      matInput
-      (keyup)="filtrar($event)"
-    />
-    <i class="far fa-search search-icon"></i>
   </div>
 </div>
 

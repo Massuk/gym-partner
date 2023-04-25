@@ -2,21 +2,26 @@
 
 <div class="card">
     <div class="card-body">
-        Lista de Planes de Entrenamiento creados. Puedes añadir tantos como quieras y
-        gestionarlos desde aquí.
+      <div class="search-container">
+        <div class="normal-search">
+          <input
+            type="search"
+            class="search"
+            name=""
+            id=""
+            placeholder="Buscar..."
+            matInput
+            (keyup)="filtrar($event)"
+          />
+          <i class="far fa-search search-icon"></i>
+        </div>
+      </div>
 
         <div class="button-container">
             <button class="button accept" routerLink="/trainingPlans/tpInsertar">
                 Agregar
             </button>
         </div>
-    </div>
-</div>
-
-<div class="search-container">
-    <div class="normal-search">
-        <input type="search" class="search" name="" id="" placeholder="Buscar..." matInput (keyup)="filtrar($event)" />
-        <i class="far fa-search search-icon"></i>
     </div>
 </div>
 
