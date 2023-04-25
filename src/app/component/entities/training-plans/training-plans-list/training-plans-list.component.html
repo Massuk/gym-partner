@@ -80,6 +80,9 @@
                     [routerLink]="['edicion', element.id]">
                     <mat-icon>edit</mat-icon>
                 </button>
+                <button mat-icon-button color="warn" (click)="openConfirmationDialog(element.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
             </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

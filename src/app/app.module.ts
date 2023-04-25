@@ -55,6 +55,7 @@ import { TrainingPlansInsertarComponent } from './component/entities/training-pl
 import { FoodsComponent } from './component/entities/foods/foods.component';
 import { FoodsListComponent } from './component/entities/foods/foods-list/foods-list.component';
 import { FoodsInsertComponent } from './component/entities/foods/foods-insert/foods-insert.component';
+import { TrainingPlansDeleteComponent } from './component/entities/training-plans/training-plans-delete/training-plans-delete.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { FoodsInsertComponent } from './component/entities/foods/foods-insert/fo
     EntitiesComponent,
     FoodsComponent,
     FoodsListComponent,
-    FoodsInsertComponent
+    FoodsInsertComponent,
+    TrainingPlansDeleteComponent
   ],
   imports: [
     BrowserModule,
