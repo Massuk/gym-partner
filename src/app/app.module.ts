@@ -45,6 +45,11 @@ import { EntitiesComponent } from './component/entities/entities.component';
 import { RegisterComponent } from './component/authentication/register/register.component';
 import { LoginComponent } from './component/authentication/login/login.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { LandingPageComponent } from './component/landing-page/landing-page.component';
+import { AboutComponent } from './component/landing-page/about/about.component';
+import { ContactComponent } from './component/landing-page/contact/contact.component';
+import { PricingComponent } from './component/landing-page/pricing/pricing.component';
+import { IndexComponent } from './component/landing-page/index/index.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +69,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     AuthenticationComponent,
     EntitiesComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    LandingPageComponent,
+    AboutComponent,
+    ContactComponent,
+    PricingComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,

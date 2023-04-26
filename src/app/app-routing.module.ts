@@ -11,6 +11,11 @@ import { LoginComponent } from './component/authentication/login/login.component
 import { RegisterComponent } from './component/authentication/register/register.component';
 import { AuthenticationComponent } from './component/authentication/authentication.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { LandingPageComponent } from './component/landing-page/landing-page.component';
+import { AboutComponent } from './component/landing-page/about/about.component';
+import { ContactComponent } from './component/landing-page/contact/contact.component';
+import { PricingComponent } from './component/landing-page/pricing/pricing.component';
+import { IndexComponent } from './component/landing-page/index/index.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -22,7 +27,16 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
     ],
   },
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'landing-page',
+    component: LandingPageComponent,
+    children: [
+      { path: 'index', component: IndexComponent },
+      { path: 'about', component: AboutComponent },
+      { path: 'contact', component: ContactComponent },
+      { path: 'pricing', component: PricingComponent },
+    ],
+  },
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -35,7 +49,7 @@ const routes: Routes = [
         children: [
           {
             path: 'gym-list',
-            component: GymInsertComponent,
+            component: GymListComponent,
           },
           {
             path: 'gym-insert',
@@ -47,16 +61,12 @@ const routes: Routes = [
           },
           {
             path: 'gym-delete/:id',
-            component: GymDeleteComponent
+            component: GymDeleteComponent,
           },
         ],
       },
     ],
   },
-
-
-
-
 ];
 
 @NgModule({
