@@ -14,18 +14,33 @@ import { MatPaginator } from '@angular/material/paginator';
 
 export class ExerciseListComponent implements OnInit{
   lista:exercise[]=[];
+  displayedColumns:string[] = [
+    'id',
+    'nameExercise',
+    'series',
+    'kilograms',
+    'repetitions',
+    'Editar'
+  ];
   dataSource:MatTableDataSource<exercise> = new MatTableDataSource();
-  displayedColumns:string[] = ['id','nameExercise','series','kilograms','repetitions','Editar']
 
-  constructor(private eS:ExerciseService, private dialog: MatDialog,
-    private snackBar: MatSnackBar){}
   ngOnInit(): void {
-    this.eS.list().subscribe(data=>{this.dataSource = new MatTableDataSource(data)})
-    this.eS.getList().subscribe(data=>(this.dataSource=new MatTableDataSource(data)))
+
+    this.eS.getList().subscribe((data)=>{
+      this.dataSource.data=data;
+    });
+
+    this.eS.list().subscribe((data)=>{
+      this.dataSource = new MatTableDataSource(data);
+    });
+
+
   }
-  filtrar(exercise:any){
-    this.dataSource.filter =exercise.target.value.trim();
-  }
+  constructor(
+    private eS:ExerciseService,
+     private dialog: MatDialog,
+    private snackBar: MatSnackBar
+    ){}
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -46,7 +61,7 @@ export class ExerciseListComponent implements OnInit{
           });
         });
         snack.dismiss();
-        this.snackBar.open('Se ha eliminado correctamente', 'Cerrar', {
+        this.snackBar.open('Se ha eliminado correctamente', 'Aceptar', {
           duration: 3000,
         });
       } else {
@@ -56,6 +71,10 @@ export class ExerciseListComponent implements OnInit{
   }
 
 
+
+  filtrar(exercise:any){
+    this.dataSource.filter =exercise.target.value.trim();
+  }
 
 
 

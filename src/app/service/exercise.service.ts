@@ -13,31 +13,36 @@ const base_url = environment.base
 export class ExerciseService {
   private url=`${base_url}/exercises`;
   private listaCambio = new Subject<exercise[]>()
-  private confirmaEliminacion = new Subject<Boolean>()
 
 
   constructor(private http:HttpClient) { }
-  list(){ return this.http.get<exercise[]>(this.url);}
+  list(){
+    return this.http.get<exercise[]>(this.url);}
 
 
-  insert(exercise:exercise){ return this.http.post(this.url,exercise);}
-
-
-
-  getList(){return this.listaCambio.asObservable();}
-
-
-  setList(listaNueva:exercise[]){this.listaCambio.next(listaNueva);}
+  insert(exercise:exercise){
+    return this.http.post(this.url,exercise);}
 
 
 
-
-  listId(id:number){ return  this.http.get<exercise>(`${this.url}/${id}`);}
-
-
+  getList(){
+    return this.listaCambio.asObservable();}
 
 
-  update(exercise:exercise){ return this.http.put(this.url + '/'+ exercise.id,exercise);}
+  setList(listaNueva:exercise[]){
+    this.listaCambio.next(listaNueva);}
+
+
+
+
+  listId(id:number){
+    return  this.http.get<exercise>(`${this.url}/${id}`);}
+
+
+
+
+  update(exercise:exercise){
+    return this.http.put(this.url + '/'+ exercise.id, exercise);}
 
 
 
