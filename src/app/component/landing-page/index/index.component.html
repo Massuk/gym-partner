@@ -19,26 +19,20 @@
 
 </head>
 <body>
-	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
-
 	<!-- Header section -->
 	<header class="header-section">
-		<a href="index.html" class="site-logo">
+		<a routerLink="/landing-page/index" class="site-logo">
 			<img src="../../../assets/landing/logo.png" alt="">
 		</a>
 		<ul class="main-menu">
-			<li><a class="active" href="index.html">Inicio</a></li>
+			<li><a class="active" routerLink="/landing-page/index">Inicio</a></li>
 			<li><a routerLink="/landing-page/about">Sobre nosotros</a></li>
-			<li><a href="pricing.html">Precios</a></li>
-			<li><a href="contact.html">Contacto</a></li>
-			<a href="login.html" class="site-btn">Iniciar sesión</a>
+			<li><a routerLink="/landing-page/pricing">Precios</a></li>
+			<li><a routerLink="/landing-page/contact">Contacto</a></li>
+			<a routerLink="/auth/login" class="site-btn">Iniciar sesión</a>
 
 		</ul>
 	</header>
-	<div class="clearfix"></div>
 	<!-- Header section end -->
 
 	<!-- Hero section -->
@@ -165,7 +159,7 @@
 					</div>
 				</div>
 			</div>
-			<div align="right"><a href="pricing.html" class="site-btn">Más información</a></div>
+			<div align="right"><a routerLink="/landing-page/pricing" class="site-btn">Más información</a></div>
 		</div>
 	</section>
 	<!-- Pricing section end  -->
@@ -328,10 +322,10 @@
 				</div>
 				<div class="col-md-6 order-1 order-md-1">
 					<ul class="footer-menu">
-						<li><a href="index.html">Inicio</a></li>
-						<li><a href="about.html">Sobre nosotros</a></li>
-						<li><a href="pricing.html">Precios</a></li>
-						<li><a href="contact.html">Contacto</a></li>
+            <li><a routerLink="/landing-page/index">Inicio</a></li>
+            <li><a routerLink="/landing-page/about">Sobre nosotros</a></li>
+            <li><a routerLink="/landing-page/pricing">Precios</a></li>
+            <li><a routerLink="/landing-page/contact">Contacto</a></li>
 					</ul>
 				</div>
 			</div>

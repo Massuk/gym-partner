@@ -32,22 +32,17 @@
     />
   </head>
   <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-      <div class="loader"></div>
-    </div>
-
     <!-- Header section -->
     <header class="header-section">
-      <a href="index.html" class="site-logo">
-        <img src="images/logo.png" alt="" />
+      <a routerLink="/landing-page/index" class="site-logo">
+        <img src="../../../../assets/landing/logo.png" alt="" />
       </a>
       <ul class="main-menu">
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="about.html">Sobre nosotros</a></li>
-        <li><a class="active" href="pricing.html">Precios</a></li>
-        <li><a href="contact.html">Contacto</a></li>
-        <a href="login.html" class="site-btn">Iniciar sesión</a>
+        <li><a routerLink="/landing-page/index">Inicio</a></li>
+        <li><a routerLink="/landing-page/about">Sobre nosotros</a></li>
+        <li><a class="active" routerLink="/landing-page/pricing">Precios</a></li>
+        <li><a routerLink="/landing-page/contact">Contacto</a></li>
+        <a routerLink="/auth/login" class="site-btn">Iniciar sesión</a>
       </ul>
     </header>
     <div class="clearfix"></div>
@@ -56,7 +51,7 @@
     <!-- Page top section -->
     <section
       class="page-top-section set-bg"
-      data-setbg="images/header-bg/2.jpg"
+      data-setbg="../../../../assets/landing/header-bg/2.jpg"
     >
       <div class="container">
         <h2>Precios</h2>
@@ -71,7 +66,7 @@
           <div class="col-lg-4 col-sm-6">
             <div class="icon-box-item">
               <div class="ib-icon">
-                <img src="images/payments.png" alt="" />
+                <img src="../../../../assets/landing/payments.png" alt="" />
               </div>
               <h4>Medios de pago</h4>
               <p>
@@ -82,7 +77,7 @@
           <div class="col-lg-4 col-sm-6">
             <div class="icon-box-item">
               <div class="ib-icon">
-                <img src="images/discounts.png" alt="" />
+                <img src="../../../../assets/landing/discounts.png" alt="" />
               </div>
               <h4>Descuentos</h4>
               <p>
@@ -95,7 +90,7 @@
           <div class="col-lg-4 col-sm-6">
             <div class="icon-box-item">
               <div class="ib-icon">
-                <img src="images/offers.png" alt="" />
+                <img src="../../../../assets/landing/offers.png" alt="" />
               </div>
               <h4>Ofertas</h4>
               <p>
@@ -110,7 +105,7 @@
     <!-- Service section end -->
 
     <!-- Pricing section -->
-    <section class="pricing-section set-bg" data-setbg="images/pricing-bg.jpg">
+    <section class="pricing-section set-bg" data-setbg="../../../../assets/landing/pricing-bg.jpg">
       <div class="container">
         <div class="section-title text-white text-center">
           <h2>Elige el mejor <span>plan</span> para ti</h2>
@@ -201,7 +196,7 @@
                 Adquiriendo un plan personalizado obtendras una insignia de
                 aliado destacado.
               </p>
-              <a href="contact.html" class="site-btn">Enviar un mensaje</a>
+              <a routerLink="/landing-page/contact" class="site-btn">Enviar un mensaje</a>
             </div>
           </div>
         </div>
@@ -210,7 +205,7 @@
     <!-- Trainers section end -->
 
     <!-- Footer section -->
-    <footer class="footer-section set-bg" data-setbg="images/footer-bg.jpg">
+    <footer class="footer-section set-bg" data-setbg="../../../../assets/landing/footer-bg.jpg">
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-sm-6">
@@ -245,7 +240,7 @@
             <div class="footer-widget">
               <h4>Contacto</h4>
               <div class="fw-info-box">
-                <img src="images/icons/3.png" alt="" />
+                <img src="../../../../assets/landing/icons/3.png" alt="" />
                 <div class="footer-widget">
                   <p>contacto@gympartner.com</p>
                 </div>
@@ -269,10 +264,10 @@
           <div class="col-md-6 order-1 order-md-1"></div>
           <div class="col-md-6 order-1 order-md-1">
             <ul class="footer-menu">
-              <li><a href="index.html">Inicio</a></li>
-              <li><a href="about.html">Sobre nosotros</a></li>
-              <li><a href="pricing.html">Precios</a></li>
-              <li><a href="contact.html">Contacto</a></li>
+              <li><a routerLink="/landing-page/index">Inicio</a></li>
+              <li><a routerLink="/landing-page/about">Sobre nosotros</a></li>
+              <li><a routerLink="/landing-page/pricing">Precios</a></li>
+              <li><a routerLink="/landing-page/contact">Contacto</a></li>
             </ul>
           </div>
         </div>
