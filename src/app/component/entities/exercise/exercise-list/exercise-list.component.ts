@@ -32,6 +32,7 @@ export class ExerciseListComponent implements OnInit{
 
     this.eS.list().subscribe((data)=>{
       this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
     });
 
 
@@ -42,7 +43,7 @@ export class ExerciseListComponent implements OnInit{
     private snackBar: MatSnackBar
     ){}
 
-    @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   openConfirmationDialog(id: number): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {

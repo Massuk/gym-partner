@@ -35,6 +35,7 @@ export class TrainingPlansListarComponent implements OnInit {
 
     this.tpS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
     });
   }
 
