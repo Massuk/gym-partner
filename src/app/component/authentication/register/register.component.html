@@ -11,12 +11,49 @@
 
       <div class="row">
         <div class="col my-3">
-          <h2 class="text-center">Iniciar sesión</h2>
+          <h2 class="text-center">Registrate</h2>
         </div>
       </div>
 
+
       <mat-card-content>
         <form action="">
+          <div class="row my-2">
+            <mat-form-field appearance="outline">
+              <mat-label class="box-text">Nombre</mat-label>
+              <input
+                matInput
+                required
+                name="loginName"
+                type="text"
+                ngModel
+                #name="ngModel"
+              />
+              <mat-error *ngIf="name.invalid"
+                >El nombre es obligatorio</mat-error
+              >
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="row my-2">
+            <mat-form-field appearance="outline">
+              <mat-label class="box-text">Apellidos</mat-label>
+              <input
+                matInput
+                required
+                name="loginLastName"
+                type="text"
+                ngModel
+                #lastname="ngModel"
+              />
+              <mat-error *ngIf="lastname.invalid"
+                >El apellido es obligatorio</mat-error
+              >
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+          </div>
+
           <div class="row my-2">
             <mat-form-field appearance="outline">
               <mat-label class="box-text">Correo electrónico</mat-label>
@@ -34,6 +71,7 @@
               <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
           </div>
+
           <div class="row my-2">
             <mat-form-field appearance="outline" >
               <mat-label class="box-text">Contraseña</mat-label>
@@ -57,16 +95,21 @@
               <mat-icon matSuffix>lock</mat-icon>
             </mat-form-field>
           </div>
-          <mat-checkbox>Recordarme</mat-checkbox>
-          <div class="row d-flex justify-content-center buttons-container">
-            <button mat-raised-button class="button auth" routerLink="/dashboard/panel">
-              Ingresar
-            </button>
+
+          <div class="row my-2">
+            <mat-form-field appearance="outline">
+              <mat-label class="box-text">¿Qué usuario eres?</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let option of options" [value]="option.value">
+                  {{option.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
 
-          <div class="row d-flex justify-content-center">
-            <button mat-stroked-button class="button secondary" routerLink="/auth/register">
-              Registrarme
+          <div class="row d-flex justify-content-center buttons-container">
+            <button mat-raised-button class="button auth my-3" routerLink="/dashboard/panel">
+              Continuar
             </button>
           </div>
         </form>

@@ -49,7 +49,7 @@ export class GymUpdateComponent implements OnInit {
   updateGym() {
     if (this.form.valid) {
       this.gS.update(this.form.value).subscribe(() => {
-        this.router.navigate(['/gym']);
+        this.router.navigate(['/dashboard/gym']);
       });
     }
   }

@@ -7,6 +7,10 @@ import { GymListComponent } from './component/entities/gym/gym-list/gym-list.com
 import { GymInsertComponent } from './component/entities/gym/gym-insert/gym-insert.component';
 import { GymUpdateComponent } from './component/entities/gym/gym-update/gym-update.component';
 import { GymDeleteComponent } from './component/entities/gym/gym-delete/gym-delete.component';
+import { LoginComponent } from './component/authentication/login/login.component';
+import { RegisterComponent } from './component/authentication/register/register.component';
+import { AuthenticationComponent } from './component/authentication/authentication.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { ExerciseComponent } from './component/entities/exercise/exercise.component';
 import { ExerciseInsertComponent } from './component/entities/exercise/exercise-insert/exercise-insert.component';
 import { NutritionalPlanComponent } from './component/entities/nutritional-plan/nutritional-plan.component';
@@ -20,6 +24,50 @@ import { FoodsInsertComponent } from './component/entities/foods/foods-insert/fo
 
 
 const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {
+    path: 'auth',
+    component: AuthenticationComponent,
+    children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
+    ],
+  },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    children: [
+      { path: 'panel', component: PanelComponent },
+      { path: 'clients', component: ClientsComponent },
+      {
+        path: 'gym',
+        component: GymComponent,
+        children: [
+          {
+            path: 'gym-list',
+            component: GymInsertComponent,
+          },
+          {
+            path: 'gym-insert',
+            component: GymInsertComponent,
+          },
+          {
+            path: 'gym-update/:id',
+            component: GymUpdateComponent,
+          },
+          {
+            path: 'gym-delete/:id',
+            component: GymDeleteComponent
+          },
+        ],
+      },
+    ],
+  },
+
+
+
+
   { path: '', redirectTo: 'panel', pathMatch: 'full' },
   { path: 'panel', component: PanelComponent },
   { path: 'clients', component: ClientsComponent },
@@ -70,7 +118,7 @@ const routes: Routes = [
     ],
   },
   { path: 'nutritional-plans-list', component: NutritionalPlanListComponent },
-  
+
   {
     path: 'trainingPlans',
     component: TrainingPlansComponent,

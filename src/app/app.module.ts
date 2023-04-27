@@ -24,13 +24,14 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatOptionModule } from '@angular/material/core';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatRadioModule} from '@angular/material/radio'
+import { MatRadioModule } from '@angular/material/radio'
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCard, MatCardActions, MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -41,6 +42,9 @@ import { ConfirmationDialogComponent } from './component/dashboard/confirmation-
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { AuthenticationComponent } from './component/authentication/authentication.component';
 import { EntitiesComponent } from './component/entities/entities.component';
+import { RegisterComponent } from './component/authentication/register/register.component';
+import { LoginComponent } from './component/authentication/login/login.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { TrainingPlansComponent } from './component/entities/training-plans/training-plans.component';
 import { NutritionalPlanComponent } from './component/entities/nutritional-plan/nutritional-plan.component';
@@ -73,6 +77,9 @@ import { TrainingPlansDeleteComponent } from './component/entities/training-plan
     ConfirmationDialogComponent,
     DashboardComponent,
     AuthenticationComponent,
+    EntitiesComponent,
+    RegisterComponent,
+    LoginComponent,
     EntitiesComponent,
     NutritionalPlanComponent,
     NutritionalPlanListComponent,
@@ -124,7 +131,9 @@ import { TrainingPlansDeleteComponent } from './component/entities/training-plan
     CommonModule,
     MatCardModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
