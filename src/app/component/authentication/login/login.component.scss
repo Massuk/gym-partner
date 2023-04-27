@@ -35,10 +35,6 @@ mat-form-field {
   width: 450px;
 }
 
-.buttons-container {
-  margin-top: 0.75rem;
-}
-
 .button {
   max-width: 300px;
   margin-top: 0.75rem;
@@ -62,6 +58,7 @@ mat-form-field {
 
   &.secondary {
     margin-bottom: 1.5rem;
+    color: #263238;
   }
 }
 
