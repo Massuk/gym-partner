@@ -40,7 +40,7 @@ filtrar(e:any){
   openConfirmationDialog(id: number): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '450px',
-      data: { message: '¿Quieres eliminar el gimnasio?' },
+      data: { message: '¿Quieres eliminar alimento?' },
     });
 
     const snack = this.snackBar;
