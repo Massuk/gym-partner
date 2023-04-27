@@ -71,7 +71,7 @@ export class NutritionalPlanInsertComponent {
           });
         });
       }
-      this.router.navigate(['nutritional-plans']);
+      this.router.navigate(['/dashboard/nutritional-plans']);
     }
   }
 

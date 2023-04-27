@@ -59,7 +59,7 @@ export class FoodsInsertComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['foods']);
+      this.router.navigate(['/dashboard/foods']);
     }
       else {
       this.mensaje = 'Ingrese el nombre del alimento';

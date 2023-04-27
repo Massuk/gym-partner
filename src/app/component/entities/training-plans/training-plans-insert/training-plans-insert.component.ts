@@ -71,7 +71,7 @@ export class TrainingPlansInsertarComponent implements OnInit {
         })
       })
       }
-      this.router.navigate(['trainingPlans'])
+      this.router.navigate(['/dashboard/trainingPlans'])
     }
     else {
       this.mensaje = 'Ingrese el titulo del plan de entrenamiento';

@@ -72,7 +72,7 @@ this.route.params.subscribe((data:Params)=>{
 //el eS llama al insert,  luego lo lista y luego lo setea
 
 // le date la ruta para que navegue para eso debo crear la ruta en el routing
-this.router.navigate(['exercises']); // una vez que inserte se ira de nuevo a la ruta padre exercises (lista)
+this.router.navigate(['/dashboard/exercises']); // una vez que inserte se ira de nuevo a la ruta padre exercises (lista)
     }
     else {
         this.mensaje='Ingrese el nombre del ejercicio ';
