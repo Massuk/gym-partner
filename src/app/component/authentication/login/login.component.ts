@@ -31,5 +31,3 @@ export class LoginComponent implements OnInit {
     });
   }
 }
-
-// ../../../../assets/avatar.jpg

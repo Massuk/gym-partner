@@ -73,6 +73,17 @@
           </div>
 
           <div class="row my-2">
+            <mat-form-field appearance="outline">
+              <mat-label class="box-text">¿Qué usuario eres?</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let option of options" [value]="option.value">
+                  {{option.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="row my-2">
             <mat-form-field appearance="outline" >
               <mat-label class="box-text">Contraseña</mat-label>
               <input

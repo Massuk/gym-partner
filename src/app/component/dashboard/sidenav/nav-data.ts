@@ -30,7 +30,7 @@ export const navbarData = [
     label: 'Planes Nutricionales',
   },
   {
-    routeLink: 'asd',
+    routeLink: 'foods',
     icon: 'fal fa-salad',
     label: 'Alimentos',
   }

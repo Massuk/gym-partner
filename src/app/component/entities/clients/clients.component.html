@@ -1,18 +1,25 @@
 
 <h1>Clientes</h1>
-<div [ngClass]="getClass()">
 <div class="card">
-    <div class="card-head">Lorem ipsum - Clientes</div>
-    <div class="card-body">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas ducimus soluta, quasi aut ipsa non, ullam enim
-        rem repudiandae, vitae provident animi. Inventore rerum, voluptas optio dignissimos blanditiis modi illo!
+  <div class="card-body">
+    <div class="search-container">
+      <div class="normal-search">
+        <input
+          type="search"
+          class="search"
+          name=""
+          id=""
+          placeholder="Buscar..."
+          matInput
+        />
+        <i class="far fa-search search-icon"></i>
+      </div>
     </div>
-</div>
-<div class="card">
-    <div class="card-head">Lorem ipsum - Clientes</div>
-    <div class="card-body">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas ducimus soluta, quasi aut ipsa non, ullam enim
-        rem repudiandae, vitae provident animi. Inventore rerum, voluptas optio dignissimos blanditiis modi illo!
+
+    <div class="button-container">
+      <button class="button accept" [routerLink]="['gym-insert']">
+        Agregar
+      </button>
     </div>
-</div>
+  </div>
 </div>

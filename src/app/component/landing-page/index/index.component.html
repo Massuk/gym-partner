@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Gym Partner</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Landing page de la app Gym Partner">
+	<meta name="keywords" content="gym, fitness, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Favicon -->
+	<link href="images/favicon.ico" rel="shortcut icon"/>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&display=swap" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+	<!-- Header section -->
+	<header class="header-section">
+		<a routerLink="/landing-page/index" class="site-logo">
+			<img src="../../../assets/landing/logo.png" alt="">
+		</a>
+		<ul class="main-menu">
+			<li><a class="active" routerLink="/landing-page/index">Inicio</a></li>
+			<li><a routerLink="/landing-page/about">Sobre nosotros</a></li>
+			<li><a routerLink="/landing-page/pricing">Precios</a></li>
+			<li><a routerLink="/landing-page/contact">Contacto</a></li>
+			<a routerLink="/auth/login" class="site-btn">Iniciar sesión</a>
+
+		</ul>
+	</header>
+	<!-- Header section end -->
+
+	<!-- Hero section -->
+	<section class="hero-section set-bg" data-setbg="../../../assets/landing/hero-bg.jpg">
+		<div class="container">
+			<div class="hero-text">
+				<h2>Organiza tu gimnasio y</h2>
+				<h2><span>mejora</span> los resultados</h2>
+				<div style="text-shadow: 2px 2px 2px rgb(46, 46, 46);"><br><h5>Tus clientes progresaran rápido, tu gimnasio tendrá mejor reputación.</h5></div>
+				<a href="#featuresection" class="site-btn">Leer más</a>
+			</div>
+		</div>
+	</section>
+	<!-- Hero section end -->
+
+	<!-- Feature section -->
+	<section class="feature-section" id="featuresection">
+		<div class="container">
+			<div class="row justify-content-md-center">
+				<div class="col-lg-8">
+					<div class="section-title text-center">
+						<h2>El verdadero <span>progreso</span> inicia cuando controlas todo. </h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="icon-box-item">
+						<div class="ib-icon">
+							<i class="fa fa-handshake-o"></i>
+						</div>
+						<h4>El primer paso</h4>
+						<p>Todo empieza por conocer a los clientes para brindarles lo mejor para su desarrollo dentro del gimnasio.</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="icon-box-item">
+						<div class="ib-icon">
+							<i class="fa fa-heartbeat"></i>
+						</div>
+						<h4>No solo son ejercicios</h4>
+						<p>Conocer la nutrición que llevará tu cliente es vital para acelerar resultados.</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="icon-box-item">
+						<div class="ib-icon">
+							<i class="fa fa-line-chart"></i>
+						</div>
+						<h4>Todo lo que se puede controlar se puede mejorar</h4>
+						<p>¿El cliente ha progresado? ¿Cuánto? Te brindaremos herramientas para que tu cliente vea su progreso dentro de tu gimnasio.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Feature section end -->
+
+	<!-- Pricing section -->
+	<section class="pricing-section set-bg" data-setbg="../../../assets/landing/pricing-bg.jpg" id="pricingsection">
+		<div class="container">
+			<div class="section-title text-white text-center">
+				<h2>Elige el mejor <span>plan</span> para ti</h2>
+			</div>
+			<div class="row">
+				<div class="col-lg-3 col-sm-6">
+					<div class="pricing-box">
+						<p>Plan Prueba</p>
+						<h2>GRATIS</h2>
+						<p>Duración: 5 días</p>
+						<ul>
+							<li><b>Gestión de cuentas</b></li>
+							<li><span></span></li>
+							<li>1 cuenta para entrenador</li>
+							<li>1 cuenta para nutricionista</li>
+							<li>5 cuentas para clientes</li>
+						</ul>
+						<a href="#pricingsection" class="site-btn">Prueba</a>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="pricing-box">
+						<p>Plan Básico</p>
+						<h2>S/.70</h2>
+						<p>/mes</p>
+						<ul>
+							<li><b>Gestión de cuentas</b></li>
+							<li><span></span></li>
+							<li>5 cuentas para entrenador</li>
+							<li>3 cuentas para nutricionista</li>
+							<li>30 cuentas para clientes</li>
+						</ul>
+						<a href="#pricingsection" class="site-btn">Básico</a>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="pricing-box">
+						<p>Plan Intermedio</p>
+						<h2>S/.150</h2>
+						<p>/mes</p>
+						<ul>
+							<li><b>Gestión de cuentas</b></li>
+							<li><span></span></li>
+							<li>25 cuentas para entrenador</li>
+							<li>15 cuentas para nutricionista</li>
+							<li>100 cuentas para clientes</li>
+						</ul>
+						<a href="#pricingsection" class="site-btn">Intermedio</a>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="pricing-box">
+						<p>Plan Avanzado</p>
+						<h2>S/.250</h2>
+						<p>/mes</p>
+						<ul>
+							<li><b>Gestión de cuentas</b></li>
+							<li><span></span></li>
+							<li>65 cuentas para entrenador</li>
+							<li>40 cuentas para nutricionista</li>
+							<li>250 cuentas para clientes</li>
+						</ul>
+						<a href="#pricingsection" class="site-btn">Avanzado</a>
+					</div>
+				</div>
+			</div>
+			<div align="right"><a routerLink="/landing-page/pricing" class="site-btn">Más información</a></div>
+		</div>
+	</section>
+	<!-- Pricing section end  -->
+
+	<!-- Download App Section -->
+	<section class="app-section set-bg" data-setbg="../../../assets/landing/mockup-bg.png" id="appsection">
+		<div class="container">
+			<div class="row justify-content-md-left">
+				<div class="col-lg-8">
+					<div class="section-title text-left">
+						<h2>¿Ya has <span>adquirido</span> un plan? <br>Es hora de descargar Gym Partner</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-7">
+						<div class="a">Obtén la app <b>Gym Partner</b> y gestiona todos los servicios que te brindamos en nuestros planes. Te brindamos una interfaz intuitiva y de fácil uso.</div>
+						<br><br><br><br>
+						<a href="#appsection"><img src="../../../assets/landing/ps-icon.svg" alt="Disponible en Play Store"></a>
+
+						<a href="#appsection"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1450396800&h=4ba6f8c6bf15301ab1e2964413c05d0b" alt="Disponible en App Store" style="border-radius: 13px; width: 168px; height: 83px;"></a>
+			</div>
+			</div>
+		</div>
+	</section>
+	<!-- Download App Section -->
+
+	<!-- Milestones section -->
+	<section class="milestones-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-sm-6">
+					<div class="milestone">
+						<p>Gimnasios con Gym Partner</p>
+						<h2>34</h2>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="milestone">
+						<p>Usuarios activos</p>
+						<h2>1433</h2>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="milestone">
+						<p>Descargas totales</p>
+						<h2>57k</h2>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="milestone">
+						<p>Valoración</p>
+						<h2>4.8 ★</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Milestones section end -->
+
+	<!-- Business section -->
+	<section class="trainers-section">
+		<div class="container">
+			<div class="section-title text-center">
+				<h2>Conoce nuestros <span>aliados</span></h2>
+			</div>
+			<div class="row">
+				<div class="col-lg-3 col-sm-6">
+					<div class="trainer-item">
+						<div class="trainer-pic">
+							<img src="../../../assets/landing/business/1.jpg" alt="">
+						</div>
+						<h4>Galaxy Fitness</h4>
+						<p>Primer socio trabajando con nosotros desde 2022</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="trainer-item">
+						<div class="trainer-pic">
+							<img src="../../../assets/landing/business/2.jpg" alt="">
+						</div>
+						<h4>Gimnasios B2</h4>
+						<p>Trabajando con nosotros desde 2022</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="trainer-item">
+						<div class="trainer-pic">
+							<img src="../../../assets/landing/business/3.jpg" alt="">
+						</div>
+						<h4>Sumaq Center Gym</h4>
+						<p>Trabajando con nosotros desde 2022</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="trainer-item">
+						<div class="trainer-pic">
+							<img src="../../../assets/landing/business/4.jpg" alt="">
+						</div>
+						<h4>Smart Fit</h4>
+						<p>Trabajando con nosotros desde 2022</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Business section end -->
+
+	<!-- Footer section -->
+	<footer class="footer-section set-bg" data-setbg="../../../assets/landing/footer-bg.jpg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-sm-6">
+					<div class="footer-widget">
+						<h4>GYM PARTNER</h4>
+						<div class="fw-info-widget">
+							<div class="fw-info-text">
+								<p><b>Gym Development | Todos los derechos reservados &copy;<script>document.write(new Date().getFullYear());</script></b></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="footer-widget">
+						<h4></h4>
+						<div class="fw-info-box">
+							<div class="fw-info-text">
+								<p></p>
+								<p></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="footer-widget">
+						<h4>Contacto</h4>
+						<div class="fw-info-box">
+              <img src="../../../../assets/landing/icons/3.png" alt="" />
+							<div class="footer-widget">
+								<p>contacto@gympartner.com</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="footer-widget">
+						<h4>Redes sociales</h4>
+						<div class="fw-info-box">
+							<div class="social-links">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-instagram"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 order-1 order-md-1">
+				</div>
+				<div class="col-md-6 order-1 order-md-1">
+					<ul class="footer-menu">
+            <li><a routerLink="/landing-page/index">Inicio</a></li>
+            <li><a routerLink="/landing-page/about">Sobre nosotros</a></li>
+            <li><a routerLink="/landing-page/pricing">Precios</a></li>
+            <li><a routerLink="/landing-page/contact">Contacto</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer section end -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js" integrity="sha512-6kvhZ/39gRVLmoM/6JxbbJVTYzL/gnbDVsHACLx/31IREU4l3sI7yeO0d4gw8xU5Mpmm/17LMaDHOCf+TvuC2Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	</body>
+</html>

@@ -45,6 +45,11 @@ import { EntitiesComponent } from './component/entities/entities.component';
 import { RegisterComponent } from './component/authentication/register/register.component';
 import { LoginComponent } from './component/authentication/login/login.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { LandingPageComponent } from './component/landing-page/landing-page.component';
+import { AboutComponent } from './component/landing-page/about/about.component';
+import { ContactComponent } from './component/landing-page/contact/contact.component';
+import { PricingComponent } from './component/landing-page/pricing/pricing.component';
+import { IndexComponent } from './component/landing-page/index/index.component';
 
 import { TrainingPlansComponent } from './component/entities/training-plans/training-plans.component';
 import { NutritionalPlanComponent } from './component/entities/nutritional-plan/nutritional-plan.component';
@@ -79,6 +84,12 @@ import { TrainingPlansDeleteComponent } from './component/entities/training-plan
     AuthenticationComponent,
     EntitiesComponent,
     RegisterComponent,
+    LoginComponent,
+    LandingPageComponent,
+    AboutComponent,
+    ContactComponent,
+    PricingComponent,
+    IndexComponent,
     LoginComponent,
     EntitiesComponent,
     NutritionalPlanComponent,
