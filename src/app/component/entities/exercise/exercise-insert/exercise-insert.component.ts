@@ -19,18 +19,21 @@ export class ExerciseInsertComponent implements OnInit{
   form:FormGroup = new FormGroup({});
   exercise:exercise = new exercise();
   mensaje:string ="";
-  constructor(private eS:ExerciseService, private router:Router,
-    private route:ActivatedRoute  ){}
+
+  constructor(
+    private eS:ExerciseService,
+    private router:Router,
+    private route:ActivatedRoute
+  ){ }
 
   ngOnInit(): void {
 
 //modificar
 this.route.params.subscribe((data:Params)=>{
-
   this.id = data['id'];
-  this.edicion = data['id']!=null;
+  this.edicion = data['id'] != null;
   this.init();
-})
+});
 
     this.form = new FormGroup({
 
@@ -50,17 +53,20 @@ this.route.params.subscribe((data:Params)=>{
     this.exercise.kilograms= this.form.value['kilograms'];
     this.exercise.repetitions= this.form.value['repetitions'];
 
-    if(this.form.value['nameExercise'].length>0 && this.form.value['series'].length>0){
-
+    if(this.form.value['nameExercise'].length > 0){
       if(this.edicion) {
         this.eS.update(this.exercise).subscribe(() =>{
             this.eS.list().subscribe((data)=>{
               this.eS.setList(data);
             });
-        })
+        });
       }
       else {
-        this.eS.insert(this.exercise).subscribe(data=>{this.eS.list().subscribe(data=>{this.eS.setList(data);})})
+        this.eS.insert(this.exercise).subscribe((data)=>{
+        this.eS.list().subscribe((data)=>{
+          this.eS.setList(data);
+          })
+      })
       }
 
 //el eS llama al insert,  luego lo lista y luego lo setea
@@ -69,7 +75,8 @@ this.route.params.subscribe((data:Params)=>{
 this.router.navigate(['exercises']); // una vez que inserte se ira de nuevo a la ruta padre exercises (lista)
     }
     else {
-        this.mensaje="COMPLETA LOS CAMPOS SOLICITADOS";
+        this.mensaje='Ingrese el nombre del ejercicio ';
+        console.log(this.mensaje);
     }
   }
 
@@ -77,7 +84,7 @@ this.router.navigate(['exercises']); // una vez que inserte se ira de nuevo a la
 
  init(){
   if(this.edicion){
-    this.eS.listId(this.id).subscribe(data=>{
+    this.eS.listId(this.id).subscribe((data)=>{
 
         this.form= new FormGroup({
 

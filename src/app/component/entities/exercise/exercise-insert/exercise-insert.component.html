@@ -3,7 +3,6 @@
   <div class="card-body">
     <form [formGroup]="form" (submit)="aceptar()">
 
-
       <div class="form-group">
          <mat-form-field class="example-full-width" style="margin-right: 20rem; width: 100%" appearance="outline">
             <mat-label>No.</mat-label>
@@ -44,28 +43,43 @@
         </div>
 
 
+
         <div class="form-group">
-            <mat-form-field class="example-full-width" style="margin-right: 20rem; width: 100%" appearance="outline">
-            <mat-label>No Repeticiones</mat-label>
-            <mat-select formControlName="repetitions" required>
-                <mat-option value="2">2</mat-option>
-                <mat-option value="4">4</mat-option>
-                <mat-option value="6">6</mat-option>
-                <mat-option value="8">8</mat-option>
-            </mat-select>
-            </mat-form-field>
-        </div>
+        <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
+          <mat-label>No. Repeticiones</mat-label>
+          <mat-select
+            placeholder="No. Repeticiones"
+            formControlName="repetitions"
+            required
+          >
+          <mat-option value="2">2</mat-option>
+          <mat-option value="4">4</mat-option>
+          <mat-option value="6">6</mat-option>
+          <mat-option value="8">8</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+
+
+
+
+
 
       <div class="button-container">
         <div class="form-group">
    <!-- botones -->
-          <button class="button accept" (click)="aceptar()">Aceptar</button>
+          <button class="button accept" type="submit">Aceptar</button>
           <button class="button cancel" routerLink="/exercises">Cancelar</button>
         </div>
-          <div class="form-group"></div>
-            <!-- mensaje del ts-->
-            <p>{{mensaje}}</p>
+
       </div>
+
+
+
+
+
   </form>
   <div class="card separate">
     <div id="carouselSlideGymPartner" class="carousel slide" data-bs-ride="carousel">
