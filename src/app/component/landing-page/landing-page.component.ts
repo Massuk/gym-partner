@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as $ from 'jquery';
+import 'node_modules/slicknav/dist/jquery.slicknav.js';
 
 @Component({
   selector: 'app-landing-page',
@@ -12,7 +14,6 @@ export class LandingPageComponent implements OnInit {
 
   }
 
- ngOnInit(): void {
-
- }
+  ngOnInit(): void {
+  }
 }

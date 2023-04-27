@@ -18,7 +18,7 @@ import { PricingComponent } from './component/landing-page/pricing/pricing.compo
 import { IndexComponent } from './component/landing-page/index/index.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'landing-page/index', pathMatch: 'full' },
   {
     path: 'auth',
     component: AuthenticationComponent,

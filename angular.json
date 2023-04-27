@@ -37,6 +37,9 @@
               "src/styles.scss"
             ],
             "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/slicknav/dist/jquery.slicknav.min.js",
+              "node_modules/jquery-circle-progress/dist/circle-progress.min.js"
             ]
           },
           "configurations": {

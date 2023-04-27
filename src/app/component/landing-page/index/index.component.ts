@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery';
 import 'node_modules/slicknav/dist/jquery.slicknav.js';
 
@@ -8,17 +9,18 @@ import 'node_modules/slicknav/dist/jquery.slicknav.js';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
+
+  constructor(public route: ActivatedRoute) {
+  }
   ngOnInit(): void {
-    console.log();
 
-    ('use strict');
-
-    $(window).on('load', function () {
-      /*------------------
-        Preloader
-      --------------------*/
-      $('.loader').fadeOut();
-      $('#preloder').delay(400).fadeOut('slow');
+    /*------------------
+      Preloader
+    --------------------*/
+    console.log('Preloader started');
+    $('.loader').fadeOut();
+    $('#preloder').delay(400).fadeOut('slow', function() {
+      console.log('Preloader finished');
     });
 
     (function ($) {
@@ -73,5 +75,23 @@ export class IndexComponent implements OnInit {
         );
       });
     })(jQuery);
+
+
+    /*------------------
+      Page Loaded Handler
+    --------------------*/
+    $(document).ready(function() {
+      console.log('Page loaded completely');
+    });
+
+    /*------------------
+      Error Handler for Window Load
+    --------------------*/
+    $(window).on('load', function () {
+      if (document.readyState !== "complete") {
+        console.error("Error: Page did not fully load.");
+        // add your error message here
+      }
+    });
   }
 }
