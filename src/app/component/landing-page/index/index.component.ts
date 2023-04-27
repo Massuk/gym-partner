@@ -17,12 +17,14 @@ export class IndexComponent implements OnInit {
     (function ($) {
       /*------------------
         Navigation
-      --------------------*/
+
 
       (<any>$('.main-menu')).slicknav({
         appendTo: '.header-section',
         allowParentLinks: true,
       });
+      --------------------*/
+
       /*------------------
         Background Set
       --------------------*/
