@@ -1,4 +1,4 @@
 export const environment={
-  production:false,
-  base:"https://vercel.com/massuk/gp-api/J4YfgobASJEEVYRRqjZSpRb2TaTF"
+  production:true,
+  base:"https://gp-api-beta.vercel.app"
 }
