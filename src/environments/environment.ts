@@ -1,4 +1,4 @@
 export const environment={
-  production:true,
-  base:"http://localhost:5000"
+  production:false,
+  base:"https://vercel.com/massuk/gp-api/J4YfgobASJEEVYRRqjZSpRb2TaTF"
 }
