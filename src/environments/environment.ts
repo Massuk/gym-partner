@@ -1,4 +1,4 @@
 export const environment={
   production:true,
-  base:"https://gp-api-beta.vercel.app"
+  base:"http://localhost:5000"
 }

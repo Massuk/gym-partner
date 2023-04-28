@@ -248,5 +248,3 @@ module.exports = function () {
   };
   return data;
 };
-
-//"@angular/material/prebuilt-themes/indigo-pink.css", tema original en angular.json
