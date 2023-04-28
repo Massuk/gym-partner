@@ -1,8 +1,8 @@
 {
+  "build": {
+    "output": "dist/my-app"
+  },
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/$1"
-    }
+    { "src": "/api/(.*)", "dest": "https://gp-api-sage.vercel.app/$1" }
   ]
 }
