@@ -1,4 +1,3 @@
-export const environment = {
-  production: true,
-  base: "https://gp-api-sage.vercel.app"
-};
+export const environment={
+  production:false
+}
