@@ -5,10 +5,13 @@ const data = require('./data')
 
 const server = express()
 
-server.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT']
-}));
+server.use(cors())
+
+server.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, UPDATE, PUT');
+  next();
+});
 
 server.get('/gyms', (req, res) => {
   res.json(data.gyms)
@@ -17,3 +20,5 @@ server.get('/gyms', (req, res) => {
 server.listen(3000, () => {
   console.log('Server is listening on port 3000')
 })
+
+
