@@ -1,4 +1,4 @@
 export const environment={
-  production:false,
+  production:true,
   base:"http://localhost:5000"
 }
