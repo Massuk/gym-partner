@@ -1,11 +1,14 @@
 const express = require('express')
-const cors = require('cors') // Agrega esta línea
+const cors = require('cors')
 
 const data = require('./data')
 
 const server = express()
 
-server.use(cors()) // Agrega esta línea
+server.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT']
+}));
 
 server.get('/gyms', (req, res) => {
   res.json(data.gyms)
