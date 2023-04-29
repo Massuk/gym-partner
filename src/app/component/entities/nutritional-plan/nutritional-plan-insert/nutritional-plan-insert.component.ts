@@ -16,8 +16,8 @@ export class NutritionalPlanInsertComponent {
   edit: boolean = false;
   form: FormGroup = new FormGroup({});
   nutritionalPlan: NutritionalPlan = new NutritionalPlan();
-  mensaje: string = '';
   maxFecha: Date = moment().add(-1, 'days').toDate();
+  cardHeaderText = 'Registrar Plan Nutricional';
   constructor(
     private pNS: NutritionalPlanService,
     private router: Router,
@@ -41,6 +41,7 @@ export class NutritionalPlanInsertComponent {
       recommendationsNutritionalPlan: new FormControl(),
     });
   }
+
   accept(): void {
     console.log('Botón de actualizar presionado');
 
@@ -54,7 +55,8 @@ export class NutritionalPlanInsertComponent {
         descriptionNutritionalPlan: formValues.descriptionNutritionalPlan,
         startDateNutritionalPlan: formValues.startDateNutritionalPlan,
         endDateNutritionalPlan: formValues.endDateNutritionalPlan,
-        recommendationsNutritionalPlan: formValues.recommendationsNutritionalPlan
+        recommendationsNutritionalPlan:
+          formValues.recommendationsNutritionalPlan,
       };
 
       if (this.edit) {
@@ -75,7 +77,6 @@ export class NutritionalPlanInsertComponent {
     }
   }
 
-
   updateEndDate(event: MatDatepickerInputEvent<Date>) {
     const startDate = event.value;
     if (startDate) {
@@ -86,6 +87,7 @@ export class NutritionalPlanInsertComponent {
   }
   init() {
     if (this.edit) {
+      this.cardHeaderText = 'Modificar Plan Nutricional';
       this.pNS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
           id: new FormControl(data.id),

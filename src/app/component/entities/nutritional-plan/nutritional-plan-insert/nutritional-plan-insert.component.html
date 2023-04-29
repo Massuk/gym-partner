@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-head">Registrar Plan Nutricional</div>
+  <div class="card-head">{{ cardHeaderText }}</div>
   <div class="card-body">
     <form [formGroup]="form" (submit)="accept()">
       <mat-form-field
@@ -12,8 +12,7 @@
           placeholder="ID"
           formControlName="id"
           required
-          type="number"
-          pattern="^[^e]*$"
+          pattern="[0-9]+"
         />
       </mat-form-field>
 
@@ -99,6 +98,7 @@
           [matDatepicker]="picker2"
           placeholder="Elija una fecha"
           formControlName="endDateNutritionalPlan"
+          readonly
         />
         <mat-datepicker-toggle
           disabled
@@ -121,7 +121,7 @@
         ></textarea>
       </mat-form-field>
 
-      <button class="button accept" type="submit">Agregar</button>
+      <button class="button accept" type="submit">Guardar</button>
       <button class="button cancel" routerLink="/nutritional-plans">
         Cancelar
       </button>
