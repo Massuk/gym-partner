@@ -1,0 +1,52 @@
+{
+  "gyms": [
+    {
+      "id": 1,
+      "nameGym": "Smart Fit",
+      "codeGym": "SDSADSSADSDADSA",
+      "rucGym": "20600597940",
+      "rsGym": "SMARTFIT PERU S.A.C."
+    }
+  ],
+  "trainingPlans": [
+    {
+      "id": 1,
+      "title": "Entrenamiento PPL",
+      "description": "Primer mes utilizando plan de entrenamiento enfocado en rutinas de push, pull, legs",
+      "objective": "Ganar masa muscular",
+      "level": "Principiante",
+      "startDate": "2023-03-10",
+      "endDate": "2023-04-09",
+      "enable": "Vencido"
+    }
+  ],
+  "exercises": [
+    {
+      "id": 1,
+      "nameExercise": "Sentadilla Bulgara",
+      "series": 4,
+      "kilograms": 12,
+      "repetitions": 8
+    }
+  ],
+  "nutritionalPlans": [
+    {
+      "id": 1,
+      "titleNutritionalPlan": "Plan Nutricional de Stan Marsh Semana 1",
+      "statusNutritionalPlan": "Activo",
+      "objectiveNutritionalPlan": "Aumentar Masa Muscular",
+      "descriptionNutritionalPlan": "La dieta para aumentar la masa muscular incluye alimentos ricos en proteínas, grasas buenas y carbohidratos complejos ricos en fibras.",
+      "startDateNutritionalPlan": "2022-04-20",
+      "endDateNutritionalPlan": "2022-04-26",
+      "recommendationsNutritionalPlan": "Para cumplir el objetivo no debe saltarse las comidas y debe consumir más calorías de lo que gasta."
+    }
+  ],
+  "foods": [
+    {
+      "id": 1,
+      "nameFood": "Pollo",
+      "portionsFood": "500 g",
+      "caloriesFood": "100 Kcal"
+    }
+  ]
+}
