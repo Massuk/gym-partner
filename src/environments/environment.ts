@@ -1,4 +1,4 @@
 export const environment={
-  production:false,
-  base:"http://localhost:5000"
+  production:true,
+  base:"https://gym-partner-api.onrender.com"
 }
