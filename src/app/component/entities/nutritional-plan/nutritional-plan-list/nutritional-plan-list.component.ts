@@ -6,6 +6,7 @@ import { NutritionalPlanService } from 'src/app/service/nutritional-plan.service
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from 'src/app/component/dashboard/confirmation-dialog/confirmation-dialog.component';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-nutritional-plan-list',
@@ -26,16 +27,13 @@ export class NutritionalPlanListComponent implements OnInit {
     'recommendationsNutritionalPlan',
     'edit',
   ];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private pNP: NutritionalPlanService,
     private dialog: MatDialog,
     private snackbar: MatSnackBar
-  ) {
-    this.pNP.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-    });
-  }
+  ) {}
   ngOnInit(): void {
     this.pNP.getList().subscribe((data) => {
       this.dataSource.data = data;
@@ -43,6 +41,7 @@ export class NutritionalPlanListComponent implements OnInit {
 
     this.pNP.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
     });
   }
   filter(event: any) {
