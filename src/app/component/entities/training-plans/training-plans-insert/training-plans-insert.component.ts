@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TrainingPlan } from 'src/app/model/training-plans';
 import { TrainingPlansService } from 'src/app/service/training-plans.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -35,14 +35,14 @@ export class TrainingPlansInsertarComponent implements OnInit {
     });
 
     this.form = new FormGroup({
-      id: new FormControl(),
-      title: new FormControl(),
-      description: new FormControl(),
-      objective: new FormControl(),
-      level: new FormControl(),
-      startDate: new FormControl(),
-      endDate: new FormControl(),
-      enable: new FormControl(),
+      id: new FormControl(''),
+      title: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
+      objective: new FormControl('', Validators.required),
+      level: new FormControl('', Validators.required),
+      startDate: new FormControl('', Validators.required),
+      endDate: new FormControl('', Validators.required),
+      enable: new FormControl('', Validators.required),
     })
   }
 
@@ -56,7 +56,7 @@ export class TrainingPlansInsertarComponent implements OnInit {
     this.tPlan.endDate = this.form.value['endDate'];
     this.tPlan.enable = this.form.value['enable'];
 
-    if (this.form.value['title'].length > 0) {
+    if (this.form.valid) {
       if (this.edicion) {
         this.tpS.update(this.tPlan).subscribe(() => {
           this.tpS.list().subscribe((data) => {

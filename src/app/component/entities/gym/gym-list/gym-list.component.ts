@@ -72,7 +72,11 @@ export class GymListComponent implements OnInit {
   }
 
   filterResults(gym:any){
-    this.dataSource.filter =gym.target.value.trim();
+    this.dataSource.filter = gym.target.value.trim();
+  }
+
+  clearFilter() {
+    this.dataSource.filter = '';
   }
 
 }

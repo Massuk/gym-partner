@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { exercise } from 'src/app/model/exercise';
 import { ExerciseService } from 'src/app/service/exercise.service';
 import { ActivatedRoute, Params,Router } from '@angular/router';
@@ -37,11 +37,11 @@ this.route.params.subscribe((data:Params)=>{
 
     this.form = new FormGroup({
 
-      id:new FormControl(),
-      nameExercise:new FormControl(),
-      series:new FormControl(),
-      kilograms:new FormControl(),
-      repetitions:new FormControl(),
+      id:new FormControl(''),
+      nameExercise:new FormControl('', Validators.required),
+      series:new FormControl('', Validators.required),
+      kilograms:new FormControl('', Validators.required),
+      repetitions:new FormControl('', Validators.required),
 
     });
   }
@@ -53,7 +53,7 @@ this.route.params.subscribe((data:Params)=>{
     this.exercise.kilograms= this.form.value['kilograms'];
     this.exercise.repetitions= this.form.value['repetitions'];
 
-    if(this.form.value['nameExercise'].length > 0){
+    if(this.form.valid){
       if(this.edicion) {
         this.eS.update(this.exercise).subscribe(() =>{
             this.eS.list().subscribe((data)=>{

@@ -8,25 +8,22 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-gym-insert',
   templateUrl: './gym-insert.component.html',
-  styleUrls: ['./gym-insert.component.scss']
+  styleUrls: ['./gym-insert.component.scss'],
 })
-export class GymInsertComponent implements OnInit{
+export class GymInsertComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   gym: Gym = new Gym();
-  mensaje: string = '';
   maxFecha: Date = moment().add(-1, 'days').toDate();
 
-  constructor(private gS: GymService, private router: Router) {
-
-  }
+  constructor(private gS: GymService, private router: Router) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      id: new FormControl('', Validators.required),
-      nameGym: new FormControl('', Validators.required),
+      id: new FormControl(''),
+      nameGym: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]),
       codeGym: new FormControl('', Validators.required),
-      rucGym: new FormControl('', Validators.required),
-      rsGym: new FormControl('', Validators.required)
+      rucGym: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern(/^[0-9]*$/)]),
+      rsGym: new FormControl('', Validators.required),
     });
   }
 
@@ -37,7 +34,7 @@ export class GymInsertComponent implements OnInit{
     this.gym.rucGym = this.form.value['rucGym'];
     this.gym.rsGym = this.form.value['rsGym'];
 
-    if (this.form.value['nameGym'].length > 0) {
+    if (this.form.valid) {
       this.gS.insert(this.gym).subscribe((data) => {
         this.gS.list().subscribe((data) => {
           this.gS.setList(data);
@@ -46,5 +43,4 @@ export class GymInsertComponent implements OnInit{
       this.router.navigate(['dashboard/gym']);
     }
   }
-
 }

@@ -3,48 +3,74 @@
   <div class="card-body">
     <form [formGroup]="form" (submit)="updateGym()">
 
-      <div class="form-group">
+      <div class="my-3">
         <mat-form-field
           appearance="outline"
           style="margin-right: 20rem; width: 100%"
         >
           <mat-label>Nombre del gimnasio</mat-label>
-          <input matInput formControlName="nameGym" required />
+          <input
+            matInput
+            formControlName="nameGym" required
+            #name
+            type="text"
+            maxlength="20"
+          />
+          <mat-error *ngIf="form.controls['nameGym'].invalid">
+            El campo no puede estar vacío.
+          </mat-error>
+          <mat-hint align="end">{{ name.value.length }}/20</mat-hint>
         </mat-form-field>
       </div>
-      <div class="form-group">
+      <div class="my-3">
         <mat-form-field
           appearance="outline"
           style="margin-right: 20rem; width: 100%"
         >
           <mat-label>Código del gimnasio</mat-label>
           <input matInput formControlName="codeGym" />
+          <mat-error *ngIf="form.controls['codeGym'].invalid">
+            El campo no puede estar vacío.
+          </mat-error>
         </mat-form-field>
       </div>
-      <div class="form-group">
+      <div class="my-3">
         <mat-form-field
           appearance="outline"
           style="margin-right: 20rem; width: 100%"
         >
           <mat-label>RUC</mat-label>
-          <input matInput formControlName="rucGym" />
+          <input
+            matInput
+            oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '')"
+            type="text"
+            #ruc
+            formControlName="rucGym"
+            maxlength="11"
+            required
+          />
+          <mat-hint align="end">{{ ruc.value.length }}/11</mat-hint>
+          <mat-error *ngIf="form.controls['rucGym'].invalid">
+            El RUC debe contener 11 dígitos.
+          </mat-error>
         </mat-form-field>
       </div>
-      <div class="form-group">
+      <div class="my-3">
         <mat-form-field
           appearance="outline"
           style="margin-right: 20rem; width: 100%"
         >
           <mat-label>Razón social</mat-label>
           <input matInput formControlName="rsGym" />
+          <mat-error *ngIf="form.controls['rsGym'].invalid">
+            El campo no puede estar vacío.
+          </mat-error>
         </mat-form-field>
       </div>
 
       <div class="button-container">
-        <div class="form-group">
           <button class="button accept" type="submit">Guardar</button>
-          <button class="button cancel" routerLink="/gym">Cancelar</button>
-        </div>
+          <button class="button cancel" routerLink="/dashboard/gym">Cancelar</button>
         <p></p>
       </div>
     </form>

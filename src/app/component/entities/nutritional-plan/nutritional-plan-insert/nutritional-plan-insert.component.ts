@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NutritionalPlan } from 'src/app/model/nutritionalPlan';
 import { NutritionalPlanService } from 'src/app/service/nutritional-plan.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
@@ -17,11 +17,11 @@ export class NutritionalPlanInsertComponent {
   form: FormGroup = new FormGroup({});
   nutritionalPlan: NutritionalPlan = new NutritionalPlan();
   mensaje: string = '';
-  maxFecha: Date = moment().add(-1, 'days').toDate();
+  minFecha: Date = moment().add(0, 'days').toDate();
   constructor(
     private pNS: NutritionalPlanService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
@@ -32,17 +32,16 @@ export class NutritionalPlanInsertComponent {
     });
     this.form = new FormGroup({
       id: new FormControl(),
-      titleNutritionalPlan: new FormControl(),
-      statusNutritionalPlan: new FormControl(),
-      objectiveNutritionalPlan: new FormControl(),
-      descriptionNutritionalPlan: new FormControl(),
-      startDateNutritionalPlan: new FormControl(),
-      endDateNutritionalPlan: new FormControl(),
-      recommendationsNutritionalPlan: new FormControl(),
+      titleNutritionalPlan: new FormControl('', Validators.required),
+      statusNutritionalPlan: new FormControl('', Validators.required),
+      objectiveNutritionalPlan: new FormControl('', Validators.required),
+      descriptionNutritionalPlan: new FormControl('', Validators.required),
+      startDateNutritionalPlan: new FormControl('', Validators.required),
+      endDateNutritionalPlan: new FormControl('', Validators.required),
+      recommendationsNutritionalPlan: new FormControl('', Validators.required),
     });
   }
   accept(): void {
-    console.log('Botón de actualizar presionado');
 
     if (this.form.valid) {
       const formValues = this.form.value;
@@ -65,7 +64,7 @@ export class NutritionalPlanInsertComponent {
           });
         });
       } else {
-        this.pNS.insert(nutritionalPlanValues).subscribe((data) => {
+        this.pNS.insert(nutritionalPlanValues).subscribe(() => {
           this.pNS.list().subscribe((data) => {
             this.pNS.setList(data);
           });
@@ -108,4 +107,5 @@ export class NutritionalPlanInsertComponent {
       });
     }
   }
+
 }

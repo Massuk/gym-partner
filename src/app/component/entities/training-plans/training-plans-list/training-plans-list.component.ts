@@ -78,4 +78,9 @@ export class TrainingPlansListarComponent implements OnInit {
   filtrar(e: any) {
     this.dataSource.filter = e.target.value.trim();
   }
+
+  clearFilter() {
+    this.dataSource.filter = '';
+  }
+
 }

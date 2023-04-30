@@ -2,19 +2,17 @@
   <div class="card-head">Registrar Alimentos</div>
   <div class="card-body">
     <form [formGroup]="form" (submit)="aceptar()">
-      <div class="form-group">
-        <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
-          <mat-label>ID</mat-label>
-          <input matInput placeholder="ID" formControlName="id" />
-        </mat-form-field>
-      </div>
-      <div class="form-group">
+
+      <div class="row my-3">
         <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
           <mat-label>Alimento</mat-label>
           <input matInput placeholder="Alimento" formControlName="nameFood" />
+          <mat-error *ngIf="form.controls['nameFood'].invalid">
+            El campo no puede estar vacío.
+          </mat-error>
         </mat-form-field>
       </div>
-      <div class="form-group">
+      <div class="row my-3">
         <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
           <mat-label>N° Porciones</mat-label>
           <input
@@ -22,9 +20,12 @@
             placeholder="N° Porciones"
             formControlName="portionsFood"
           />
+          <mat-error *ngIf="form.controls['portionsFood'].invalid">
+            El campo no puede estar vacío.
+          </mat-error>
         </mat-form-field>
       </div>
-      <div class="form-group">
+      <div class="row my-3">
         <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
           <mat-label>Calorías</mat-label>
           <input
@@ -32,15 +33,15 @@
             placeholder="Calorías"
             formControlName="caloriesFood"
           />
+          <mat-error *ngIf="form.controls['caloriesFood'].invalid">
+            El campo no puede estar vacío.
+          </mat-error>
         </mat-form-field>
       </div>
+
       <div class="button-container">
-        <div class="form-group">
           <button class="button accept" type="submit">Agregar</button>
           <button class="button cancel" routerLink="/dashboard/foods">Cancelar</button>
-        </div>
-        <div class="form-group"></div>
-        <p>{{ mensaje }}</p>
       </div>
     </form>
 

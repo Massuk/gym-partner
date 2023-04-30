@@ -3,48 +3,47 @@
   <div class="card-body">
     <form [formGroup]="form" (submit)="aceptar()">
 
-      <div class="form-group">
-         <mat-form-field class="example-full-width" style="margin-right: 20rem; width: 100%" appearance="outline">
-            <mat-label>No.</mat-label>
-            <input matInput required placeholder="No." formControlName="id" required/>
-          </mat-form-field>
-       </div>
-
-       <div class="form-group">
+       <div class="row my-3">
           <mat-form-field class="example-full-width" style="margin-right: 20rem; width: 100%" appearance="outline">
             <mat-label>Nombre del Ejercicio</mat-label>
             <input matInput required placeholder="Nombre del Ejercicio" formControlName="nameExercise" required/>
+            <mat-error *ngIf="form.controls['nameExercise'].invalid">
+              El campo no puede estar vacío.
+            </mat-error>
           </mat-form-field>
         </div>
 
-  <!-- INPUT CON OPTION-->
-       <div class="form-group">
+       <div class="row my-3">
            <mat-form-field class="example-full-width" style="margin-right: 20rem; width: 100%" appearance="outline">
-            <mat-label>No Series</mat-label>
-             <mat-select formControlName="series" required>
+            <mat-label>No. Series</mat-label>
+             <mat-select formControlName="series" placeholder="No. Series" required>
                 <mat-option value="2">2</mat-option>
                 <mat-option value="4">4</mat-option>
                 <mat-option value="6">6</mat-option>
                 <mat-option value="8">8</mat-option>
            </mat-select>
+           <mat-error *ngIf="form.controls['series'].invalid">
+            Debes seleccionar una opción.
+          </mat-error>
           </mat-form-field>
         </div>
 
-        <div class="form-group">
+        <div class="row my-3">
               <mat-form-field class="example-full-width" style="margin-right: 20rem; width: 100%" appearance="outline">
                 <mat-label>Cant. Kg</mat-label>
-                <mat-select formControlName="kilograms" required>
+                <mat-select formControlName="kilograms" placeholder="Cant. Kg" required>
                   <mat-option value="2">2</mat-option>
                   <mat-option value="4">4</mat-option>
                   <mat-option value="6">6</mat-option>
                   <mat-option value="8">8</mat-option>
                 </mat-select>
+                <mat-error *ngIf="form.controls['kilograms'].invalid">
+                  Debes seleccionar una opción.
+                </mat-error>
               </mat-form-field>
         </div>
 
-
-
-        <div class="form-group">
+        <div class="row my-3">
         <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
           <mat-label>No. Repeticiones</mat-label>
           <mat-select
@@ -57,26 +56,16 @@
           <mat-option value="6">6</mat-option>
           <mat-option value="8">8</mat-option>
           </mat-select>
+          <mat-error *ngIf="form.controls['repetitions'].invalid">
+            Debes seleccionar una opción.
+          </mat-error>
         </mat-form-field>
       </div>
 
-
-
-
-
-
-
-
       <div class="button-container">
-        <div class="form-group">
-   <!-- botones -->
           <button class="button accept" type="submit">Aceptar</button>
           <button class="button cancel" routerLink="/dashboard/exercises">Cancelar</button>
-        </div>
-
       </div>
-
-
 
 
 

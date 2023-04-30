@@ -14,7 +14,6 @@ export class GymUpdateComponent implements OnInit {
   gym: Gym = new Gym();
   form: FormGroup = new FormGroup({});
 
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -25,9 +24,9 @@ export class GymUpdateComponent implements OnInit {
     const id = this.route.snapshot?.params['id'];
     this.form = new FormGroup({
       id: new FormControl(null),
-      nameGym: new FormControl('', Validators.required),
+      nameGym: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]),
       codeGym: new FormControl('', Validators.required),
-      rucGym: new FormControl('', Validators.required),
+      rucGym: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern(/^[0-9]*$/)]),
       rsGym: new FormControl('', Validators.required)
     });
 
@@ -37,13 +36,6 @@ export class GymUpdateComponent implements OnInit {
         this.form.patchValue(this.gym);
       });
     }
-
-    // Guardar automáticamente los cambios localmente en el navegador para que no se pierda la información
-    // al recargar la página. Esto se cambiará cuando usemos Post
-    /*
-    this.form.valueChanges.subscribe(value => {
-      localStorage.setItem('gym-update-form', JSON.stringify(value));
-    });*/
   }
 
   updateGym() {

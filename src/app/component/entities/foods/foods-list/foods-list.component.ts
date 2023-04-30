@@ -35,6 +35,10 @@ filtrar(e:any){
     this.dataSource.filter=e.target.value.trim();
   }
 
+  clearFilter() {
+    this.dataSource.filter = '';
+  }
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   openConfirmationDialog(id: number): void {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FoodService } from 'src/app/service/foods.service';
 import { food } from 'src/app/model/food';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -15,8 +15,6 @@ export class FoodsInsertComponent implements OnInit {
   edicion: boolean = false;
   form: FormGroup = new FormGroup({});
   food: food= new food();
-  mensaje: string = '';
-  maxFecha: Date = moment().add(-1, 'days').toDate();
   constructor(
     private fS: FoodService,
     private router: Router,
@@ -31,10 +29,10 @@ export class FoodsInsertComponent implements OnInit {
       this.init();
     });
       this.form = new FormGroup({
-      id: new FormControl(),
-      nameFood: new FormControl(),
-      portionsFood: new FormControl(),
-      caloriesFood: new FormControl(),
+      id: new FormControl(''),
+      nameFood: new FormControl('', Validators.required),
+      portionsFood: new FormControl('', Validators.required),
+      caloriesFood: new FormControl('', Validators.required),
 
     });
   }
@@ -43,7 +41,7 @@ export class FoodsInsertComponent implements OnInit {
     this.food.nameFood = this.form.value['nameFood'];
     this.food.portionsFood = this.form.value['portionsFood'];
     this.food.caloriesFood = this.form.value['caloriesFood'];
-    if (this.form.value['nameFood'].length > 0) {
+    if (this.form.valid) {
       if(this.edicion){
         //guardar lo actualizado
         this.fS.update(this.food).subscribe(() => {
@@ -61,9 +59,6 @@ export class FoodsInsertComponent implements OnInit {
       }
       this.router.navigate(['/dashboard/foods']);
     }
-      else {
-      this.mensaje = 'Ingrese el nombre del alimento';
-     }
    }
    init() {
     if (this.edicion) {

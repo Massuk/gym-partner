@@ -52,6 +52,11 @@ export class NutritionalPlanListComponent implements OnInit {
   filter(event: any) {
     this.dataSource.filter = event.target.value.trim();
   }
+
+  clearFilter() {
+    this.dataSource.filter = '';
+  }
+
   openConfirmationDialog(id: number): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '450px',

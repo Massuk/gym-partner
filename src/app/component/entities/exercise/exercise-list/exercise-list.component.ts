@@ -77,6 +77,8 @@ export class ExerciseListComponent implements OnInit{
     this.dataSource.filter =exercise.target.value.trim();
   }
 
-
+  clearFilter() {
+    this.dataSource.filter = '';
+  }
 
 }
