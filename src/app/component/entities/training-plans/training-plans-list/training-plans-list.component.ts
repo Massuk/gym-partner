@@ -29,6 +29,7 @@ export class TrainingPlansListarComponent implements OnInit {
   dataSource: MatTableDataSource<TrainingPlan> = new MatTableDataSource();
 
   ngOnInit(): void {
+
     this.tpS.getList().subscribe((data) => {
       this.dataSource.data = data;
     });
@@ -46,8 +47,9 @@ export class TrainingPlansListarComponent implements OnInit {
   ) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  
 
-  openConfirmationDialog(id: number): void {
+  openConfirmationDialog(idTrainingPlan: number): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '450px',
       data: { message: '¿Quieres eliminar el plan de entrenamiento?' },
@@ -57,7 +59,7 @@ export class TrainingPlansListarComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.tpS.delete(id).subscribe(() => {
+        this.tpS.delete(idTrainingPlan).subscribe(() => {
           this.tpS.list().subscribe((data) => {
             this.dataSource = new MatTableDataSource(data);
             this.dataSource.paginator = this.paginator;
@@ -73,7 +75,7 @@ export class TrainingPlansListarComponent implements OnInit {
     });
 
   }
-
+  
 
   filtrar(e: any) {
     this.dataSource.filter = e.target.value.trim();

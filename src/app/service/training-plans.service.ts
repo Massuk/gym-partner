@@ -31,12 +31,12 @@ export class TrainingPlansService {
     this.listaCambio.next(listaNueva);
   }
 
-  listId(id: number) {
-    return this.http.get<TrainingPlan>(`${this.url}/${id}`)
+  listId(idTrainingPlan: number) {
+    return this.http.get<TrainingPlan>(`${this.url}/${idTrainingPlan}`)
   }
 
   update(tPlan: TrainingPlan) {
-    return this.http.put(this.url + "/" + tPlan.id, tPlan);
+    return this.http.put(this.url + "/" + tPlan.idTrainingPlan, tPlan);
   }
 
   ////
