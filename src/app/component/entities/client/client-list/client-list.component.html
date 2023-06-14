@@ -1,4 +1,4 @@
-<h1>Gimnasios</h1>
+<h1>Clientes</h1>
 
 <div class="card">
   <div class="card-body">
@@ -11,8 +11,6 @@
           id=""
           placeholder="Buscar..."
           matInput
-          (keyup)="filterResults($event)"
-          (search)="clearFilter()"
         />
         <i class="far fa-search search-icon"></i>
       </div>
@@ -27,7 +25,7 @@
 </div>
 
 <div class="card">
-  <table mat-table [dataSource]="dataSource" class="mat gym-table">
+  <table mat-table [dataSource]="dataSource">
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -39,39 +37,31 @@
     <ng-container matColumnDef="nombre">
       <th mat-header-cell *matHeaderCellDef>Nombre</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.nameGym }}
+        {{ element.nameClient }}
       </td></ng-container
     >
-    <!-- Code Column -->
-    <ng-container matColumnDef="codigo">
-      <th mat-header-cell *matHeaderCellDef>Código</th>
+<!-- Trainer Column -->
+<ng-container matColumnDef="trainer">
+  <th mat-header-cell *matHeaderCellDef>Entrenador</th>
+  <td mat-cell *matCellDef="let element">
+    <span class="badge badge-success">{{ element.personalTrainer }}</span>
+  </td>
+</ng-container>
+
+    <!-- Nutritionist Column -->
+    <ng-container matColumnDef="nutritionist">
+      <th mat-header-cell *matHeaderCellDef>Nutricionista</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.codeGym }}
+        {{ element.personalNutritionist }}
       </td></ng-container
     >
-    <!-- RUC Column -->
-    <ng-container matColumnDef="ruc">
-      <th mat-header-cell *matHeaderCellDef>RUC</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.rucGym }}
-      </td></ng-container
-    >
-    <!-- RS Column -->
-    <ng-container matColumnDef="razon">
-      <th mat-header-cell *matHeaderCellDef>Razón social</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.rsGym }}
-      </td></ng-container
-    >
-    <!-- Edit Column -->
+
+    <!-- Actions Column -->
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button color="primary" [routerLink]="['gym-update', element.id]">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button color="primary" (click)="openConfirmationDialog(element.id)">
-          <mat-icon>delete</mat-icon>
+        <button mat-icon-button color="primary">
+          <mat-icon>visibility</mat-icon>
         </button>
       </td>
     </ng-container>
@@ -80,8 +70,6 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <mat-paginator
-  [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
-</mat-paginator>
-
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+  </mat-paginator>
 </div>

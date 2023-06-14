@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { BodyComponent } from './component/dashboard/body/body.component';
 import { SidenavComponent } from './component//dashboard/sidenav/sidenav.component';
 import { PanelComponent } from './component/entities/panel/panel.component';
-import { ClientsComponent } from './component/entities/clients/clients.component';
+import { ClientComponent } from './component/entities/client/client.component';
 import { GymUpdateComponent } from './component/entities/gym/gym-update/gym-update.component';
 import { GymDeleteComponent } from './component/entities/gym/gym-delete/gym-delete.component';
 import { GymComponent } from './component/entities/gym/gym.component';
@@ -66,6 +66,7 @@ import { FoodsListComponent } from './component/entities/foods/foods-list/foods-
 import { FoodsInsertComponent } from './component/entities/foods/foods-insert/foods-insert.component';
 import { TrainingPlansDeleteComponent } from './component/entities/training-plans/training-plans-delete/training-plans-delete.component';
 import { ExerciseDeleteComponent } from './component/entities/exercise/exercise-delete/exercise-delete.component';
+import { ClientListComponent } from './component/entities/client/client-list/client-list.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,7 @@ import { ExerciseDeleteComponent } from './component/entities/exercise/exercise-
     BodyComponent,
     SidenavComponent,
     PanelComponent,
-    ClientsComponent,
+    ClientComponent,
     GymComponent,
     GymListComponent,
     HeaderComponent,
@@ -117,7 +118,8 @@ import { ExerciseDeleteComponent } from './component/entities/exercise/exercise-
     FoodsListComponent,
     FoodsInsertComponent,
     TrainingPlansDeleteComponent,
-    ExerciseDeleteComponent
+    ExerciseDeleteComponent,
+    ClientListComponent
   ],
   imports: [
     BrowserModule,

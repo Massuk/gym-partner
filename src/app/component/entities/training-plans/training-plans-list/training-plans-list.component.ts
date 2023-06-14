@@ -43,7 +43,7 @@ export class TrainingPlansListarComponent implements OnInit {
     private tpS: TrainingPlansService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
-  ) { }
+  ) {}
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -71,9 +71,7 @@ export class TrainingPlansListarComponent implements OnInit {
         snack.dismiss();
       }
     });
-
   }
-
 
   filtrar(e: any) {
     this.dataSource.filter = e.target.value.trim();
@@ -82,5 +80,4 @@ export class TrainingPlansListarComponent implements OnInit {
   clearFilter() {
     this.dataSource.filter = '';
   }
-
 }

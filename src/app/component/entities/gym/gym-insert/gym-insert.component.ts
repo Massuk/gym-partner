@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class GymInsertComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   gym: Gym = new Gym();
-  maxFecha: Date = moment().add(-1, 'days').toDate();
+  //maxFecha: Date = moment().add(-1, 'days').toDate();
 
   constructor(private gS: GymService, private router: Router) {}
 

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PanelComponent } from './component/entities/panel/panel.component';
-import { ClientsComponent } from './component/entities/clients/clients.component';
+import { ClientComponent } from './component/entities/client/client.component';
 import { GymComponent } from './component/entities/gym/gym.component';
 import { GymListComponent } from './component/entities/gym/gym-list/gym-list.component';
 import { GymInsertComponent } from './component/entities/gym/gym-insert/gym-insert.component';
@@ -52,7 +52,7 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: 'panel', component: PanelComponent },
-      { path: 'clients', component: ClientsComponent },
+      { path: 'clients', component: ClientComponent },
       {
         path: 'gym',
         component: GymComponent,

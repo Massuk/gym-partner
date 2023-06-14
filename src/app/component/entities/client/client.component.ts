@@ -1,13 +1,14 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-clients',
-  templateUrl: './clients.component.html',
-  styleUrls: ['./clients.component.scss'],
+  templateUrl: './client.component.html',
+  styleUrls: ['./client.component.scss'],
 })
-export class ClientsComponent implements OnInit {
+export class ClientComponent implements OnInit {
   innerWidth: any;
-  constructor() {
+  constructor(public route: ActivatedRoute) {
     this.innerWidth = window.innerWidth;
   }
 
