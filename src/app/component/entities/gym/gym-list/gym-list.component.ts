@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { Gym } from 'src/app/model/gym';
 import { GymService } from 'src/app/service/gym.service';
-import { ConfirmationDialogComponent } from '../../../dashboard/confirmation-dialog/confirmation-dialog.component';
+import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/dialog-popup.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -44,10 +44,18 @@ export class GymListComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  openConfirmationDialog(id: number): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+  showDeletePopup(id: number): void {
+    const dialogRef = this.dialog.open(DialogPopupComponent, {
       width: '450px',
-      data: { message: '¿Quieres eliminar el gimnasio?' },
+      data: {
+        title: '¿Deseas eliminar el registro?',
+        description:
+          'Esta acción es irreversible',
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No',
+        showConfirmButton: true,
+        showCancelButton: true
+      },
     });
 
     const snack = this.snackBar;

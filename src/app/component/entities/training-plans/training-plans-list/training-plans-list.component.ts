@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
-import { ConfirmationDialogComponent } from 'src/app/component/dashboard/confirmation-dialog/confirmation-dialog.component';
+import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/dialog-popup.component';
 
 @Component({
   selector: 'app-training-plans-list',
@@ -49,17 +49,25 @@ export class TrainingPlansListarComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
 
-  openConfirmationDialog(idTrainingPlan: number): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+  showDeletePopup(idTrainingPlan: number): void {
+    const dialogRef = this.dialog.open(DialogPopupComponent, {
       width: '450px',
-      data: { message: '¿Quieres eliminar el plan de entrenamiento?' },
+      data: {
+        title: '¿Deseas eliminar el registro?',
+        description:
+          'Esta acción es irreversible',
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No',
+        showConfirmButton: true,
+        showCancelButton: true
+      },
     });
 
     const snack = this.snackBar;
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.tpS.delete(idTrainingPlan).subscribe(() => {
+        this.tpS.hide(idTrainingPlan).subscribe(() => {
           this.tpS.list().subscribe((data) => {
             this.dataSource = new MatTableDataSource(data);
             this.dataSource.paginator = this.paginator;

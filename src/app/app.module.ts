@@ -38,7 +38,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { CommonModule } from '@angular/common';
-import { ConfirmationDialogComponent } from './component/dashboard/confirmation-dialog/confirmation-dialog.component';
+import { DialogPopupComponent } from './component/dashboard/dialog-popup/dialog-popup.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { AuthenticationComponent } from './component/authentication/authentication.component';
 import { EntitiesComponent } from './component/entities/entities.component';
@@ -81,7 +81,7 @@ import { ClientListComponent } from './component/entities/client/client-list/cli
     GymInsertComponent,
     GymUpdateComponent,
     GymDeleteComponent,
-    ConfirmationDialogComponent,
+    DialogPopupComponent,
     DashboardComponent,
     AuthenticationComponent,
     EntitiesComponent,

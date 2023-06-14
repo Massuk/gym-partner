@@ -3,7 +3,7 @@ import { food } from 'src/app/model/food';
 import { MatTableDataSource } from '@angular/material/table';
 import { FoodService } from 'src/app/service/foods.service';
 import { MatDialog } from '@angular/material/dialog'
-import { ConfirmationDialogComponent } from '../../../dashboard/confirmation-dialog/confirmation-dialog.component';
+import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/dialog-popup.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
 @Component({
@@ -41,10 +41,18 @@ filtrar(e:any){
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  openConfirmationDialog(id: number): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+  showDeletePopup(id: number): void {
+    const dialogRef = this.dialog.open(DialogPopupComponent, {
       width: '450px',
-      data: { message: '¿Quieres eliminar el gimnasio?' },
+      data: {
+        title: '¿Deseas eliminar el registro?',
+        description:
+          'Esta acción es irreversible',
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No',
+        showConfirmButton: true,
+        showCancelButton: true
+      },
     });
 
     const snack = this.snackBar;

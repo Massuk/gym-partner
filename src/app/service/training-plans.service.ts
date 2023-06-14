@@ -15,11 +15,11 @@ export class TrainingPlansService {
   private listaCambio = new Subject<TrainingPlan[]>();
 
   constructor(private http: HttpClient) { }
-  
+
   list(){
     return this.http.get<TrainingPlan[]>(this.url)
   }
-  
+
   insert(tPlan: TrainingPlan) {
     return this.http.post(this.url, tPlan);
   }
@@ -31,20 +31,24 @@ export class TrainingPlansService {
     this.listaCambio.next(listaNueva);
   }
 
-  listId(idTrainingPlan: number) {
-    return this.http.get<TrainingPlan>(`${this.url}/${idTrainingPlan}`)
+  listId(id: number) {
+    return this.http.get<TrainingPlan>(`${this.url}/${id}`)
   }
 
   update(tPlan: TrainingPlan) {
     return this.http.put(this.url + "/" + tPlan.idTrainingPlan, tPlan);
   }
 
-  ////
+  hide(idTrainingPlan: number): Observable<any> {
+    const url = `${this.url}/${idTrainingPlan}`;
+    return this.http.put(url, null);
+  }
 
-  delete(id: number): Observable<any> {
-    const url = `${this.url}/${id}`;
+
+  delete(idTrainingPlan: number): Observable<any> {
+    const url = `${this.url}/${idTrainingPlan}`;
     return this.http.delete(url);
   }
 
-  
+
 }

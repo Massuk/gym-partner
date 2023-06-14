@@ -5,7 +5,7 @@ import { NutritionalPlan } from 'src/app/model/nutritionalPlan';
 import { NutritionalPlanService } from 'src/app/service/nutritional-plan.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ConfirmationDialogComponent } from 'src/app/component/dashboard/confirmation-dialog/confirmation-dialog.component';
+import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/dialog-popup.component';
 
 @Component({
   selector: 'app-nutritional-plan-list',
@@ -57,10 +57,18 @@ export class NutritionalPlanListComponent implements OnInit {
     this.dataSource.filter = '';
   }
 
-  openConfirmationDialog(id: number): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+  showDeletePopup(id: number): void {
+    const dialogRef = this.dialog.open(DialogPopupComponent, {
       width: '450px',
-      data: { message: '¿Quieres eliminar el plan nutricional?' },
+      data: {
+        title: '¿Deseas eliminar el registro?',
+        description:
+          'Esta acción es irreversible',
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No',
+        showConfirmButton: true,
+        showCancelButton: true
+      },
     });
 
     const snack = this.snackbar;

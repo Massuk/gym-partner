@@ -20,11 +20,11 @@
         <div class="col">
           <mat-form-field appearance="outline" style="width: 100%">
             <mat-label>Estado</mat-label>
-            <mat-select placeholder="Estado" formControlName="enable" required>
+            <mat-select placeholder="Estado" formControlName="status" required>
               <mat-option value="Activo">Activo</mat-option>
               <mat-option value="Vencido">Vencido</mat-option>
             </mat-select>
-            <mat-error *ngIf="form.controls['enable'].invalid">
+            <mat-error *ngIf="form.controls['status'].invalid">
               Debes seleccionar una opción.
             </mat-error>
           </mat-form-field>

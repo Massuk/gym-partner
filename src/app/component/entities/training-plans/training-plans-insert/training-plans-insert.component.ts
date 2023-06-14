@@ -12,7 +12,7 @@ import * as moment from 'moment';
 })
 export class TrainingPlansInsertarComponent implements OnInit {
 
-  id: number = 0;
+  idTrainingPlan: number = 0;
   edicion: boolean = false;
 
   form: FormGroup = new FormGroup({});
@@ -29,7 +29,7 @@ export class TrainingPlansInsertarComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.params.subscribe((data: Params) => {
-      this.id = data['id'];
+      this.idTrainingPlan = data['id'];
       this.edicion = data['id'] != null;
       this.init();
     });
@@ -42,7 +42,7 @@ export class TrainingPlansInsertarComponent implements OnInit {
       level: new FormControl('', Validators.required),
       startDate: new FormControl('', Validators.required),
       endDate: new FormControl('', Validators.required),
-      enable: new FormControl('', Validators.required),
+      status: new FormControl('', Validators.required),
     })
   }
 
@@ -54,7 +54,8 @@ export class TrainingPlansInsertarComponent implements OnInit {
     this.tPlan.level = this.form.value['level'];
     this.tPlan.startDate = this.form.value['startDate'];
     this.tPlan.endDate = this.form.value['endDate'];
-    this.tPlan.enable = this.form.value['enable'];
+    this.tPlan.status = this.form.value['status'];
+    this.tPlan.hide = false;
 
     if (this.form.valid) {
       if (this.edicion) {
@@ -82,16 +83,16 @@ export class TrainingPlansInsertarComponent implements OnInit {
 
   init() {
     if (this.edicion) {
-      this.tpS.listId(this.id).subscribe((data) => {
+      this.tpS.listId(this.idTrainingPlan).subscribe((data) => {
         this.form = new FormGroup({
           id: new FormControl(data.idTrainingPlan),
           title: new FormControl(data.title),
+          status: new FormControl(data.status),
           description: new FormControl(data.description),
           objective: new FormControl(data.objective),
           level: new FormControl(data.level),
           startDate: new FormControl(data.startDate),
-          endDate: new FormControl(data.endDate),
-          enable: new FormControl(data.enable),
+          endDate: new FormControl(data.endDate)
         });
       });
     }

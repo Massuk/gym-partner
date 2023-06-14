@@ -71,23 +71,23 @@
         <ng-container matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef>Estado</th>
             <td mat-cell *matCellDef="let element">
-                {{ element.enable }}
+                {{ element.status }}
             </td>
         </ng-container>
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
                 <button mat-icon-button
-                    [routerLink]="['edicion', element.id]">
+                    [routerLink]="['edicion', element.idTrainingPlan]">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button color="primary" (click)="openConfirmationDialog(element.idTrainingPlan)">
+                <button mat-icon-button color="primary" (click)="showDeletePopup(element.idTrainingPlan)">
           <mat-icon>delete</mat-icon>
         </button>
             </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" [hidden]="row.hide || row.hide === undefined"></tr>
     </table>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>

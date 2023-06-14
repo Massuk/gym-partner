@@ -3,7 +3,7 @@ import { ExerciseService } from 'src/app/service/exercise.service';
 import { exercise } from 'src/app/model/exercise';
 import {MatTableDataSource} from '@angular/material/table'
 import { MatDialog } from '@angular/material/dialog'
-import { ConfirmationDialogComponent } from '../../../dashboard/confirmation-dialog/confirmation-dialog.component';
+import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/dialog-popup.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
 @Component({
@@ -45,10 +45,18 @@ export class ExerciseListComponent implements OnInit{
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  openConfirmationDialog(id: number): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+  showDeletePopup(id: number): void {
+    const dialogRef = this.dialog.open(DialogPopupComponent, {
       width: '450px',
-      data: { message: '¿Quieres eliminar el ejercicio?' },
+      data: {
+        title: '¿Deseas eliminar el registro?',
+        description:
+          'Esta acción es irreversible',
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No',
+        showConfirmButton: true,
+        showCancelButton: true
+      },
     });
 
     const snack = this.snackBar;

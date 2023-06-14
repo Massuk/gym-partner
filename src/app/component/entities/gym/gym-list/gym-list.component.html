@@ -70,7 +70,7 @@
         <button mat-icon-button color="primary" [routerLink]="['gym-update', element.id]">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="primary" (click)="openConfirmationDialog(element.id)">
+        <button mat-icon-button color="primary" (click)="showDeletePopup(element.id)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
