@@ -1,55 +1,51 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { exercise } from '../model/exercise';
+import { Exercise } from '../model/exercise';
 import { Observable, Subject } from 'rxjs';
 
-const base_url = environment.base
+const base_url = environment.base;
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class ExerciseService {
-  private url=`${base_url}/exercises`;
-  private listaCambio = new Subject<exercise[]>()
+  private url = `${base_url}/Exercises`;
+  private changeList = new Subject<Exercise[]>();
 
+  constructor(private http: HttpClient) {}
+  list() {
+    return this.http.get<Exercise[]>(this.url);
+  }
 
-  constructor(private http:HttpClient) { }
-  list(){
-    return this.http.get<exercise[]>(this.url);}
+  insert(exercise: Exercise) {
+    return this.http.post(this.url, exercise);
+  }
 
+  getList() {
+    return this.changeList.asObservable();
+  }
 
-  insert(exercise:exercise){
-    return this.http.post(this.url,exercise);}
+  setList(listaNueva: Exercise[]) {
+    this.changeList.next(listaNueva);
+  }
 
+  listId(id: number) {
+    return this.http.get<Exercise>(`${this.url}/${id}`);
+  }
 
+  update(exercise: Exercise) {
+    return this.http.put(`${this.url}/update`, exercise);
+  }
 
-  getList(){
-    return this.listaCambio.asObservable();}
-
-
-  setList(listaNueva:exercise[]){
-    this.listaCambio.next(listaNueva);}
-
-
-
-
-  listId(id:number){
-    return  this.http.get<exercise>(`${this.url}/${id}`);}
-
-
-
-
-  update(exercise:exercise){
-    return this.http.put(this.url + '/'+ exercise.id, exercise);}
-
-
+  hide(idExercise: number): Observable<any> {
+    const url = `${this.url}/hide/${idExercise}`;
+    return this.http.put(url, null);
+  }
 
   // Funcion para eliminar un registro
   delete(id: number): Observable<any> {
     const url = `${this.url}/${id}`;
     return this.http.delete(url);
   }
-
 }

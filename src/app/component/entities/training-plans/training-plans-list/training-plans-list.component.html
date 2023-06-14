@@ -19,7 +19,7 @@
       </div>
 
         <div class="button-container">
-            <button class="button accept" routerLink="/dashboard/trainingPlans/tpInsertar">
+            <button class="button accept" routerLink="/dashboard/training-plans/insert">
                 Agregar
             </button>
         </div>
@@ -78,7 +78,7 @@
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
                 <button mat-icon-button
-                    [routerLink]="['edicion', element.idTrainingPlan]">
+                    [routerLink]="['update', element.idTrainingPlan]">
                     <mat-icon>edit</mat-icon>
                 </button>
                 <button mat-icon-button color="primary" (click)="showDeletePopup(element.idTrainingPlan)">

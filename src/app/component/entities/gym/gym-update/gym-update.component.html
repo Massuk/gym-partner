@@ -11,12 +11,12 @@
           <mat-label>Nombre del gimnasio</mat-label>
           <input
             matInput
-            formControlName="nameGym" required
+            formControlName="name" required
             #name
             type="text"
             maxlength="20"
           />
-          <mat-error *ngIf="form.controls['nameGym'].invalid">
+          <mat-error *ngIf="form.controls['name'].invalid">
             El campo no puede estar vacío.
           </mat-error>
           <mat-hint align="end">{{ name.value.length }}/20</mat-hint>
@@ -28,8 +28,8 @@
           style="margin-right: 20rem; width: 100%"
         >
           <mat-label>Código del gimnasio</mat-label>
-          <input matInput formControlName="codeGym" />
-          <mat-error *ngIf="form.controls['codeGym'].invalid">
+          <input matInput formControlName="code" />
+          <mat-error *ngIf="form.controls['code'].invalid">
             El campo no puede estar vacío.
           </mat-error>
         </mat-form-field>
@@ -45,12 +45,12 @@
             oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '')"
             type="text"
             #ruc
-            formControlName="rucGym"
+            formControlName="ruc"
             maxlength="11"
             required
           />
           <mat-hint align="end">{{ ruc.value.length }}/11</mat-hint>
-          <mat-error *ngIf="form.controls['rucGym'].invalid">
+          <mat-error *ngIf="form.controls['ruc'].invalid">
             El RUC debe contener 11 dígitos.
           </mat-error>
         </mat-form-field>
@@ -61,8 +61,8 @@
           style="margin-right: 20rem; width: 100%"
         >
           <mat-label>Razón social</mat-label>
-          <input matInput formControlName="rsGym" />
-          <mat-error *ngIf="form.controls['rsGym'].invalid">
+          <input matInput formControlName="rs" />
+          <mat-error *ngIf="form.controls['rs'].invalid">
             El campo no puede estar vacío.
           </mat-error>
         </mat-form-field>
@@ -70,7 +70,7 @@
 
       <div class="button-container">
           <button class="button accept" type="submit">Guardar</button>
-          <button class="button cancel" routerLink="/dashboard/gym">Cancelar</button>
+          <button class="button cancel" routerLink="/dashboard/gyms">Cancelar</button>
         <p></p>
       </div>
     </form>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PanelComponent } from './component/entities/panel/panel.component';
 import { ClientComponent } from './component/entities/client/client.component';
@@ -26,6 +26,7 @@ import { TrainingPlansComponent } from './component/entities/training-plans/trai
 import { TrainingPlansInsertarComponent } from './component/entities/training-plans/training-plans-insert/training-plans-insert.component';
 import { FoodsComponent } from './component/entities/foods/foods.component';
 import { FoodsInsertComponent } from './component/entities/foods/foods-insert/foods-insert.component';
+import { TrainingPlansListarComponent } from './component/entities/training-plans/training-plans-list/training-plans-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing-page/index', pathMatch: 'full' },
@@ -54,24 +55,20 @@ const routes: Routes = [
       { path: 'panel', component: PanelComponent },
       { path: 'clients', component: ClientComponent },
       {
-        path: 'gym',
+        path: 'gyms',
         component: GymComponent,
         children: [
           {
-            path: 'gym-list',
+            path: 'list',
             component: GymListComponent,
           },
           {
-            path: 'gym-insert',
+            path: 'insert',
             component: GymInsertComponent,
           },
           {
-            path: 'gym-update/:id',
+            path: 'update/:id',
             component: GymUpdateComponent,
-          },
-          {
-            path: 'gym-delete/:id',
-            component: GymDeleteComponent,
           },
         ],
       },
@@ -94,11 +91,11 @@ const routes: Routes = [
         component: ExerciseComponent,
         children: [
           {
-            path: 'exercise-insert',
+            path: 'insert',
             component: ExerciseInsertComponent,
           },
           {
-            path: 'edicion/:id',
+            path: 'update/:id',
             component: ExerciseInsertComponent,
           },
         ],
@@ -108,28 +105,32 @@ const routes: Routes = [
         component: NutritionalPlanComponent,
         children: [
           {
-            path: 'nutritional-plans-insert',
+            path: 'insert',
             component: NutritionalPlanInsertComponent,
           },
           { path: 'update/:id', component: NutritionalPlanInsertComponent },
           {
-            path: 'nutritional-plans-list',
+            path: 'list',
             component: NutritionalPlanListComponent,
           },
         ],
       },
       {
-        path: 'trainingPlans',
+        path: 'training-plans',
         component: TrainingPlansComponent,
         children: [
           {
-            path: 'tpInsertar',
+            path: 'insert',
             component: TrainingPlansInsertarComponent,
           },
           {
-            path: 'edicion/:id',
+            path: 'update/:id',
             component: TrainingPlansInsertarComponent,
           },
+          {
+            path: 'list',
+            component: TrainingPlansListarComponent,
+          }
         ],
       },
     ],

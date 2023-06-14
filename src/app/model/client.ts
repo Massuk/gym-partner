@@ -3,6 +3,7 @@ export class Client{
   nameClient:string = "";
   personalTrainer: string = "";
   personalNutritionist: string = "";
+  hide: boolean = false;
 }
 
 /*

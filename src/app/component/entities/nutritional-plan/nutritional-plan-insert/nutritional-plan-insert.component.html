@@ -9,10 +9,10 @@
             <input
               matInput
               placeholder="Nombre"
-              formControlName="titleNutritionalPlan"
+              formControlName="title"
               required
             />
-            <mat-error *ngIf="form.controls['titleNutritionalPlan'].invalid">
+            <mat-error *ngIf="form.controls['title'].invalid">
               El campo no puede estar vacío.
             </mat-error>
           </mat-form-field>
@@ -22,13 +22,13 @@
             <mat-label>Estado</mat-label>
             <mat-select
               placeholder="Estado"
-              formControlName="statusNutritionalPlan"
+              formControlName="status"
               required
             >
               <mat-option value="Activo">Activo</mat-option>
               <mat-option value="Inactivo">Inactivo</mat-option>
             </mat-select>
-            <mat-error *ngIf="form.controls['statusNutritionalPlan'].invalid">
+            <mat-error *ngIf="form.controls['status'].invalid">
               Debes elegir una opción.
             </mat-error>
           </mat-form-field>
@@ -44,10 +44,10 @@
           <input
             matInput
             placeholder="Objetivo"
-            formControlName="objectiveNutritionalPlan"
+            formControlName="objective"
             required
           />
-          <mat-error *ngIf="form.controls['objectiveNutritionalPlan'].invalid">
+          <mat-error *ngIf="form.controls['objective'].invalid">
             El campo no puede estar vacío.
           </mat-error>
         </mat-form-field>
@@ -60,11 +60,11 @@
         <textarea
           matInput
           placeholder="Descripción"
-          formControlName="descriptionNutritionalPlan"
+          formControlName="description"
           required
           rows="3"
         ></textarea>
-        <mat-error *ngIf="form.controls['descriptionNutritionalPlan'].invalid">
+        <mat-error *ngIf="form.controls['description'].invalid">
           El campo no puede estar vacío.
         </mat-error>
       </mat-form-field>
@@ -78,13 +78,13 @@
                 matInput
                 [matDatepicker]="picker"
                 placeholder="Elija una fecha"
-                formControlName="startDateNutritionalPlan"
-                [min]="minFecha"
+                formControlName="startDate"
+                [min]="minDate"
                 required
                 readonly
                 (dateChange)="updateEndDate($event)"
               />
-              <mat-error *ngIf="form.controls['startDateNutritionalPlan'].invalid">
+              <mat-error *ngIf="form.controls['startDate'].invalid">
                 Elige una fecha inicial.
               </mat-error>
               <mat-datepicker-toggle
@@ -103,11 +103,11 @@
                 matInput
                 [matDatepicker]="picker2"
                 placeholder="Elija una fecha"
-                formControlName="endDateNutritionalPlan"
+                formControlName="endDate"
                 readonly
                 required
               />
-              <mat-error *ngIf="form.controls['endDateNutritionalPlan'].invalid">
+              <mat-error *ngIf="form.controls['endDate'].invalid">
                 Se necesita fecha inicial.
               </mat-error>
               <mat-datepicker-toggle
@@ -129,10 +129,10 @@
         <textarea
           matInput
           placeholder="Recomendaciones"
-          formControlName="recommendationsNutritionalPlan"
+          formControlName="recommendations"
           required
         ></textarea>
-        <mat-error *ngIf="form.controls['recommendationsNutritionalPlan'].invalid">
+        <mat-error *ngIf="form.controls['recommendations'].invalid">
           El campo no puede estar vacío.
         </mat-error>
       </mat-form-field>

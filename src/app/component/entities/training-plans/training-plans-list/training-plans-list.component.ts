@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TrainingPlan } from 'src/app/model/training-plans';
+import { TrainingPlan } from 'src/app/model/training-plan';
 import { TrainingPlansService } from 'src/app/service/training-plans.service';
 
 import { MatTableDataSource } from '@angular/material/table';

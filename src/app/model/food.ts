@@ -3,5 +3,5 @@ export class food{
   nameFood:string = ""
   portionsFood:string = ""
   caloriesFood:string = ""
-
+  hide: boolean = false;
 }

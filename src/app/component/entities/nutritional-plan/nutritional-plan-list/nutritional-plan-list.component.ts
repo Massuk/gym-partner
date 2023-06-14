@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { NutritionalPlan } from 'src/app/model/nutritionalPlan';
+import { NutritionalPlan } from 'src/app/model/nutritional-plan';
 import { NutritionalPlanService } from 'src/app/service/nutritional-plan.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -17,14 +17,14 @@ export class NutritionalPlanListComponent implements OnInit {
   dataSource: MatTableDataSource<NutritionalPlan> = new MatTableDataSource();
   displayedColumns: string[] = [
     'id',
-    'titleNutritionalPlan',
-    'statusNutritionalPlan',
-    'objectiveNutritionalPlan',
-    'descriptionNutritionalPlan',
-    'startDateNutritionalPlan',
-    'endDateNutritionalPlan',
-    'recommendationsNutritionalPlan',
-    'edit',
+    'title',
+    'status',
+    'objective',
+    'description',
+    'startDate',
+    'endDate',
+    'recommendations',
+    'actions',
   ];
 
   constructor(
@@ -57,7 +57,7 @@ export class NutritionalPlanListComponent implements OnInit {
     this.dataSource.filter = '';
   }
 
-  showDeletePopup(id: number): void {
+  showDeletePopup(idNutritionalPlan: number): void {
     const dialogRef = this.dialog.open(DialogPopupComponent, {
       width: '450px',
       data: {
@@ -75,7 +75,7 @@ export class NutritionalPlanListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.pNP.delete(id).subscribe(() => {
+        this.pNP.hide(idNutritionalPlan).subscribe(() => {
           this.pNP.list().subscribe((data) => {
             this.dataSource = new MatTableDataSource(data);
           });

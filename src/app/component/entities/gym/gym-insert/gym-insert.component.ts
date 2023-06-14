@@ -13,26 +13,25 @@ import { Router } from '@angular/router';
 export class GymInsertComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   gym: Gym = new Gym();
-  //maxFecha: Date = moment().add(-1, 'days').toDate();
 
   constructor(private gS: GymService, private router: Router) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
       id: new FormControl(''),
-      nameGym: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]),
-      codeGym: new FormControl('', Validators.required),
-      rucGym: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern(/^[0-9]*$/)]),
-      rsGym: new FormControl('', Validators.required),
+      name: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]),
+      code: new FormControl('', Validators.required),
+      ruc: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern(/^[0-9]*$/)]),
+      rs: new FormControl('', Validators.required),
     });
   }
 
-  insertar(): void {
+  insert(): void {
     this.gym.idGym = this.form.value['id'];
-    this.gym.nameGym = this.form.value['nameGym'];
-    this.gym.codeGym = this.form.value['codeGym'];
-    this.gym.rucGym = this.form.value['rucGym'];
-    this.gym.rsGym = this.form.value['rsGym'];
+    this.gym.name = this.form.value['name'];
+    this.gym.code = this.form.value['code'];
+    this.gym.ruc = this.form.value['ruc'];
+    this.gym.rs = this.form.value['rs'];
 
     if (this.form.valid) {
       this.gS.insert(this.gym).subscribe((data) => {
@@ -40,7 +39,7 @@ export class GymInsertComponent implements OnInit {
           this.gS.setList(data);
         });
       });
-      this.router.navigate(['dashboard/gym']);
+      this.router.navigate(['dashboard/gyms']);
     }
   }
 }

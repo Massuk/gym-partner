@@ -16,10 +16,10 @@ export class GymListComponent implements OnInit {
   lista: Gym[] = [];
   displayedColumns: string[] = [
     'id',
-    'nombre',
-    'codigo',
+    'name',
+    'code',
     'ruc',
-    'razon',
+    'rs',
     'actions',
   ];
   dataSource: MatTableDataSource<Gym> = new MatTableDataSource();
@@ -62,7 +62,7 @@ export class GymListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.gS.delete(id).subscribe(() => {
+        this.gS.hide(id).subscribe(() => {
           this.gS.list().subscribe((data) => {
             this.dataSource = new MatTableDataSource(data);
             this.dataSource.paginator = this.paginator;

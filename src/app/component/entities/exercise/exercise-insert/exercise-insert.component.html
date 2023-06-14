@@ -6,8 +6,8 @@
        <div class="row my-3">
           <mat-form-field class="example-full-width" style="margin-right: 20rem; width: 100%" appearance="outline">
             <mat-label>Nombre del Ejercicio</mat-label>
-            <input matInput required placeholder="Nombre del Ejercicio" formControlName="nameExercise" required/>
-            <mat-error *ngIf="form.controls['nameExercise'].invalid">
+            <input matInput required placeholder="Nombre del ejercicio" formControlName="name" required/>
+            <mat-error *ngIf="form.controls['name'].invalid">
               El campo no puede estar vacío.
             </mat-error>
           </mat-form-field>

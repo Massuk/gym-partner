@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TrainingPlan } from 'src/app/model/training-plans';
+import { TrainingPlan } from 'src/app/model/training-plan';
 import { TrainingPlansService } from 'src/app/service/training-plans.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as moment from 'moment';
@@ -13,11 +13,10 @@ import * as moment from 'moment';
 export class TrainingPlansInsertarComponent implements OnInit {
 
   idTrainingPlan: number = 0;
-  edicion: boolean = false;
+  edit: boolean = false;
 
   form: FormGroup = new FormGroup({});
   tPlan: TrainingPlan = new TrainingPlan();
-  mensaje: string = '';
   Fecha: Date = moment().add().toDate();
   maxFecha: Date = moment().add( +30, 'days').toDate();
   constructor(
@@ -30,7 +29,7 @@ export class TrainingPlansInsertarComponent implements OnInit {
 
     this.route.params.subscribe((data: Params) => {
       this.idTrainingPlan = data['id'];
-      this.edicion = data['id'] != null;
+      this.edit = data['id'] != null;
       this.init();
     });
 
@@ -58,7 +57,7 @@ export class TrainingPlansInsertarComponent implements OnInit {
     this.tPlan.hide = false;
 
     if (this.form.valid) {
-      if (this.edicion) {
+      if (this.edit) {
         this.tpS.update(this.tPlan).subscribe(() => {
           this.tpS.list().subscribe((data) => {
             this.tpS.setList(data);
@@ -66,35 +65,32 @@ export class TrainingPlansInsertarComponent implements OnInit {
         });
       }
       else {
-        this.tpS.insert(this.tPlan).subscribe((data) => {
+        this.tpS.insert(this.tPlan).subscribe(() => {
         this.tpS.list().subscribe((data) => {
           this.tpS.setList(data);
         })
       })
       }
-      this.router.navigate(['/dashboard/trainingPlans'])
-    }
-    else {
-      this.mensaje = 'Ingrese el titulo del plan de entrenamiento';
-      console.log(this.mensaje);
+      this.router.navigate(['/dashboard/training-plans'])
     }
   }
 
 
   init() {
-    if (this.edicion) {
+    if (this.edit) {
       this.tpS.listId(this.idTrainingPlan).subscribe((data) => {
-        this.form = new FormGroup({
-          id: new FormControl(data.idTrainingPlan),
-          title: new FormControl(data.title),
-          status: new FormControl(data.status),
-          description: new FormControl(data.description),
-          objective: new FormControl(data.objective),
-          level: new FormControl(data.level),
-          startDate: new FormControl(data.startDate),
-          endDate: new FormControl(data.endDate)
+        this.form.patchValue({
+          id: data.idTrainingPlan,
+          title: data.title,
+          status: data.status,
+          description: data.description,
+          objective: data.objective,
+          level: data.level,
+          startDate: data.startDate,
+          endDate: data.endDate
         });
       });
     }
   }
+
 }

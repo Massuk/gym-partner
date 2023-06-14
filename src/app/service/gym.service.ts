@@ -12,7 +12,7 @@ const urlData = environment.base;
 })
 export class GymService {
   private url = `${urlData}/gyms`;
-  private listaCambio = new Subject<Gym[]>();
+  private changeList = new Subject<Gym[]>();
 
   constructor(private http: HttpClient) {}
 
@@ -27,24 +27,29 @@ export class GymService {
   }
 
   getList() {
-    return this.listaCambio.asObservable();
+    return this.changeList.asObservable();
   }
 
   setList(listaNueva: Gym[]) {
-    this.listaCambio.next(listaNueva);
+    this.changeList.next(listaNueva);
   }
 
   // Funcion para modificar registros nuevos
 
-  get(id: number): Observable<Gym> {
-    return this.http.get<Gym>(`${this.url}/${id}`);
+  get(idGym: number): Observable<Gym> {
+    return this.http.get<Gym>(`${this.url}/${idGym}`);
   }
   update(gym: Gym) {
-    return this.http.put(`${this.url}/${gym.idGym}`, gym).pipe(
+    return this.http.put(`${this.url}/update`, gym).pipe(
       tap(() => {
         this.list().subscribe((data) => this.setList(data));
       })
     );
+  }
+
+  hide(idGym: number): Observable<any> {
+    const url = `${this.url}/hide/${idGym}`;
+    return this.http.put(url, null);
   }
 
   // Funcion para eliminar un registro

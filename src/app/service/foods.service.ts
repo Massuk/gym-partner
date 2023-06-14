@@ -12,7 +12,7 @@ const base_url = environment.base
 
 export class FoodService {
   private url=`${base_url}/foods`;
-  private listaCambio = new Subject<food[]>();
+  private changeList = new Subject<food[]>();
   private confirmaEliminacion = new Subject<Boolean>()
 
 
@@ -25,10 +25,10 @@ export class FoodService {
   }
 
   getList() {
-    return this.listaCambio.asObservable();
+    return this.changeList.asObservable();
   }
   setList(listaNueva: food[]) {
-    this.listaCambio.next(listaNueva);
+    this.changeList.next(listaNueva);
   }
 
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { TrainingPlan } from '../model/training-plans';
+import { TrainingPlan } from '../model/training-plan';
 import { Observable, Subject } from 'rxjs';
 
 const base_url=environment.base
@@ -12,7 +12,7 @@ const base_url=environment.base
 export class TrainingPlansService {
 
   private url = `${base_url}/trainingPlans`;
-  private listaCambio = new Subject<TrainingPlan[]>();
+  private changeList = new Subject<TrainingPlan[]>();
 
   constructor(private http: HttpClient) { }
 
@@ -25,25 +25,24 @@ export class TrainingPlansService {
   }
 
   getList() {
-    return this.listaCambio.asObservable();
+    return this.changeList.asObservable();
   }
   setList(listaNueva: TrainingPlan[]) {
-    this.listaCambio.next(listaNueva);
+    this.changeList.next(listaNueva);
   }
 
-  listId(id: number) {
-    return this.http.get<TrainingPlan>(`${this.url}/${id}`)
+  listId(idTrainingPlan: number) {
+    return this.http.get<TrainingPlan>(`${this.url}/${idTrainingPlan}`)
   }
 
   update(tPlan: TrainingPlan) {
-    return this.http.put(this.url + "/" + tPlan.idTrainingPlan, tPlan);
+    return this.http.put(`${this.url}/update`, tPlan);
   }
 
   hide(idTrainingPlan: number): Observable<any> {
-    const url = `${this.url}/${idTrainingPlan}`;
+    const url = `${this.url}/hide/${idTrainingPlan}`;
     return this.http.put(url, null);
   }
-
 
   delete(idTrainingPlan: number): Observable<any> {
     const url = `${this.url}/${idTrainingPlan}`;
