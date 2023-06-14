@@ -28,7 +28,7 @@ export class GymInsertComponent implements OnInit {
   }
 
   insertar(): void {
-    this.gym.id = this.form.value['id'];
+    this.gym.idGym = this.form.value['id'];
     this.gym.nameGym = this.form.value['nameGym'];
     this.gym.codeGym = this.form.value['codeGym'];
     this.gym.rucGym = this.form.value['rucGym'];

@@ -1,5 +1,5 @@
 export class TrainingPlan {
-  id: number = 0;
+  idTrainingPlan: number = 0;
   title: string = "";
   description: string = "";
   objective: string = "";

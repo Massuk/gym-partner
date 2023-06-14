@@ -47,7 +47,7 @@ export class TrainingPlansInsertarComponent implements OnInit {
   }
 
   aceptar(): void {
-    this.tPlan.id = this.form.value['id'];
+    this.tPlan.idTrainingPlan = this.form.value['id'];
     this.tPlan.title = this.form.value['title'];
     this.tPlan.description = this.form.value['description'];
     this.tPlan.objective = this.form.value['objective'];
@@ -84,7 +84,7 @@ export class TrainingPlansInsertarComponent implements OnInit {
     if (this.edicion) {
       this.tpS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
-          id: new FormControl(data.id),
+          id: new FormControl(data.idTrainingPlan),
           title: new FormControl(data.title),
           description: new FormControl(data.description),
           objective: new FormControl(data.objective),

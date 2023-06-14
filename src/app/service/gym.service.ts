@@ -40,7 +40,7 @@ export class GymService {
     return this.http.get<Gym>(`${this.url}/${id}`);
   }
   update(gym: Gym) {
-    return this.http.put(`${this.url}/${gym.id}`, gym).pipe(
+    return this.http.put(`${this.url}/${gym.idGym}`, gym).pipe(
       tap(() => {
         this.list().subscribe((data) => this.setList(data));
       })
