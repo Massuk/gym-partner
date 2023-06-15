@@ -18,21 +18,21 @@ export class NutritionalPlanListComponent implements OnInit {
   displayedColumns: string[] = [
     'id',
     'title',
-    'status',
-    'objective',
     'description',
+    'objective',
     'startDate',
     'endDate',
     'recommendations',
+    'status',
     'actions',
   ];
 
   constructor(
-    private pNP: NutritionalPlanService,
+    private npS: NutritionalPlanService,
     private dialog: MatDialog,
     private snackbar: MatSnackBar
   ) {
-    this.pNP.list().subscribe((data) => {
+    this.npS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
     });
   }
@@ -40,11 +40,11 @@ export class NutritionalPlanListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
-    this.pNP.getList().subscribe((data) => {
+    this.npS.getList().subscribe((data) => {
       this.dataSource.data = data;
     });
 
-    this.pNP.list().subscribe((data) => {
+    this.npS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });
@@ -75,8 +75,8 @@ export class NutritionalPlanListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.pNP.hide(idNutritionalPlan).subscribe(() => {
-          this.pNP.list().subscribe((data) => {
+        this.npS.hide(idNutritionalPlan).subscribe(() => {
+          this.npS.list().subscribe((data) => {
             this.dataSource = new MatTableDataSource(data);
           });
         });
@@ -89,4 +89,25 @@ export class NutritionalPlanListComponent implements OnInit {
       }
     });
   }
+
+  toggleBadgeStatus(idNutritionalPlan: number, status: string): void {
+    const newStatus = status === 'Activo' ? 'Inactivo' : 'Activo';
+
+    this.npS.listId(idNutritionalPlan).subscribe((data) => {
+      data.status = newStatus;
+
+      this.npS.update(data).subscribe(() => {
+        console.log('Estado actualizado correctamente a: ' + data.status);
+
+        // Actualizar el objeto data en la lista de entrenamientos
+        const nutritionalPlanIndex = this.dataSource.data.findIndex((np) => np.idNutritionalPlan === idNutritionalPlan);
+        if (nutritionalPlanIndex !== -1) {
+          this.dataSource.data[nutritionalPlanIndex] = data;
+          this.dataSource._updateChangeSubscription(); // Notificar cambios a la tabla
+        }
+      });
+    });
+  }
+
+
 }

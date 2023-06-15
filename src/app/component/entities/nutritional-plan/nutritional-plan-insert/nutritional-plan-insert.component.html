@@ -3,7 +3,7 @@
   <div class="card-body">
     <form [formGroup]="form" (submit)="accept()">
       <div class="row">
-        <div class="col-6">
+        <div class="col">
           <mat-form-field appearance="outline" style="width: 100%">
             <mat-label>Nombre</mat-label>
             <input
@@ -14,22 +14,6 @@
             />
             <mat-error *ngIf="form.controls['title'].invalid">
               El campo no puede estar vacío.
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-6">
-          <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label>Estado</mat-label>
-            <mat-select
-              placeholder="Estado"
-              formControlName="status"
-              required
-            >
-              <mat-option value="Activo">Activo</mat-option>
-              <mat-option value="Inactivo">Inactivo</mat-option>
-            </mat-select>
-            <mat-error *ngIf="form.controls['status'].invalid">
-              Debes elegir una opción.
             </mat-error>
           </mat-form-field>
         </div>

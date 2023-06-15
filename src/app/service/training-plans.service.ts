@@ -13,6 +13,7 @@ export class TrainingPlansService {
 
   private url = `${base_url}/trainingPlans`;
   private changeList = new Subject<TrainingPlan[]>();
+  private badgeStatus: { [key: number]: string } = {};
 
   constructor(private http: HttpClient) { }
 
@@ -35,8 +36,8 @@ export class TrainingPlansService {
     return this.http.get<TrainingPlan>(`${this.url}/${idTrainingPlan}`)
   }
 
-  update(tPlan: TrainingPlan) {
-    return this.http.put(`${this.url}/update`, tPlan);
+  update(TrainingPlan: TrainingPlan) {
+    return this.http.put(`${this.url}/update`, TrainingPlan);
   }
 
   hide(idTrainingPlan: number): Observable<any> {

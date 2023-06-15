@@ -32,12 +32,12 @@ export class NutritionalPlanInsertComponent {
     this.form = new FormGroup({
       id: new FormControl(),
       title: new FormControl('', Validators.required),
-      status: new FormControl('', Validators.required),
       objective: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
       startDate: new FormControl('', Validators.required),
       endDate: new FormControl('', Validators.required),
       recommendations: new FormControl('', Validators.required),
+      status: new FormControl('Activo', Validators.required),
     });
   }
 

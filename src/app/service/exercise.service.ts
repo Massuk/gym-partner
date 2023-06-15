@@ -30,8 +30,8 @@ export class ExerciseService {
     this.changeList.next(listaNueva);
   }
 
-  listId(id: number) {
-    return this.http.get<Exercise>(`${this.url}/${id}`);
+  listId(idExercise: number) {
+    return this.http.get<Exercise>(`${this.url}/${idExercise}`);
   }
 
   update(exercise: Exercise) {

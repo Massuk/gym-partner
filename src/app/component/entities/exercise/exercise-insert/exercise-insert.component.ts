@@ -11,8 +11,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class ExerciseInsertComponent implements OnInit {
   idExercise: number = 0;
-  edicion: boolean = false;
-
+  edit: boolean = false;
   form: FormGroup = new FormGroup({});
   exercise: Exercise = new Exercise();
 
@@ -25,12 +24,12 @@ export class ExerciseInsertComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.idExercise = data['id'];
-      this.edicion = data['id'] != null;
+      this.edit = data['id'] != null;
       this.init();
     });
 
     this.form = new FormGroup({
-      id: new FormControl(''),
+      id: new FormControl(),
       name: new FormControl('', Validators.required),
       series: new FormControl('', Validators.required),
       kilograms: new FormControl('', Validators.required),
@@ -38,7 +37,7 @@ export class ExerciseInsertComponent implements OnInit {
     });
   }
 
-  aceptar(): void {
+  accept(): void {
     this.exercise.idExercise = this.form.value['id'];
     this.exercise.name = this.form.value['name'];
     this.exercise.series = this.form.value['series'];
@@ -47,7 +46,7 @@ export class ExerciseInsertComponent implements OnInit {
     this.exercise.hide = false;
 
     if (this.form.valid) {
-      if (this.edicion) {
+      if (this.edit) {
         this.eS.update(this.exercise).subscribe(() => {
           this.eS.list().subscribe((data) => {
             this.eS.setList(data);
@@ -65,16 +64,17 @@ export class ExerciseInsertComponent implements OnInit {
   }
 
   init() {
-    if (this.edicion) {
+    if (this.edit) {
       this.eS.listId(this.idExercise).subscribe((data) => {
-        this.form = new FormGroup({
-          id: new FormControl(data.idExercise),
-          name: new FormControl(data.name),
-          series: new FormControl(data.series),
-          kilograms: new FormControl(data.kilograms),
-          repetitions: new FormControl(data.repetitions),
+        this.form.patchValue({
+          id: data.idExercise,
+          name: data.name,
+          series: data.series,
+          kilograms: data.kilograms,
+          repetitions: data.repetitions,
         });
       });
     }
   }
+
 }

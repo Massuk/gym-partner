@@ -91,4 +91,26 @@ export class TrainingPlansListarComponent implements OnInit {
   clearFilter() {
     this.dataSource.filter = '';
   }
+
+  toggleBadgeStatus(idTrainingPlan: number, status: string): void {
+    const newStatus = status === 'Activo' ? 'Inactivo' : 'Activo';
+
+    this.tpS.listId(idTrainingPlan).subscribe((data) => {
+      data.status = newStatus;
+
+      this.tpS.update(data).subscribe(() => {
+        console.log('Estado actualizado correctamente a: ' + data.status);
+
+        // Actualizar el objeto data en la lista de entrenamientos
+        const trainingPlanIndex = this.dataSource.data.findIndex((tp) => tp.idTrainingPlan === idTrainingPlan);
+        if (trainingPlanIndex !== -1) {
+          this.dataSource.data[trainingPlanIndex] = data;
+          this.dataSource._updateChangeSubscription(); // Notificar cambios a la tabla
+        }
+      });
+    });
+  }
+
+
+
 }
