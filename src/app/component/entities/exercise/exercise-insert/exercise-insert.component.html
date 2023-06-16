@@ -5,7 +5,7 @@
       <div class="row my-3">
         <mat-form-field style="margin-right: 20rem; width: 100%" appearance="outline">
           <mat-label>Nombre del Ejercicio</mat-label>
-          <input matInput placeholder="Nombre del ejercicio" formControlName="name" required/>
+          <input matInput formControlName="name" placeholder="Nombre del ejercicio"  required/>
           <mat-error *ngIf="form.controls['name'].invalid">
             El campo no puede estar vacío.
           </mat-error>
@@ -16,10 +16,10 @@
         <mat-form-field style="margin-right: 20rem; width: 100%" appearance="outline">
           <mat-label>No. Series</mat-label>
           <mat-select formControlName="series" placeholder="No. Series" required>
-            <mat-option value="2">2</mat-option>
-            <mat-option value="4">4</mat-option>
-            <mat-option value="6">6</mat-option>
-            <mat-option value="8">8</mat-option>
+            <mat-option [value]="2">2</mat-option>
+            <mat-option [value]="4">4</mat-option>
+            <mat-option [value]="6">6</mat-option>
+            <mat-option [value]="8">8</mat-option>
           </mat-select>
           <mat-error *ngIf="form.controls['series'].invalid">
             Debes seleccionar una opción.
@@ -31,10 +31,10 @@
         <mat-form-field style="margin-right: 20rem; width: 100%" appearance="outline">
           <mat-label>Cant. Kg</mat-label>
           <mat-select formControlName="kilograms" placeholder="Cant. Kg" required>
-            <mat-option value="2">2</mat-option>
-            <mat-option value="4">4</mat-option>
-            <mat-option value="6">6</mat-option>
-            <mat-option value="8">8</mat-option>
+            <mat-option [value]="2">2</mat-option>
+            <mat-option [value]="4">4</mat-option>
+            <mat-option [value]="6">6</mat-option>
+            <mat-option [value]="8">8</mat-option>
           </mat-select>
           <mat-error *ngIf="form.controls['kilograms'].invalid">
             Debes seleccionar una opción.
@@ -45,11 +45,11 @@
       <div class="row my-3">
         <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
           <mat-label>No. Repeticiones</mat-label>
-          <mat-select placeholder="No. Repeticiones" formControlName="repetitions" required>
-            <mat-option value="2">2</mat-option>
-            <mat-option value="4">4</mat-option>
-            <mat-option value="6">6</mat-option>
-            <mat-option value="8">8</mat-option>
+          <mat-select formControlName="repetitions" placeholder="No. Repeticiones" required>
+            <mat-option [value]="2">2</mat-option>
+            <mat-option [value]="4">4</mat-option>
+            <mat-option [value]="6">6</mat-option>
+            <mat-option [value]="8">8</mat-option>
           </mat-select>
           <mat-error *ngIf="form.controls['repetitions'].invalid">
             Debes seleccionar una opción.

@@ -3,25 +3,23 @@ import { Component, HostListener, OnInit } from '@angular/core';
 @Component({
   selector: 'app-panel',
   templateUrl: './panel.component.html',
-  styleUrls: ['./panel.component.scss']
+  styleUrls: ['./panel.component.scss'],
 })
 export class PanelComponent implements OnInit {
   innerWidth: any;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
   }
 
+  // Ajustes visuales
   @HostListener('window:resize', ['$event'])
-
-  onResize(event:any) {
-    this.innerWidth= window.innerWidth;
+  onResize(event: any) {
+    this.innerWidth = window.innerWidth;
   }
-
-  getClass(){
+  getClass() {
     return this.innerWidth < 925 ? 'row-md' : 'row';
   }
-
 }
