@@ -58,7 +58,7 @@ export class ExerciseListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.eS.hide(id).subscribe(() => {
+        this.eS.delete(id).subscribe(() => {
           this.eS.list().subscribe((data) => {
             this.dataSource = new MatTableDataSource(data);
             this.dataSource.paginator = this.paginator;

@@ -40,13 +40,13 @@
         {{ element.nameClient }}
       </td></ng-container
     >
-<!-- Trainer Column -->
-<ng-container matColumnDef="trainer">
-  <th mat-header-cell *matHeaderCellDef>Entrenador</th>
-  <td mat-cell *matCellDef="let element">
-    <span class="badge badge-success">{{ element.personalTrainer }}</span>
-  </td>
-</ng-container>
+    <!-- Trainer Column -->
+    <ng-container matColumnDef="trainer">
+      <th mat-header-cell *matHeaderCellDef>Entrenador</th>
+      <td mat-cell *matCellDef="let element">
+        <span class="badge badge-success">{{ element.personalTrainer }}</span>
+      </td>
+    </ng-container>
 
     <!-- Nutritionist Column -->
     <ng-container matColumnDef="nutritionist">

@@ -16,7 +16,7 @@ import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/d
 export class TrainingPlansListarComponent implements OnInit {
   lista: TrainingPlan[] = [];
   displayedColumns: string[] = [
-    'number',
+    'id',
     'title',
     'description',
     'objective',

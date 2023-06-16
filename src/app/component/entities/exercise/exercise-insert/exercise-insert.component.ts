@@ -29,7 +29,7 @@ export class ExerciseInsertComponent implements OnInit {
     });
 
     this.form = new FormGroup({
-      id: new FormControl(),
+      id: new FormControl(''),
       name: new FormControl('', Validators.required),
       series: new FormControl('', Validators.required),
       kilograms: new FormControl('', Validators.required),
@@ -43,7 +43,6 @@ export class ExerciseInsertComponent implements OnInit {
     this.exercise.series = this.form.value['series'];
     this.exercise.kilograms = this.form.value['kilograms'];
     this.exercise.repetitions = this.form.value['repetitions'];
-    this.exercise.hide = false;
 
     if (this.form.valid) {
       if (this.edit) {
