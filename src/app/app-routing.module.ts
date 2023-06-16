@@ -77,11 +77,11 @@ const routes: Routes = [
         component: FoodsComponent,
         children: [
           {
-            path: 'foods-insert',
+            path: 'insert',
             component: FoodsInsertComponent,
           },
           {
-            path: 'edicion/:id',
+            path: 'edit/:id',
             component: FoodsInsertComponent,
           },
         ],

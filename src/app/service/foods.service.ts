@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable,Subject } from 'rxjs';
-import { food } from '../model/food';
+import { Food } from '../model/food';
 
 const base_url = environment.base
 
@@ -12,33 +12,33 @@ const base_url = environment.base
 
 export class FoodService {
   private url=`${base_url}/foods`;
-  private changeList = new Subject<food[]>();
+  private changeList = new Subject<Food[]>();
   private confirmaEliminacion = new Subject<Boolean>()
 
 
   constructor(private http:HttpClient) { }
   list(){
-    return this.http.get<food[]>(this.url);
+    return this.http.get<Food[]>(this.url);
   }
-  insert(food: food) {
+  insert(food: Food) {
     return this.http.post(this.url, food);
   }
 
   getList() {
     return this.changeList.asObservable();
   }
-  setList(listaNueva: food[]) {
+  setList(listaNueva: Food[]) {
     this.changeList.next(listaNueva);
   }
 
 
   listId(id: number) {
-    return this.http.get<food>(`${this.url}/${id}`);
+    return this.http.get<Food>(`${this.url}/${id}`);
   }
 
 
-  update(p: food) {
-    return this.http.put(this.url + '/' + p.id, p);
+  update(food: Food) {
+    return this.http.put(`${this.url}/update`, food);
   }
 
   // Funcion para eliminar un registro

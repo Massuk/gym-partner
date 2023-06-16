@@ -1,13 +1,13 @@
 <div class="card">
   <div class="card-head">Registrar Alimentos</div>
   <div class="card-body">
-    <form [formGroup]="form" (submit)="aceptar()">
+    <form [formGroup]="form" (submit)="accept()">
 
       <div class="row my-3">
         <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
           <mat-label>Alimento</mat-label>
-          <input matInput placeholder="Alimento" formControlName="nameFood" />
-          <mat-error *ngIf="form.controls['nameFood'].invalid">
+          <input matInput placeholder="Alimento" formControlName="name" />
+          <mat-error *ngIf="form.controls['name'].invalid">
             El campo no puede estar vacío.
           </mat-error>
         </mat-form-field>
@@ -18,9 +18,9 @@
           <input
             matInput
             placeholder="N° Porciones"
-            formControlName="portionsFood"
+            formControlName="portions"
           />
-          <mat-error *ngIf="form.controls['portionsFood'].invalid">
+          <mat-error *ngIf="form.controls['portions'].invalid">
             El campo no puede estar vacío.
           </mat-error>
         </mat-form-field>
@@ -31,9 +31,9 @@
           <input
             matInput
             placeholder="Calorías"
-            formControlName="caloriesFood"
+            formControlName="calories"
           />
-          <mat-error *ngIf="form.controls['caloriesFood'].invalid">
+          <mat-error *ngIf="form.controls['calories'].invalid">
             El campo no puede estar vacío.
           </mat-error>
         </mat-form-field>

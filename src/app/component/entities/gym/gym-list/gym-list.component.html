@@ -67,6 +67,11 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
+        <mat-radio-button
+        [value]="element.idGym.toString()"
+        (change)="selectGym(element)"
+        [checked]="selectedRadioValue === element.idGym.toString()"
+      ></mat-radio-button>
         <button mat-icon-button color="primary" [routerLink]="['update', element.idGym]">
           <mat-icon>edit</mat-icon>
         </button>
@@ -83,5 +88,9 @@
   <mat-paginator
   [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
 </mat-paginator>
+
+<div *ngIf="selectedGym" style="text-align: center;">
+  <h3>Gimnasio elegido: {{ selectedGym.name }}</h3>
+</div>
 
 </div>
