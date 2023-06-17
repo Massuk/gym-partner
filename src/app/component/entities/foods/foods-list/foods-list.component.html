@@ -11,7 +11,7 @@
           id=""
           placeholder="Buscar..."
           matInput
-          (keyup)="filtrar($event)"
+          (keyup)="filter($event)"
           (search)="clearFilter()"
         />
         <i class="far fa-search search-icon"></i>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="button-container">
-      <button class="button accept" routerLink="/dashboard/foods/foods-insert">
+      <button class="button accept" routerLink="/dashboard/foods/insert">
         Agregar
       </button>
     </div>
@@ -32,28 +32,28 @@
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>ID</th>
       <!--estatico -->
-      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.idFood }}</td>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="Name">
+    <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Alimentos</th>
       <!--estatico -->
-      <td mat-cell *matCellDef="let element">{{ element.nameFood }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="portions">
       <th mat-header-cell *matHeaderCellDef>Porciones (g)</th>
       <!--estatico -->
-      <td mat-cell *matCellDef="let element">{{ element.portionsFood }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.portions }}</td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="calories">
       <th mat-header-cell *matHeaderCellDef>Calorías (Kcal)</th>
       <!--estatico -->
-      <td mat-cell *matCellDef="let element">{{ element.caloriesFood }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.calories }}</td>
     </ng-container>
 
     <!-- Edit Column -->
@@ -63,11 +63,11 @@
         <button
           mat-icon-button
           color="primary"
-          [routerLink]="['edicion', element.id]"
+          [routerLink]="['edit', element.idFood]"
         >
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="primary" (click)="showDeletePopup(element.id)">
+        <button mat-icon-button color="primary" (click)="showDeletePopup(element.idFood)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>

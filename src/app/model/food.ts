@@ -1,7 +1,6 @@
-export class food{
-  id:number = 0
-  nameFood:string = ""
-  portionsFood:string = ""
-  caloriesFood:string = ""
-  hide: boolean = false;
+export class Food{
+  idFood:number = 0
+  name:string = ""
+  portions:string = ""
+  calories:string = ""
 }
