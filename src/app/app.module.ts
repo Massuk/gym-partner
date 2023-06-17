@@ -67,6 +67,11 @@ import { FoodsInsertComponent } from './component/entities/foods/foods-insert/fo
 import { TrainingPlansDeleteComponent } from './component/entities/training-plans/training-plans-delete/training-plans-delete.component';
 import { ExerciseDeleteComponent } from './component/entities/exercise/exercise-delete/exercise-delete.component';
 import { ClientListComponent } from './component/entities/client/client-list/client-list.component';
+import { TrainerComponent } from './component/entities/trainer/trainer.component';
+import { TrainerDeleteComponent } from './component/entities/trainer/trainer-delete/trainer-delete.component';
+import { TrainerInsertComponent } from './component/entities/trainer/trainer-insert/trainer-insert.component';
+import { TrainerListComponent } from './component/entities/trainer/trainer-list/trainer-list.component';
+import { TrainerDetailsComponent } from './component/entities/trainer/trainer-details/trainer-details.component';
 
 @NgModule({
   declarations: [
@@ -119,7 +124,12 @@ import { ClientListComponent } from './component/entities/client/client-list/cli
     FoodsInsertComponent,
     TrainingPlansDeleteComponent,
     ExerciseDeleteComponent,
-    ClientListComponent
+    ClientListComponent,
+    TrainerComponent,
+    TrainerDeleteComponent,
+    TrainerInsertComponent,
+    TrainerListComponent,
+    TrainerDetailsComponent
   ],
   imports: [
     BrowserModule,

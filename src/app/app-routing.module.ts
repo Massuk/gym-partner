@@ -27,6 +27,10 @@ import { TrainingPlansInsertarComponent } from './component/entities/training-pl
 import { FoodsComponent } from './component/entities/foods/foods.component';
 import { FoodsInsertComponent } from './component/entities/foods/foods-insert/foods-insert.component';
 import { TrainingPlansListarComponent } from './component/entities/training-plans/training-plans-list/training-plans-list.component';
+import { TrainerComponent } from './component/entities/trainer/trainer.component';
+import { TrainerListComponent } from './component/entities/trainer/trainer-list/trainer-list.component';
+import { TrainerInsertComponent } from './component/entities/trainer/trainer-insert/trainer-insert.component';
+import { TrainerDetailsComponent } from './component/entities/trainer/trainer-details/trainer-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing-page/index', pathMatch: 'full' },
@@ -131,6 +135,28 @@ const routes: Routes = [
             path: 'list',
             component: TrainingPlansListarComponent,
           }
+        ],
+      },
+      {
+        path: 'trainers',
+        component: TrainerComponent,
+        children: [
+          {
+            path: 'list',
+            component: TrainerListComponent,
+          },
+          {
+            path: 'list/:id',
+            component: TrainerDetailsComponent,
+          },
+          {
+            path: 'insert',
+            component: TrainerInsertComponent,
+          },
+          {
+            path: 'update/:id',
+            component: TrainerInsertComponent,
+          },
         ],
       },
     ],
