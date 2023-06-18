@@ -1,5 +1,13 @@
 module.exports = function () {
   var data = {
+    clients: [
+      {
+        id: 1,
+        nameClient: "Miguel Flores",
+        personalTrainer: "Omar Moya",
+        personalNutritionist: "Nicole Sanchez",
+      },
+    ],
     gyms: [
       {
         id: 1,
@@ -22,40 +30,67 @@ module.exports = function () {
         rucGym: "20604750530",
         rsGym: "GYM TRECE S.A.C.",
       },
+    ],
+    trainingPlans: [
       {
-        id: 4,
-        nameGym: "Gym Plus",
-        codeGym: "GYMPLUS",
-        rucGym: "20536570013",
-        rsGym: "GYM PLUS S.A.C.",
+        id: 1,
+        title: "Entrenamiento PPL",
+        description: "Primer mes utilizando plan de entrenamiento enfocado en rutinas de push, pull, legs",
+        objective: "Ganar masa muscular",
+        level: "Principiante",
+        startDate: "2023-03-10",
+        endDate: "2023-04-09",
+        enable: "Vencido",
       },
       {
-        id: 5,
-        nameGym: "BodyTech",
-        codeGym: "BODYTECH",
-        rucGym: "20492858766",
-        rsGym: "INVERDESA PERU S.A.C.",
+        id: 2,
+        title: "Entrenamiento PPL",
+        description: "Segundo mes utilizando plan de entrenamiento enfocado en rutinas de push, pull, legs",
+        objective: "Ganar masa muscular",
+        level: "Intermedio",
+        startDate: "2023-04-10",
+        endDate: "2023-05-09",
+        enable: "Activo",
       },
       {
-        id: 6,
-        nameGym: "Sportlife Fitness Club",
-        codeGym: "YTBGYM",
-        rucGym: "20423621827",
-        rsGym: "YTB FITNESS S.A.C.",
+        id: 3,
+        title: "Entrenamiento PPL",
+        description: "Primer mes utilizando plan de entrenamiento enfocado en rutinas de push, pull, legs",
+        objective: "Ganar masa muscular",
+        level: "Principiante",
+        startDate: "2023-03-10",
+        endDate: "2023-04-9",
+        enable: "Vencido",
+      }
+    ],
+    exercises: [
+      {
+        id:1,
+        nameExercise: "Sentadilla Bulgara",
+	      series: 4,
+	      kilograms: 12,
+	      repetitions: 8,
       },
       {
-        id: 7,
-        nameGym: "Gold Gym",
-        codeGym: "GOLDGYM",
-        rucGym: "20600307194",
-        rsGym: "GOLD GYM S.A.C.",
+        id:2,
+        nameExercise: "Planchas",
+	      series: 2,
+	      kilograms: 4,
+	      repetitions: 2,
       },
       {
-        id: 8,
-        nameGym: "X Sport Gym",
-        codeGym: "XSPORT",
-        rucGym: "20555032146",
-        rsGym: "SPORT FITNESS PERU S.A.C",
+        id:3,
+        nameExercise: "Abdominales",
+	      series: 3,
+	      kilograms: 2,
+	      repetitions: 5,
+      },
+      {
+        id:4,
+        nameExercise: "Sentadilla Normal",
+	      series: 5,
+	      kilograms: 2,
+	      repetitions: 3,
       },
     ],
     nutritionalPlans: [
@@ -72,8 +107,33 @@ module.exports = function () {
           "Para cumplir el objetivo no debe saltarse las comidas y debe consumir más calorías de lo que gasta.",
       },
     ],
+    foods: [
+      {
+        id:1,
+        nameFood: "Pollo",
+        portionsFood: "500 g",
+        caloriesFood:"100 Kcal",
+      },
+      {
+        id:2,
+        nameFood: "Carne",
+        portionsFood: "400 g",
+        caloriesFood:"200 Kcal",
+      },
+      {
+        id:3,
+        nameFood: "Huevo",
+        portionsFood: "80 g",
+        caloriesFood:"80 Kcal",
+      },
+      {
+        id:4,
+        nameFood: "Queso",
+        portionsFood: "100 g",
+        caloriesFood:"240 Kcal",
+      }
+    ],
+
   };
   return data;
 };
-
-//"@angular/material/prebuilt-themes/indigo-pink.css", tema original en angular.json

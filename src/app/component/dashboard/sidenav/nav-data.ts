@@ -10,19 +10,19 @@ export const navbarData = [
     label: 'Clientes',
   },
   {
-    routeLink: 'gym',
+    routeLink: 'gyms',
     icon: 'fal fa-sitemap',
     label: 'Gimnasios',
   },
   {
-    routeLink: 'exercise',
+    routeLink: 'exercises',
     icon: 'fal fa-dumbbell',
     label: 'Ejercicios',
   },
   {
-    routeLink: 'routines',
+    routeLink: 'training-plans',
     icon: 'fal fa-paste',
-    label: 'Rutinas',
+    label: 'Planes de Entrenamiento',
   },
   {
     routeLink: 'nutritional-plans',

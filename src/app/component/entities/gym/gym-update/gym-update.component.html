@@ -1,46 +1,175 @@
-<div class="mat-card">
-  <mat-card-header>
-    <mat-card-title>Actualizar Gimnasio</mat-card-title>
-  </mat-card-header>
-  <form [formGroup]="form" (submit)="updateGym()">
+<div class="card">
+  <div class="card-head">Actualizar información</div>
+  <div class="card-body">
+    <form [formGroup]="form" (submit)="updateGym()">
 
-    <div class="form-group">
-      <mat-form-field style="margin-right: 20rem; width: 100%">
-        <mat-label>ID</mat-label>
-        <input matInput formControlName="id" required />
-      </mat-form-field>
-    </div>
-    <div class="form-group">
-      <mat-form-field style="margin-right: 20rem; width: 100%">
-        <mat-label>Nombre del gimnasio</mat-label>
-        <input matInput formControlName="nameGym" required/>
-      </mat-form-field>
-    </div>
-    <div class="form-group">
-      <mat-form-field style="margin-right: 20rem; width: 100%">
-        <mat-label>Código del gimnasio</mat-label>
-        <input matInput formControlName="codeGym" />
-      </mat-form-field>
-    </div>
-    <div class="form-group">
-      <mat-form-field style="margin-right: 20rem; width: 100%">
-        <mat-label>RUC</mat-label>
-        <input matInput formControlName="rucGym" />
-      </mat-form-field>
-    </div>
-    <div class="form-group">
-      <mat-form-field style="margin-right: 20rem; width: 100%">
-        <mat-label>Razón social</mat-label>
-        <input matInput formControlName="rsGym" />
-      </mat-form-field>
-    </div>
-
-    <div class="button-container">
-      <div class="form-group">
-        <button class="button accept" type="submit">Guardar</button>
-        <button class="button cancel" routerLink="/gym">Cancelar</button>
+      <div class="my-3">
+        <mat-form-field
+          appearance="outline"
+          style="margin-right: 20rem; width: 100%"
+        >
+          <mat-label>Nombre del gimnasio</mat-label>
+          <input
+            matInput
+            formControlName="name" required
+            #name
+            type="text"
+            maxlength="20"
+          />
+          <mat-error *ngIf="form.controls['name'].invalid">
+            El campo no puede estar vacío.
+          </mat-error>
+          <mat-hint align="end">{{ name.value.length }}/20</mat-hint>
+        </mat-form-field>
       </div>
-      <p></p>
+      <div class="my-3">
+        <mat-form-field
+          appearance="outline"
+          style="margin-right: 20rem; width: 100%"
+        >
+          <mat-label>Código del gimnasio</mat-label>
+          <input matInput formControlName="code" />
+          <mat-error *ngIf="form.controls['code'].invalid">
+            El campo no puede estar vacío.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="my-3">
+        <mat-form-field
+          appearance="outline"
+          style="margin-right: 20rem; width: 100%"
+        >
+          <mat-label>RUC</mat-label>
+          <input
+            matInput
+            oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '')"
+            type="text"
+            #ruc
+            formControlName="ruc"
+            maxlength="11"
+            required
+          />
+          <mat-hint align="end">{{ ruc.value.length }}/11</mat-hint>
+          <mat-error *ngIf="form.controls['ruc'].invalid">
+            El RUC debe contener 11 dígitos.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="my-3">
+        <mat-form-field
+          appearance="outline"
+          style="margin-right: 20rem; width: 100%"
+        >
+          <mat-label>Razón social</mat-label>
+          <input matInput formControlName="rs" />
+          <mat-error *ngIf="form.controls['rs'].invalid">
+            El campo no puede estar vacío.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="button-container">
+          <button class="button accept" type="submit">Guardar</button>
+          <button class="button cancel" routerLink="/dashboard/gyms">Cancelar</button>
+        <p></p>
+      </div>
+    </form>
+
+    <div class="card separate">
+      <div
+        id="carouselSlideGymPartner"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselSlideGymPartner"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselSlideGymPartner"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselSlideGymPartner"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="../../../../assets/carousel/slide1.png"
+              class="d-block w-100"
+              alt="img1"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="tshadow">Organiza tus gimnasios de manera sencilla</h5>
+              <p class="tshadow">
+                Con Gym Partner podrás administrar fácilmente tus gimnasios y
+                mantener un control de todas tus sucursales
+              </p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../../../../assets/carousel/slide2.png"
+              class="d-block w-100"
+              alt="img2"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="tshadow">
+                Gestionar entrenadores nunca fue tan fácil
+              </h5>
+              <p class="tshadow">
+                Monitorea el progreso de tus entrenadores y mantén una
+                comunicación efectiva con ellos
+              </p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../../../../assets/carousel/slide3.png"
+              class="d-block w-100"
+              alt="img3"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="tshadow">
+                Gestionar nutricionistas es más sencillo de lo que imaginas
+              </h5>
+              <p class="tshadow">
+                Podrás hacer seguimiento a sus avances y monitorear su progreso
+                en tiempo real
+              </p>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselSlideGymPartner"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselSlideGymPartner"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </div>
     </div>
-  </form>
+  </div>
 </div>

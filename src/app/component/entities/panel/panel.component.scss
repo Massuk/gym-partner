@@ -77,7 +77,7 @@
     border-radius: 5px;
     width: 100%;
     margin-right: 10px;
-    background-color: #263238;
+    background-color: #212121;
     border-radius: 0.25rem;
     border: none;
     cursor: pointer;
@@ -88,7 +88,7 @@
 
     &:hover {
       background-color: #e6e600;
-      color: #263238;
+      color: #212121;
     }
   }
 }
@@ -98,7 +98,7 @@
   max-width: 1140px;
 
   .welcome-head-container {
-    background-color: #263238;
+    background-color: #212121;
     //background-image: url('../../../assets/welcome.png');
     color: #e6edef;
     font-size: 24px;
@@ -200,7 +200,7 @@
         margin-top: 1rem;
 
         button {
-          background-color: #263238;
+          background-color: #212121;
           padding: 0.5rem 1rem;
           border-radius: 0.25rem;
           border: none;
@@ -212,7 +212,7 @@
 
           &:hover {
             background-color: #e6e600;
-            color: #263238;
+            color: #212121;
           }
 
           .fa-arrow-right {

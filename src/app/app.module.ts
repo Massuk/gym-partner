@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { BodyComponent } from './component/dashboard/body/body.component';
 import { SidenavComponent } from './component//dashboard/sidenav/sidenav.component';
 import { PanelComponent } from './component/entities/panel/panel.component';
-import { ClientsComponent } from './component/entities/clients/clients.component';
+import { ClientComponent } from './component/entities/client/client.component';
 import { GymUpdateComponent } from './component/entities/gym/gym-update/gym-update.component';
 import { GymDeleteComponent } from './component/entities/gym/gym-delete/gym-delete.component';
 import { GymComponent } from './component/entities/gym/gym.component';
@@ -21,30 +21,52 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
-import { MatOptionModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatOptionModule } from '@angular/material/core';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatRadioModule} from '@angular/material/radio'
+import { MatRadioModule } from '@angular/material/radio'
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCard, MatCardActions, MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { CommonModule } from '@angular/common';
-import { ConfirmationDialogComponent } from './component/dashboard/confirmation-dialog/confirmation-dialog.component';
+import { DialogPopupComponent } from './component/dashboard/dialog-popup/dialog-popup.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { AuthenticationComponent } from './component/authentication/authentication.component';
 import { EntitiesComponent } from './component/entities/entities.component';
+import { RegisterComponent } from './component/authentication/register/register.component';
+import { LoginComponent } from './component/authentication/login/login.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { LandingPageComponent } from './component/landing-page/landing-page.component';
+import { AboutComponent } from './component/landing-page/about/about.component';
+import { ContactComponent } from './component/landing-page/contact/contact.component';
+import { PricingComponent } from './component/landing-page/pricing/pricing.component';
+import { IndexComponent } from './component/landing-page/index/index.component';
+
+import { TrainingPlansComponent } from './component/entities/training-plans/training-plans.component';
 import { NutritionalPlanComponent } from './component/entities/nutritional-plan/nutritional-plan.component';
 import { NutritionalPlanListComponent } from './component/entities/nutritional-plan/nutritional-plan-list/nutritional-plan-list.component';
 import { NutritionalPlanInsertComponent } from './component/entities/nutritional-plan/nutritional-plan-insert/nutritional-plan-insert.component';
 import { NutritionalPlanDeleteComponent } from './component/entities/nutritional-plan/nutritional-plan-delete/nutritional-plan-delete.component';
+import { ExerciseComponent } from './component/entities/exercise/exercise.component';
+import { ExerciseListComponent } from './component/entities/exercise/exercise-list/exercise-list.component';
+import { ExerciseInsertComponent } from './component/entities/exercise/exercise-insert/exercise-insert.component';
+import { TrainingPlansListarComponent } from './component/entities/training-plans/training-plans-list/training-plans-list.component';
+import { TrainingPlansInsertarComponent } from './component/entities/training-plans/training-plans-insert/training-plans-insert.component';
+import { FoodsComponent } from './component/entities/foods/foods.component';
+import { FoodsListComponent } from './component/entities/foods/foods-list/foods-list.component';
+import { FoodsInsertComponent } from './component/entities/foods/foods-insert/foods-insert.component';
+import { TrainingPlansDeleteComponent } from './component/entities/training-plans/training-plans-delete/training-plans-delete.component';
+import { ExerciseDeleteComponent } from './component/entities/exercise/exercise-delete/exercise-delete.component';
+import { ClientListComponent } from './component/entities/client/client-list/client-list.component';
 
 @NgModule({
   declarations: [
@@ -52,21 +74,52 @@ import { NutritionalPlanDeleteComponent } from './component/entities/nutritional
     BodyComponent,
     SidenavComponent,
     PanelComponent,
-    ClientsComponent,
+    ClientComponent,
     GymComponent,
     GymListComponent,
     HeaderComponent,
     GymInsertComponent,
     GymUpdateComponent,
     GymDeleteComponent,
-    ConfirmationDialogComponent,
+    DialogPopupComponent,
     DashboardComponent,
     AuthenticationComponent,
+    EntitiesComponent,
+    RegisterComponent,
+    LoginComponent,
+    LandingPageComponent,
+    AboutComponent,
+    ContactComponent,
+    PricingComponent,
+    IndexComponent,
+    LoginComponent,
     EntitiesComponent,
     NutritionalPlanComponent,
     NutritionalPlanListComponent,
     NutritionalPlanInsertComponent,
-    NutritionalPlanDeleteComponent
+    NutritionalPlanDeleteComponent,
+    NutritionalPlanInsertComponent,
+    ExerciseComponent,
+    ExerciseListComponent,
+    ExerciseInsertComponent,
+    EntitiesComponent,
+    NutritionalPlanComponent,
+    NutritionalPlanListComponent,
+    NutritionalPlanInsertComponent,
+    ExerciseComponent,
+    ExerciseListComponent,
+    ExerciseInsertComponent,
+    EntitiesComponent,
+    TrainingPlansComponent,
+    TrainingPlansListarComponent,
+    TrainingPlansInsertarComponent,
+    EntitiesComponent,
+    FoodsComponent,
+    FoodsListComponent,
+    FoodsInsertComponent,
+    TrainingPlansDeleteComponent,
+    ExerciseDeleteComponent,
+    ClientListComponent
   ],
   imports: [
     BrowserModule,
@@ -93,9 +146,13 @@ import { NutritionalPlanDeleteComponent } from './component/entities/nutritional
     CommonModule,
     MatCardModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule,
+    MatCheckboxModule
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

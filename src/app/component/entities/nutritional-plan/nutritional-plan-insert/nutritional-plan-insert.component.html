@@ -1,112 +1,109 @@
 <div class="card">
-  <div class="card-head">{{ cardHeaderText }}</div>
+  <div class="card-head">Registrar plan nutricional</div>
   <div class="card-body">
     <form [formGroup]="form" (submit)="accept()">
-      <mat-form-field
-        appearance="outline"
-        style="margin-right: 20rem; width: 100%"
-      >
-        <mat-label>ID</mat-label>
-        <input
-          matInput
-          placeholder="ID"
-          formControlName="id"
-          required
-          pattern="[0-9]+"
-        />
-      </mat-form-field>
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Nombre</mat-label>
+            <input
+              matInput
+              placeholder="Nombre"
+              formControlName="title"
+              required
+            />
+            <mat-error *ngIf="form.controls['title'].invalid">
+              El campo no puede estar vacío.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
 
-      <mat-form-field
-        appearance="outline"
-        style="margin-right: 20rem; width: 100%"
-      >
-        <mat-label>Titulo</mat-label>
-        <input
-          matInput
-          placeholder="Titulo"
-          formControlName="titleNutritionalPlan"
-          required
-        />
-      </mat-form-field>
-
-      <mat-form-field
-        appearance="outline"
-        style="margin-right: 20rem; width: 100%"
-      >
-        <mat-label>Estado</mat-label>
-        <mat-select
-          placeholder="Estado"
-          formControlName="statusNutritionalPlan"
-          required
+      <div class="row my-3">
+        <mat-form-field
+          appearance="outline"
+          style="width: 100%"
         >
-          <mat-option value="Activo">Activo</mat-option>
-          <mat-option value="Inactivo">Inactivo</mat-option>
-        </mat-select>
-      </mat-form-field>
-
+          <mat-label>Objetivo</mat-label>
+          <input
+            matInput
+            placeholder="Objetivo"
+            formControlName="objective"
+            required
+          />
+          <mat-error *ngIf="form.controls['objective'].invalid">
+            El campo no puede estar vacío.
+          </mat-error>
+        </mat-form-field>
+      </div>
       <mat-form-field
         appearance="outline"
-        style="margin-right: 20rem; width: 100%"
+        style="width: 100%"
       >
-        <mat-label>Objetivo</mat-label>
-        <input
-          matInput
-          placeholder="Objetivo"
-          formControlName="objectiveNutritionalPlan"
-          required
-        />
-      </mat-form-field>
-
-      <mat-form-field
-        appearance="outline"
-        style="margin-right: 20rem; width: 100%"
-      >
-        <mat-label>Descripcion</mat-label>
+        <mat-label>Descripción</mat-label>
         <textarea
           matInput
-          placeholder="Descripcion"
-          formControlName="descriptionNutritionalPlan"
+          placeholder="Descripción"
+          formControlName="description"
           required
+          rows="3"
         ></textarea>
+        <mat-error *ngIf="form.controls['description'].invalid">
+          El campo no puede estar vacío.
+        </mat-error>
       </mat-form-field>
 
-      <mat-form-field
-        appearance="outline"
-        style="margin-right: 20rem; width: 100%"
-      >
-        <mat-label>Inicio de Plan</mat-label>
-        <input
-          matInput
-          [matDatepicker]="picker"
-          placeholder="Elija una fecha"
-          formControlName="startDateNutritionalPlan"
-          [max]="maxFecha"
-          required
-          (dateChange)="updateEndDate($event)"
-        />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field
-        appearance="outline"
-        style="margin-right: 20rem; width: 100%"
-      >
-        <mat-label>Fin de Plan</mat-label>
-        <input
-          matInput
-          [matDatepicker]="picker2"
-          placeholder="Elija una fecha"
-          formControlName="endDateNutritionalPlan"
-          readonly
-        />
-        <mat-datepicker-toggle
-          disabled
-          matSuffix
-          [for]="picker2"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-      </mat-form-field>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="my-3">
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Inicio del plan</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                placeholder="Elija una fecha"
+                formControlName="startDate"
+                [min]="minDate"
+                required
+                readonly
+                (dateChange)="updateEndDate($event)"
+              />
+              <mat-error *ngIf="form.controls['startDate'].invalid">
+                Elige una fecha inicial.
+              </mat-error>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="my-3">
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Fin del plan</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker2"
+                placeholder="Elija una fecha"
+                formControlName="endDate"
+                readonly
+                required
+              />
+              <mat-error *ngIf="form.controls['endDate'].invalid">
+                Se necesita fecha inicial.
+              </mat-error>
+              <mat-datepicker-toggle
+                disabled
+                matSuffix
+                [for]="picker2"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
 
       <mat-form-field
         appearance="outline"
@@ -116,15 +113,116 @@
         <textarea
           matInput
           placeholder="Recomendaciones"
-          formControlName="recommendationsNutritionalPlan"
+          formControlName="recommendations"
           required
         ></textarea>
+        <mat-error *ngIf="form.controls['recommendations'].invalid">
+          El campo no puede estar vacío.
+        </mat-error>
       </mat-form-field>
 
-      <button class="button accept" type="submit">Guardar</button>
-      <button class="button cancel" routerLink="/nutritional-plans">
-        Cancelar
-      </button>
+      <div class="button-container">
+        <button class="button accept" type="submit">Agregar</button>
+        <button class="button cancel" routerLink="/dashboard/nutritional-plans">Cancelar</button>
+    </div>
     </form>
+
+    <div class="card separate">
+      <div
+        id="carouselSlideGymPartner"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselSlideGymPartner"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselSlideGymPartner"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselSlideGymPartner"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="../../../../assets/carousel/slide1.png"
+              class="d-block w-100"
+              alt="img1"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="tshadow">Organiza tus gimnasios de manera sencilla</h5>
+              <p class="tshadow">
+                Con Gym Partner podrás administrar fácilmente tus gimnasios y
+                mantener un control de todas tus sucursales
+              </p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../../../../assets/carousel/slide2.png"
+              class="d-block w-100"
+              alt="img2"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="tshadow">
+                Gestionar entrenadores nunca fue tan fácil
+              </h5>
+              <p class="tshadow">
+                Monitorea el progreso de tus entrenadores y mantén una
+                comunicación efectiva con ellos
+              </p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../../../../assets/carousel/slide3.png"
+              class="d-block w-100"
+              alt="img3"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="tshadow">
+                Gestionar nutricionistas es más sencillo de lo que imaginas
+              </h5>
+              <p class="tshadow">
+                Podrás hacer seguimiento a sus avances y monitorear su progreso
+                en tiempo real
+              </p>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselSlideGymPartner"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselSlideGymPartner"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </div>
+    </div>
+
   </div>
 </div>

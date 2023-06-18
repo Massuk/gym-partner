@@ -9,19 +9,10 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./gym-delete.component.scss']
 })
 export class GymDeleteComponent {
-
-  gymId: number=0;
-
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private gS: GymService,
-    private dialog: MatDialog
+    private route: ActivatedRoute
   ){}
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.gymId = +params['id']; // Convierte el parámetro a número
-    });
   }
 }
