@@ -24,7 +24,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MAT_DATE_LOCALE, MatOptionModule } from '@angular/material/core';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatRadioModule } from '@angular/material/radio'
+import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
@@ -32,7 +32,6 @@ import { MatCard, MatCardActions, MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
-
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -50,6 +49,7 @@ import { AboutComponent } from './component/landing-page/about/about.component';
 import { ContactComponent } from './component/landing-page/contact/contact.component';
 import { PricingComponent } from './component/landing-page/pricing/pricing.component';
 import { IndexComponent } from './component/landing-page/index/index.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { TrainingPlansComponent } from './component/entities/training-plans/training-plans.component';
 import { NutritionalPlanComponent } from './component/entities/nutritional-plan/nutritional-plan.component';
@@ -77,6 +77,8 @@ import { TrainerDeleteComponent } from './component/entities/trainer/trainer-del
 import { TrainerInsertComponent } from './component/entities/trainer/trainer-insert/trainer-insert.component';
 import { TrainerListComponent } from './component/entities/trainer/trainer-list/trainer-list.component';
 import { TrainerDetailsComponent } from './component/entities/trainer/trainer-details/trainer-details.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -134,13 +136,13 @@ import { TrainerDetailsComponent } from './component/entities/trainer/trainer-de
     NutritionistListComponent,
     NutritionistInsertComponent,
     NutritionistDeleteComponent,
-    NutritionistDetailsComponent
+    NutritionistDetailsComponent,
     ClientListComponent,
     TrainerComponent,
     TrainerDeleteComponent,
     TrainerInsertComponent,
     TrainerListComponent,
-    TrainerDetailsComponent
+    TrainerDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -169,11 +171,12 @@ import { TrainerDetailsComponent } from './component/entities/trainer/trainer-de
     MatSnackBarModule,
     MatDialogModule,
     MatTabsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatMenuModule,
+    MatTooltipModule,
+    MatProgressBarModule
   ],
-  providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
-  ],
-  bootstrap: [AppComponent]
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-ES' }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
