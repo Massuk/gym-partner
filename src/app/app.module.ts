@@ -67,6 +67,10 @@ import { FoodsInsertComponent } from './component/entities/foods/foods-insert/fo
 import { TrainingPlansDeleteComponent } from './component/entities/training-plans/training-plans-delete/training-plans-delete.component';
 import { ExerciseDeleteComponent } from './component/entities/exercise/exercise-delete/exercise-delete.component';
 import { ClientListComponent } from './component/entities/client/client-list/client-list.component';
+import { RoutineComponent } from './component/entities/routine/routine.component';
+import { RoutineListComponent } from './component/entities/routine/routine-list/routine-list.component';
+import { RoutineInsertComponent } from './component/entities/routine/routine-insert/routine-insert.component';
+import { RoutineDeleteComponent } from './component/entities/routine/routine-delete/routine-delete.component';
 
 @NgModule({
   declarations: [
@@ -119,7 +123,11 @@ import { ClientListComponent } from './component/entities/client/client-list/cli
     FoodsInsertComponent,
     TrainingPlansDeleteComponent,
     ExerciseDeleteComponent,
-    ClientListComponent
+    ClientListComponent,
+    RoutineComponent,
+    RoutineListComponent,
+    RoutineInsertComponent,
+    RoutineDeleteComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,15 @@ module.exports = function () {
         personalNutritionist: "Nicole Sanchez",
       },
     ],
+    routines: [
+      {
+        id: 1,
+        title: "Miguel Flores",
+        description: "Omar Moya",
+        day: "Nicole Sanchez",
+        hide: false,
+      },
+    ],
     gyms: [
       {
         id: 1,

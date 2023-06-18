@@ -1,4 +1,4 @@
-<h1>Planes de entrenamiento</h1>
+<h1>Rutinas</h1>
 
 <div class="card">
   <div class="card-body">
@@ -21,7 +21,7 @@
     <div class="button-container">
       <button
         class="button accept"
-        routerLink="/dashboard/training-plans/insert"
+        routerLink="/dashboard/routines/insert"
       >
         Agregar
       </button>
@@ -36,12 +36,17 @@
     >
       <th mat-header-cell *matHeaderCellDef>ID</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.idTrainingPlan }}
+        {{ element.idRoutine }}
       </td> </ng-container
     ><!-- Name Column --><ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef>Título</th>
       <td mat-cell *matCellDef="let element">
         {{ element.title }}
+      </td> </ng-container
+    ><!-- Weight Column --><ng-container matColumnDef="day">
+      <th mat-header-cell *matHeaderCellDef>Dia</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.day }}
       </td> </ng-container
     ><!-- Weight Column --><ng-container matColumnDef="description">
       <th mat-header-cell *matHeaderCellDef>Descripción</th>
@@ -52,73 +57,39 @@
       <th mat-header-cell *matHeaderCellDef>Objetivo</th>
       <td mat-cell *matCellDef="let element">
         {{ element.objective }}
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="level">
-      <th mat-header-cell *matHeaderCellDef>Nivel</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.level }}
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="startDate">
-      <th mat-header-cell *matHeaderCellDef>Inicio</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.startDate | date : "dd/MM/yyyy" }}
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="endDate">
-      <th mat-header-cell *matHeaderCellDef>Fin</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.endDate | date : "dd/MM/yyyy" }}
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef>Estado</th>
-      <td mat-cell *matCellDef="let element">
-        <span
-          class="badge bg-{{
-            element.status === 'Activo' ? 'success' : 'danger'
-          }} text-white"
-          (click)="toggleBadgeStatus(element.idTrainingPlan, element.status)"
-          style="cursor: pointer"
-        >
-          {{ element.status }}
-        </span>
-      </td>
-    </ng-container>
+      </td> </ng-container
+    >
+
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let element">
         <button
           mat-icon-button
-          [routerLink]="['update', element.idTrainingPlan]"
+          [routerLink]="['update', element.idRoutine]"
         >
           <mat-icon>edit</mat-icon>
         </button>
         <button
           mat-icon-button
           color="primary"
-          (click)="showDeletePopup(element.idTrainingPlan)"
+          (click)="showDeletePopup(element.idRoutine)"
         >
           <mat-icon>delete</mat-icon>
         </button>
       </td>
     </ng-container>
-
     <ng-container matColumnDef="view">
-      <th mat-header-cell *matHeaderCellDef>Ver Rutinas</th>
+      <th mat-header-cell *matHeaderCellDef>Ver Ejercicios</th>
       <td mat-cell *matCellDef="let element">
         <button
         mat-icon-button
         color="primary"
-        routerLink="/dashboard/routines"
+        routerLink="/dashboard/exercises"
       >
         <mat-icon>visibility</mat-icon>
       </button>
       </td>
     </ng-container>
-
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr
       mat-row

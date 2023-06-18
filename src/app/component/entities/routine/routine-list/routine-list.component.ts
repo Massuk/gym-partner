@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TrainingPlan } from 'src/app/model/training-plan';
-import { TrainingPlansService } from 'src/app/service/training-plans.service';
+import { Routine } from 'src/app/model/routine';
+import { RoutineService } from 'src/app/service/routine.service';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
@@ -9,40 +9,38 @@ import { MatPaginator } from '@angular/material/paginator';
 import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/dialog-popup.component';
 
 @Component({
-  selector: 'app-training-plans-list',
-  templateUrl: './training-plans-list.component.html',
-  styleUrls: ['./training-plans-list.component.scss'],
+  selector: 'app-routine-list',
+  templateUrl: './routine-list.component.html',
+  styleUrls: ['./routine-list.component.scss']
 })
-export class TrainingPlansListarComponent implements OnInit {
-  lista: TrainingPlan[] = [];
+export class RoutineListComponent implements OnInit{
+  lista: Routine[] = [];
   displayedColumns: string[] = [
     'id',
     'title',
+    'day',
     'description',
-    'objective',
-    'level',
-    'startDate',
-    'endDate',
-    'status',
     'actions',
-    'view',
+    'view'
   ];
-  dataSource: MatTableDataSource<TrainingPlan> = new MatTableDataSource();
+
+
+  dataSource: MatTableDataSource<Routine> = new MatTableDataSource();
 
   ngOnInit(): void {
 
-    this.tpS.getList().subscribe((data) => {
+    this.rS.getList().subscribe((data) => {
       this.dataSource.data = data;
     });
 
-    this.tpS.list().subscribe((data) => {
+    this.rS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });
   }
 
   constructor(
-    private tpS: TrainingPlansService,
+    private rS: RoutineService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
   ) {}
@@ -50,7 +48,7 @@ export class TrainingPlansListarComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
 
-  showDeletePopup(idTrainingPlan: number): void {
+  showDeletePopup(idRoutine: number): void {
     const dialogRef = this.dialog.open(DialogPopupComponent, {
       width: '450px',
       data: {
@@ -68,8 +66,8 @@ export class TrainingPlansListarComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.tpS.hide(idTrainingPlan).subscribe(() => {
-          this.tpS.list().subscribe((data) => {
+        this.rS.hide(idRoutine).subscribe(() => {
+          this.rS.list().subscribe((data) => {
             this.dataSource = new MatTableDataSource(data);
             this.dataSource.paginator = this.paginator;
           });
@@ -85,6 +83,7 @@ export class TrainingPlansListarComponent implements OnInit {
   }
 
 
+
   filtrar(e: any) {
     this.dataSource.filter = e.target.value.trim();
   }
@@ -92,26 +91,6 @@ export class TrainingPlansListarComponent implements OnInit {
   clearFilter() {
     this.dataSource.filter = '';
   }
-
-  toggleBadgeStatus(idTrainingPlan: number, status: string): void {
-    const newStatus = status === 'Activo' ? 'Inactivo' : 'Activo';
-
-    this.tpS.listId(idTrainingPlan).subscribe((data) => {
-      data.status = newStatus;
-
-      this.tpS.update(data).subscribe(() => {
-        console.log('Estado actualizado correctamente a: ' + data.status);
-
-        // Actualizar el objeto data en la lista de entrenamientos
-        const trainingPlanIndex = this.dataSource.data.findIndex((tp) => tp.idTrainingPlan === idTrainingPlan);
-        if (trainingPlanIndex !== -1) {
-          this.dataSource.data[trainingPlanIndex] = data;
-          this.dataSource._updateChangeSubscription(); // Notificar cambios a la tabla
-        }
-      });
-    });
-  }
-
 
 
 }
