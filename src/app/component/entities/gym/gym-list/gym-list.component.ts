@@ -16,6 +16,14 @@ import { GymDataService } from 'src/app/service/gym-data.service';
 })
 export class GymListComponent implements OnInit {
 
+  constructor(
+    private gS: GymService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private gymDataService: GymDataService
+  ) {}
+
+
   lista: Gym[] = [];
   displayedColumns: string[] = [
     'id',
@@ -25,51 +33,39 @@ export class GymListComponent implements OnInit {
     'rs',
     'actions',
   ];
-  selectedRadioValue: string | undefined;
+  selectedRadioValue: number = 0;
   selectedGym: Gym | undefined;
-
-  selectGym(gym: Gym) {
-    this.selectedGym = gym;
-    this.selectedRadioValue = gym.idGym.toString();
-    this.gymDataService.setSelectedGym(this.selectedGym);
-    this.gymDataService.setSelectedRadioValue(this.selectedRadioValue);
-  }
-
-
   dataSource: MatTableDataSource<Gym> = new MatTableDataSource();
 
   ngOnInit(): void {
+    this.gS.getList().subscribe((data) => {
+      this.dataSource.data = data;
+    });
 
-  this.gS.getList().subscribe((data) => {
-    this.dataSource.data = data;
-    if (!this.selectedGym) {
-      this.selectedGym = data[0]; // Asigna el primer gimnasio de la lista solo si selectedGym es undefined
-      this.selectedRadioValue = this.selectedGym.idGym.toString(); // Establece su idGym como el valor de selectedRadioValue
-      this.gymDataService.setSelectedGym(this.selectedGym);
-      this.gymDataService.setSelectedRadioValue(this.selectedRadioValue);
-    }
-  });
 
     this.gS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       if (!this.selectedGym) {
-        this.selectedGym = data[0];
-        this.selectedRadioValue = this.selectedGym.idGym.toString();
+        const storedGym = this.gymDataService.getSelectedGym();
+        this.selectedGym = storedGym ? storedGym : data[0];
+        this.selectedRadioValue = this.selectedGym.idGym;
         this.gymDataService.setSelectedGym(this.selectedGym);
         this.gymDataService.setSelectedRadioValue(this.selectedRadioValue);
       }
+      console.log(this.selectedGym);
       this.dataSource.paginator = this.paginator;
     });
   }
 
-  constructor(
-    private gS: GymService,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar,
-    private gymDataService: GymDataService
-  ) {}
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  selectGym(gym: Gym) {
+    this.selectedGym = gym;
+    this.selectedRadioValue = gym.idGym;
+    this.gymDataService.setSelectedGym(this.selectedGym);
+    this.gymDataService.setSelectedRadioValue(this.selectedRadioValue);
+  }
 
   showDeletePopup(id: number): void {
     const dialogRef = this.dialog.open(DialogPopupComponent, {
