@@ -26,6 +26,7 @@ export class NutritionalPlanListComponent implements OnInit {
     'status',
     'actions',
   ];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private npS: NutritionalPlanService,
@@ -36,8 +37,6 @@ export class NutritionalPlanListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
     });
   }
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
     this.npS.getList().subscribe((data) => {

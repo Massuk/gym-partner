@@ -27,6 +27,9 @@ import { TrainingPlansInsertarComponent } from './component/entities/training-pl
 import { FoodsComponent } from './component/entities/foods/foods.component';
 import { FoodsInsertComponent } from './component/entities/foods/foods-insert/foods-insert.component';
 import { TrainingPlansListarComponent } from './component/entities/training-plans/training-plans-list/training-plans-list.component';
+import { NutritionistComponent } from './component/entities/nutritionist/nutritionist.component';
+import { NutritionistInsertComponent } from './component/entities/nutritionist/nutritionist-insert/nutritionist-insert.component';
+import { NutritionistDetailsComponent } from './component/entities/nutritionist/nutritionist-details/nutritionist-details.component';
 import { TrainerComponent } from './component/entities/trainer/trainer.component';
 import { TrainerListComponent } from './component/entities/trainer/trainer-list/trainer-list.component';
 import { TrainerInsertComponent } from './component/entities/trainer/trainer-insert/trainer-insert.component';
@@ -135,6 +138,21 @@ const routes: Routes = [
             path: 'list',
             component: TrainingPlansListarComponent,
           }
+        ],
+      },
+      {
+        path: 'nutritionists',
+        component: NutritionistComponent,
+        children: [
+          {
+            path: 'insert',
+            component: NutritionistInsertComponent,
+          },
+          { path: 'update/:id', component: NutritionistInsertComponent },
+          {
+            path: 'list/:id',
+            component: NutritionistDetailsComponent,
+          },
         ],
       },
       {

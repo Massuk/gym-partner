@@ -67,6 +67,11 @@ import { FoodsInsertComponent } from './component/entities/foods/foods-insert/fo
 import { TrainingPlansDeleteComponent } from './component/entities/training-plans/training-plans-delete/training-plans-delete.component';
 import { ExerciseDeleteComponent } from './component/entities/exercise/exercise-delete/exercise-delete.component';
 import { ClientListComponent } from './component/entities/client/client-list/client-list.component';
+import { NutritionistComponent } from './component/entities/nutritionist/nutritionist.component';
+import { NutritionistListComponent } from './component/entities/nutritionist/nutritionist-list/nutritionist-list.component';
+import { NutritionistInsertComponent } from './component/entities/nutritionist/nutritionist-insert/nutritionist-insert.component';
+import { NutritionistDeleteComponent } from './component/entities/nutritionist/nutritionist-delete/nutritionist-delete.component';
+import { NutritionistDetailsComponent } from './component/entities/nutritionist/nutritionist-details/nutritionist-details.component';
 import { TrainerComponent } from './component/entities/trainer/trainer.component';
 import { TrainerDeleteComponent } from './component/entities/trainer/trainer-delete/trainer-delete.component';
 import { TrainerInsertComponent } from './component/entities/trainer/trainer-insert/trainer-insert.component';
@@ -124,6 +129,12 @@ import { TrainerDetailsComponent } from './component/entities/trainer/trainer-de
     FoodsInsertComponent,
     TrainingPlansDeleteComponent,
     ExerciseDeleteComponent,
+    ClientListComponent,
+    NutritionistComponent,
+    NutritionistListComponent,
+    NutritionistInsertComponent,
+    NutritionistDeleteComponent,
+    NutritionistDetailsComponent
     ClientListComponent,
     TrainerComponent,
     TrainerDeleteComponent,
