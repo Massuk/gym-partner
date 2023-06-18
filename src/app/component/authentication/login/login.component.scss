@@ -4,6 +4,17 @@
   }
 }
 
+a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 mat-card-title {
   position: relative;
   text-align: center;
@@ -12,11 +23,12 @@ mat-card-title {
   justify-content: center;
   align-items: center;
   height: 3rem;
+  margin-top: 4rem;
 }
 
 .logo {
   position: absolute;
-  top: -10%;
+  top: -130%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100px;
@@ -43,7 +55,7 @@ mat-form-field {
   border: none;
   cursor: pointer;
   color: #fff;
-  transition: background-color 0.1s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
   box-shadow: 0 0.25rem 0.5rem #e6edef;
 
   &.auth {
@@ -51,14 +63,9 @@ mat-form-field {
     color: #fff;
 
     &:hover {
-      background-color: #e6e600;
+      background-color: #FBFF00;
       color: #212121;
     }
-  }
-
-  &.secondary {
-    margin-bottom: 1.5rem;
-    color: #212121;
   }
 }
 
