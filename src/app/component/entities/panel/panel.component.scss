@@ -104,6 +104,7 @@
     font-size: 24px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-end;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
 
@@ -121,7 +122,7 @@
     .col-right {
       flex: 0 0 auto;
       width: 41.6666667%;
-
+      text-align: right;
       img {
         margin-left: -17.5rem;
         width: 165%;
