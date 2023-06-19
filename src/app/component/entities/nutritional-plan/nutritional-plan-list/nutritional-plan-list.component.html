@@ -103,13 +103,22 @@
 
 
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef></th>
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let element">
         <button
+        mat-icon-button
+        #tooltip="matTooltip"
+      matTooltip="Agregar comidas"
+        color="primary"
+      >
+        <mat-icon>assignment_add</mat-icon>
+      </button>
+        <button
           mat-icon-button
+          #tooltip="matTooltip"
+        matTooltip="Editar"
           color="primary"
           [routerLink]="['update', element.idNutritionalPlan]"
-          aria-label="Example icon button with a edit icon"
         >
           <mat-icon>edit</mat-icon>
         </button>
@@ -117,6 +126,8 @@
         <button
           mat-icon-button
           color="primary"
+          #tooltip="matTooltip"
+          matTooltip="Eliminar"
           (click)="showDeletePopup(element.idNutritionalPlan)"
         >
           <mat-icon>delete</mat-icon>
