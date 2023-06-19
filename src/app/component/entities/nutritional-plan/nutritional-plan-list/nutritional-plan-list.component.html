@@ -88,20 +88,19 @@
     </ng-container>
 
     <!-- Weight Column -->
-  <ng-container matColumnDef="status">
+    <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef>Estado</th>
       <td mat-cell *matCellDef="let element">
         <span
-          class="badge bg-{{
-            element.status === 'Activo' ? 'success' : 'danger'
-          }} text-white"
+          class="badge bg-{{ element.status ? 'success' : 'danger' }} text-white"
           (click)="toggleBadgeStatus(element.idNutritionalPlan, element.status)"
           style="cursor: pointer"
         >
-          {{ element.status }}
+          {{ element.status ? 'Activo' : 'Inactivo' }}
         </span>
       </td>
     </ng-container>
+
 
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef></th>

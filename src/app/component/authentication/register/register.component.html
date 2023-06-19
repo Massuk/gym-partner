@@ -16,40 +16,62 @@
 
       <mat-card-content>
         <form action="">
+
           <div class="row my-2">
-            <mat-form-field appearance="outline">
-              <mat-label class="box-text">Nombre</mat-label>
-              <input
-                matInput
-                required
-                name="loginName"
-                type="text"
-                ngModel
-                #name="ngModel"
-              />
-              <mat-error *ngIf="name.invalid"
-                >El nombre es obligatorio</mat-error
-              >
-              <mat-icon matSuffix>person</mat-icon>
-            </mat-form-field>
+            <div class="col">
+              <mat-form-field appearance="outline">
+                <mat-label class="box-text">Nombre</mat-label>
+                <input matInput required name="loginName" type="text" ngModel #name="ngModel" />
+                <mat-error *ngIf="name.invalid">El nombre es obligatorio</mat-error>
+                <mat-icon matSuffix>person</mat-icon>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field appearance="outline">
+                <mat-label class="box-text">Apellidos</mat-label>
+                <input matInput required name="loginLastName" type="text" ngModel #lastname="ngModel" />
+                <mat-error *ngIf="lastname.invalid">El apellido es obligatorio</mat-error>
+                <mat-icon matSuffix>person</mat-icon>
+              </mat-form-field>
+            </div>
           </div>
 
           <div class="row my-2">
-            <mat-form-field appearance="outline">
-              <mat-label class="box-text">Apellidos</mat-label>
-              <input
-                matInput
-                required
-                name="loginLastName"
-                type="text"
-                ngModel
-                #lastname="ngModel"
-              />
-              <mat-error *ngIf="lastname.invalid"
-                >El apellido es obligatorio</mat-error
-              >
-              <mat-icon matSuffix>person</mat-icon>
-            </mat-form-field>
+            <div class="col">
+              <mat-form-field appearance="outline">
+                <mat-label class="box-text">Fecha de nacimiento</mat-label>
+                <input matInput required name="birthdate" type="text" ngModel #birthdate="ngModel" />
+                <mat-error *ngIf="birthdate.invalid">La fecha de nacimiento es obligatoria  </mat-error>
+                <mat-icon matSuffix>event</mat-icon>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field appearance="outline">
+                <mat-label class="box-text">Género</mat-label>
+                <input matInput required name="gender" type="text" ngModel #gender="ngModel" />
+                <mat-error *ngIf="gender.invalid">El género es obligatorio</mat-error>
+                <mat-icon matSuffix>info</mat-icon>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row my-2">
+            <div class="col">
+              <mat-form-field appearance="outline">
+                <mat-label class="box-text">Teléfono</mat-label>
+                <input matInput required name="loginName" type="text" ngModel #cellphone="ngModel" />
+                <mat-error *ngIf="cellphone.invalid">El teléfono es obligatorio</mat-error>
+                <mat-icon matSuffix>smartphone</mat-icon>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field appearance="outline">
+                <mat-label class="box-text">DNI</mat-label>
+                <input matInput required name="dni" type="text" ngModel #dni="ngModel" />
+                <mat-error *ngIf="dni.invalid">El DNI es obligatorio</mat-error>
+                <mat-icon matSuffix>fact_check</mat-icon>
+              </mat-form-field>
+            </div>
           </div>
 
           <div class="row my-2">
@@ -91,17 +113,6 @@
                 La contraseña tiene un mínimo de 6 caracteres
               </mat-error>
               <mat-icon matSuffix>lock</mat-icon>
-            </mat-form-field>
-          </div>
-
-          <div class="row my-2">
-            <mat-form-field appearance="outline">
-              <mat-label class="box-text">¿Qué usuario eres?</mat-label>
-              <mat-select>
-                <mat-option *ngFor="let option of options" [value]="option.value">
-                  {{option.viewValue}}
-                </mat-option>
-              </mat-select>
             </mat-form-field>
           </div>
 

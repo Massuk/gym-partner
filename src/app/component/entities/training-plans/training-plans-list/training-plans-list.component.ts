@@ -92,8 +92,8 @@ export class TrainingPlansListarComponent implements OnInit {
     this.dataSource.filter = '';
   }
 
-  toggleBadgeStatus(idTrainingPlan: number, status: string): void {
-    const newStatus = status === 'Activo' ? 'Inactivo' : 'Activo';
+  toggleBadgeStatus(idTrainingPlan: number, status: boolean): void {
+    const newStatus = !status;
 
     this.tpS.listId(idTrainingPlan).subscribe((data) => {
       data.status = newStatus;
