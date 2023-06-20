@@ -83,6 +83,7 @@ import { RoutineComponent } from './component/entities/routine/routine.component
 import { RoutineListComponent } from './component/entities/routine/routine-list/routine-list.component';
 import { RoutineInsertComponent } from './component/entities/routine/routine-insert/routine-insert.component';
 import { RoutineDeleteComponent } from './component/entities/routine/routine-delete/routine-delete.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -154,6 +155,7 @@ import { RoutineDeleteComponent } from './component/entities/routine/routine-del
     RoutineDeleteComponent
   ],
   imports: [
+    ToastrModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

@@ -4,6 +4,7 @@ import { Food } from 'src/app/model/food';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { NutritionixService } from 'src/app/service/nutritionix.service';
 
 @Component({
   selector: 'app-foods-insert',
@@ -15,14 +16,16 @@ export class FoodsInsertComponent implements OnInit {
   edit: boolean = false;
   form: FormGroup = new FormGroup({});
   food: Food= new Food();
+  selectedFood : any;
+
   constructor(
     private fS: FoodService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private nutritionixService: NutritionixService
     ) {}
 
   ngOnInit(): void {
-
       this.route.params.subscribe((data: Params) => {
       this.idFood = data['id'];
       this.edit = data['id'] != null;
@@ -71,4 +74,18 @@ export class FoodsInsertComponent implements OnInit {
       });
     }
   }
+
+  searchFoods(query: string) {
+    this.nutritionixService.getFoods(query).subscribe(
+      response => {
+        this.selectedFood = response.foods[0];
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+
+
 }

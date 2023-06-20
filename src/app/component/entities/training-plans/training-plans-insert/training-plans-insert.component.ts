@@ -22,7 +22,7 @@ export class TrainingPlansInsertarComponent implements OnInit {
   constructor(
     private tpS: TrainingPlansService,
     private router: Router,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
