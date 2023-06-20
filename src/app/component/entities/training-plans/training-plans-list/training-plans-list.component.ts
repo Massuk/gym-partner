@@ -24,8 +24,7 @@ export class TrainingPlansListarComponent implements OnInit {
     'startDate',
     'endDate',
     'status',
-    'actions',
-    'view',
+    'actions'
   ];
   dataSource: MatTableDataSource<TrainingPlan> = new MatTableDataSource();
 

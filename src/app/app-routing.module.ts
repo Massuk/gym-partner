@@ -30,6 +30,12 @@ import { TrainingPlansListarComponent } from './component/entities/training-plan
 import { RoutineComponent } from './component/entities/routine/routine.component';
 import { RoutineInsertComponent } from './component/entities/routine/routine-insert/routine-insert.component';
 import { RoutineListComponent } from './component/entities/routine/routine-list/routine-list.component';
+import { TrainerComponent } from './component/entities/trainer/trainer.component';
+import { TrainerInsertComponent } from './component/entities/trainer/trainer-insert/trainer-insert.component';
+import { TrainerListComponent } from './component/entities/trainer/trainer-list/trainer-list.component';
+import { NutritionistComponent } from './component/entities/nutritionist/nutritionist.component';
+import { NutritionistListComponent } from './component/entities/nutritionist/nutritionist-list/nutritionist-list.component';
+import { NutritionistInsertComponent } from './component/entities/nutritionist/nutritionist-insert/nutritionist-insert.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing-page/index', pathMatch: 'full' },
@@ -154,7 +160,42 @@ const routes: Routes = [
           }
         ],
       },
-
+      {
+        path: 'trainers',
+        component: TrainerComponent,
+        children: [
+          {
+            path: 'list',
+            component: TrainerListComponent,
+          },
+          {
+            path: 'insert',
+            component: TrainerInsertComponent,
+          },
+          {
+            path: 'update/:id',
+            component: ExerciseInsertComponent,
+          },
+        ],
+      },
+      {
+        path: 'nutritionists',
+        component: NutritionistComponent,
+        children: [
+          {
+            path: 'list',
+            component: NutritionistListComponent,
+          },
+          {
+            path: 'insert',
+            component: NutritionistInsertComponent,
+          },
+          {
+            path: 'update/:id',
+            component: NutritionistInsertComponent,
+          },
+        ],
+      },
 
     ],
   },

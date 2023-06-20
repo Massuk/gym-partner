@@ -19,10 +19,7 @@
     </div>
 
     <div class="button-container">
-      <button
-        class="button accept"
-        routerLink="/dashboard/routines/insert"
-      >
+      <button class="button accept" routerLink="/dashboard/routines/insert">
         Agregar
       </button>
     </div>
@@ -52,21 +49,20 @@
       <th mat-header-cell *matHeaderCellDef>Descripción</th>
       <td mat-cell *matCellDef="let element">
         {{ element.description }}
-      </td> </ng-container
-    ><!-- Symbol Column --><ng-container matColumnDef="objective">
-      <th mat-header-cell *matHeaderCellDef>Objetivo</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.objective }}
-      </td> </ng-container
-    >
+      </td>
+    </ng-container>
 
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let element">
         <button
           mat-icon-button
-          [routerLink]="['update', element.idRoutine]"
+          color="primary"
+          routerLink="/dashboard/exercises"
         >
+          <mat-icon>sports_gymnastics</mat-icon>
+        </button>
+        <button mat-icon-button [routerLink]="['update', element.idRoutine]">
           <mat-icon>edit</mat-icon>
         </button>
         <button
@@ -76,18 +72,6 @@
         >
           <mat-icon>delete</mat-icon>
         </button>
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="view">
-      <th mat-header-cell *matHeaderCellDef>Ver Ejercicios</th>
-      <td mat-cell *matCellDef="let element">
-        <button
-        mat-icon-button
-        color="primary"
-        routerLink="/dashboard/exercises"
-      >
-        <mat-icon>visibility</mat-icon>
-      </button>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

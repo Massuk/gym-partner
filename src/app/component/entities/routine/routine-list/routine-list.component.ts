@@ -20,8 +20,7 @@ export class RoutineListComponent implements OnInit{
     'title',
     'day',
     'description',
-    'actions',
-    'view'
+    'actions'
   ];
 
 
