@@ -15,7 +15,7 @@
       </mat-card-title>
 
       <mat-card-content>
-        <form action="">
+        <form [formGroup]="loginForm">
           <div class="row my-2">
             <mat-form-field appearance="outline">
               <mat-label class="box-text">Correo electrónico</mat-label>
@@ -24,8 +24,7 @@
                 required
                 name="loginMail"
                 type="email"
-                ngModel
-                #email="ngModel"
+                [formControl]="email"
               />
               <mat-error *ngIf="email.invalid"
                 >El correo es obligatorio</mat-error
@@ -42,8 +41,7 @@
                 required
                 minlength="6"
                 name="loginPass"
-                ngModel
-                #password="ngModel"
+                [formControl]="password"
               />
               <mat-error *ngIf="password.errors && password.errors['required']">
                 La contraseña es obligatoria
@@ -58,12 +56,7 @@
           </div>
           <mat-checkbox>Recordarme</mat-checkbox>
           <div class="row d-flex justify-content-center buttons-container">
-            <button
-              class="button auth my-3"
-              routerLink="/dashboard/panel"
-            >
-              Ingresar
-            </button>
+            <button class="button auth my-3" (click)="login()">Ingresar</button>
           </div>
           <div class="row d-flex justify-content-center">
             <div class="text-center">
@@ -72,7 +65,6 @@
               </p>
             </div>
           </div>
-
         </form>
       </mat-card-content>
     </mat-card>
