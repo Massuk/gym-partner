@@ -27,19 +27,9 @@ import { TrainingPlansInsertarComponent } from './component/entities/training-pl
 import { FoodsComponent } from './component/entities/foods/foods.component';
 import { FoodsInsertComponent } from './component/entities/foods/foods-insert/foods-insert.component';
 import { TrainingPlansListarComponent } from './component/entities/training-plans/training-plans-list/training-plans-list.component';
-<<<<<<< HEAD
 import { RoutineComponent } from './component/entities/routine/routine.component';
 import { RoutineInsertComponent } from './component/entities/routine/routine-insert/routine-insert.component';
 import { RoutineListComponent } from './component/entities/routine/routine-list/routine-list.component';
-=======
-import { NutritionistComponent } from './component/entities/nutritionist/nutritionist.component';
-import { NutritionistInsertComponent } from './component/entities/nutritionist/nutritionist-insert/nutritionist-insert.component';
-import { NutritionistDetailsComponent } from './component/entities/nutritionist/nutritionist-details/nutritionist-details.component';
-import { TrainerComponent } from './component/entities/trainer/trainer.component';
-import { TrainerListComponent } from './component/entities/trainer/trainer-list/trainer-list.component';
-import { TrainerInsertComponent } from './component/entities/trainer/trainer-insert/trainer-insert.component';
-import { TrainerDetailsComponent } from './component/entities/trainer/trainer-details/trainer-details.component';
->>>>>>> 56973e7eddef1d5f98ed0cc8046a56156389ca2c
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing-page/index', pathMatch: 'full' },
@@ -146,8 +136,6 @@ const routes: Routes = [
           }
         ],
       },
-<<<<<<< HEAD
-
       {
         path: 'routines',
         component: RoutineComponent,
@@ -168,45 +156,6 @@ const routes: Routes = [
       },
 
 
-=======
-      {
-        path: 'nutritionists',
-        component: NutritionistComponent,
-        children: [
-          {
-            path: 'insert',
-            component: NutritionistInsertComponent,
-          },
-          { path: 'update/:id', component: NutritionistInsertComponent },
-          {
-            path: 'list/:id',
-            component: NutritionistDetailsComponent,
-          },
-        ],
-      },
-      {
-        path: 'trainers',
-        component: TrainerComponent,
-        children: [
-          {
-            path: 'list',
-            component: TrainerListComponent,
-          },
-          {
-            path: 'list/:id',
-            component: TrainerDetailsComponent,
-          },
-          {
-            path: 'insert',
-            component: TrainerInsertComponent,
-          },
-          {
-            path: 'update/:id',
-            component: TrainerInsertComponent,
-          },
-        ],
-      },
->>>>>>> 56973e7eddef1d5f98ed0cc8046a56156389ca2c
     ],
   },
 ];
