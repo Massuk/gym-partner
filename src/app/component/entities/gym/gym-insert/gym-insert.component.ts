@@ -27,6 +27,7 @@ export class GymInsertComponent implements OnInit {
   }
 
   insert(): void {
+    console.log('Form values:', this.form.value);
     this.gym.idGym = this.form.value['id'];
     this.gym.name = this.form.value['name'];
     this.gym.code = this.form.value['code'];

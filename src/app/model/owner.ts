@@ -1,5 +1,7 @@
+import { Role } from "./role";
+
 export class Owner {
-  idOwner: number = 0;
+  idUser: number = 0;
   name: string = '';
   lastName: string = '';
   gender: string = '';
@@ -7,5 +9,5 @@ export class Owner {
   cellphone: number = 0;
   email: string = '';
   password: string = '';
-  idRole: number = 0;
+  role: Role = new Role();
 }

@@ -13,6 +13,6 @@ export class ClientService {
 
   constructor(private http: HttpClient) {}
 
-    // Funcion de listar los gimnasios
+    // Funcion de listar los clientes
 
 }
