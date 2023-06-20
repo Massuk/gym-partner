@@ -7,7 +7,7 @@ import { GymService } from 'src/app/service/gym.service';
 import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/dialog-popup.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GymDataService } from 'src/app/service/gym-data.service';
-
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-gym-list',
@@ -15,53 +15,6 @@ import { GymDataService } from 'src/app/service/gym-data.service';
   styleUrls: ['./gym-list.component.scss'],
 })
 export class GymListComponent implements OnInit {
-
-  lista: Gym[] = [];
-  displayedColumns: string[] = [
-    'id',
-    'name',
-    'code',
-    'ruc',
-    'rs',
-    'actions',
-  ];
-  selectedRadioValue: string | undefined;
-  selectedGym: Gym | undefined;
-
-  selectGym(gym: Gym) {
-    this.selectedGym = gym;
-    this.selectedRadioValue = gym.idGym.toString();
-    this.gymDataService.setSelectedGym(this.selectedGym);
-    this.gymDataService.setSelectedRadioValue(this.selectedRadioValue);
-  }
-
-
-  dataSource: MatTableDataSource<Gym> = new MatTableDataSource();
-
-  ngOnInit(): void {
-
-  this.gS.getList().subscribe((data) => {
-    this.dataSource.data = data;
-    if (!this.selectedGym) {
-      this.selectedGym = data[0]; // Asigna el primer gimnasio de la lista solo si selectedGym es undefined
-      this.selectedRadioValue = this.selectedGym.idGym.toString(); // Establece su idGym como el valor de selectedRadioValue
-      this.gymDataService.setSelectedGym(this.selectedGym);
-      this.gymDataService.setSelectedRadioValue(this.selectedRadioValue);
-    }
-  });
-
-    this.gS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      if (!this.selectedGym) {
-        this.selectedGym = data[0];
-        this.selectedRadioValue = this.selectedGym.idGym.toString();
-        this.gymDataService.setSelectedGym(this.selectedGym);
-        this.gymDataService.setSelectedRadioValue(this.selectedRadioValue);
-      }
-      this.dataSource.paginator = this.paginator;
-    });
-  }
-
   constructor(
     private gS: GymService,
     private dialog: MatDialog,
@@ -69,19 +22,53 @@ export class GymListComponent implements OnInit {
     private gymDataService: GymDataService
   ) {}
 
+  lista: Gym[] = [];
+  displayedColumns: string[] = ['id', 'name', 'code', 'ruc', 'rs', 'actions'];
+  selectedRadioValue: number = 0;
+  selectedGym: Gym | undefined;
+  dataSource: MatTableDataSource<Gym> = new MatTableDataSource();
+
+  ngOnInit(): void {
+    this.gS.getList().subscribe((data) => {
+      this.dataSource.data = data;
+      this.dataSource.sort = this.sort;
+    });
+
+    this.gS.list().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
+      if (!this.selectedGym) {
+        const storedGym = this.gymDataService.getSelectedGym();
+        this.selectedGym = storedGym ? storedGym : data[0];
+        this.selectedRadioValue = this.selectedGym.idGym;
+        this.gymDataService.setSelectedGym(this.selectedGym);
+        this.gymDataService.setSelectedRadioValue(this.selectedRadioValue);
+      }
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort = new MatSort();
+
+
+  selectGym(gym: Gym) {
+    this.selectedGym = gym;
+    this.selectedRadioValue = gym.idGym;
+    this.gymDataService.setSelectedGym(this.selectedGym);
+    this.gymDataService.setSelectedRadioValue(this.selectedRadioValue);
+  }
 
   showDeletePopup(id: number): void {
     const dialogRef = this.dialog.open(DialogPopupComponent, {
       width: '450px',
       data: {
         title: '¿Deseas eliminar el registro?',
-        description:
-          'Esta acción es irreversible',
+        description: 'Esta acción es irreversible',
         confirmButtonText: 'Si',
         cancelButtonText: 'No',
         showConfirmButton: true,
-        showCancelButton: true
+        showCancelButton: true,
       },
     });
 
@@ -103,10 +90,9 @@ export class GymListComponent implements OnInit {
         snack.dismiss();
       }
     });
-
   }
 
-  filterResults(gym:any){
+  filterResults(gym: any) {
     this.dataSource.filter = gym.target.value.trim();
     console.log(this.selectedGym);
   }
@@ -114,5 +100,4 @@ export class GymListComponent implements OnInit {
   clearFilter() {
     this.dataSource.filter = '';
   }
-
 }

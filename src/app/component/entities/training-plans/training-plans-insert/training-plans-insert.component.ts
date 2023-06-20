@@ -41,7 +41,7 @@ export class TrainingPlansInsertarComponent implements OnInit {
       level: new FormControl('', Validators.required),
       startDate: new FormControl('', Validators.required),
       endDate: new FormControl('', Validators.required),
-      status: new FormControl('Activo', Validators.required),
+      status: new FormControl(true, Validators.required),
     })
   }
 

@@ -20,8 +20,8 @@ export class PanelComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedGym = this.gymDataService.getSelectedGym();
-
     this.innerWidth = window.innerWidth;
+    console.log(this.selectedGym);
   }
 
   // ngOnInit(): void {

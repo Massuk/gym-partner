@@ -12,11 +12,12 @@ mat-card-title {
   justify-content: center;
   align-items: center;
   height: 3rem;
+  margin-top: 4rem;
 }
 
 .logo {
   position: absolute;
-  top: -10%;
+  top: -130%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100px;
@@ -31,12 +32,8 @@ mat-card-content {
   overflow: hidden;
 }
 
-mat-form-field {
-  width: 450px;
-}
-
 .buttons-container {
-  margin-top: 0.75rem;
+  margin-top: -2rem;
 }
 
 .button {
@@ -47,7 +44,7 @@ mat-form-field {
   border: none;
   cursor: pointer;
   color: #fff;
-  transition: background-color 0.1s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
   box-shadow: 0 0.25rem 0.5rem #e6edef;
 
   &.auth {
@@ -58,11 +55,6 @@ mat-form-field {
       background-color: #e6e600;
       color: #212121;
     }
-  }
-
-  &.secondary {
-    margin-bottom: 1.5rem;
-    color: #212121;
   }
 }
 

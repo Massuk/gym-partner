@@ -88,29 +88,37 @@
     </ng-container>
 
     <!-- Weight Column -->
-  <ng-container matColumnDef="status">
+    <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef>Estado</th>
       <td mat-cell *matCellDef="let element">
         <span
-          class="badge bg-{{
-            element.status === 'Activo' ? 'success' : 'danger'
-          }} text-white"
+          class="badge bg-{{ element.status ? 'success' : 'danger' }} text-white"
           (click)="toggleBadgeStatus(element.idNutritionalPlan, element.status)"
           style="cursor: pointer"
         >
-          {{ element.status }}
+          {{ element.status ? 'Activo' : 'Inactivo' }}
         </span>
       </td>
     </ng-container>
 
+
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef></th>
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let element">
         <button
+        mat-icon-button
+        #tooltip="matTooltip"
+      matTooltip="Agregar comidas"
+        color="primary"
+      >
+        <mat-icon>assignment_add</mat-icon>
+      </button>
+        <button
           mat-icon-button
+          #tooltip="matTooltip"
+        matTooltip="Editar"
           color="primary"
           [routerLink]="['update', element.idNutritionalPlan]"
-          aria-label="Example icon button with a edit icon"
         >
           <mat-icon>edit</mat-icon>
         </button>
@@ -118,6 +126,8 @@
         <button
           mat-icon-button
           color="primary"
+          #tooltip="matTooltip"
+          matTooltip="Eliminar"
           (click)="showDeletePopup(element.idNutritionalPlan)"
         >
           <mat-icon>delete</mat-icon>
@@ -132,6 +142,10 @@
       [hidden]="row.hide || row.hide === undefined"
     ></tr>
   </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+  <mat-paginator
+    #paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  >
   </mat-paginator>
 </div>

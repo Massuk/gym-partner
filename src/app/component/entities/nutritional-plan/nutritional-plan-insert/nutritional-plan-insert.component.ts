@@ -37,7 +37,7 @@ export class NutritionalPlanInsertComponent {
       startDate: new FormControl('', Validators.required),
       endDate: new FormControl('', Validators.required),
       recommendations: new FormControl('', Validators.required),
-      status: new FormControl('Activo', Validators.required),
+      status: new FormControl(true, Validators.required),
     });
   }
 

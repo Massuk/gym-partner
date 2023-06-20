@@ -24,7 +24,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MAT_DATE_LOCALE, MatOptionModule } from '@angular/material/core';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatRadioModule } from '@angular/material/radio'
+import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
@@ -32,7 +32,6 @@ import { MatCard, MatCardActions, MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
-
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -50,6 +49,7 @@ import { AboutComponent } from './component/landing-page/about/about.component';
 import { ContactComponent } from './component/landing-page/contact/contact.component';
 import { PricingComponent } from './component/landing-page/pricing/pricing.component';
 import { IndexComponent } from './component/landing-page/index/index.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { TrainingPlansComponent } from './component/entities/training-plans/training-plans.component';
 import { NutritionalPlanComponent } from './component/entities/nutritional-plan/nutritional-plan.component';
@@ -67,6 +67,18 @@ import { FoodsInsertComponent } from './component/entities/foods/foods-insert/fo
 import { TrainingPlansDeleteComponent } from './component/entities/training-plans/training-plans-delete/training-plans-delete.component';
 import { ExerciseDeleteComponent } from './component/entities/exercise/exercise-delete/exercise-delete.component';
 import { ClientListComponent } from './component/entities/client/client-list/client-list.component';
+import { NutritionistComponent } from './component/entities/nutritionist/nutritionist.component';
+import { NutritionistListComponent } from './component/entities/nutritionist/nutritionist-list/nutritionist-list.component';
+import { NutritionistInsertComponent } from './component/entities/nutritionist/nutritionist-insert/nutritionist-insert.component';
+import { NutritionistDeleteComponent } from './component/entities/nutritionist/nutritionist-delete/nutritionist-delete.component';
+import { NutritionistDetailsComponent } from './component/entities/nutritionist/nutritionist-details/nutritionist-details.component';
+import { TrainerComponent } from './component/entities/trainer/trainer.component';
+import { TrainerDeleteComponent } from './component/entities/trainer/trainer-delete/trainer-delete.component';
+import { TrainerInsertComponent } from './component/entities/trainer/trainer-insert/trainer-insert.component';
+import { TrainerListComponent } from './component/entities/trainer/trainer-list/trainer-list.component';
+import { TrainerDetailsComponent } from './component/entities/trainer/trainer-details/trainer-details.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RoutineComponent } from './component/entities/routine/routine.component';
 import { RoutineListComponent } from './component/entities/routine/routine-list/routine-list.component';
 import { RoutineInsertComponent } from './component/entities/routine/routine-insert/routine-insert.component';
@@ -124,6 +136,18 @@ import { RoutineDeleteComponent } from './component/entities/routine/routine-del
     TrainingPlansDeleteComponent,
     ExerciseDeleteComponent,
     ClientListComponent,
+    NutritionistComponent,
+    NutritionistListComponent,
+    NutritionistInsertComponent,
+    NutritionistDeleteComponent,
+    NutritionistDetailsComponent,
+    ClientListComponent,
+    TrainerComponent,
+    TrainerDeleteComponent,
+    TrainerInsertComponent,
+    TrainerListComponent,
+    TrainerDetailsComponent,
+    ClientListComponent,
     RoutineComponent,
     RoutineListComponent,
     RoutineInsertComponent,
@@ -156,11 +180,12 @@ import { RoutineDeleteComponent } from './component/entities/routine/routine-del
     MatSnackBarModule,
     MatDialogModule,
     MatTabsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatMenuModule,
+    MatTooltipModule,
+    MatProgressBarModule
   ],
-  providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
-  ],
-  bootstrap: [AppComponent]
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-ES' }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
