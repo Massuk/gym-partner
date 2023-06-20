@@ -15,61 +15,38 @@
       </mat-card-title>
 
       <mat-card-content>
-        <form action="">
-
+        <form [formGroup]="form" (submit)="insert()">
           <div class="row my-2">
             <div class="col">
               <mat-form-field appearance="outline">
                 <mat-label class="box-text">Nombre</mat-label>
-                <input matInput required name="loginName" type="text" ngModel #name="ngModel" />
-                <mat-error *ngIf="name.invalid">El nombre es obligatorio</mat-error>
+                <input
+                  matInput
+                  formControlName="name"
+                  required
+                  type="text"
+                  #name
+                />
+                <mat-error *ngIf="form.controls['name'].invalid"
+                  >El nombre es obligatorio</mat-error
+                >
                 <mat-icon matSuffix>person</mat-icon>
               </mat-form-field>
             </div>
             <div class="col">
               <mat-form-field appearance="outline">
                 <mat-label class="box-text">Apellidos</mat-label>
-                <input matInput required name="loginLastName" type="text" ngModel #lastname="ngModel" />
-                <mat-error *ngIf="lastname.invalid">El apellido es obligatorio</mat-error>
+                <input
+                  matInput
+                  formControlName="lastname"
+                  required
+                  type="text"
+                  #lastname
+                />
+                <mat-error *ngIf="form.controls['lastname'].invalid"
+                  >El apellido es obligatorio</mat-error
+                >
                 <mat-icon matSuffix>person</mat-icon>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row my-2">
-            <div class="col">
-              <mat-form-field appearance="outline">
-                <mat-label class="box-text">Fecha de nacimiento</mat-label>
-                <input matInput required name="birthdate" type="text" ngModel #birthdate="ngModel" />
-                <mat-error *ngIf="birthdate.invalid">La fecha de nacimiento es obligatoria  </mat-error>
-                <mat-icon matSuffix>event</mat-icon>
-              </mat-form-field>
-            </div>
-            <div class="col">
-              <mat-form-field appearance="outline">
-                <mat-label class="box-text">Género</mat-label>
-                <input matInput required name="gender" type="text" ngModel #gender="ngModel" />
-                <mat-error *ngIf="gender.invalid">El género es obligatorio</mat-error>
-                <mat-icon matSuffix>info</mat-icon>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row my-2">
-            <div class="col">
-              <mat-form-field appearance="outline">
-                <mat-label class="box-text">Teléfono</mat-label>
-                <input matInput required name="loginName" type="text" ngModel #cellphone="ngModel" />
-                <mat-error *ngIf="cellphone.invalid">El teléfono es obligatorio</mat-error>
-                <mat-icon matSuffix>smartphone</mat-icon>
-              </mat-form-field>
-            </div>
-            <div class="col">
-              <mat-form-field appearance="outline">
-                <mat-label class="box-text">DNI</mat-label>
-                <input matInput required name="dni" type="text" ngModel #dni="ngModel" />
-                <mat-error *ngIf="dni.invalid">El DNI es obligatorio</mat-error>
-                <mat-icon matSuffix>fact_check</mat-icon>
               </mat-form-field>
             </div>
           </div>
@@ -80,12 +57,11 @@
               <input
                 matInput
                 required
-                name="loginMail"
+                formControlName="email"
                 type="email"
-                ngModel
-                #email="ngModel"
+                #email
               />
-              <mat-error *ngIf="email.invalid"
+              <mat-error *ngIf="form.controls['email'].invalid"
                 >El correo es obligatorio</mat-error
               >
               <mat-icon matSuffix>email</mat-icon>
@@ -93,35 +69,87 @@
           </div>
 
           <div class="row my-2">
-            <mat-form-field appearance="outline" >
+            <mat-form-field appearance="outline">
               <mat-label class="box-text">Contraseña</mat-label>
               <input
                 matInput
-                type="password"
                 required
+                formControlName="password"
                 minlength="6"
-                name="loginPass"
-                ngModel
-                #password="ngModel"
+                type="password"
+                #password
               />
-              <mat-error *ngIf="password.errors && password.errors['required']">
+              <mat-error *ngIf="form.controls['password'].invalid">
                 La contraseña es obligatoria
-              </mat-error>
-              <mat-error
-                *ngIf="password.errors && password.errors['minlength']"
-              >
-                La contraseña tiene un mínimo de 6 caracteres
               </mat-error>
               <mat-icon matSuffix>lock</mat-icon>
             </mat-form-field>
           </div>
 
+          <div class="row my-2">
+            <div class="col">
+              <mat-form-field appearance="outline">
+                <mat-label class="box-text">Fecha de nacimiento</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="picker"
+                  placeholder="Elige una fecha"
+                  formControlName="birthdate"
+                  readonly
+                  required
+                />
+                <mat-error *ngIf="form.controls['birthdate'].invalid"
+                  >La fecha de nacimiento es obligatoria
+                </mat-error>
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field appearance="outline">
+                <mat-label class="box-text">Género</mat-label>
+                <mat-select
+                  placeholder="Género"
+                  formControlName="gender"
+                  type="text"
+                  required
+                  #gender
+                >
+                  <mat-option value="Masculino">Masculino</mat-option>
+                  <mat-option value="Femenino">Femenino</mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.controls['gender'].invalid"
+                  >El género es obligatorio</mat-error
+                >
+                <mat-icon matSuffix>group</mat-icon>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row my-2">
+            <mat-form-field appearance="outline">
+              <mat-label class="box-text">Teléfono</mat-label>
+              <input
+              matInput
+              required
+              formControlName="cellphone"
+              type="text"
+              #cellphone
+              />
+              <mat-error *ngIf="form.controls['cellphone'].invalid">
+                El teléfono es obligatorio</mat-error>
+              <mat-icon matSuffix>smartphone</mat-icon>
+            </mat-form-field>
+          </div>
+
           <div class="row d-flex justify-content-center buttons-container">
-            <button class="button auth my-5" routerLink="/dashboard/panel">
+            <button class="button auth my-5" type="submit">
               Registrarme
             </button>
           </div>
-
         </form>
       </mat-card-content>
     </mat-card>

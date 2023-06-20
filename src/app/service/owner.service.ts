@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Client } from '../model/client';
+import { Owner } from '../model/owner';
 
 const urlData = environment.base;
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClientService {
-  private url = `${urlData}/clients`;
+export class OwnerService {
+  private url = `${urlData}/owners`;
+  constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient) {}
-
-    // Funcion de listar los gimnasios
-
+  insert(owner: Owner) {
+    return this.http.post(this.url, owner);
+  }
 }
