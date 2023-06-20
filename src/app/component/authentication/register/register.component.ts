@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
           this.oS.setList(data);
         });
       });
-      this.router.navigate(['auth/gyms']);
+      this.router.navigate(['auth/login']);
     }
   }
 }
