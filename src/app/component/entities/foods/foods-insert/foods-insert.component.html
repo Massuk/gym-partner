@@ -1,22 +1,6 @@
 <div class="card">
 
-  <div class="card-head">Registrar Alimentos
-    <div class="search-container">
-      <div class="normal-search">
-        <input
-          type="search"
-          class="search"
-          placeholder="Buscar alimentos..."
-          matInput
-          #searchInput
-          (input)="searchFoods(searchInput.value)"
-        />
-        <i class="far fa-search search-icon-right"></i>
-      </div>
-    </div>
-
-  </div>
-
+  <div class="card-head">Registrar Alimentos</div>
 
   <div class="card-body">
     <form [formGroup]="form" (submit)="accept()">
@@ -26,7 +10,12 @@
           style="margin-right: 20rem; width: 100%"
         >
           <mat-label>Alimento</mat-label>
-          <input matInput placeholder="Alimento" formControlName="name" />
+          <input
+          matInput
+          placeholder="Alimento"
+          formControlName="name"
+          (input)="searchFoods(form.controls['name'].value)"
+        />
           <mat-error *ngIf="form.controls['name'].invalid">
             El campo no puede estar vacío.
           </mat-error>
@@ -69,19 +58,102 @@
       </div>
     </form>
 
-
-
-
-
-      <div *ngIf="selectedFood" class="food-details">
-        <h2>Detalles del alimento:</h2>
-        <p><strong>Nombre:</strong> {{ selectedFood.food_name }}</p>
-        <p><strong>Cantidad:</strong> {{ selectedFood.serving_qty }} {{ selectedFood.serving_unit }}</p>
-        <p><strong>Peso por porción:</strong> {{ selectedFood.serving_weight_grams }} g</p>
-        <p><strong>Calorías:</strong> {{ selectedFood.nf_calories }} kCal</p>
-        <p><strong>Carbohidratos:</strong> {{ selectedFood.nf_total_carbohydrate }}</p>
+    <div class="card separate">
+      <div
+        id="carouselSlideGymPartner"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselSlideGymPartner"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselSlideGymPartner"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselSlideGymPartner"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="../../../../assets/carousel/slide1.png"
+              class="d-block w-100"
+              alt="img1"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="tshadow">Organiza tus gimnasios de manera sencilla</h5>
+              <p class="tshadow">
+                Con Gym Partner podrás administrar fácilmente tus gimnasios y
+                mantener un control de todas tus sucursales
+              </p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../../../../../assets/carousel/slide2.png"
+              class="d-block w-100"
+              alt="img2"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="tshadow">
+                Gestionar entrenadores nunca fue tan fácil
+              </h5>
+              <p class="tshadow">
+                Monitorea el progreso de tus entrenadores y mantén una
+                comunicación efectiva con ellos
+              </p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../../../../assets/carousel/slide3.png"
+              class="d-block w-100"
+              alt="img3"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="tshadow">
+                Gestionar nutricionistas es más sencillo de lo que imaginas
+              </h5>
+              <p class="tshadow">
+                Podrás hacer seguimiento a sus avances y monitorear su progreso
+                en tiempo real
+              </p>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselSlideGymPartner"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselSlideGymPartner"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
       </div>
-
+    </div>
 
   </div>
 </div>
