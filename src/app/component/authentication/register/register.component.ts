@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Owner } from 'src/app/model/owner';
-import { Role } from 'src/app/model/role';
+import { ToastrService } from 'ngx-toastr';
 import { OwnerService } from 'src/app/service/owner.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   owner: Owner = new Owner();
 
-  constructor(private oS: OwnerService, private router: Router) {}
+  constructor(private oS: OwnerService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -49,7 +49,13 @@ export class RegisterComponent implements OnInit {
           this.oS.setList(data);
         });
       });
+      this.showSuccessfullyRegisterToast();
       this.router.navigate(['auth/login']);
     }
+  }
+
+  showSuccessfullyRegisterToast() {
+
+    this.toastr.success('¡Ahora puedes iniciar sesión!', 'Registro exitoso 😎', { timeOut: 2500, positionClass: 'toast-bottom-right' });
   }
 }
