@@ -18,7 +18,8 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "moment"
+              "moment",
+              "crypto"
             ],
             "outputPath": "dist/gym-partner",
             "index": "src/index.html",

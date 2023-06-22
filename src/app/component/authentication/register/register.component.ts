@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Owner } from 'src/app/model/owner';
 import { ToastrService } from 'ngx-toastr';
 import { OwnerService } from 'src/app/service/owner.service';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-register',
@@ -13,8 +14,14 @@ import { OwnerService } from 'src/app/service/owner.service';
 export class RegisterComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   owner: Owner = new Owner();
+  plainPassword = this.form.value['password'];
+  saltRounds = 10;
 
-  constructor(private oS: OwnerService, private router: Router, private toastr: ToastrService) { }
+  constructor(
+    private oS: OwnerService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -29,12 +36,14 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  insert(): void {
+  async insert(): Promise<void> {
     this.owner.idUser = this.form.value['id'];
     this.owner.name = this.form.value['name'];
     this.owner.lastName = this.form.value['lastname'];
     this.owner.email = this.form.value['email'];
-    this.owner.password = this.form.value['password'];
+    const plainPassword = this.form.value['password'];
+    const hashedPassword = bcrypt.hashSync(plainPassword, 10);
+    this.owner.password = hashedPassword;
     this.owner.birthDate = this.form.value['birthdate'];
     this.owner.gender = this.form.value['gender'];
     this.owner.cellphone = this.form.value['cellphone'];
@@ -49,13 +58,17 @@ export class RegisterComponent implements OnInit {
           this.oS.setList(data);
         });
       });
+      console.log("Contraseña encriptada: "+hashedPassword);
       this.showSuccessfullyRegisterToast();
       this.router.navigate(['auth/login']);
     }
   }
 
   showSuccessfullyRegisterToast() {
-
-    this.toastr.success('¡Ahora puedes iniciar sesión!', 'Registro exitoso 😎', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+    this.toastr.success(
+      '¡Ahora puedes iniciar sesión!',
+      'Registro exitoso 😎',
+      { timeOut: 2500, positionClass: 'toast-bottom-right' }
+    );
   }
 }

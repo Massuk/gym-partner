@@ -1,12 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, RouterLink } from '@angular/router';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { JwtRequest } from 'src/app/model/jwtRequest';
 import { LoginService } from 'src/app/service/login.service';
 
@@ -28,7 +24,8 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private toastr: ToastrService
   ) {
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.password = new FormControl('', [
@@ -52,9 +49,11 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/dashboard/panel']);
       },
       (error) => {
-        this.mensaje = 'Credenciales incorrectas!!!';
-        this.snackBar.open(this.mensaje, 'Aviso', { duration: 2000 });
+          this,this.showErrorLoginToast();
       }
     );
+  }
+  showErrorLoginToast() {
+    this.toastr.error('Credenciales vacias o incorrectas', 'No se pudo iniciar sesión 🥱', { timeOut: 3500, positionClass: 'toast-bottom-center' });
   }
 }
