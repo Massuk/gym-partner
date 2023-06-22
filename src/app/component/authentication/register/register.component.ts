@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Owner } from 'src/app/model/owner';
 import { ToastrService } from 'ngx-toastr';
 import { OwnerService } from 'src/app/service/owner.service';
-import * as bcrypt from 'bcryptjs';
+//import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-register',
@@ -41,9 +41,7 @@ export class RegisterComponent implements OnInit {
     this.owner.name = this.form.value['name'];
     this.owner.lastName = this.form.value['lastname'];
     this.owner.email = this.form.value['email'];
-    const plainPassword = this.form.value['password'];
-    const hashedPassword = bcrypt.hashSync(plainPassword, 10);
-    this.owner.password = hashedPassword;
+    this.owner.password = this.form.value['password'];
     this.owner.birthDate = this.form.value['birthdate'];
     this.owner.gender = this.form.value['gender'];
     this.owner.cellphone = this.form.value['cellphone'];
@@ -58,7 +56,6 @@ export class RegisterComponent implements OnInit {
           this.oS.setList(data);
         });
       });
-      console.log("Contraseña encriptada: "+hashedPassword);
       this.showSuccessfullyRegisterToast();
       this.router.navigate(['auth/login']);
     }
