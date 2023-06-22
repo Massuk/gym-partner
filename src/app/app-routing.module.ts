@@ -36,6 +36,7 @@ import { TrainerListComponent } from './component/entities/trainer/trainer-list/
 import { NutritionistComponent } from './component/entities/nutritionist/nutritionist.component';
 import { NutritionistListComponent } from './component/entities/nutritionist/nutritionist-list/nutritionist-list.component';
 import { NutritionistInsertComponent } from './component/entities/nutritionist/nutritionist-insert/nutritionist-insert.component';
+import { NutritionistDetailsComponent } from './component/entities/nutritionist/nutritionist-details/nutritionist-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing-page/index', pathMatch: 'full' },
@@ -183,8 +184,8 @@ const routes: Routes = [
         component: NutritionistComponent,
         children: [
           {
-            path: 'list',
-            component: NutritionistListComponent,
+            path: 'list/:id',
+            component: NutritionistDetailsComponent,
           },
           {
             path: 'insert',

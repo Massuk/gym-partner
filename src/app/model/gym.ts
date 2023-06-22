@@ -1,3 +1,5 @@
+import { Owner } from './owner';
+
 export class Gym {
   idGym: number = 0;
   name: string = '';
@@ -5,4 +7,5 @@ export class Gym {
   ruc: number = 0;
   rs: string = '';
   hide: boolean = false;
+  owner: Owner = new Owner();
 }

@@ -22,20 +22,13 @@ export class NutritionistDetailsComponent {
       this.idNutritionist = data['id'];
     });
     this.form = new FormGroup({
-      id: new FormControl(),
       name: new FormControl(''),
       lastname: new FormControl(''),
       gender: new FormControl(''),
       birthDate: new FormControl(''),
       cellphone: new FormControl(''),
       email: new FormControl(''),
-      dni: new FormControl(''),
-      status: new FormControl('Activo'),
-      hide: new FormControl('false'),
-      password: new FormControl(''),
-      salary: new FormControl(''),
       yearHired: new FormControl(''),
-      //gym: new FormControl('', Validators.required),
     });
     this.nS.listId(this.idNutritionist).subscribe((data) => {
       this.form.patchValue({
@@ -46,11 +39,6 @@ export class NutritionistDetailsComponent {
         birthDate: data.birthDate,
         cellphone: data.cellphone,
         email: data.email,
-        dni: data.dni,
-        status: data.status,
-        hide: data.hide,
-        password: data.password,
-        salary: data.salary,
         yearHired: data.yearHired,
       });
     });
