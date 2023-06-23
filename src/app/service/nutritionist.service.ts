@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Nutritionist } from '../model/nutritionist';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 const base_url = environment.base;
 @Injectable({
@@ -14,11 +14,21 @@ export class NutritionistService {
 
   constructor(private http: HttpClient) {}
 
-  list() {
-    return this.http.get<Nutritionist[]>(this.url);
+  list(username: String) {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Nutritionist[]>(`${this.url}/list/${username}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
   insert(nutritionist: Nutritionist) {
-    return this.http.post(this.url, nutritionist);
+    let token = sessionStorage.getItem('token');
+    return this.http.post(this.url, nutritionist, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
   getList() {
     return this.changeList.asObservable();
@@ -27,13 +37,22 @@ export class NutritionistService {
     this.changeList.next(newList);
   }
   listId(idNutritionist: number) {
-    return this.http.get<Nutritionist>(`${this.url}/${idNutritionist}`);
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Nutritionist>(
+      `${this.url}/details/${idNutritionist}`,
+      {
+        headers: new HttpHeaders()
+          .set('Authorization', `Bearer ${token}`)
+          .set('Content-Type', 'application/json'),
+      }
+    );
   }
   update(nutritionist: Nutritionist) {
-    return this.http.put(`${this.url}`, nutritionist);
-  }
-  hide(idNutritionist: number): Observable<any> {
-    const url = `${this.url}/hide/${idNutritionist}`;
-    return this.http.put(url, null);
+    let token = sessionStorage.getItem('token');
+    return this.http.put(`${this.url}`, nutritionist, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 }

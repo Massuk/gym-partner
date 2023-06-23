@@ -124,28 +124,6 @@
         </mat-form-field>
       </div>
 
-      <!-- DNI Row  -->
-      <div class="row">
-        <mat-form-field
-          appearance="outline"
-          style="margin-right: 20rem; width: 100%"
-        >
-          <mat-label for="dni">DNI</mat-label>
-          <input
-            matInput
-            placeholder="DNI"
-            formControlName="dni"
-            type="text"
-            onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-            required
-            id="dni"
-          />
-          <mat-error *ngIf="form.controls['dni'].invalid">
-            El campo no puede estar vacío.
-          </mat-error>
-        </mat-form-field>
-      </div>
-
       <!-- Password Row  -->
       <div class="row">
         <mat-form-field
@@ -164,26 +142,6 @@
             El campo no puede estar vacío.
           </mat-error>
         </mat-form-field>
-      </div>
-
-      <!-- Salary Row -->
-      <div class="row">
-        <div class="col">
-          <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label for="salary">Sueldo</mat-label>
-            <input
-              matInput
-              type="text"
-              onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode === 46"
-              formControlName="salary"
-              required
-              id="salary"
-            />
-            <mat-error *ngIf="form.controls['salary'].invalid">
-              El campo no puede estar vacío.
-            </mat-error>
-          </mat-form-field>
-        </div>
       </div>
 
       <!-- Year Hired Row -->

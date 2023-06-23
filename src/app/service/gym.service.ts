@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Gym } from '../model/gym';
 import { Observable, Subject } from 'rxjs';
@@ -56,5 +56,15 @@ export class GymService {
   delete(id: number): Observable<any> {
     const url = `${this.url}/${id}`;
     return this.http.delete(url);
+  }
+
+  //Función para obtener un gimnasio de acuerdo al username (email) de un owner
+  listGymByUsername(username: String) {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Gym>(`${this.url}/list/${username}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 }

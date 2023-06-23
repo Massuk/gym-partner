@@ -15,13 +15,7 @@ import { NutritionistService } from 'src/app/service/nutritionist.service';
 export class NutritionistListComponent {
   dataSource: MatTableDataSource<Nutritionist> = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  displayedColumns: string[] = [
-    'id',
-    'name',
-    'lastname',
-    'status',
-    'actions',
-  ];
+  displayedColumns: string[] = ['name', 'lastname', 'status', 'actions'];
 
   constructor(
     private nS: NutritionistService,
@@ -34,10 +28,14 @@ export class NutritionistListComponent {
       this.dataSource.data = data;
       this.dataSource.paginator = this.paginator;
     });
-    this.nS.list().subscribe((data) => {
-      this.dataSource.data = data;
-      this.dataSource.paginator = this.paginator;
-    });
+
+    this.nS
+      .list(String(sessionStorage.getItem('username')))
+      .subscribe((data) => {
+        this.dataSource.data = data;
+        console.log(data);
+        this.dataSource.paginator = this.paginator;
+      });
   }
 
   filter(event: any) {
@@ -46,52 +44,28 @@ export class NutritionistListComponent {
   clearFilter() {
     this.dataSource.filter = '';
   }
-  showDeletePopup(idNutritionist: number): void {
-    const dialogRef = this.dialog.open(DialogPopupComponent, {
-      width: '450px',
-      data: {
-        title: '¿Deseas eliminar el registro?',
-        description: 'Esta acción es irreversible',
-        confirmButtonText: 'Si',
-        cancelButtonText: 'No',
-        showConfirmButton: true,
-        showCancelButton: true,
-      },
-    });
-
-    const snack = this.snackbar;
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.nS.hide(idNutritionist).subscribe(() => {
-          this.nS.list().subscribe((data) => {
-            this.dataSource = new MatTableDataSource(data);
-          });
-        });
-        snack.dismiss();
-        this.snackbar.open('Se ha eliminado correctamente', 'Cerrar', {
-          duration: 3000,
-        });
-      } else {
-        snack.dismiss();
-      }
-    });
-  }
-  toggleBadgeStatus(idNutritionist: number, status: string): void {
-    const newStatus = status === 'Activo' ? 'Inactivo' : 'Activo';
+  toggleBadgeStatus(idNutritionist: number, status: boolean): void {
+    const newStatus = !status;
 
     this.nS.listId(idNutritionist).subscribe((data) => {
       data.status = newStatus;
 
       this.nS.update(data).subscribe(() => {
         console.log('Estado actualizado correctamente a: ' + data.status);
+
         // Actualizar el objeto data en la lista de entrenamientos
-        const nutritionistIndex = this.dataSource.data.findIndex(
-          (n) => n.idNutritionist === idNutritionist
+        const trainingPlanIndex = this.dataSource.data.findIndex(
+          (tp) => tp.idNutritionist === idNutritionist
         );
-        if (nutritionistIndex !== -1) {
-          this.dataSource.data[nutritionistIndex] = data;
+        if (trainingPlanIndex !== -1) {
+          this.dataSource.data[trainingPlanIndex] = data;
           this.dataSource._updateChangeSubscription(); // Notificar cambios a la tabla
         }
+        this.nS
+          .list(String(sessionStorage.getItem('username')))
+          .subscribe((data) => {
+            this.nS.setList(data);
+          });
       });
     });
   }
