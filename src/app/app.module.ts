@@ -53,6 +53,11 @@ import { ExerciseInsertComponent } from './component/entities/exercise/exercise-
 import { FoodsComponent } from './component/entities/foods/foods.component';
 import { FoodsInsertComponent } from './component/entities/foods/foods-insert/foods-insert.component';
 import { FoodsListComponent } from './component/entities/foods/foods-list/foods-list.component';
+import { MealComponent } from './component/entities/meal/meal.component';
+import { MealDeleteComponent } from './component/entities/meal/meal-delete/meal-delete.component';
+import { MealInsertComponent } from './component/entities/meal/meal-insert/meal-insert.component';
+import { MealListComponent } from './component/entities/meal/meal-list/meal-list.component';
+import { DialogPopupComponent } from './component/dashboard/dialog-popup/dialog-popup.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +89,12 @@ import { FoodsListComponent } from './component/entities/foods/foods-list/foods-
     EntitiesComponent,
     FoodsComponent,
     FoodsListComponent,
-    FoodsInsertComponent
+    FoodsInsertComponent,
+    MealComponent,
+    MealDeleteComponent,
+    MealInsertComponent,
+    MealListComponent,
+    DialogPopupComponent
   ],
   imports: [
     BrowserModule,
