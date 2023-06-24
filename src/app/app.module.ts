@@ -155,7 +155,9 @@ import { ToastrModule } from 'ngx-toastr';
     RoutineDeleteComponent
   ],
   imports: [
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+    }),
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

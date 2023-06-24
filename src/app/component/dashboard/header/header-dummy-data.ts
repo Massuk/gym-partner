@@ -13,6 +13,7 @@ export const userItems = [
   },
   {
     icon: 'far fa-power-off',
-    label: 'Cerrar sesión'
+    label: 'Cerrar sesión',
+    routeLink: 'auth/login'
   },
 ]

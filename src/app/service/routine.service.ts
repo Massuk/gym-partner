@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Routine } from '../model/routine';
@@ -17,11 +17,21 @@ export class RoutineService {
   constructor(private http: HttpClient) { }
 
   list(){
-    return this.http.get<Routine[]>(this.url)
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Routine[]>(this.url, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    })
   }
 
   insert(routine: Routine) {
-    return this.http.post(this.url,routine);
+    let token = sessionStorage.getItem('token');
+    return this.http.post(this.url,routine, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   getList() {
@@ -32,21 +42,41 @@ export class RoutineService {
   }
 
   listId(idRoutine: number) {
-    return this.http.get<Routine>(`${this.url}/${idRoutine}`);
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Routine>(`${this.url}/${idRoutine}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   update(Routine: Routine) {
-    return this.http.put(`${this.url}/update`, Routine);
+    let token = sessionStorage.getItem('token');
+    return this.http.put(`${this.url}/update`, Routine, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   hide(idRoutine: number): Observable<any> {
+    let token = sessionStorage.getItem('token');
     const url = `${this.url}/hide/${idRoutine}`;
-    return this.http.put(url, null);
+    return this.http.put(url, null, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   delete(idRoutine: number): Observable<any> {
+    let token = sessionStorage.getItem('token');
     const url = `${this.url}/${idRoutine}`;
-    return this.http.delete(url);
+    return this.http.delete(url, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
 

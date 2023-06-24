@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable,Subject } from 'rxjs';
@@ -13,15 +13,23 @@ const base_url = environment.base
 export class FoodService {
   private url=`${base_url}/foods`;
   private changeList = new Subject<Food[]>();
-  private confirmaEliminacion = new Subject<Boolean>()
-
 
   constructor(private http:HttpClient) { }
   list(){
-    return this.http.get<Food[]>(this.url);
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Food[]>(this.url, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
   insert(food: Food) {
-    return this.http.post(this.url, food);
+    let token = sessionStorage.getItem('token');
+    return this.http.post(this.url, food, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   getList() {
@@ -33,17 +41,32 @@ export class FoodService {
 
 
   listId(id: number) {
-    return this.http.get<Food>(`${this.url}/${id}`);
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Food>(`${this.url}/${id}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
 
   update(food: Food) {
-    return this.http.put(`${this.url}/update`, food);
+    let token = sessionStorage.getItem('token');
+    return this.http.put(`${this.url}/update`, food, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   // Funcion para eliminar un registro
   delete(id: number): Observable<any> {
+    let token = sessionStorage.getItem('token');
     const url = `${this.url}/${id}`;
-    return this.http.delete(url);
+    return this.http.delete(url, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 }

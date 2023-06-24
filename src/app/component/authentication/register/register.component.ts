@@ -36,15 +36,16 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  async insert(): Promise<void> {
+  insert(): void {
     this.owner.idUser = this.form.value['id'];
     this.owner.name = this.form.value['name'];
-    this.owner.lastName = this.form.value['lastname'];
+    this.owner.lastname = this.form.value['lastname'];
     this.owner.email = this.form.value['email'];
     this.owner.password = this.form.value['password'];
     this.owner.birthDate = this.form.value['birthdate'];
     this.owner.gender = this.form.value['gender'];
     this.owner.cellphone = this.form.value['cellphone'];
+    this.owner.status = true;
     this.owner.role = {
       idRole: 1,
       name: 'ADMIN',
