@@ -1,13 +1,19 @@
 <div class="card">
   <div class="card-head">Registrar entrenador</div>
   <div class="card-body">
-    <form [formGroup]="form" (submit)="aceptar()">
+    <form [formGroup]="form" (submit)="accept()">
       <!-- Name Row -->
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label>Nombre</mat-label>
-            <input matInput placeholder="Nombre" formControlName="name" required />
+            <mat-label for="name">Nombre</mat-label>
+            <input 
+              matInput 
+              placeholder="Nombre" 
+              formControlName="name" 
+              required
+              id="name" 
+            />
             <mat-error *ngIf="form.controls['name'].invalid">
               El campo no puede estar vacío.
             </mat-error>
@@ -17,9 +23,15 @@
 
       <!-- Lastname Row  -->
       <div class="row">
-        <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
-          <mat-label>Apellido</mat-label>
-          <input matInput placeholder="Apellido" formControlName="lastname" required/>
+        <mat-form-field appearance="outline" 
+        style="margin-right: 20rem; width: 100%">
+          <mat-label for="lastname">Apellido</mat-label>
+          <input matInput 
+            placeholder="Apellido" 
+            formControlName="lastname" 
+            required
+            id="lastname"
+          />
           <mat-error *ngIf="form.controls['lastname'].invalid">
             El campo no puede estar vacío.
           </mat-error>
@@ -46,19 +58,23 @@
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label>Fecha de Nacimiento</mat-label>
+            <mat-label for="birthDate">Fecha de Nacimiento</mat-label>
             <input 
               matInput 
               [matDatepicker]="picker" 
               placeholder="Elige una fecha" 
               formControlName="birthDate"
+              [max]="maxDate"
               readonly 
-              required 
+              required
+              id="birthDate"
             />
             <mat-error *ngIf="form.controls['birthDate'].invalid">
               El campo no puede estar vacío.
             </mat-error>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker-toggle 
+              matSuffix 
+              [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </div>
@@ -68,8 +84,15 @@
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label>Celular</mat-label>
-            <input matInput type="number" formControlName="cellphone" required />
+            <mat-label for="cellphone">Celular</mat-label>
+            <input 
+              matInput 
+              type="text"
+              onkeypress="return event.charCode >= 48 && event.charCode <= 57" 
+              formControlName="cellphone" 
+              required
+              id="cellphone"
+             />
             <mat-error *ngIf="form.controls['cellphone'].invalid">
               El campo no puede estar vacío.
             </mat-error>
@@ -80,20 +103,15 @@
       <!-- Email Row  -->
       <div class="row">
         <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
-          <mat-label>Correo</mat-label>
-          <input matInput placeholder="usuario@example.com" formControlName="email" required/>
+          <mat-label for="email">Correo</mat-label>
+          <input 
+            matInput 
+            placeholder="usuario@example.com" 
+            formControlName="email" 
+            required
+            id="email"
+          />
           <mat-error *ngIf="form.controls['email'].invalid">
-            El campo no puede estar vacío.
-          </mat-error>
-        </mat-form-field>
-      </div>
-
-      <!-- DNI Row  -->
-      <div class="row">
-        <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
-          <mat-label>DNI</mat-label>
-          <input matInput placeholder="DNI" formControlName="dni" required/>
-          <mat-error *ngIf="form.controls['dni'].invalid">
             El campo no puede estar vacío.
           </mat-error>
         </mat-form-field>
@@ -102,48 +120,40 @@
       <!-- Password Row  -->
       <div class="row">
         <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
-          <mat-label>Contraseña</mat-label>
-          <input matInput placeholder="Contraseña" formControlName="password" required/>
+          <mat-label for="password">Contraseña</mat-label>
+          <input 
+            matInput 
+            placeholder="Contraseña"
+            formControlName="password" 
+            required
+            id="password"
+          />
           <mat-error *ngIf="form.controls['password'].invalid">
             El campo no puede estar vacío.
           </mat-error>
         </mat-form-field>
       </div>
 
-      <!-- Salary Row -->
-      <div class="row">
-        <div class="col">
-          <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label>Sueldo</mat-label>
-            <input matInput type="number" formControlName="salary" required />
-            <mat-error *ngIf="form.controls['salary'].invalid">
-              El campo no puede estar vacío.
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-
       <!-- Year Hired Row -->
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label>Fecha de contratación</mat-label>
-            <input matInput [matDatepicker]="picker2" placeholder="" formControlName="yearHired"
-              readonly required />
+            <mat-label for="yearHired">Fecha de contratación</mat-label>
+            <input 
+              matInput 
+              [matDatepicker]="picker2" 
+              placeholder="" 
+              formControlName="yearHired"
+              [max]="maxDate"
+              readonly 
+              required 
+              id="yearHired"
+            />
             <mat-error *ngIf="form.controls['yearHired'].invalid">
               Debes elegir una fecha.
             </mat-error>
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
-          </mat-form-field>
-        </div>
-      </div>
-
-      <!-- Gym Row -->
-      <div class="row">
-        <div class="col">
-          <mat-form-field appearance="outline" style="width: 100%">
-            <input matInput formControlName="gym" >
           </mat-form-field>
         </div>
       </div>

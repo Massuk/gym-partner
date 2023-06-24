@@ -6,8 +6,8 @@
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label>Nombre</mat-label>
-            <input matInput placeholder="Nombre" formControlName="name" readonly=""/>
+            <mat-label for="name">Nombre</mat-label>
+            <input matInput placeholder="Nombre" formControlName="name" readonly id="name"/>
           </mat-form-field>
         </div>
       </div>
@@ -15,8 +15,8 @@
       <!-- Lastname Row  -->
       <div class="row">
         <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
-          <mat-label>Apellido</mat-label>
-          <input matInput placeholder="Apellido" formControlName="lastname" readonly=""/>
+          <mat-label for="lastname">Apellido</mat-label>
+          <input matInput placeholder="Apellido" formControlName="lastname" readonly id="lastname"/>
         </mat-form-field>
       </div>
 
@@ -24,8 +24,8 @@
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label>Género</mat-label>
-            <input matInput placeholder="Género" formControlName="gender" readonly=""/>
+            <mat-label for="gender">Género</mat-label>
+            <input matInput placeholder="Género" formControlName="gender" readonly id="gender"/>
           </mat-form-field>
         </div>
       </div>
@@ -34,8 +34,8 @@
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label>Fecha de Nacimiento</mat-label>
-            <input matInput formControlName="birthDate" readonly/>
+            <mat-label for="birthDate">Fecha de Nacimiento</mat-label>
+            <input matInput formControlName="birthDate" readonly id="birthDate"/>
           </mat-form-field>
         </div>
       </div>
@@ -44,8 +44,8 @@
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label>Celular</mat-label>
-            <input matInput placeholder="Celular" formControlName="cellphone" readonly=""/>
+            <mat-label for="cellphone">Celular</mat-label>
+            <input matInput type="text" formControlName="cellphone" readonly id="cellphone"/>
           </mat-form-field>
         </div>
       </div>
@@ -53,43 +53,17 @@
       <!-- Email Row  -->
       <div class="row">
         <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
-          <mat-label>Correo</mat-label>
-          <input matInput placeholder="Email" formControlName="email" readonly=""/>
+          <mat-label for="email">Correo</mat-label>
+          <input matInput placeholder="usuario@example.com" formControlName="email" readonly id="email"/>
         </mat-form-field>
-      </div>
-
-      <!-- DNI Row  -->
-      <div class="row">
-        <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
-          <mat-label>DNI</mat-label>
-          <input matInput placeholder="DNI" formControlName="dni" readonly=""/>
-        </mat-form-field>
-      </div>
-
-      <!-- Password Row  -->
-      <div class="row">
-        <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
-          <mat-label>Contraseña</mat-label>
-          <input matInput placeholder="Contraseña" formControlName="password" readonly=""/>
-        </mat-form-field>
-      </div>
-
-      <!-- Salary Row -->
-      <div class="row">
-        <div class="col">
-          <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label>Sueldo</mat-label>
-            <input matInput placeholder="Salario" formControlName="salary" readonly=""/>
-          </mat-form-field>
-        </div>
       </div>
 
       <!-- Year Hired Row -->
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label>Fecha de contratación</mat-label>
-            <input matInput placeholder="Fecha" formControlName="yearHired" readonly=""/>
+            <mat-label for="yearHired">Fecha de contratación</mat-label>
+            <input matInput placeholder="Fecha" formControlName="yearHired" readonly id="yearHired"/>
           </mat-form-field>
         </div>
       </div>

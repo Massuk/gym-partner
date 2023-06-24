@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Trainer } from '../model/trainer';
 import { Subject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { userItems } from '../component/dashboard/header/header-dummy-data';
 
 const base_url = environment.base;
 
@@ -17,12 +18,22 @@ export class TrainerService {
 
   constructor(private http: HttpClient) { }
 
-  list(){
-    return this.http.get<Trainer[]>(this.url)
+  list(username: String) {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Trainer[]>(`${this.url}/list/${username}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   insert(trainer: Trainer) {
-    return this.http.post(this.url, trainer);
+    let token = sessionStorage.getItem('token');
+    return this.http.post(this.url, trainer, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   getList() {
@@ -33,20 +44,23 @@ export class TrainerService {
   }
 
   listId(idTrainer: number) {
-    return this.http.get<Trainer>(`${this.url}/${idTrainer}`)
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Trainer>(
+      `${this.url}/details/${idTrainer}`,
+      {
+        headers: new HttpHeaders()
+          .set('Authorization', `Bearer ${token}`)
+          .set('Content-Type', 'application/json'),
+      }
+    );
   }
 
   update(trainer: Trainer) {
-    return this.http.put(`${this.url}/update`, trainer);
-  }
-
-  hide(idTrainer: number): Observable<any> {
-    const url = `${this.url}/hide/${idTrainer}`;
-    return this.http.put(url, null);
-  }
-
-  delete(idTrainer: number): Observable<any> {
-    const url = `${this.url}/${idTrainer}`;
-    return this.http.delete(url);
+    let token = sessionStorage.getItem('token');
+    return this.http.put(`${this.url}`, trainer, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 }

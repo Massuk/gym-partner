@@ -9,10 +9,9 @@ import { TrainerService } from 'src/app/service/trainer.service';
   templateUrl: './trainer-details.component.html',
   styleUrls: ['./trainer-details.component.scss']
 })
-export class TrainerDetailsComponent implements OnInit {
+export class TrainerDetailsComponent {
   idTrainer: number = 0;
   form: FormGroup = new FormGroup({});
-  trainer: Trainer = new Trainer();
 
   constructor(
     private tS: TrainerService,
@@ -23,27 +22,19 @@ export class TrainerDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.idTrainer = data['id'];
-      this.init();
     });
 
     this.form = new FormGroup({
-      id: new FormControl(''),
       name: new FormControl(''),
       lastname: new FormControl(''),
       gender: new FormControl(''),
       birthDate: new FormControl(''),
       cellphone: new FormControl(''),
       email: new FormControl(''),
-      dni: new FormControl(''),
-      status: new FormControl('Activo'),
-      password: new FormControl(''),
-      salary: new FormControl(''),
       yearHired: new FormControl('')
     })
-  }
-
-  init() {
     this.tS.listId(this.idTrainer).subscribe((data) => {
+      console.log(data);
         this.form.patchValue({
           id: data.idTrainer,
           name: data.name,
@@ -52,12 +43,9 @@ export class TrainerDetailsComponent implements OnInit {
           birthDate: data.birthDate,
           cellphone: data.cellphone,
           email: data.email,
-          dni: data.dni,
-          status: data.status,
-          password: data.password,
-          salary: data.salary,
           yearHired: data.yearHired
         });
       });
   }
+    
 }
