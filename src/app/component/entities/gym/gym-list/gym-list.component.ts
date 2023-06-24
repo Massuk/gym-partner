@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,6 +8,7 @@ import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/d
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GymDataService } from 'src/app/service/gym-data.service';
 import { MatSort } from '@angular/material/sort';
+import { UserDataService } from '../../../../service/user-data.service';
 
 @Component({
   selector: 'app-gym-list',
@@ -15,48 +16,71 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./gym-list.component.scss'],
 })
 export class GymListComponent implements OnInit {
+  innerWidth: any;
+  currentTime: Date;
+  username: string;
+  lastname: string;
+  role: string;
+  gyms: Gym[] = []; // Variable para almacenar los gimnasios
+
+
   constructor(
+    private udS: UserDataService,
     private gS: GymService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private gymDataService: GymDataService
-  ) {}
+  ) {
+    setInterval(() => {
+      this.currentTime = new Date();
+    }, 1000); // Actualiza la hora cada segundo (1000 ms)
+  }
 
   lista: Gym[] = [];
   displayedColumns: string[] = ['id', 'name', 'code', 'ruc', 'rs', 'actions'];
-  selectedRadioValue: number = 0;
-  selectedGym: Gym | undefined;
+
   dataSource: MatTableDataSource<Gym> = new MatTableDataSource();
 
   ngOnInit(): void {
+    this.getUserData(); // Llama al método para obtener los datos del usuario
+    this.innerWidth = window.innerWidth;
     this.gS.getList().subscribe((data) => {
+      this.gyms = data;
       this.dataSource.data = data;
       this.dataSource.sort = this.sort;
     });
 
     this.gS.list().subscribe((data) => {
+      this.gyms = data;
       this.dataSource = new MatTableDataSource(data);
-      if (!this.selectedGym) {
-        const storedGym = this.gymDataService.getSelectedGym();
-        this.selectedGym = storedGym ? storedGym : data[0];
-        this.selectedRadioValue = this.selectedGym.idGym;
-        this.gymDataService.setSelectedGym(this.selectedGym);
-        this.gymDataService.setSelectedRadioValue(this.selectedRadioValue);
-      }
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
   }
 
+  // Ajustes visuales
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.innerWidth = window.innerWidth;
+  }
+  getClass() {
+    return this.innerWidth < 925 ? 'row-md' : 'row';
+  }
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort = new MatSort();
 
-
-  selectGym(gym: Gym) {
-    this.selectedGym = gym;
-    this.selectedRadioValue = gym.idGym;
-    this.gymDataService.setSelectedGym(this.selectedGym);
-    this.gymDataService.setSelectedRadioValue(this.selectedRadioValue);
+  getUserData() {
+    this.udS.getUserData().subscribe(
+      (data: any) => {
+        this.username = data.name;
+        this.lastname = data.lastname;
+        this.role = data.role.name;
+      },
+      (error: any) => {
+        console.error('Error:', error);
+      }
+    );
   }
 
   showDeletePopup(id: number): void {
@@ -94,7 +118,6 @@ export class GymListComponent implements OnInit {
 
   filterResults(gym: any) {
     this.dataSource.filter = gym.target.value.trim();
-    console.log(this.selectedGym);
   }
 
   clearFilter() {

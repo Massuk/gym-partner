@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
     this.owner.status = true;
     this.owner.role = {
       idRole: 1,
-      name: 'ADMIN',
+      name: 'ADMINISTRADOR',
     };
 
     if (this.form.valid) {

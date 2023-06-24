@@ -15,7 +15,6 @@ import { GymComponent } from './component/entities/gym/gym.component';
 import { GymListComponent } from './component/entities/gym/gym-list/gym-list.component';
 import { HeaderComponent } from './component/dashboard/header/header.component';
 import { GymInsertComponent } from './component/entities/gym/gym-insert/gym-insert.component';
-
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -32,7 +31,7 @@ import { MatCard, MatCardActions, MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
-
+import {MatDividerModule} from '@angular/material/divider';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkMenuModule } from '@angular/cdk/menu';
@@ -187,7 +186,8 @@ import { ToastrModule } from 'ngx-toastr';
     MatCheckboxModule,
     MatMenuModule,
     MatTooltipModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDividerModule
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-ES' }],
   bootstrap: [AppComponent],
