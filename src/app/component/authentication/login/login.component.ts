@@ -54,6 +54,9 @@ export class LoginComponent implements OnInit {
     );
   }
   showErrorLoginToast() {
-    this.toastr.error('Credenciales vacias o incorrectas', 'No se pudo iniciar sesión 🥱', { timeOut: 3500, positionClass: 'toast-bottom-center' });
+    this.toastr.error('Credenciales vacias o incorrectas', 'No se pudo iniciar sesión 🥱', {
+      timeOut: 3500,
+      positionClass: 'toast-bottom-center'
+    });
   }
 }

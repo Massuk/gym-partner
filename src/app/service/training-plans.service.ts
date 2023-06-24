@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { TrainingPlan } from '../model/training-plan';
@@ -18,11 +18,21 @@ export class TrainingPlansService {
   constructor(private http: HttpClient) { }
 
   list(){
-    return this.http.get<TrainingPlan[]>(this.url)
+    let token = sessionStorage.getItem('token');
+    return this.http.get<TrainingPlan[]>(this.url, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    })
   }
 
   insert(tPlan: TrainingPlan) {
-    return this.http.post(this.url, tPlan);
+    let token = sessionStorage.getItem('token');
+    return this.http.post(this.url, tPlan, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   getList() {
@@ -33,21 +43,41 @@ export class TrainingPlansService {
   }
 
   listId(idTrainingPlan: number) {
-    return this.http.get<TrainingPlan>(`${this.url}/${idTrainingPlan}`)
+    let token = sessionStorage.getItem('token');
+    return this.http.get<TrainingPlan>(`${this.url}/${idTrainingPlan}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    })
   }
 
   update(TrainingPlan: TrainingPlan) {
-    return this.http.put(`${this.url}/update`, TrainingPlan);
+    let token = sessionStorage.getItem('token');
+    return this.http.put(`${this.url}/update`, TrainingPlan, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   hide(idTrainingPlan: number): Observable<any> {
+    let token = sessionStorage.getItem('token');
     const url = `${this.url}/hide/${idTrainingPlan}`;
-    return this.http.put(url, null);
+    return this.http.put(url, null, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   delete(idTrainingPlan: number): Observable<any> {
+    let token = sessionStorage.getItem('token');
     const url = `${this.url}/${idTrainingPlan}`;
-    return this.http.delete(url);
+    return this.http.delete(url, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
 

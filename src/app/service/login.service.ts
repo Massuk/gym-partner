@@ -13,6 +13,15 @@ export class LoginService {
     const url = `${base_url}/authenticate`;
     return this.http.post(url, request);
   }
+
+  logout() {
+    const url = `${base_url}/logout`;
+    const headers = new HttpHeaders({
+      Authorization: sessionStorage.getItem('token'),
+    });
+    return this.http.post(url, null, { headers });
+  }
+
   verify() {
     let token = sessionStorage.getItem('token');
     return token != null;

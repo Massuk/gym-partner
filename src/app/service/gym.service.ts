@@ -18,12 +18,23 @@ export class GymService {
 
   // Funcion de listar los gimnasios
   list() {
-    return this.http.get<Gym[]>(this.url);
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Gym[]>(this.url, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   // Funcion para agregar registros nuevos
   insert(gym: Gym) {
-    return this.http.post(this.url, gym);
+    let token = sessionStorage.getItem('token');
+
+    return this.http.post(this.url, gym, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   getList() {
@@ -37,10 +48,20 @@ export class GymService {
   // Funcion para modificar registros nuevos
 
   get(idGym: number): Observable<Gym> {
-    return this.http.get<Gym>(`${this.url}/${idGym}`);
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Gym>(`${this.url}/${idGym}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
   update(gym: Gym) {
-    return this.http.put(`${this.url}/update`, gym).pipe(
+    let token = sessionStorage.getItem('token');
+    return this.http.put(`${this.url}/update`, gym, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    }).pipe(
       tap(() => {
         this.list().subscribe((data) => this.setList(data));
       })
@@ -48,8 +69,13 @@ export class GymService {
   }
 
   hide(idGym: number): Observable<any> {
+    let token = sessionStorage.getItem('token');
     const url = `${this.url}/hide/${idGym}`;
-    return this.http.put(url, null);
+    return this.http.put(url, null, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   // Funcion para eliminar un registro
