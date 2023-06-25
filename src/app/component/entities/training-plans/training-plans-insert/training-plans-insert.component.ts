@@ -66,7 +66,7 @@ export class TrainingPlansInsertarComponent implements OnInit {
         });
       } else {
       }
-      this.router.navigate(['/dashboard/training-plans']);
+      this.router.navigate(['/dashboard/clients/training-plans']);
     }
   }
 
@@ -86,6 +86,7 @@ export class TrainingPlansInsertarComponent implements OnInit {
       });
     }
   }
+
   goBack() {
     const url = this.router.url.split('/');
     const segmentsToRemove = 2; // Número de segmentos que deseas eliminar (en este caso, "update" y el ID)

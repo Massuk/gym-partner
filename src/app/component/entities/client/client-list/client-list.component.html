@@ -16,68 +16,71 @@
       </div>
     </div>
   </div>
+</div>
 
-  <table mat-table [dataSource]="dataSource">
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Nombre</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.name }}
-      </td></ng-container
-    >
+<div class="card">
+  <div class="card-title">
+    <table mat-table [dataSource]="dataSource">
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.name }}
+        </td></ng-container
+      >
 
-    <!-- Lastname Column -->
-    <ng-container matColumnDef="lastname">
-      <th mat-header-cell *matHeaderCellDef>Apellido</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.lastname }}
-      </td></ng-container
-    >
+      <!-- Lastname Column -->
+      <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef>Apellido</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.lastname }}
+        </td></ng-container
+      >
 
-    <!-- Gender Column -->
-    <ng-container matColumnDef="gender">
-      <th mat-header-cell *matHeaderCellDef>Género</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.gender }}
-      </td></ng-container
-    >
+      <!-- Gender Column -->
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef>Género</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.gender }}
+        </td></ng-container
+      >
 
-    <!-- Birth Date Column -->
-    <ng-container matColumnDef="birthDate">
-      <th mat-header-cell *matHeaderCellDef>Fecha de Nacimiento</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.birthDate }}
-      </td></ng-container
-    >
+      <!-- Birth Date Column -->
+      <ng-container matColumnDef="birthDate">
+        <th mat-header-cell *matHeaderCellDef>Fecha de Nacimiento</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.birthDate }}
+        </td></ng-container
+      >
 
-    <!-- Actions Column -->
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>Acciones</th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-icon-button color="primary">
-          <mat-icon>medical_information</mat-icon>
-        </button>
-        <button
-          mat-icon-button
-          color="primary"
-          [routerLink]="[element.idUser, 'nutritional-plans']"
-        >
-          <mat-icon>restaurant</mat-icon>
-        </button>
-        <button
-          mat-icon-button
-          color="primary"
-          [routerLink]="[element.idUser, 'training-plans']"
-        >
-          <mat-icon>fitness_center</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary">
+            <mat-icon>medical_information</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="primary"
+            [routerLink]="[element.idUser, 'nutritional-plans']"
+          >
+            <mat-icon>restaurant</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="primary"
+            [routerLink]="[element.idUser, 'training-plans']"
+          >
+            <mat-icon>fitness_center</mat-icon>
+          </button>
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
   </mat-paginator>
 </div>
