@@ -66,6 +66,7 @@
                 [min]="minDate"
                 required
                 readonly
+                (dateChange)="updateEndDate($event)"
               />
               <mat-error *ngIf="form.controls['startDate'].invalid">
                 Elige una fecha inicial.
@@ -124,7 +125,7 @@
         <button class="button accept" type="submit">Agregar</button>
         <button 
           class="button cancel" 
-          [routerLink]="'/dashboard/clients/' + idClient + '/nutrititional-plans'" 
+          [routerLink]="'/dashboard/clients/' + idClient + '/nutritional-plans'" 
         >Cancelar</button>
     </div>
     </form>

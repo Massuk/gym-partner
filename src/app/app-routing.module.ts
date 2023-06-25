@@ -104,7 +104,7 @@ const routes: Routes = [
             ],
           },
           {
-            path: 'nutritional-plans',
+            path: ':id/nutritional-plans',
             component: NutritionalPlanComponent,
             children: [
               {

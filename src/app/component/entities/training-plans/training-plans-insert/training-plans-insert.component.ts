@@ -61,10 +61,9 @@ export class TrainingPlansInsertarComponent implements OnInit {
           data.title = this.trainingPlan.title;
           data.description = this.trainingPlan.description;
           data.objective = this.trainingPlan.objective;
+          data.level = this.trainingPlan.level;
           data.startDate = this.trainingPlan.startDate;
           data.endDate = this.trainingPlan.endDate;
-          data.status = this.trainingPlan.status;
-          data.hide = this.trainingPlan.hide;
           this.tPS.update(data).subscribe(() => {
             this.tPS.list(this.idClient).subscribe((data) => {
               this.tPS.setList(data);

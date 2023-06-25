@@ -24,7 +24,7 @@ export class NutritionalPlanInsertComponent {
     private nPS: NutritionalPlanService,
     private router: Router,
     private route: ActivatedRoute,
-    private c: ClientService,
+    private c: ClientService
   ) {}
 
   ngOnInit(): void {
@@ -47,30 +47,30 @@ export class NutritionalPlanInsertComponent {
 
   accept(): void {
     this.nutritionalPlan.title = this.form.value['title'];
-    this.nutritionalPlan.status = true;
     this.nutritionalPlan.objective = this.form.value['objective'];
     this.nutritionalPlan.description = this.form.value['description'];
     this.nutritionalPlan.startDate = this.form.value['startDate'];
     this.nutritionalPlan.endDate = this.form.value['endDate'];
     this.nutritionalPlan.recommendations = this.form.value['recommendations'];
+    this.nutritionalPlan.status = true;
     this.nutritionalPlan.hide = false;
 
     if (this.form.valid) {
       if (this.edit) {
-        this.nPS.listId(this.idClient).subscribe((data) => {
+        this.nPS.listId(this.idNutritionalPlan).subscribe((data) => {
           data.title = this.nutritionalPlan.title;
           data.objective = this.nutritionalPlan.objective;
+          data.description = this.nutritionalPlan.description;
           data.startDate = this.nutritionalPlan.startDate;
           data.endDate = this.nutritionalPlan.endDate;
-          data.status = this.nutritionalPlan.status;
-          data.hide = this.nutritionalPlan.hide;
+          data.recommendations = this.nutritionalPlan.recommendations;
           this.nPS.update(data).subscribe(() => {
             this.nPS.list(this.idClient).subscribe((data) => {
               this.nPS.setList(data);
             });
           });
         });
-      } else { }
+      } else {
         this.c.listId(this.idClient).subscribe((data) => {
           this.nutritionalPlan.client = data;
           this.nPS.insert(this.nutritionalPlan).subscribe(() => {
@@ -80,11 +80,12 @@ export class NutritionalPlanInsertComponent {
           });
         });
       }
-      this.router.navigate([
-        '/dashboard/clients/' + this.idClient + '/nutritional-plans',
-      ]);
+    }
+    this.router.navigate([
+      '/dashboard/clients/' + this.idClient + '/nutritional-plans',
+    ]);
   }
-  
+
   init() {
     if (this.edit) {
       this.title = 'Editar plan de entrenamiento';
@@ -97,6 +98,7 @@ export class NutritionalPlanInsertComponent {
           objective: data.objective,
           startDate: data.startDate,
           endDate: data.endDate,
+          recommendations: data.recommendations
         });
       });
     }
@@ -110,10 +112,13 @@ export class NutritionalPlanInsertComponent {
     }
     return 0;
   }
+
+  updateEndDate(event: MatDatepickerInputEvent<Date>) {
+    const startDate = event.value;
+    if (startDate) {
+      const endDate = new Date(startDate);
+      endDate.setDate(startDate.getDate() + 6); // Agrega 6 días a la fecha de inicio
+      this.form.controls['endDate'].setValue(endDate);
+    }
+  }
 }
-
-  
-
-  
-
-
