@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
 
   isAdminCodeValid(): boolean {
     const admincode = this.form.get('admincode')?.value;
-    return admincode === 'XD';
+    return admincode === 'MASSUKWASHERE';
   }
 
   insert(): void {
