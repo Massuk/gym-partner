@@ -3,9 +3,17 @@
   <div class="card-body">
     <form [formGroup]="form" (submit)="accept()">
       <div class="row my-3">
-        <mat-form-field style="margin-right: 20rem; width: 100%" appearance="outline">
+        <mat-form-field
+          style="margin-right: 20rem; width: 100%"
+          appearance="outline"
+        >
           <mat-label>Nombre del Ejercicio</mat-label>
-          <input matInput formControlName="name" placeholder="Nombre del ejercicio"  required/>
+          <input
+            matInput
+            formControlName="name"
+            placeholder="Nombre del ejercicio"
+            required
+          />
           <mat-error *ngIf="form.controls['name'].invalid">
             El campo no puede estar vacío.
           </mat-error>
@@ -13,9 +21,16 @@
       </div>
 
       <div class="row my-3">
-        <mat-form-field style="margin-right: 20rem; width: 100%" appearance="outline">
+        <mat-form-field
+          style="margin-right: 20rem; width: 100%"
+          appearance="outline"
+        >
           <mat-label>No. Series</mat-label>
-          <mat-select formControlName="series" placeholder="No. Series" required>
+          <mat-select
+            formControlName="series"
+            placeholder="No. Series"
+            required
+          >
             <mat-option [value]="2">2</mat-option>
             <mat-option [value]="4">4</mat-option>
             <mat-option [value]="6">6</mat-option>
@@ -28,9 +43,16 @@
       </div>
 
       <div class="row my-3">
-        <mat-form-field style="margin-right: 20rem; width: 100%" appearance="outline">
+        <mat-form-field
+          style="margin-right: 20rem; width: 100%"
+          appearance="outline"
+        >
           <mat-label>Cant. Kg</mat-label>
-          <mat-select formControlName="kilograms" placeholder="Cant. Kg" required>
+          <mat-select
+            formControlName="kilograms"
+            placeholder="Cant. Kg"
+            required
+          >
             <mat-option [value]="2">2</mat-option>
             <mat-option [value]="4">4</mat-option>
             <mat-option [value]="6">6</mat-option>
@@ -43,9 +65,16 @@
       </div>
 
       <div class="row my-3">
-        <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
+        <mat-form-field
+          appearance="outline"
+          style="margin-right: 20rem; width: 100%"
+        >
           <mat-label>No. Repeticiones</mat-label>
-          <mat-select formControlName="repetitions" placeholder="No. Repeticiones" required>
+          <mat-select
+            formControlName="repetitions"
+            placeholder="No. Repeticiones"
+            required
+          >
             <mat-option [value]="2">2</mat-option>
             <mat-option [value]="4">4</mat-option>
             <mat-option [value]="6">6</mat-option>
@@ -59,51 +88,117 @@
 
       <div class="button-container">
         <button class="button accept" type="submit">Aceptar</button>
-        <button class="button cancel" routerLink="/dashboard/exercises">Cancelar</button>
+        <button
+          class="button cancel"
+          [routerLink]="
+            '/dashboard/clients/' +
+            idClient +
+            '/training-plans/' +
+            idTrainingPlan +
+            '/routines/' +
+            idRoutine +
+            '/exercises'
+          "
+        >
+          Cancelar
+        </button>
       </div>
     </form>
-  <div class="card separate">
-    <div id="carouselSlideGymPartner" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselSlideGymPartner" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselSlideGymPartner" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselSlideGymPartner" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <div class="card separate">
+      <div
+        id="carouselSlideGymPartner"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselSlideGymPartner"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselSlideGymPartner"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselSlideGymPartner"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="../../../../assets/carousel/slide1.png"
+              class="d-block w-100"
+              alt="img1"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="tshadow">Organiza tus gimnasios de manera sencilla</h5>
+              <p class="tshadow">
+                Con Gym Partner podrás administrar fácilmente tus gimnasios y
+                mantener un control de todas tus sucursales
+              </p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../../../../assets/carousel/slide2.png"
+              class="d-block w-100"
+              alt="img2"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="tshadow">
+                Gestionar entrenadores nunca fue tan fácil
+              </h5>
+              <p class="tshadow">
+                Monitorea el progreso de tus entrenadores y mantén una
+                comunicación efectiva con ellos
+              </p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../../../../assets/carousel/slide3.png"
+              class="d-block w-100"
+              alt="img3"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="tshadow">
+                Gestionar nutricionistas es más sencillo de lo que imaginas
+              </h5>
+              <p class="tshadow">
+                Podrás hacer seguimiento a sus avances y monitorear su progreso
+                en tiempo real
+              </p>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselSlideGymPartner"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselSlideGymPartner"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
       </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="../../../../assets/carousel/slide1.png" class="d-block w-100" alt="img1">
-          <div class="carousel-caption d-none d-md-block">
-            <h5 class="tshadow">Organiza tus gimnasios de manera sencilla</h5>
-            <p class="tshadow">Con Gym Partner podrás administrar fácilmente tus gimnasios y mantener un control de todas tus sucursales</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="../../../../assets/carousel/slide2.png" class="d-block w-100" alt="img2">
-          <div class="carousel-caption d-none d-md-block">
-            <h5 class="tshadow">Gestionar entrenadores nunca fue tan fácil</h5>
-            <p class="tshadow">Monitorea el progreso de tus entrenadores y mantén una comunicación efectiva con ellos</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="../../../../assets/carousel/slide3.png" class="d-block w-100" alt="img3">
-          <div class="carousel-caption d-none d-md-block">
-            <h5 class="tshadow">Gestionar nutricionistas es más sencillo de lo que imaginas</h5>
-            <p class="tshadow">Podrás hacer seguimiento a sus avances y monitorear su progreso en tiempo real</p>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselSlideGymPartner" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Anterior</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselSlideGymPartner" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Siguiente</span>
-      </button>
     </div>
-  </div>
-
-
-
   </div>
 </div>

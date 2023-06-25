@@ -90,10 +90,6 @@ const routes: Routes = [
                 component: TrainingPlansInsertarComponent,
               },
               {
-                path: 'list',
-                component: TrainingPlansListarComponent,
-              },
-              {
                 path: ':id/routines',
                 component: RoutineComponent,
                 children: [
@@ -106,11 +102,21 @@ const routes: Routes = [
                     component: RoutineInsertComponent,
                   },
                   {
-                    path: 'list',
-                    component: RoutineListComponent,
+                    path: ':id/exercises',
+                    component: ExerciseComponent,
+                    children: [
+                      {
+                        path: 'insert',
+                        component: ExerciseInsertComponent,
+                      },
+                      {
+                        path: 'update/:id',
+                        component: ExerciseInsertComponent,
+                      },
+                    ],
                   },
                 ],
-              }
+              },
             ],
           },
           {
@@ -165,21 +171,6 @@ const routes: Routes = [
           {
             path: 'edit/:id',
             component: FoodsInsertComponent,
-          },
-        ],
-      },
-      {
-        path: 'exercises',
-        component: ExerciseComponent,
-        canActivate: [TrainerGuard],
-        children: [
-          {
-            path: 'insert',
-            component: ExerciseInsertComponent,
-          },
-          {
-            path: 'update/:id',
-            component: ExerciseInsertComponent,
           },
         ],
       },
