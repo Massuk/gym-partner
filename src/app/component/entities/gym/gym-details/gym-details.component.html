@@ -1,0 +1,49 @@
+<div class="dialog-content">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{ gym.name }}</mat-card-title>
+        <mat-card-subtitle>Código: {{ gym.code }}</mat-card-subtitle>
+        <img
+          mat-card-sm-image
+          src="https://github.com/Massuk/gym-partner/blob/master/src/assets/gp_logo.png?raw=true"
+        />
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      <h6>Detalles</h6>
+      <p>Razón social: {{ gym.rs }}</p>
+      <p>RUC: {{ gym.ruc }}</p>
+    </mat-card-content>
+    <mat-card-actions class="buttons-container">
+      <div class="button-group">
+        <button class="accept button" (click)="navigateToTrainers()">
+          <mat-icon>sports_gymnastics</mat-icon>
+          <span>Entrenadores</span>
+        </button>
+
+        <button class="accept button" (click)="navigateToNutritionists()">
+          <mat-icon>monitor_heart</mat-icon>
+          <span>Nutricionistas</span>
+        </button>
+
+        <button class="accept button" (click)="navigateToClients()">
+          <mat-icon>groups</mat-icon>
+          <span>Clientes</span>
+        </button>
+
+        <button class="accept button" (click)="navigateToEdit()">
+          <mat-icon>edit</mat-icon>
+          <span>Editar información</span>
+        </button>
+
+      <!-- <button class="cancel button" (click)="closeDialog()">
+        <mat-icon>close</mat-icon> <span>Cerrar</span>
+      </button> -->
+    </div>
+    </mat-card-actions>
+    <mat-card-footer>
+      <mat-progress-bar mode="buffer"></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+</div>

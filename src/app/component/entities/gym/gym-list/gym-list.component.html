@@ -1,82 +1,169 @@
-<h1>Gimnasios</h1>
+<h1>Panel</h1>
 
-<div class="card">
-  <div class="card-body">
-    <div class="search-container">
-      <div class="normal-search">
-        <input
-          type="search"
-          class="search"
-          name=""
-          id=""
-          placeholder="Buscar..."
-          matInput
-          (keyup)="filterResults($event)"
-          (search)="clearFilter()"
-        />
-        <i class="far fa-search search-icon"></i>
+<div [ngClass]="getClass()">
+  <div class="col-left">
+    <div class="card welcome-card">
+      <div class="card-head welcome-head-container">
+        <div class="col-left">
+        </div>
+        <div class="col-right">
+          <div>
+            <div class="neon-container">
+              <div class="neon-text">Gracias por usar Gym Partner</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body welcome-body-container">
+        <div class="col-left">
+          <div class="avatar">
+            <img [src]="'../../../assets/avatar.jpg'" alt="" />
+          </div>
+          <div class="name">{{ username }} {{ lastname }}</div>
+          <p>{{ role }}</p>
+        </div>
+        <div class="col-right">
+          <div class="performance-container">
+            <div class="performance">
+              <div>Perfil completado</div>
+              <div>80%</div>
+            </div>
+            <div class="progress">
+              <div class="progress-bar"></div>
+            </div>
+          </div>
+          <div class="view-profile">
+            <button routerLink="/dashboard/gyms/list">
+              Ver Perfil
+              <i class="far fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 
-    <div class="button-container">
-      <button class="button accept" [routerLink]="['insert']">Agregar</button>
+  <div class="col mcard-col">
+    <div class="mcard">
+      <span class="bar green"></span>
+      <div class="details">
+        <div>Entrenadores</div>
+        <p>7</p>
+      </div>
+      <i class="far fa-user-ninja icon"></i>
+    </div>
+    <div class="mcard">
+      <span class="bar skyblue"></span>
+      <div class="details">
+        <div>Nutricionistas</div>
+        <p>4</p>
+      </div>
+      <i class="far fa-user-nurse icon"></i>
     </div>
   </div>
 </div>
 
-<div class="card">
+
+<div class="card-container">
+  <mat-card class="example-card mcard">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-subtitle>Membresías</mat-card-subtitle>
+        <mat-card-title>Gestiona más gimnasios</mat-card-title>
+        <img mat-card-sm-image src="https://i.ibb.co/hYWtzfM/premium.png" >
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Pronto traeremos más funciones y beneficios para tus gimnasios</p>
+      <p>ㅤ</p>
+      <mat-divider></mat-divider>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <div class="button-container">
+        <button mat-raised-button disabled>En desarrollo...</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="example-card mcard" [class.alert-card]="gyms.length === 0" >
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-subtitle>Mi Gimnasio</mat-card-subtitle>
+        <mat-card-title>{{ gyms.length === 0 ? "Aún no has registrado un gimnasio" : gyms[0].name }}</mat-card-title>
+        <img mat-card-sm-image src="https://i.ibb.co/YBQn41w/gym.png" >
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Gestiona a tu personal y clientes de tu gimnasio</p>
+      <p>ㅤ</p>
+      <mat-divider></mat-divider>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <div class="button-container">
+        <button class="button accept" [routerLink]="['insert']" *ngIf="gyms.length === 0">Agregar</button>
+        <button class="button accept" (click)="showManagePopup()" *ngIf="gyms.length !== 0">Gestionar</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="example-card mcard">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-subtitle>Soporte</mat-card-subtitle>
+        <mat-card-title>¿Algo no funciona bien?</mat-card-title>
+        <img mat-card-sm-image src="https://i.ibb.co/TPGFLzn/error.png" >
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Envíanos un reporte y contribuye a que Gym Partner sea mejor</p>
+      <p>ㅤ</p>
+      <mat-divider></mat-divider>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <div class="button-container">
+        <button class="button accept" [routerLink]="['insert']">Enviar</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+
+
+<!-- <div class="card">
   <table mat-table [dataSource]="dataSource" matSort>
-    <!-- ID Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
       <td mat-cell *matCellDef="let element">
         {{ element.idGym }}
       </td></ng-container
     >
-    <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Nombre</th>
       <td mat-cell *matCellDef="let element">
         {{ element.name }}
       </td></ng-container
     >
-    <!-- Code Column -->
     <ng-container matColumnDef="code">
       <th mat-header-cell *matHeaderCellDef>Código</th>
       <td mat-cell *matCellDef="let element">
         {{ element.code }}
       </td></ng-container
     >
-    <!-- RUC Column -->
     <ng-container matColumnDef="ruc">
       <th mat-header-cell *matHeaderCellDef>RUC</th>
       <td mat-cell *matCellDef="let element">
         {{ element.ruc }}
       </td></ng-container
     >
-    <!-- RS Column -->
     <ng-container matColumnDef="rs">
       <th mat-header-cell *matHeaderCellDef>Razón social</th>
       <td mat-cell *matCellDef="let element">
         {{ element.rs }}
       </td></ng-container
     >
-    <!-- Edit Column -->
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let element">
-        <mat-radio-button
-        #tooltip="matTooltip"
-        matTooltip="Establecer predeterminado"
-        matTooltipPosition="below"
-        matTooltipHideDelay="60"
-          color="primary"
-          class="radio-button"
-          [value]="element.idGym"
-          (change)="selectGym(element)"
-          [checked]="selectedRadioValue === element.idGym"
-        ></mat-radio-button>
-
         <button
           mat-icon-button
           [matMenuTriggerFor]="menu"
@@ -131,8 +218,45 @@
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
   </mat-paginator>
+</div> -->
 
-  <div *ngIf="selectedGym" style="text-align: center">
-    <h3>Gimnasio elegido: {{ selectedGym.name }}</h3>
+<div class="card">
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../../../../assets/carousel/slide1.png" class="d-block w-100" alt="img1">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class="tshadow">Organiza tus gimnasios de manera sencilla</h5>
+          <p class="tshadow">Con Gym Partner podrás administrar fácilmente tus gimnasios y mantener un control de todas tus sucursales</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../../../../assets/carousel/slide2.png" class="d-block w-100" alt="img2">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class="tshadow">Gestionar entrenadores nunca fue tan fácil</h5>
+          <p class="tshadow">Monitorea el progreso de tus entrenadores y mantén una comunicación efectiva con ellos</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../../../../assets/carousel/slide3.png" class="d-block w-100" alt="img3">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class="tshadow">Gestionar nutricionistas es más sencillo de lo que imaginas</h5>
+          <p class="tshadow">Podrás hacer seguimiento a sus avances y monitorear su progreso en tiempo real</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
   </div>
 </div>
