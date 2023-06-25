@@ -6,7 +6,6 @@ import { GymComponent } from './component/entities/gym/gym.component';
 import { GymListComponent } from './component/entities/gym/gym-list/gym-list.component';
 import { GymInsertComponent } from './component/entities/gym/gym-insert/gym-insert.component';
 import { GymUpdateComponent } from './component/entities/gym/gym-update/gym-update.component';
-import { GymDeleteComponent } from './component/entities/gym/gym-delete/gym-delete.component';
 import { LoginComponent } from './component/authentication/login/login.component';
 import { RegisterComponent } from './component/authentication/register/register.component';
 import { AuthenticationComponent } from './component/authentication/authentication.component';

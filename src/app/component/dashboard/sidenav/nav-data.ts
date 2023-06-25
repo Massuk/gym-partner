@@ -1,18 +1,13 @@
 export const navbarData = [
   {
-    routeLink: 'panel',
-    icon: 'fal fa-home',
+    routeLink: 'gyms',
+    icon: 'fal fa-sitemap',
     label: 'Panel',
   },
   {
     routeLink: 'clients',
     icon: 'fal fa-users',
     label: 'Clientes',
-  },
-  {
-    routeLink: 'gyms',
-    icon: 'fal fa-sitemap',
-    label: 'Gimnasios',
   },
   {
     routeLink: 'exercises',
@@ -33,5 +28,5 @@ export const navbarData = [
     routeLink: 'foods',
     icon: 'fal fa-salad',
     label: 'Alimentos',
-  }
+  },
 ];

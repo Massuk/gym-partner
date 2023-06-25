@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       (data: any) => {
         sessionStorage.setItem('token', data.jwttoken);
         sessionStorage.setItem('username', request.username);
-        this.router.navigate(['/dashboard/panel']);
+        this.router.navigate(['/dashboard/gyms']);
       },
       (error) => {
           this,this.showErrorLoginToast();
