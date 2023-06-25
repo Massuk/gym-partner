@@ -1,3 +1,5 @@
+import { Client } from "./client";
+
 export class NutritionalPlan {
   idNutritionalPlan: number = 0;
   title: string = '';
@@ -8,4 +10,5 @@ export class NutritionalPlan {
   recommendations: string = '';
   status: boolean = true;
   hide: boolean = false;
+  client: Client = new Client();
 }

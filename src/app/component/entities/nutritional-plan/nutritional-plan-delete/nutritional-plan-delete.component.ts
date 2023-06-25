@@ -9,9 +9,17 @@ import { NutritionalPlanService } from 'src/app/service/nutritional-plan.service
   styleUrls: ['./nutritional-plan-delete.component.scss'],
 })
 export class NutritionalPlanDeleteComponent {
+  nPlanId: number = 0;
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private npS: NutritionalPlanService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.nPlanId = +params['id']; // Convierte el parámetro a número
+    });
   }
 }

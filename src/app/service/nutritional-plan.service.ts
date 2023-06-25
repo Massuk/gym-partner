@@ -11,10 +11,12 @@ const base_url = environment.base;
 export class NutritionalPlanService {
   private url = `${base_url}/nutritionalPlans`;
   private changeList = new Subject<NutritionalPlan[]>();
-  constructor(private http: HttpClient) {}
-  list() {
+
+  constructor(private http: HttpClient) { }
+  
+  list(idUser: number) {
     let token = sessionStorage.getItem('token');
-    return this.http.get<NutritionalPlan[]>(this.url, {
+    return this.http.get<NutritionalPlan[]>(`${this.url}/${idUser}`, {
       headers: new HttpHeaders()
         .set('Authorization', `Bearer ${token}`)
         .set('Content-Type', 'application/json'),
@@ -36,7 +38,7 @@ export class NutritionalPlanService {
   }
   listId(idNutritionalPlan: number) {
     let token = sessionStorage.getItem('token');
-    return this.http.get<NutritionalPlan>(`${this.url}/${idNutritionalPlan}`, {
+    return this.http.get<NutritionalPlan>(`${this.url}/details/${idNutritionalPlan}`, {
       headers: new HttpHeaders()
         .set('Authorization', `Bearer ${token}`)
         .set('Content-Type', 'application/json'),
@@ -55,16 +57,6 @@ export class NutritionalPlanService {
     let token = sessionStorage.getItem('token');
     const url = `${this.url}/hide/${idNutritionalPlan}`;
     return this.http.put(url, null, {
-      headers: new HttpHeaders()
-        .set('Authorization', `Bearer ${token}`)
-        .set('Content-Type', 'application/json'),
-    });
-  }
-
-  delete(id: number): Observable<any> {
-    let token = sessionStorage.getItem('token');
-    const url = `${this.url}/${id}`;
-    return this.http.delete(url, {
       headers: new HttpHeaders()
         .set('Authorization', `Bearer ${token}`)
         .set('Content-Type', 'application/json'),
