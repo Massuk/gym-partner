@@ -24,14 +24,26 @@
         </div>
         <div class="col-right">
           <div class="performance-container">
-            <div class="performance">
-              <div></div>
-              <div>80%</div>
-            </div>
-            <div class="progress">
-              <div class="progress-bar"></div>
-            </div>
+            <ng-container *ngIf="role === 'ADMINISTRADOR'">
+              <div class="performance">
+                <div>Gimnasios registrados</div>
+                <div>{{ gyms.length > 0 ? '1' : 'Ninguno' }}</div>
+              </div>
+              <div class="progress">
+                <div class="progress-bar" [style.width.%]="progressValue"></div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="role !== 'ADMINISTRADOR'">
+              <div class="performance">
+                <div>Planes creados</div>
+                <div>NUMERO</div>
+              </div>
+              <div class="progress">
+                <div class="progress-bar" [style.width.%]="progressValue"></div>
+              </div>
+            </ng-container>
           </div>
+
           <div class="view-profile">
             <button routerLink="/dashboard/gyms/list">
               Ver Perfil

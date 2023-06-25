@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
     this.owner.cellphone = this.form.value['cellphone'];
     this.owner.status = true;
 
-    if (this.form.valid ) {
+    if (this.form.valid) {
       this.oS.insert(this.owner).subscribe((data) => {
         this.oS.list().subscribe((data) => {
           this.oS.setList(data);

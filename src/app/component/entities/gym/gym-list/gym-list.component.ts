@@ -20,6 +20,7 @@ export class GymListComponent implements OnInit {
   username: string;
   lastname: string;
   role: string;
+  progressValue: number = 0;
   gyms: Gym[] = [];
 
 
@@ -37,10 +38,12 @@ export class GymListComponent implements OnInit {
     this.innerWidth = window.innerWidth;
     this.gS.getList().subscribe((data) => {
       this.gyms = data;
+      this.calculateProgressValue();
     });
 
     this.gS.list().subscribe((data) => {
       this.gyms = data;
+      this.calculateProgressValue();
     });
   }
 
@@ -67,6 +70,11 @@ export class GymListComponent implements OnInit {
         console.error('Error:', error);
       }
     );
+  }
+
+  calculateProgressValue(): void {
+    const totalGyms = this.gyms.length;
+    this.progressValue = totalGyms > 0 ? 100 : 0;
   }
 
   showDeletePopup(id: number): void {

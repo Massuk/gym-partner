@@ -85,7 +85,7 @@
                 minlength="6"
                 #password
               />
-              <button mat-icon-button matSuffix class="visibility-button" (click)="hidePassword = !hidePassword"></button>
+              <button mat-icon-button matSuffix class="visibility-button" type="button" (click)="hidePassword = !hidePassword"></button>
               <mat-error *ngIf="form.controls['password'].invalid">
                 <ng-container *ngIf="form.controls['password'].errors?.['required']">
                   La contraseña es obligatoria
@@ -170,7 +170,7 @@
               [type]="hideCode ? 'password' : 'text'"
               #admincode
               />
-              <button mat-icon-button matSuffix class="visibility-button" (click)="hideCode = !hideCode"></button>
+              <button mat-icon-button matSuffix class="visibility-button" type="button" (click)="hideCode = !hideCode"></button>
               <mat-error *ngIf="form.controls['admincode'].invalid">
                 Ingrese el código proporcionado en la compra de GymPartner</mat-error>
                 <mat-icon matSuffix>{{hideCode ? 'visibility' : 'visibility_off'}}</mat-icon>
@@ -178,7 +178,7 @@
           </div>
 
           <div class="row d-flex justify-content-center buttons-container">
-            <button class="button auth my-5" type="submit" [disabled]="!isAdminCodeValid()" data-toggle="tooltip" [title]="!isAdminCodeValid() ? 'Se necesita el código de administrador' : ''">
+            <button class="button auth my-5" type="submit" [disabled]="!isAdminCodeValid()" [title]="!isAdminCodeValid() ? 'Se necesita el código de administrador' : ''">
               Registrarme
             </button>
           </div>
