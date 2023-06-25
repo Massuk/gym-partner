@@ -1,19 +1,6 @@
-import {
-  animate,
-  keyframes,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
-import {
-  Component,
-  Output,
-  EventEmitter,
-  OnInit,
-  HostListener,
-} from '@angular/core';
+import { animate, keyframes, style, transition, trigger } from '@angular/animations';
+import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
 import { UserDataService } from 'src/app/service/user-data.service';
-
 import { navbarData } from './nav-data';
 
 interface SideNavToggle {
@@ -92,22 +79,26 @@ export class SidenavComponent implements OnInit {
   }
 
   showComponent(data: any): boolean {
-    console.log(this.role)
     if (!this.role) {
       return false; // Si no se ha obtenido el rol del usuario, no mostrar el elemento
     }
 
-    if (this.role === 'ADMINISTRADOR' && data.routeLink === 'gyms') {
-      return true; // Mostrar elementos para el rol de administrador
-    } else if (this.role === 'ENTRENADOR' && data.routeLink === 'clients') {
-      return true; // Mostrar elementos para el rol de entrenador
-    } else if (this.role === 'NUTRICIONISTA' && data.routeLink === 'clients') {
-      return true; // Mostrar elementos para el rol de nutricionista
+    if (this.role === 'ADMINISTRADOR') {
+      if (data.routeLink === 'gyms') {
+        return true; // Mostrar elementos para el rol de administrador con los routeLink permitidos
+      }
+    } else if (this.role === 'ENTRENADOR') {
+      if (data.routeLink === 'gyms' || data.routeLink === 'clients') {
+        return true; // Mostrar elementos para el rol de entrenador con el routeLink permitido
+      }
+    } else if (this.role === 'NUTRICIONISTA') {
+      if (data.routeLink === 'gyms' || data.routeLink === 'clients') {
+        return true; // Mostrar elementos para el rol de nutricionista con el routeLink permitido
+      }
     }
 
     return false;
   }
-
 
   toggleCollapse(): void {
     this.collapsed = !this.collapsed;

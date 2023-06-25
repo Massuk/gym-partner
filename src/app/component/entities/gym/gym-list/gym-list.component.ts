@@ -17,7 +17,6 @@ import { GymDetailsComponent } from '../gym-details/gym-details.component';
 })
 export class GymListComponent implements OnInit {
   innerWidth: any;
-  currentTime: Date;
   username: string;
   lastname: string;
   role: string;
@@ -30,30 +29,18 @@ export class GymListComponent implements OnInit {
     private dialog: MatDialog,
     private snackBar: MatSnackBar
   ) {
-    setInterval(() => {
-      this.currentTime = new Date();
-    }, 1000);
+
   }
-
-  lista: Gym[] = [];
-  displayedColumns: string[] = ['id', 'name', 'code', 'ruc', 'rs', 'actions'];
-
-  dataSource: MatTableDataSource<Gym> = new MatTableDataSource();
 
   ngOnInit(): void {
     this.getUserData();
     this.innerWidth = window.innerWidth;
     this.gS.getList().subscribe((data) => {
       this.gyms = data;
-      this.dataSource.data = data;
-      this.dataSource.sort = this.sort;
     });
 
     this.gS.list().subscribe((data) => {
       this.gyms = data;
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
     });
   }
 
@@ -100,8 +87,6 @@ export class GymListComponent implements OnInit {
       if (result) {
         this.gS.hide(id).subscribe(() => {
           this.gS.list().subscribe((data) => {
-            this.dataSource = new MatTableDataSource(data);
-            this.dataSource.paginator = this.paginator;
           });
         });
         snack.dismiss();
@@ -121,17 +106,10 @@ export class GymListComponent implements OnInit {
         height: 'auto',
         width: '630px',
         data: {
-          gym: gym // Pasamos el objeto Gym al componente GymDetailsComponent
+          gym: gym
         }
       });
     }
   }
 
-  filterResults(gym: any) {
-    this.dataSource.filter = gym.target.value.trim();
-  }
-
-  clearFilter() {
-    this.dataSource.filter = '';
-  }
 }

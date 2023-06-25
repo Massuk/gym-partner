@@ -35,7 +35,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkMenuModule } from '@angular/cdk/menu';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { DialogPopupComponent } from './component/dashboard/dialog-popup/dialog-popup.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { AuthenticationComponent } from './component/authentication/authentication.component';

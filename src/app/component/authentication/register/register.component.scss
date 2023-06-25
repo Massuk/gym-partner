@@ -15,6 +15,12 @@ mat-card-title {
   margin-top: 4rem;
 }
 
+.register-bg {
+  background-image: url('../../../../assets/login-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
 .logo {
   position: absolute;
   top: -130%;
@@ -32,8 +38,18 @@ mat-card-content {
   overflow: hidden;
 }
 
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .buttons-container {
   margin-top: -2rem;
+}
+
+.visibility-button {
+  position: absolute;
+  right: 1.19px;
+  top: calc(50% - 22px);
 }
 
 .button {
@@ -54,6 +70,15 @@ mat-card-content {
     &:hover {
       background-color: #e6e600;
       color: #212121;
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+
+      &:disabled:hover {
+        color: #fff;
+      }
     }
   }
 }

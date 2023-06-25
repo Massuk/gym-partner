@@ -13,10 +13,11 @@ export class HeaderComponent implements OnInit {
   @Input() screenWidth = 0;
 
   canShowSearchAsOverlay = false;
-
+  currentTime: Date;
   userItems = userItems;
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private loginService: LoginService, private router: Router) {
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -25,6 +26,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkCanShowSearchAsOverlay(window.innerWidth);
+    setInterval(() => {
+      this.currentTime = new Date();
+    }, 1000);
   }
 
   getHeadClass(): string {
@@ -57,5 +61,4 @@ export class HeaderComponent implements OnInit {
       }
     );
   }
-
 }
