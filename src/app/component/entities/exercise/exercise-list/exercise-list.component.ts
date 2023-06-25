@@ -6,42 +6,52 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/dialog-popup.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
+import { ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-exercise-list',
   templateUrl: './exercise-list.component.html',
   styleUrls: ['./exercise-list.component.scss'],
 })
 export class ExerciseListComponent implements OnInit {
-  lista: Exercise[] = [];
+  idRoutine: number;
+  dataSource: MatTableDataSource<Exercise> = new MatTableDataSource();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = [
-    'id',
     'name',
     'series',
     'kilograms',
     'repetitions',
     'actions',
   ];
-  dataSource: MatTableDataSource<Exercise> = new MatTableDataSource();
 
-  ngOnInit(): void {
-    this.eS.getList().subscribe((data) => {
-      this.dataSource.data = data;
-    });
-
-    this.eS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-    });
-  }
   constructor(
     private eS: ExerciseService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private route: ActivatedRoute
   ) {}
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  ngOnInit(): void {
+    this.route.params.subscribe((data: Params) => {
+      this.idRoutine = data['id'];
+    });
+    this.eS.getList().subscribe((data) => {
+      this.dataSource.data = data;
+      this.dataSource.paginator = this.paginator;
+    });
+    this.eS.list(this.idRoutine).subscribe((data) => {
+      this.dataSource.data = data;
+      this.dataSource.paginator = this.paginator;
+    });
+  }
 
-  showDeletePopup(id: number): void {
+  filter(event: any) {
+    this.dataSource.filter = event.target.value.trim();
+  }
+  clearFilter() {
+    this.dataSource.filter = '';
+  }
+  showDeletePopup(idExercise: number): void {
     const dialogRef = this.dialog.open(DialogPopupComponent, {
       width: '450px',
       data: {
@@ -54,31 +64,23 @@ export class ExerciseListComponent implements OnInit {
       },
     });
 
-    const snack = this.snackBar;
+    const snack = this.snackbar;
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.eS.delete(id).subscribe(() => {
-          this.eS.list().subscribe((data) => {
+        this.eS.delete(idExercise).subscribe(() => {
+          this.eS.list(this.idRoutine).subscribe((data) => {
             this.dataSource = new MatTableDataSource(data);
             this.dataSource.paginator = this.paginator;
           });
         });
         snack.dismiss();
-        this.snackBar.open('Se ha eliminado correctamente', 'Aceptar', {
+        this.snackbar.open('Se ha eliminado correctamente', 'Aceptar', {
           duration: 3000,
         });
       } else {
         snack.dismiss();
       }
     });
-  }
-
-  filter(exercise: any) {
-    this.dataSource.filter = exercise.target.value.trim();
-  }
-
-  clearFilter() {
-    this.dataSource.filter = '';
   }
 }

@@ -56,7 +56,7 @@
         <button
           mat-icon-button
           color="primary"
-          routerLink="/dashboard/exercises"
+          [routerLink]="[element.idRoutine, 'exercises']"
         >
           <mat-icon>visibility</mat-icon>
         </button>

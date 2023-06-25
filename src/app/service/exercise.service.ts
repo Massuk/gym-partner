@@ -14,15 +14,14 @@ export class ExerciseService {
   private changeList = new Subject<Exercise[]>();
 
   constructor(private http: HttpClient) {}
-  list() {
+  list(idRoutine: number) {
     let token = sessionStorage.getItem('token');
-    return this.http.get<Exercise[]>(this.url, {
+    return this.http.get<Exercise[]>(`${this.url}/${idRoutine}`, {
       headers: new HttpHeaders()
         .set('Authorization', `Bearer ${token}`)
         .set('Content-Type', 'application/json'),
     });
   }
-
   insert(exercise: Exercise) {
     let token = sessionStorage.getItem('token');
     return this.http.post(this.url, exercise, {
@@ -31,24 +30,20 @@ export class ExerciseService {
         .set('Content-Type', 'application/json'),
     });
   }
-
   getList() {
     return this.changeList.asObservable();
   }
-
   setList(listaNueva: Exercise[]) {
     this.changeList.next(listaNueva);
   }
-
   listId(idExercise: number) {
     let token = sessionStorage.getItem('token');
-    return this.http.get<Exercise>(`${this.url}/${idExercise}`, {
+    return this.http.get<Exercise>(`${this.url}/details/${idExercise}`, {
       headers: new HttpHeaders()
         .set('Authorization', `Bearer ${token}`)
         .set('Content-Type', 'application/json'),
     });
   }
-
   update(exercise: Exercise) {
     let token = sessionStorage.getItem('token');
     return this.http.put(`${this.url}/update`, exercise, {
@@ -57,21 +52,9 @@ export class ExerciseService {
         .set('Content-Type', 'application/json'),
     });
   }
-
-  hide(idExercise: number): Observable<any> {
-    let token = sessionStorage.getItem('token');
-    const url = `${this.url}/hide/${idExercise}`;
-    return this.http.put(url, null, {
-      headers: new HttpHeaders()
-        .set('Authorization', `Bearer ${token}`)
-        .set('Content-Type', 'application/json'),
-    });
-  }
-
-  // Funcion para eliminar un registro
   delete(id: number): Observable<any> {
     let token = sessionStorage.getItem('token');
-    const url = `${this.url}/${id}`;
+    const url = `${this.url}/delete/${id}`;
     return this.http.delete(url, {
       headers: new HttpHeaders()
         .set('Authorization', `Bearer ${token}`)
