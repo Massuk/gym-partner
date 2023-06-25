@@ -9,6 +9,8 @@ import { Gym } from 'src/app/model/gym';
   styleUrls: ['./gym-details.component.scss']
 })
 export class GymDetailsComponent implements OnInit{
+
+
   @Input() gym: Gym; // Recibe el objeto Gym como entrada desde el componente padre
   constructor(
     public dialogRef: MatDialogRef<GymDetailsComponent>,
@@ -40,6 +42,6 @@ export class GymDetailsComponent implements OnInit{
 
   navigateToEdit(): void {
     this.dialogRef.close();
-    this.router.navigate(['/dashboard/gyms/edit']);
+    this.router.navigate(['/dashboard/gyms/update', this.gym.idGym]);
   }
 }

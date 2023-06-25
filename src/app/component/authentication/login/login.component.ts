@@ -49,7 +49,8 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/dashboard/gyms']);
       },
       (error) => {
-          this,this.showErrorLoginToast();
+        console.log(error); // Imprimir el error en la consola
+          this.showErrorLoginToast();
       }
     );
   }

@@ -1,0 +1,171 @@
+<div class="dialog-content">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>Editar datos personales</mat-card-title>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form" (submit)="updateOwner()">
+        <div class="row my-2">
+          <div class="col">
+            <mat-form-field appearance="outline">
+              <mat-label class="box-text">Nombre</mat-label>
+              <input
+                matInput
+                formControlName="name"
+                required
+                type="text"
+                #name
+              />
+              <mat-error *ngIf="form.controls['name'].invalid"
+                >El nombre es obligatorio</mat-error
+              >
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field appearance="outline">
+              <mat-label class="box-text">Apellidos</mat-label>
+              <input
+                matInput
+                formControlName="lastname"
+                required
+                type="text"
+                #lastname
+              />
+              <mat-error *ngIf="form.controls['lastname'].invalid"
+                >El apellido es obligatorio</mat-error
+              >
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row my-2">
+          <mat-form-field appearance="outline">
+            <mat-label class="box-text">Correo electrónico</mat-label>
+            <input
+              matInput
+              required
+              formControlName="email"
+              type="email"
+              #email
+            />
+            <mat-error *ngIf="form.controls['email'].invalid">
+              <ng-container *ngIf="form.controls['email'].errors?.['required']">
+                El correo es obligatorio
+              </ng-container>
+              <ng-container *ngIf="form.controls['email'].errors?.['email']">
+                El correo no tiene un formato válido
+              </ng-container>
+            </mat-error>
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+        </div>
+
+
+        <div class="row my-2">
+          <mat-form-field appearance="outline">
+            <mat-label class="box-text">Contraseña</mat-label>
+            <input
+              matInput
+              required
+              formControlName="password"
+              [type]="hidePassword ? 'password' : 'text'"
+              minlength="6"
+              #password
+            />
+            <button mat-icon-button matSuffix class="visibility-button" type="button" (click)="hidePassword = !hidePassword"></button>
+            <mat-error *ngIf="form.controls['password'].invalid">
+              <ng-container *ngIf="form.controls['password'].errors?.['required']">
+                La contraseña es obligatoria
+              </ng-container>
+              <ng-container *ngIf="form.controls['password'].errors?.['minlength']">
+                La contraseña debe contener 6 dígitos como mínimo
+              </ng-container>
+            </mat-error>
+            <mat-icon matSuffix>{{hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="row my-2">
+          <div class="col">
+            <mat-form-field appearance="outline">
+              <mat-label class="box-text">Fecha de nacimiento</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                placeholder="Elige una fecha"
+                formControlName="birthdate"
+                readonly
+                required
+              />
+              <mat-error *ngIf="form.controls['birthdate'].invalid"
+                >La fecha de nacimiento es obligatoria
+              </mat-error>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field appearance="outline">
+              <mat-label class="box-text">Género</mat-label>
+              <mat-select
+                placeholder="Género"
+                formControlName="gender"
+                type="text"
+                required
+                #gender
+              >
+                <mat-option value="Masculino">Masculino</mat-option>
+                <mat-option value="Femenino">Femenino</mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.controls['gender'].invalid"
+                >El género es obligatorio</mat-error
+              >
+              <mat-icon matSuffix>group</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row my-2">
+          <mat-form-field appearance="outline">
+            <mat-label class="box-text">Teléfono</mat-label>
+            <input
+            matInput
+            required
+            oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '')"
+            formControlName="cellphone"
+            maxlength="9"
+            type="text"
+            #cellphone
+            />
+            <mat-error *ngIf="form.controls['cellphone'].invalid">
+              El teléfono es obligatorio</mat-error>
+              <mat-hint align="end">{{ cellphone.value.length }}/9</mat-hint>
+            <mat-icon matSuffix>smartphone</mat-icon>
+          </mat-form-field>
+        </div>
+        <mat-card-actions class="buttons-container">
+          <div class="button-group">
+            <button class="accept button" type="submit">
+              <mat-icon>save</mat-icon>
+              <span>Guardar cambios</span>
+            </button>
+          <button class="cancel button" (click)="closeDialog()">
+            <mat-icon>close</mat-icon> <span>Cerrar</span>
+          </button>
+        </div>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+
+    <mat-card-footer>
+      <mat-progress-bar mode="buffer"></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+</div>

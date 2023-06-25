@@ -30,7 +30,7 @@ export class GymUpdateComponent implements OnInit {
     });
 
     this.route.params.subscribe(params => {
-      this.idGym = +params['id']; // Obtener el ID del gimnasio de los parámetros de la URL
+      this.idGym = +params['id'];
       this.loadGymData();
     });
   }

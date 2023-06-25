@@ -37,12 +37,18 @@ import { NutritionistListComponent } from './component/entities/nutritionist/nut
 import { NutritionistInsertComponent } from './component/entities/nutritionist/nutritionist-insert/nutritionist-insert.component';
 import { NutritionistDetailsComponent } from './component/entities/nutritionist/nutritionist-details/nutritionist-details.component';
 import { TrainerDetailsComponent } from './component/entities/trainer/trainer-details/trainer-details.component';
+import { AdminGuard } from './guards/admin-guard';
+import { PublicGuard } from './guards/public-guard';
+import { NutritionistGuard } from './guards/nutritionist-guard';
+import { TrainerGuard } from './guards/trainer-guard';
+import { AllRoleGuard } from './guards/allrole-guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing-page/index', pathMatch: 'full' },
   {
     path: 'auth',
     component: AuthenticationComponent,
+    canActivate: [PublicGuard],
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
@@ -61,6 +67,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [AllRoleGuard],
     children: [
       { path: 'panel', component: PanelComponent },
       {
@@ -70,6 +77,7 @@ const routes: Routes = [
           {
             path: ':id/training-plans',
             component: TrainingPlansComponent,
+            canActivate: [TrainerGuard],
             children: [
               {
                 path: 'insert',
@@ -106,6 +114,7 @@ const routes: Routes = [
           {
             path: 'nutritional-plans',
             component: NutritionalPlanComponent,
+            canActivate: [NutritionistGuard],
             children: [
               {
                 path: 'insert',
@@ -123,24 +132,29 @@ const routes: Routes = [
       {
         path: 'gyms',
         component: GymComponent,
+        canActivate: [AllRoleGuard],
         children: [
           {
             path: 'list',
             component: GymListComponent,
+            canActivate: [AllRoleGuard]
           },
           {
             path: 'insert',
             component: GymInsertComponent,
+            canActivate: [AdminGuard]
           },
           {
             path: 'update/:id',
             component: GymUpdateComponent,
+            canActivate: [AdminGuard]
           },
         ],
       },
       {
         path: 'foods',
         component: FoodsComponent,
+        canActivate: [NutritionistGuard],
         children: [
           {
             path: 'insert',
@@ -155,6 +169,7 @@ const routes: Routes = [
       {
         path: 'exercises',
         component: ExerciseComponent,
+        canActivate: [TrainerGuard],
         children: [
           {
             path: 'insert',
@@ -169,6 +184,7 @@ const routes: Routes = [
       {
         path: 'trainers',
         component: TrainerComponent,
+        canActivate: [AdminGuard],
         children: [
           {
             path: 'list/:id',
@@ -187,6 +203,7 @@ const routes: Routes = [
       {
         path: 'nutritionists',
         component: NutritionistComponent,
+        canActivate: [AdminGuard],
         children: [
           {
             path: 'list/:id',

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Owner } from '../model/owner';
-import { Subject } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 
 const urlData = environment.base;
 
@@ -29,5 +29,18 @@ export class OwnerService {
 
   list() {
     return this.http.get<Owner[]>(this.url);
+  }
+
+  get(idOwner: number): Observable<Owner> {
+    return this.http.get<Owner>(`${this.url}/${idOwner}`);
+  }
+  update(owner: Owner) {
+    return this.http
+      .put(`${this.url}/update`, owner)
+      .pipe(
+        tap(() => {
+          this.list().subscribe((data) => this.setList(data));
+        })
+      );
   }
 }

@@ -1,3 +1,8 @@
+import { NutritionistGuard } from './guards/nutritionist-guard';
+import { PublicGuard } from './guards/public-guard';
+import { TrainerGuard } from './guards/trainer-guard';
+import { AdminGuard } from './guards/admin-guard';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -84,6 +89,8 @@ import { RoutineInsertComponent } from './component/entities/routine/routine-ins
 import { RoutineDeleteComponent } from './component/entities/routine/routine-delete/routine-delete.component';
 import { ToastrModule } from 'ngx-toastr';
 import { GymDetailsComponent } from './component/entities/gym/gym-details/gym-details.component';
+import { EditProfileComponent } from './component/entities/gym/edit-profile/edit-profile.component';
+import { AllRoleGuard } from './guards/allrole-guard';
 
 @NgModule({
   declarations: [
@@ -153,7 +160,8 @@ import { GymDetailsComponent } from './component/entities/gym/gym-details/gym-de
     RoutineListComponent,
     RoutineInsertComponent,
     RoutineDeleteComponent,
-    GymDetailsComponent
+    GymDetailsComponent,
+    EditProfileComponent
   ],
   imports: [
     ToastrModule.forRoot({
@@ -191,7 +199,14 @@ import { GymDetailsComponent } from './component/entities/gym/gym-details/gym-de
     MatProgressBarModule,
     MatDividerModule
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-ES' }],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
+    PublicGuard,
+    TrainerGuard,
+    AdminGuard,
+    NutritionistGuard,
+    AllRoleGuard
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
