@@ -15,6 +15,12 @@ a:hover {
   text-decoration: underline;
 }
 
+.login-bg {
+  background-image: url('../../../../assets/login-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
 mat-card-title {
   position: relative;
   text-align: center;
@@ -24,6 +30,10 @@ mat-card-title {
   align-items: center;
   height: 3rem;
   margin-top: 4rem;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .logo {

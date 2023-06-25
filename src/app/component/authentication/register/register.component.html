@@ -1,4 +1,4 @@
-<div class="vh-100 d-flex align-items-center">
+<div class="vh-100 d-flex align-items-center register-bg">
   <div class="container">
     <mat-card class="card">
       <mat-card-title>
@@ -61,12 +61,18 @@
                 type="email"
                 #email
               />
-              <mat-error *ngIf="form.controls['email'].invalid"
-                >El correo es obligatorio</mat-error
-              >
+              <mat-error *ngIf="form.controls['email'].invalid">
+                <ng-container *ngIf="form.controls['email'].errors?.['required']">
+                  El correo es obligatorio
+                </ng-container>
+                <ng-container *ngIf="form.controls['email'].errors?.['email']">
+                  El correo no tiene un formato válido
+                </ng-container>
+              </mat-error>
               <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
           </div>
+
 
           <div class="row my-2">
             <mat-form-field appearance="outline">
@@ -75,14 +81,20 @@
                 matInput
                 required
                 formControlName="password"
+                [type]="hidePassword ? 'password' : 'text'"
                 minlength="6"
-                type="password"
                 #password
               />
+              <button mat-icon-button matSuffix class="visibility-button" (click)="hidePassword = !hidePassword"></button>
               <mat-error *ngIf="form.controls['password'].invalid">
-                La contraseña es obligatoria
+                <ng-container *ngIf="form.controls['password'].errors?.['required']">
+                  La contraseña es obligatoria
+                </ng-container>
+                <ng-container *ngIf="form.controls['password'].errors?.['minlength']">
+                  La contraseña debe contener 6 dígitos como mínimo
+                </ng-container>
               </mat-error>
-              <mat-icon matSuffix>lock</mat-icon>
+              <mat-icon matSuffix>{{hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
             </mat-form-field>
           </div>
 
@@ -135,18 +147,38 @@
               <input
               matInput
               required
+              oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '')"
               formControlName="cellphone"
+              maxlength="9"
               type="text"
               #cellphone
               />
               <mat-error *ngIf="form.controls['cellphone'].invalid">
                 El teléfono es obligatorio</mat-error>
+                <mat-hint align="end">{{ cellphone.value.length }}/9</mat-hint>
               <mat-icon matSuffix>smartphone</mat-icon>
             </mat-form-field>
           </div>
 
+          <div class="row my-2">
+            <mat-form-field appearance="outline">
+              <mat-label class="box-text">Código de administrador</mat-label>
+              <input
+              matInput
+              required
+              formControlName="admincode"
+              [type]="hideCode ? 'password' : 'text'"
+              #admincode
+              />
+              <button mat-icon-button matSuffix class="visibility-button" (click)="hideCode = !hideCode"></button>
+              <mat-error *ngIf="form.controls['admincode'].invalid">
+                Ingrese el código proporcionado en la compra de GymPartner</mat-error>
+                <mat-icon matSuffix>{{hideCode ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </mat-form-field>
+          </div>
+
           <div class="row d-flex justify-content-center buttons-container">
-            <button class="button auth my-5" type="submit">
+            <button class="button auth my-5" type="submit" [disabled]="!isAdminCodeValid()" data-toggle="tooltip" [title]="!isAdminCodeValid() ? 'Se necesita el código de administrador' : ''">
               Registrarme
             </button>
           </div>

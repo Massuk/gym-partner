@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Owner } from 'src/app/model/owner';
 import { ToastrService } from 'ngx-toastr';
 import { OwnerService } from 'src/app/service/owner.service';
-//import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +15,9 @@ export class RegisterComponent implements OnInit {
   owner: Owner = new Owner();
   plainPassword = this.form.value['password'];
   saltRounds = 10;
+  admincode: string = '';
+  hideCode = true;
+  hidePassword = true;
 
   constructor(
     private oS: OwnerService,
@@ -28,12 +30,18 @@ export class RegisterComponent implements OnInit {
       id: new FormControl(''),
       name: new FormControl('', Validators.required),
       lastname: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       birthdate: new FormControl('', Validators.required),
       gender: new FormControl('', Validators.required),
-      cellphone: new FormControl('', Validators.required),
+      cellphone: new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(9), Validators.pattern(/^[0-9]*$/)]),
+      admincode: new FormControl('', Validators.required),
     });
+  }
+
+  isAdminCodeValid(): boolean {
+    const admincode = this.form.get('admincode')?.value;
+    return admincode === 'MASSUKWASHERE';
   }
 
   insert(): void {
@@ -47,7 +55,7 @@ export class RegisterComponent implements OnInit {
     this.owner.cellphone = this.form.value['cellphone'];
     this.owner.status = true;
 
-    if (this.form.valid) {
+    if (this.form.valid ) {
       this.oS.insert(this.owner).subscribe((data) => {
         this.oS.list().subscribe((data) => {
           this.oS.setList(data);
