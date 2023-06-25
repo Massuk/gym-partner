@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-head">Registrar Rutina</div>
+  <div class="card-head">{{ title }}</div>
   <div class="card-body">
     <form [formGroup]="form" (submit)="aceptar()">
       <div class="row">
@@ -57,12 +57,19 @@
         </mat-form-field>
       </div>
 
-
-
       <div class="button-container">
         <div class="form-group">
           <button class="button accept" type="submit">Agregar</button>
-          <button class="button cancel" routerLink="/dashboard/routines">
+          <button
+            class="button cancel"
+            [routerLink]="
+              '/dashboard/clients/' +
+              idClient +
+              '/training-plans/' +
+              idTrainingPlan +
+              '/routines'
+            "
+          >
             Cancelar
           </button>
         </div>

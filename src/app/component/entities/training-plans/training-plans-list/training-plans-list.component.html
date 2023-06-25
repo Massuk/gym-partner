@@ -99,7 +99,7 @@
           matTooltip="Agregar rutina"
           matTooltipPosition="below"
           matTooltipHideDelay="60"
-          routerLink="/dashboard/routines"
+          [routerLink]="[element.idTrainingPlan, 'routines']"
         >
           <mat-icon>visibility</mat-icon>
         </button>

@@ -11,7 +11,7 @@
           id=""
           placeholder="Buscar..."
           matInput
-          (keyup)="filtrar($event)"
+          (keyup)="filter($event)"
           (search)="clearFilter()"
         />
         <i class="far fa-search search-icon"></i>
@@ -19,9 +19,7 @@
     </div>
 
     <div class="button-container">
-      <button class="button accept" routerLink="/dashboard/routines/insert">
-        Agregar
-      </button>
+      <button class="button accept" [routerLink]="['insert']">Agregar</button>
     </div>
   </div>
 </div>
@@ -60,7 +58,7 @@
           color="primary"
           routerLink="/dashboard/exercises"
         >
-          <mat-icon>sports_gymnastics</mat-icon>
+          <mat-icon>visibility</mat-icon>
         </button>
         <button mat-icon-button [routerLink]="['update', element.idRoutine]">
           <mat-icon>edit</mat-icon>
@@ -75,11 +73,7 @@
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr
-      mat-row
-      *matRowDef="let row; columns: displayedColumns"
-      [hidden]="row.hide || row.hide === undefined"
-    ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>

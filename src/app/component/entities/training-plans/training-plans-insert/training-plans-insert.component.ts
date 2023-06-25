@@ -73,9 +73,7 @@ export class TrainingPlansInsertarComponent implements OnInit {
         });
       } else {
         this.c.listId(this.idClient).subscribe((data) => {
-          let client = new Client();
           this.trainingPlan.client = data;
-          console.log(this.trainingPlan);
           this.tPS.insert(this.trainingPlan).subscribe(() => {
             this.tPS.list(this.idClient).subscribe((data) => {
               this.tPS.setList(data);
@@ -88,7 +86,6 @@ export class TrainingPlansInsertarComponent implements OnInit {
       ]);
     }
   }
-
   init() {
     if (this.edit) {
       this.title = 'Editar plan de entrenamiento';

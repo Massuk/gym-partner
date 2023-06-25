@@ -7,72 +7,71 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
 import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/dialog-popup.component';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-routine-list',
   templateUrl: './routine-list.component.html',
-  styleUrls: ['./routine-list.component.scss']
+  styleUrls: ['./routine-list.component.scss'],
 })
-export class RoutineListComponent implements OnInit{
-  lista: Routine[] = [];
-  displayedColumns: string[] = [
-    'id',
-    'title',
-    'day',
-    'description',
-    'actions'
-  ];
-
-
+export class RoutineListComponent implements OnInit {
+  idTrainingPlan: number;
   dataSource: MatTableDataSource<Routine> = new MatTableDataSource();
-
-  ngOnInit(): void {
-
-    this.rS.getList().subscribe((data) => {
-      this.dataSource.data = data;
-    });
-
-    this.rS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-    });
-  }
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  displayedColumns: string[] = ['title', 'description', 'day', 'actions'];
 
   constructor(
     private rS: RoutineService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private route: ActivatedRoute
   ) {}
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  ngOnInit(): void {
+    this.route.params.subscribe((data: Params) => {
+      this.idTrainingPlan = data['id'];
+    });
+    this.rS.getList().subscribe((data) => {
+      this.dataSource.data = data;
+      this.dataSource.paginator = this.paginator;
+    });
+    this.rS.list(this.idTrainingPlan).subscribe((data) => {
+      this.dataSource.data = data;
+      this.dataSource.paginator = this.paginator;
+    });
+  }
 
-
+  filter(event: any) {
+    this.dataSource.filter = event.target.value.trim();
+  }
+  clearFilter() {
+    this.dataSource.filter = '';
+  }
   showDeletePopup(idRoutine: number): void {
     const dialogRef = this.dialog.open(DialogPopupComponent, {
       width: '450px',
       data: {
         title: '¿Deseas eliminar el registro?',
-        description:
-          'Esta acción es irreversible',
+        description: 'Esta acción es irreversible',
         confirmButtonText: 'Si',
         cancelButtonText: 'No',
         showConfirmButton: true,
-        showCancelButton: true
+        showCancelButton: true,
       },
     });
 
-    const snack = this.snackBar;
+    const snack = this.snackbar;
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.rS.hide(idRoutine).subscribe(() => {
-          this.rS.list().subscribe((data) => {
+          this.rS.list(this.idTrainingPlan).subscribe((data) => {
             this.dataSource = new MatTableDataSource(data);
             this.dataSource.paginator = this.paginator;
           });
         });
         snack.dismiss();
-        this.snackBar.open('Se ha eliminado correctamente', 'Aceptar', {
+        this.snackbar.open('Se ha eliminado correctamente', 'Aceptar', {
           duration: 3000,
         });
       } else {
@@ -80,16 +79,4 @@ export class RoutineListComponent implements OnInit{
       }
     });
   }
-
-
-
-  filtrar(e: any) {
-    this.dataSource.filter = e.target.value.trim();
-  }
-
-  clearFilter() {
-    this.dataSource.filter = '';
-  }
-
-
 }

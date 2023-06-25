@@ -84,6 +84,24 @@ const routes: Routes = [
                 path: 'list',
                 component: TrainingPlansListarComponent,
               },
+              {
+                path: ':id/routines',
+                component: RoutineComponent,
+                children: [
+                  {
+                    path: 'insert',
+                    component: RoutineInsertComponent,
+                  },
+                  {
+                    path: 'update/:id',
+                    component: RoutineInsertComponent,
+                  },
+                  {
+                    path: 'list',
+                    component: RoutineListComponent,
+                  },
+                ],
+              }
             ],
           },
           {
@@ -146,24 +164,6 @@ const routes: Routes = [
           {
             path: 'update/:id',
             component: ExerciseInsertComponent,
-          },
-        ],
-      },
-      {
-        path: 'routines',
-        component: RoutineComponent,
-        children: [
-          {
-            path: 'insert',
-            component: RoutineInsertComponent,
-          },
-          {
-            path: 'update/:id',
-            component: RoutineInsertComponent,
-          },
-          {
-            path: 'list',
-            component: RoutineListComponent,
           },
         ],
       },
