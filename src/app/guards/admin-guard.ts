@@ -3,6 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 import { UserDataService } from '../service/user-data.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ErrorPageComponent } from 'src/app/component/dashboard/error-page/error-page.component';
 
 @Injectable()
 export class AdminGuard implements CanActivate {
@@ -21,6 +22,7 @@ export class AdminGuard implements CanActivate {
           return true;
         } else {
           console.log('ADMINISTRADOR NO AUTORIZADO');
+          this.router.navigate(['/401']);
           return false;
         }
       })

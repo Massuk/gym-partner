@@ -91,6 +91,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { GymDetailsComponent } from './component/entities/gym/gym-details/gym-details.component';
 import { EditProfileComponent } from './component/entities/gym/edit-profile/edit-profile.component';
 import { AllRoleGuard } from './guards/allrole-guard';
+import { ErrorPageComponent } from './component/dashboard/error-page/error-page.component';
+import { UnauthorizedComponent } from './component/dashboard/error-page/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -161,7 +163,9 @@ import { AllRoleGuard } from './guards/allrole-guard';
     RoutineInsertComponent,
     RoutineDeleteComponent,
     GymDetailsComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ErrorPageComponent,
+    UnauthorizedComponent
   ],
   imports: [
     ToastrModule.forRoot({

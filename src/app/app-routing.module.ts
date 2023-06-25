@@ -42,6 +42,7 @@ import { PublicGuard } from './guards/public-guard';
 import { NutritionistGuard } from './guards/nutritionist-guard';
 import { TrainerGuard } from './guards/trainer-guard';
 import { AllRoleGuard } from './guards/allrole-guard';
+import { ErrorPageComponent } from './component/dashboard/error-page/error-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing-page/index', pathMatch: 'full' },
@@ -73,6 +74,7 @@ const routes: Routes = [
       {
         path: 'clients',
         component: ClientComponent,
+        canActivate: [TrainerGuard],
         children: [
           {
             path: ':id/training-plans',
@@ -221,6 +223,7 @@ const routes: Routes = [
       },
     ],
   },
+  { path: '401', component: ErrorPageComponent, canActivate: [PublicGuard]},
 ];
 
 @NgModule({
