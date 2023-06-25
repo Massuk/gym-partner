@@ -61,12 +61,11 @@ export class NutritionalPlanListComponent implements OnInit {
       width: '450px',
       data: {
         title: '¿Deseas eliminar el registro?',
-        description:
-          'Esta acción es irreversible',
+        description: 'Esta acción es irreversible',
         confirmButtonText: 'Si',
         cancelButtonText: 'No',
         showConfirmButton: true,
-        showCancelButton: true
+        showCancelButton: true,
       },
     });
 
@@ -99,7 +98,9 @@ export class NutritionalPlanListComponent implements OnInit {
         console.log('Estado actualizado correctamente a: ' + data.status);
 
         // Actualizar el objeto data en la lista de entrenamientos
-        const nutritionalPlanIndex = this.dataSource.data.findIndex((np) => np.idNutritionalPlan === idNutritionalPlan);
+        const nutritionalPlanIndex = this.dataSource.data.findIndex(
+          (np) => np.idNutritionalPlan === idNutritionalPlan
+        );
         if (nutritionalPlanIndex !== -1) {
           this.dataSource.data[nutritionalPlanIndex] = data;
           this.dataSource._updateChangeSubscription(); // Notificar cambios a la tabla
@@ -107,6 +108,4 @@ export class NutritionalPlanListComponent implements OnInit {
       });
     });
   }
-
-
 }

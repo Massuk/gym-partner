@@ -8,10 +8,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TrainingPlansComponent implements OnInit {
 
-  constructor(public route:ActivatedRoute){
-
-  }
-  ngOnInit(): void {
-    
-  }
+  constructor(public route:ActivatedRoute){}
+  ngOnInit(): void {}
 }

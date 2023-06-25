@@ -8,77 +8,71 @@ import * as moment from 'moment';
 @Component({
   selector: 'app-training-plans-insert',
   templateUrl: './training-plans-insert.component.html',
-  styleUrls: ['./training-plans-insert.component.scss']
+  styleUrls: ['./training-plans-insert.component.scss'],
 })
 export class TrainingPlansInsertarComponent implements OnInit {
-
+  idClient: number = 0;
   idTrainingPlan: number = 0;
   edit: boolean = false;
-
+  title: string = 'Registrar plan de entrenamiento';
   form: FormGroup = new FormGroup({});
-  tPlan: TrainingPlan = new TrainingPlan();
+  trainingPlan: TrainingPlan = new TrainingPlan();
   Fecha: Date = moment().add().toDate();
-  maxFecha: Date = moment().add( +30, 'days').toDate();
+  maxFecha: Date = moment().add(+30, 'days').toDate();
   constructor(
-    private tpS: TrainingPlansService,
+    private tPS: TrainingPlansService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-
     this.route.params.subscribe((data: Params) => {
       this.idTrainingPlan = data['id'];
       this.edit = data['id'] != null;
       this.init();
     });
-
     this.form = new FormGroup({
-      id: new FormControl(''),
       title: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
       objective: new FormControl('', Validators.required),
       level: new FormControl('', Validators.required),
       startDate: new FormControl('', Validators.required),
       endDate: new FormControl('', Validators.required),
-      status: new FormControl(true, Validators.required),
-    })
+    });
   }
 
-  aceptar(): void {
-    this.tPlan.idTrainingPlan = this.form.value['id'];
-    this.tPlan.title = this.form.value['title'];
-    this.tPlan.description = this.form.value['description'];
-    this.tPlan.objective = this.form.value['objective'];
-    this.tPlan.level = this.form.value['level'];
-    this.tPlan.startDate = this.form.value['startDate'];
-    this.tPlan.endDate = this.form.value['endDate'];
-    this.tPlan.status = this.form.value['status'];
-    this.tPlan.hide = false;
+  accept(): void {
+    this.trainingPlan.title = this.form.value['title'];
+    this.trainingPlan.description = this.form.value['description'];
+    this.trainingPlan.objective = this.form.value['objective'];
+    this.trainingPlan.level = this.form.value['level'];
+    this.trainingPlan.startDate = this.form.value['startDate'];
+    this.trainingPlan.endDate = this.form.value['endDate'];
+    this.trainingPlan.status = true;
+    this.trainingPlan.hide = false;
 
     if (this.form.valid) {
       if (this.edit) {
-        this.tpS.update(this.tPlan).subscribe(() => {
-          this.tpS.list().subscribe((data) => {
-            this.tpS.setList(data);
-          });
+        this.tPS.listId(this.idTrainingPlan).subscribe((data) => {
+          data.title = this.trainingPlan.title;
+          data.description = this.trainingPlan.description;
+          data.objective = this.trainingPlan.objective;
+          data.startDate = this.trainingPlan.startDate;
+          data.endDate = this.trainingPlan.endDate;
+          data.status = this.trainingPlan.status;
+          data.hide = this.trainingPlan.hide;
+          this.tPS.update(data);
+          this.goBack();
         });
+      } else {
       }
-      else {
-        this.tpS.insert(this.tPlan).subscribe(() => {
-        this.tpS.list().subscribe((data) => {
-          this.tpS.setList(data);
-        })
-      })
-      }
-      this.router.navigate(['/dashboard/training-plans'])
+      this.router.navigate(['/dashboard/training-plans']);
     }
   }
 
-
   init() {
     if (this.edit) {
-      this.tpS.listId(this.idTrainingPlan).subscribe((data) => {
+      this.tPS.listId(this.idTrainingPlan).subscribe((data) => {
         this.form.patchValue({
           id: data.idTrainingPlan,
           title: data.title,
@@ -87,9 +81,20 @@ export class TrainingPlansInsertarComponent implements OnInit {
           objective: data.objective,
           level: data.level,
           startDate: data.startDate,
-          endDate: data.endDate
+          endDate: data.endDate,
         });
       });
     }
+  }
+  goBack() {
+    const url = this.router.url.split('/');
+    const segmentsToRemove = 2; // Número de segmentos que deseas eliminar (en este caso, "update" y el ID)
+
+    // Eliminar los segmentos "update" y el ID de la ruta
+    const urlWithoutUpdate = url
+      .slice(0, url.length - segmentsToRemove)
+      .join('/');
+
+    this.router.navigateByUrl(urlWithoutUpdate);
   }
 }

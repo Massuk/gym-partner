@@ -10,7 +10,6 @@ const base_url = environment.base;
 export class NutritionistService {
   private url = `${base_url}/nutritionists`;
   private changeList = new Subject<Nutritionist[]>();
-  private badgeStatus: { [key: number]: string } = {};
 
   constructor(private http: HttpClient) {}
 

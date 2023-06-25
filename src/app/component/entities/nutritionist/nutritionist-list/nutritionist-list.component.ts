@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,7 +12,7 @@ import { NutritionistService } from 'src/app/service/nutritionist.service';
   templateUrl: './nutritionist-list.component.html',
   styleUrls: ['./nutritionist-list.component.scss'],
 })
-export class NutritionistListComponent {
+export class NutritionistListComponent implements OnInit {
   dataSource: MatTableDataSource<Nutritionist> = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = ['name', 'lastname', 'status', 'actions'];

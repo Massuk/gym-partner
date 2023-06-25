@@ -15,44 +15,38 @@
         <i class="far fa-search search-icon"></i>
       </div>
     </div>
-
-    <div class="button-container">
-      <button class="button accept" [routerLink]="['gym-insert']">
-        Agregar
-      </button>
-    </div>
   </div>
-</div>
 
-<div class="card">
   <table mat-table [dataSource]="dataSource">
-    <!-- ID Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>ID</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.idClient }}
-      </td></ng-container
-    >
     <!-- Name Column -->
-    <ng-container matColumnDef="nombre">
+    <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Nombre</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.nameClient }}
+        {{ element.name }}
       </td></ng-container
     >
-    <!-- Trainer Column -->
-    <ng-container matColumnDef="trainer">
-      <th mat-header-cell *matHeaderCellDef>Entrenador</th>
-      <td mat-cell *matCellDef="let element">
-        <span class="badge badge-success">{{ element.personalTrainer }}</span>
-      </td>
-    </ng-container>
 
-    <!-- Nutritionist Column -->
-    <ng-container matColumnDef="nutritionist">
-      <th mat-header-cell *matHeaderCellDef>Nutricionista</th>
+    <!-- Lastname Column -->
+    <ng-container matColumnDef="lastname">
+      <th mat-header-cell *matHeaderCellDef>Apellido</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.personalNutritionist }}
+        {{ element.lastname }}
+      </td></ng-container
+    >
+
+    <!-- Gender Column -->
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef>Género</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.gender }}
+      </td></ng-container
+    >
+
+    <!-- Birth Date Column -->
+    <ng-container matColumnDef="birthDate">
+      <th mat-header-cell *matHeaderCellDef>Fecha de Nacimiento</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.birthDate }}
       </td></ng-container
     >
 
@@ -61,7 +55,21 @@
       <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let element">
         <button mat-icon-button color="primary">
-          <mat-icon>visibility</mat-icon>
+          <mat-icon>medical_information</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="primary"
+          [routerLink]="[element.idUser, 'nutritional-plans']"
+        >
+          <mat-icon>restaurant</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="primary"
+          [routerLink]="[element.idUser, 'training-plans']"
+        >
+          <mat-icon>fitness_center</mat-icon>
         </button>
       </td>
     </ng-container>

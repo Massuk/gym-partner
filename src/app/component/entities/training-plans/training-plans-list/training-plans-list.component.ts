@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
 import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/dialog-popup.component';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-training-plans-list',
@@ -14,9 +15,10 @@ import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/d
   styleUrls: ['./training-plans-list.component.scss'],
 })
 export class TrainingPlansListarComponent implements OnInit {
-  lista: TrainingPlan[] = [];
+  idClient: number;
+  dataSource: MatTableDataSource<TrainingPlan> = new MatTableDataSource();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = [
-    'id',
     'title',
     'description',
     'objective',
@@ -24,57 +26,61 @@ export class TrainingPlansListarComponent implements OnInit {
     'startDate',
     'endDate',
     'status',
-    'actions'
+    'actions',
   ];
-  dataSource: MatTableDataSource<TrainingPlan> = new MatTableDataSource();
+
+  constructor(
+    private tPS: TrainingPlansService,
+    private dialog: MatDialog,
+    private snackbar: MatSnackBar,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-
-    this.tpS.getList().subscribe((data) => {
-      this.dataSource.data = data;
+    this.route.params.subscribe((data: Params) => {
+      this.idClient = data['id'];
     });
-
-    this.tpS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
+    this.tPS.getList().subscribe((data) => {
+      this.dataSource.data = data;
+      this.dataSource.paginator = this.paginator;
+    });
+    this.tPS.list(this.idClient).subscribe((data) => {
+      this.dataSource.data = data;
       this.dataSource.paginator = this.paginator;
     });
   }
 
-  constructor(
-    private tpS: TrainingPlansService,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar
-  ) {}
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-
+  filter(event: any) {
+    this.dataSource.filter = event.target.value.trim();
+  }
+  clearFilter() {
+    this.dataSource.filter = '';
+  }
   showDeletePopup(idTrainingPlan: number): void {
     const dialogRef = this.dialog.open(DialogPopupComponent, {
       width: '450px',
       data: {
         title: '¿Deseas eliminar el registro?',
-        description:
-          'Esta acción es irreversible',
+        description: 'Esta acción es irreversible',
         confirmButtonText: 'Si',
         cancelButtonText: 'No',
         showConfirmButton: true,
-        showCancelButton: true
+        showCancelButton: true,
       },
     });
 
-    const snack = this.snackBar;
+    const snack = this.snackbar;
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.tpS.hide(idTrainingPlan).subscribe(() => {
-          this.tpS.list().subscribe((data) => {
+        this.tPS.hide(idTrainingPlan).subscribe(() => {
+          this.tPS.list(this.idClient).subscribe((data) => {
             this.dataSource = new MatTableDataSource(data);
             this.dataSource.paginator = this.paginator;
           });
         });
         snack.dismiss();
-        this.snackBar.open('Se ha eliminado correctamente', 'Aceptar', {
+        this.snackbar.open('Se ha eliminado correctamente', 'Aceptar', {
           duration: 3000,
         });
       } else {
@@ -83,34 +89,27 @@ export class TrainingPlansListarComponent implements OnInit {
     });
   }
 
-
-  filtrar(e: any) {
-    this.dataSource.filter = e.target.value.trim();
-  }
-
-  clearFilter() {
-    this.dataSource.filter = '';
-  }
-
   toggleBadgeStatus(idTrainingPlan: number, status: boolean): void {
     const newStatus = !status;
 
-    this.tpS.listId(idTrainingPlan).subscribe((data) => {
+    this.tPS.listId(idTrainingPlan).subscribe((data) => {
       data.status = newStatus;
-
-      this.tpS.update(data).subscribe(() => {
+      console.log(data);
+      this.tPS.update(data).subscribe(() => {
         console.log('Estado actualizado correctamente a: ' + data.status);
 
         // Actualizar el objeto data en la lista de entrenamientos
-        const trainingPlanIndex = this.dataSource.data.findIndex((tp) => tp.idTrainingPlan === idTrainingPlan);
+        const trainingPlanIndex = this.dataSource.data.findIndex(
+          (tp) => tp.idTrainingPlan === idTrainingPlan
+        );
         if (trainingPlanIndex !== -1) {
           this.dataSource.data[trainingPlanIndex] = data;
           this.dataSource._updateChangeSubscription(); // Notificar cambios a la tabla
         }
+        this.tPS.list(this.idClient).subscribe((data) => {
+          this.tPS.setList(data);
+        });
       });
     });
   }
-
-
-
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NutritionistService } from 'src/app/service/nutritionist.service';
@@ -8,7 +8,7 @@ import { NutritionistService } from 'src/app/service/nutritionist.service';
   templateUrl: './nutritionist-details.component.html',
   styleUrls: ['./nutritionist-details.component.scss'],
 })
-export class NutritionistDetailsComponent {
+export class NutritionistDetailsComponent implements OnInit {
   idNutritionist: number = 0;
   form: FormGroup = new FormGroup({});
   constructor(

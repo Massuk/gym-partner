@@ -3,6 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Client } from 'src/app/model/client';
 import { ClientService } from '../../../../service/client.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-client-list',
@@ -10,23 +12,40 @@ import { ClientService } from '../../../../service/client.service';
   styleUrls: ['./client-list.component.scss'],
 })
 export class ClientListComponent implements OnInit {
-
-  constructor(private cS: ClientService,){}
-
-  ngOnInit(): void {
-
-  }
-  clientList: Client[] = [];
+  dataSource: MatTableDataSource<Client> = new MatTableDataSource();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = [
-    'id',
-    'nombre',
-    'trainer',
-    'nutritionist',
+    'name',
+    'lastname',
+    'gender',
+    'birthDate',
     'actions',
   ];
 
+  constructor(
+    private cS: ClientService,
+    private dialog: MatDialog,
+    private snackbar: MatSnackBar
+  ) {}
 
-  dataSource: MatTableDataSource<Client> = new MatTableDataSource();
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  ngOnInit(): void {
+    this.cS.getList().subscribe((data) => {
+      this.dataSource.data = data;
+      this.dataSource.paginator = this.paginator;
+    });
 
+    this.cS
+      .list(String(sessionStorage.getItem('username')))
+      .subscribe((data) => {
+        this.dataSource.data = data;
+        this.dataSource.paginator = this.paginator;
+      });
+  }
+
+  filter(event: any) {
+    this.dataSource.filter = event.target.value.trim();
+  }
+  clearFilter() {
+    this.dataSource.filter = '';
+  }
 }

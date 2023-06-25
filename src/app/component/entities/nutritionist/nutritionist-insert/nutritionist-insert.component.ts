@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as moment from 'moment';
@@ -13,7 +13,7 @@ import { NutritionistService } from 'src/app/service/nutritionist.service';
   templateUrl: './nutritionist-insert.component.html',
   styleUrls: ['./nutritionist-insert.component.scss'],
 })
-export class NutritionistInsertComponent {
+export class NutritionistInsertComponent implements OnInit {
   idNutritionist: number = 0;
   edit: boolean = false;
   title: string = 'Registrar nutricionista';

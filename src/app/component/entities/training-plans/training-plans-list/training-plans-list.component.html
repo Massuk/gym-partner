@@ -11,7 +11,7 @@
           id=""
           placeholder="Buscar..."
           matInput
-          (keyup)="filtrar($event)"
+          (keyup)="filter($event)"
           (search)="clearFilter()"
         />
         <i class="far fa-search search-icon"></i>
@@ -19,59 +19,62 @@
     </div>
 
     <div class="button-container">
-      <button
-        class="button accept"
-        routerLink="/dashboard/training-plans/insert"
-      >
-        Agregar
-      </button>
+      <button class="button accept" [routerLink]="['insert']">Agregar</button>
     </div>
   </div>
 </div>
 
 <div class="card">
   <table mat-table [dataSource]="dataSource">
-    <!--- Note that these columns can be defined in any order.The actual rendered columns are set as a property on the row definition" --><!-- Position Column --><ng-container
-      matColumnDef="id"
-    >
-      <th mat-header-cell *matHeaderCellDef>ID</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.idTrainingPlan }}
-      </td> </ng-container
-    ><!-- Name Column --><ng-container matColumnDef="title">
+    <!-- Name Column -->
+    <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef>Título</th>
       <td mat-cell *matCellDef="let element">
         {{ element.title }}
-      </td> </ng-container
-    ><!-- Weight Column --><ng-container matColumnDef="description">
+      </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="description">
       <th mat-header-cell *matHeaderCellDef>Descripción</th>
       <td mat-cell *matCellDef="let element">
         {{ element.description }}
-      </td> </ng-container
-    ><!-- Symbol Column --><ng-container matColumnDef="objective">
+      </td>
+    </ng-container>
+
+    <!-- Objective Column -->
+    <ng-container matColumnDef="objective">
       <th mat-header-cell *matHeaderCellDef>Objetivo</th>
       <td mat-cell *matCellDef="let element">
         {{ element.objective }}
       </td>
     </ng-container>
+
+    <!-- Level Column -->
     <ng-container matColumnDef="level">
       <th mat-header-cell *matHeaderCellDef>Nivel</th>
       <td mat-cell *matCellDef="let element">
         {{ element.level }}
       </td>
     </ng-container>
+
+    <!-- Start Date Column -->
     <ng-container matColumnDef="startDate">
       <th mat-header-cell *matHeaderCellDef>Inicio</th>
       <td mat-cell *matCellDef="let element">
         {{ element.startDate | date : "dd/MM/yyyy" }}
       </td>
     </ng-container>
+
+    <!-- End Date Column -->
     <ng-container matColumnDef="endDate">
       <th mat-header-cell *matHeaderCellDef>Fin</th>
       <td mat-cell *matCellDef="let element">
         {{ element.endDate | date : "dd/MM/yyyy" }}
       </td>
     </ng-container>
+
+    <!-- Status Column -->
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef>Estado</th>
       <td mat-cell *matCellDef="let element">
@@ -79,8 +82,8 @@
           class="badge bg-{{
             element.status ? 'success' : 'danger'
           }} text-white"
-          (click)="toggleBadgeStatus(element.idTrainingPlan, element.status)"
           style="cursor: pointer"
+          (click)="toggleBadgeStatus(element.idTrainingPlan, element.status)"
         >
           {{ element.status ? "Activo" : "Inactivo" }}
         </span>
@@ -90,22 +93,21 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let element">
-
         <button
-        mat-icon-button
-        #tooltip="matTooltip"
-        matTooltip="Agregar rutina"
-        matTooltipPosition="below"
-        matTooltipHideDelay="60"
-        routerLink="/dashboard/routines"
+          mat-icon-button
+          #tooltip="matTooltip"
+          matTooltip="Agregar rutina"
+          matTooltipPosition="below"
+          matTooltipHideDelay="60"
+          routerLink="/dashboard/routines"
         >
-          <mat-icon>assignment_add</mat-icon>
+          <mat-icon>visibility</mat-icon>
         </button>
 
         <button
           mat-icon-button
           #tooltip="matTooltip"
-        matTooltip="Editar"
+          matTooltip="Editar"
           [routerLink]="['update', element.idTrainingPlan]"
         >
           <mat-icon>edit</mat-icon>
@@ -113,7 +115,7 @@
         <button
           mat-icon-button
           #tooltip="matTooltip"
-        matTooltip="Eliminar"
+          matTooltip="Eliminar"
           color="primary"
           (click)="showDeletePopup(element.idTrainingPlan)"
         >
@@ -123,11 +125,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr
-      mat-row
-      *matRowDef="let row; columns: displayedColumns"
-      [hidden]="row.hide || row.hide === undefined"
-    ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
