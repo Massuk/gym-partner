@@ -77,7 +77,7 @@
     border-radius: 5px;
     width: 100%;
     margin-right: 10px;
-    background-color: #263238;
+    background-color: #212121;
     border-radius: 0.25rem;
     border: none;
     cursor: pointer;
@@ -88,7 +88,7 @@
 
     &:hover {
       background-color: #e6e600;
-      color: #263238;
+      color: #212121;
     }
   }
 }
@@ -98,12 +98,13 @@
   max-width: 1140px;
 
   .welcome-head-container {
-    background-color: #263238;
-    //background-image: url('../../../assets/welcome.png');
+    background-color: #212121;
+    //background-image: url('../../../../assets/verified-card.png');
     color: #e6edef;
     font-size: 24px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-end;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
 
@@ -121,7 +122,7 @@
     .col-right {
       flex: 0 0 auto;
       width: 41.6666667%;
-
+      text-align: right;
       img {
         margin-left: -17.5rem;
         width: 165%;
@@ -200,7 +201,7 @@
         margin-top: 1rem;
 
         button {
-          background-color: #263238;
+          background-color: #212121;
           padding: 0.5rem 1rem;
           border-radius: 0.25rem;
           border: none;
@@ -212,7 +213,7 @@
 
           &:hover {
             background-color: #e6e600;
-            color: #263238;
+            color: #212121;
           }
 
           .fa-arrow-right {

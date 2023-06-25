@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { food } from 'src/app/model/food';
+import { Food } from 'src/app/model/food';
 import { MatTableDataSource } from '@angular/material/table';
 import { FoodService } from 'src/app/service/foods.service';
-import { MatDialog } from '@angular/material/dialog'
-import { ConfirmationDialogComponent } from '../../../dashboard/confirmation-dialog/confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/dialog-popup.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
 @Component({
@@ -12,35 +12,57 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./foods-list.component.scss'],
 })
 export class FoodsListComponent implements OnInit {
-  lista: food[] = [];
-  dataSource: MatTableDataSource<food> = new MatTableDataSource();
-  displayedColumns: string[] = ['id', 'Name', 'portions', 'calories','actions'];
+  lista: Food[] = [];
+  dataSource: MatTableDataSource<Food> = new MatTableDataSource();
+  displayedColumns: string[] = [
+    'id',
+    'name',
+    'portions',
+    'calories',
+    'actions',
+  ];
 
-
-  constructor(private fS: FoodService, private dialog: MatDialog,
-    private snackBar: MatSnackBar ) {}
+  constructor(
+    private fS: FoodService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) {}
   ngOnInit(): void {
     this.fS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });
 
-    this.fS.getList().subscribe(data=>{
-      this.dataSource=new MatTableDataSource(data);
+    this.fS.getList().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
     });
-
   }
 
-filtrar(e:any){
-    this.dataSource.filter=e.target.value.trim();
+  filter(e: any) {
+    this.dataSource.filter = e.target.value.trim();
+  }
+
+  clearFilter() {
+    this.dataSource.filter = '';
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  openConfirmationDialog(id: number): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+  showDeletePopup(id: number): void {
+    const dialogRef = this.dialog.open(DialogPopupComponent, {
       width: '450px',
+<<<<<<< HEAD
       data: { message: '¿Quieres eliminar alimento?' },
+=======
+      data: {
+        title: '¿Deseas eliminar el registro?',
+        description: 'Esta acción es irreversible',
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No',
+        showConfirmButton: true,
+        showCancelButton: true,
+      },
+>>>>>>> be2ccf5db9c410481434fd9e10c807e8e8586758
     });
 
     const snack = this.snackBar;
@@ -62,5 +84,4 @@ filtrar(e:any){
       }
     });
   }
-
 }

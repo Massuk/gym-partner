@@ -1,46 +1,72 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable,Subject } from 'rxjs';
-import { food } from '../model/food';
+import { Food } from '../model/food';
+
 const base_url = environment.base
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class FoodService {
   private url=`${base_url}/foods`;
-  private listaCambio = new Subject<food[]>();
-  private confirmaEliminacion = new Subject<Boolean>()
-
+  private changeList = new Subject<Food[]>();
 
   constructor(private http:HttpClient) { }
   list(){
-    return this.http.get<food[]>(this.url);
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Food[]>(this.url, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
-  insert(food: food) {
-    return this.http.post(this.url, food);
+  insert(food: Food) {
+    let token = sessionStorage.getItem('token');
+    return this.http.post(this.url, food, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   getList() {
-    return this.listaCambio.asObservable();
+    return this.changeList.asObservable();
   }
-  setList(listaNueva: food[]) {
-    this.listaCambio.next(listaNueva);
+  setList(listaNueva: Food[]) {
+    this.changeList.next(listaNueva);
   }
 
 
   listId(id: number) {
-    return this.http.get<food>(`${this.url}/${id}`);
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Food>(`${this.url}/${id}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
 
-  update(p: food) {
-    return this.http.put(this.url + '/' + p.id, p);
+  update(food: Food) {
+    let token = sessionStorage.getItem('token');
+    return this.http.put(`${this.url}/update`, food, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   // Funcion para eliminar un registro
   delete(id: number): Observable<any> {
+    let token = sessionStorage.getItem('token');
     const url = `${this.url}/${id}`;
-    return this.http.delete(url);
+    return this.http.delete(url, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 }

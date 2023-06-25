@@ -1,46 +1,60 @@
 <div class="card">
+
   <div class="card-head">Registrar Alimentos</div>
+
   <div class="card-body">
-    <form [formGroup]="form" (submit)="aceptar()">
-      <div class="form-group">
-        <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
-          <mat-label>ID</mat-label>
-          <input matInput placeholder="ID" formControlName="id" />
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
+    <form [formGroup]="form" (submit)="accept()">
+      <div class="row my-3">
+        <mat-form-field
+          appearance="outline"
+          style="margin-right: 20rem; width: 100%"
+        >
           <mat-label>Alimento</mat-label>
-          <input matInput placeholder="Alimento" formControlName="nameFood" />
+          <input
+          matInput
+          placeholder="Alimento"
+          formControlName="name"
+          (input)="searchFoods(form.controls['name'].value)"
+        />
+          <mat-error *ngIf="form.controls['name'].invalid">
+            El campo no puede estar vacío.
+          </mat-error>
         </mat-form-field>
       </div>
-      <div class="form-group">
-        <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
+      <div class="row my-3">
+        <mat-form-field
+          appearance="outline"
+          style="margin-right: 20rem; width: 100%"
+        >
           <mat-label>N° Porciones</mat-label>
           <input
             matInput
             placeholder="N° Porciones"
-            formControlName="portionsFood"
+            formControlName="portions"
           />
+          <mat-error *ngIf="form.controls['portions'].invalid">
+            El campo no puede estar vacío.
+          </mat-error>
         </mat-form-field>
       </div>
-      <div class="form-group">
-        <mat-form-field appearance="outline" style="margin-right: 20rem; width: 100%">
+      <div class="row my-3">
+        <mat-form-field
+          appearance="outline"
+          style="margin-right: 20rem; width: 100%"
+        >
           <mat-label>Calorías</mat-label>
-          <input
-            matInput
-            placeholder="Calorías"
-            formControlName="caloriesFood"
-          />
+          <input matInput placeholder="Calorías" formControlName="calories" />
+          <mat-error *ngIf="form.controls['calories'].invalid">
+            El campo no puede estar vacío.
+          </mat-error>
         </mat-form-field>
       </div>
+
       <div class="button-container">
-        <div class="form-group">
-          <button class="button accept" type="submit">Agregar</button>
-          <button class="button cancel" routerLink="/foods">Cancelar</button>
-        </div>
-        <div class="form-group"></div>
-        <p>{{ mensaje }}</p>
+        <button class="button accept" type="submit">Agregar</button>
+        <button class="button cancel" routerLink="/dashboard/foods">
+          Cancelar
+        </button>
       </div>
     </form>
 
@@ -57,7 +71,7 @@
             data-bs-slide-to="0"
             class="active"
             aria-current="true"
-            aria-label="Slide 4"
+            aria-label="Slide 1"
           ></button>
           <button
             type="button"
@@ -75,31 +89,31 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img
-              src="../../../../assets/carousel/slide4.png"
+              src="../../../../assets/carousel/slide1.png"
               class="d-block w-100"
-              alt="img4"
+              alt="img1"
             />
             <div class="carousel-caption d-none d-md-block">
-              <h5 class="tshadow">Organiza tus alimentos de manera sencilla</h5>
+              <h5 class="tshadow">Organiza tus gimnasios de manera sencilla</h5>
               <p class="tshadow">
-                Con Gym Partner podrás administrar fácilmente tus alimentos y
-                mantener un control de todas tus comidas
+                Con Gym Partner podrás administrar fácilmente tus gimnasios y
+                mantener un control de todas tus sucursales
               </p>
             </div>
           </div>
           <div class="carousel-item">
             <img
-              src="../../../../assets/carousel/slide2.png"
+              src="../../../../../assets/carousel/slide2.png"
               class="d-block w-100"
               alt="img2"
             />
             <div class="carousel-caption d-none d-md-block">
               <h5 class="tshadow">
-                Gestionar tus alimentos nunca fue tan fácil
+                Gestionar entrenadores nunca fue tan fácil
               </h5>
               <p class="tshadow">
-                Monitorea los alimentos que consumes y mantén una dieta con
-                alimentos balanceados
+                Monitorea el progreso de tus entrenadores y mantén una
+                comunicación efectiva con ellos
               </p>
             </div>
           </div>
@@ -111,12 +125,11 @@
             />
             <div class="carousel-caption d-none d-md-block">
               <h5 class="tshadow">
-                Observar tus alimentos que consumes es más sencillo de lo que
-                imaginas
+                Gestionar nutricionistas es más sencillo de lo que imaginas
               </h5>
               <p class="tshadow">
-                Podrás hacer seguimiento de los alimentos que consumes y podras
-                monitorear los alimentos en tiempo real
+                Podrás hacer seguimiento a sus avances y monitorear su progreso
+                en tiempo real
               </p>
             </div>
           </div>
@@ -141,5 +154,6 @@
         </button>
       </div>
     </div>
+
   </div>
 </div>

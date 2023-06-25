@@ -1,0 +1,157 @@
+<div class="vh-100 d-flex align-items-center">
+  <div class="container">
+    <mat-card class="card">
+      <mat-card-title>
+        <img
+          class="logo"
+          src="../../../../assets/gp_logo.png"
+          alt="Logo circular"
+        />
+        <div class="row">
+          <div class="col text-center">
+            <h2>Crear cuenta</h2>
+          </div>
+        </div>
+      </mat-card-title>
+
+      <mat-card-content>
+        <form [formGroup]="form" (submit)="insert()">
+          <div class="row my-2">
+            <div class="col">
+              <mat-form-field appearance="outline">
+                <mat-label class="box-text">Nombre</mat-label>
+                <input
+                  matInput
+                  formControlName="name"
+                  required
+                  type="text"
+                  #name
+                />
+                <mat-error *ngIf="form.controls['name'].invalid"
+                  >El nombre es obligatorio</mat-error
+                >
+                <mat-icon matSuffix>person</mat-icon>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field appearance="outline">
+                <mat-label class="box-text">Apellidos</mat-label>
+                <input
+                  matInput
+                  formControlName="lastname"
+                  required
+                  type="text"
+                  #lastname
+                />
+                <mat-error *ngIf="form.controls['lastname'].invalid"
+                  >El apellido es obligatorio</mat-error
+                >
+                <mat-icon matSuffix>person</mat-icon>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row my-2">
+            <mat-form-field appearance="outline">
+              <mat-label class="box-text">Correo electrónico</mat-label>
+              <input
+                matInput
+                required
+                formControlName="email"
+                type="email"
+                #email
+              />
+              <mat-error *ngIf="form.controls['email'].invalid"
+                >El correo es obligatorio</mat-error
+              >
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="row my-2">
+            <mat-form-field appearance="outline">
+              <mat-label class="box-text">Contraseña</mat-label>
+              <input
+                matInput
+                required
+                formControlName="password"
+                minlength="6"
+                type="password"
+                #password
+              />
+              <mat-error *ngIf="form.controls['password'].invalid">
+                La contraseña es obligatoria
+              </mat-error>
+              <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="row my-2">
+            <div class="col">
+              <mat-form-field appearance="outline">
+                <mat-label class="box-text">Fecha de nacimiento</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="picker"
+                  placeholder="Elige una fecha"
+                  formControlName="birthdate"
+                  readonly
+                  required
+                />
+                <mat-error *ngIf="form.controls['birthdate'].invalid"
+                  >La fecha de nacimiento es obligatoria
+                </mat-error>
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field appearance="outline">
+                <mat-label class="box-text">Género</mat-label>
+                <mat-select
+                  placeholder="Género"
+                  formControlName="gender"
+                  type="text"
+                  required
+                  #gender
+                >
+                  <mat-option value="Masculino">Masculino</mat-option>
+                  <mat-option value="Femenino">Femenino</mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.controls['gender'].invalid"
+                  >El género es obligatorio</mat-error
+                >
+                <mat-icon matSuffix>group</mat-icon>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row my-2">
+            <mat-form-field appearance="outline">
+              <mat-label class="box-text">Teléfono</mat-label>
+              <input
+              matInput
+              required
+              formControlName="cellphone"
+              type="text"
+              #cellphone
+              />
+              <mat-error *ngIf="form.controls['cellphone'].invalid">
+                El teléfono es obligatorio</mat-error>
+              <mat-icon matSuffix>smartphone</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="row d-flex justify-content-center buttons-container">
+            <button class="button auth my-5" type="submit">
+              Registrarme
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

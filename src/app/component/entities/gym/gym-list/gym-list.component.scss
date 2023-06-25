@@ -1,3 +1,8 @@
 .mat-column-actions {
-  width: 10%
+  min-width: 10%;
+}
+
+.radio-button {
+  display:inline-flex;
+  color: black;
 }

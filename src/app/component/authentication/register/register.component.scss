@@ -1,0 +1,60 @@
+@media (min-width: 1200px) {
+  .container{
+      max-width: 650px;
+  }
+}
+
+mat-card-title {
+  position: relative;
+  text-align: center;
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  margin-top: 4rem;
+}
+
+.logo {
+  position: absolute;
+  top: -130%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+mat-card-content {
+  display: flex;
+  justify-content: center;
+  height:100%;
+  overflow: hidden;
+}
+
+.buttons-container {
+  margin-top: -2rem;
+}
+
+.button {
+  max-width: 300px;
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+  box-shadow: 0 0.25rem 0.5rem #e6edef;
+
+  &.auth {
+    background-color: #212121;
+    color: #fff;
+
+    &:hover {
+      background-color: #e6e600;
+      color: #212121;
+    }
+  }
+}
+

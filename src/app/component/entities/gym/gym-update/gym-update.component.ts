@@ -13,7 +13,7 @@ export class GymUpdateComponent implements OnInit {
 
   gym: Gym = new Gym();
   form: FormGroup = new FormGroup({});
-
+  idGym: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,34 +22,35 @@ export class GymUpdateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot?.params['id'];
     this.form = new FormGroup({
-      id: new FormControl(null),
-      nameGym: new FormControl('', Validators.required),
-      codeGym: new FormControl('', Validators.required),
-      rucGym: new FormControl('', Validators.required),
-      rsGym: new FormControl('', Validators.required)
+      name: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]),
+      code: new FormControl('', Validators.required),
+      ruc: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern(/^[0-9]*$/)]),
+      rs: new FormControl('', Validators.required)
     });
 
-    if (id) {
-      this.gS.get(id).subscribe(gym => {
-        this.gym = gym;
-        this.form.patchValue(this.gym);
-      });
-    }
+    this.route.params.subscribe(params => {
+      this.idGym = +params['id']; // Obtener el ID del gimnasio de los parámetros de la URL
+      this.loadGymData();
+    });
+  }
 
-    // Guardar automáticamente los cambios localmente en el navegador para que no se pierda la información
-    // al recargar la página. Esto se cambiará cuando usemos Post
-    /*
-    this.form.valueChanges.subscribe(value => {
-      localStorage.setItem('gym-update-form', JSON.stringify(value));
-    });*/
+  loadGymData() {
+    this.gS.get(this.idGym).subscribe(gym => {
+      this.gym = gym;
+      this.form.patchValue(this.gym);
+    });
   }
 
   updateGym() {
     if (this.form.valid) {
-      this.gS.update(this.form.value).subscribe(() => {
-        this.router.navigate(['/gym']);
+      const updatedGym: Gym = {
+        ...this.gym,
+        ...this.form.value
+      };
+
+      this.gS.update(updatedGym).subscribe(() => {
+        this.router.navigate(['/dashboard/gyms']);
       });
     }
   }

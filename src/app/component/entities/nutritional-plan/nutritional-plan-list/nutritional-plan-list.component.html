@@ -2,13 +2,26 @@
 
 <div class="card">
   <div class="card-body">
-    Lista de Planes Nutricionales creados. Puedes añadir tantos como quieras y
-    gestionarlos desde aquí.
+    <div class="search-container">
+      <div class="normal-search">
+        <input
+          type="search"
+          class="search"
+          name=""
+          id=""
+          placeholder="Buscar..."
+          matInput
+          (keyup)="filter($event)"
+          (search)="clearFilter()"
+        />
+        <i class="far fa-search search-icon"></i>
+      </div>
+    </div>
 
     <div class="button-container">
       <button
         class="button accept"
-        routerLink="/nutritional-plans/nutritional-plans-insert"
+        routerLink="/dashboard/nutritional-plans/insert"
       >
         Agregar
       </button>
@@ -17,77 +30,122 @@
 </div>
 
 <div class="card">
-  <table mat-table [dataSource]="dataSource" class="mat gym-table">
-    <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-
+  <table mat-table [dataSource]="dataSource">
     <!-- Position Column -->
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <th mat-header-cell *matHeaderCellDef>ID</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.id }}
+        {{ element.idNutritionalPlan }}
       </td>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="titleNutritionalPlan">
+    <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef>Titulo</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.titleNutritionalPlan }}
+        {{ element.title }}
+      </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="objective">
+      <th mat-header-cell *matHeaderCellDef>Objetivo</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.objective }}
+      </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Descripción</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.description }}
+      </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="startDate">
+      <th mat-header-cell *matHeaderCellDef>Inicio</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.startDate | date : "dd/MM/yyyy" }}
+      </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="endDate">
+      <th mat-header-cell *matHeaderCellDef>Fin</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.endDate | date : "dd/MM/yyyy" }}
+      </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="recommendations">
+      <th mat-header-cell *matHeaderCellDef>Recomendaciones</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.recommendations }}
       </td>
     </ng-container>
 
     <!-- Weight Column -->
-    <ng-container matColumnDef="statusNutritionalPlan">
+    <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef>Estado</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.statusNutritionalPlan }}
+        <span
+          class="badge bg-{{ element.status ? 'success' : 'danger' }} text-white"
+          (click)="toggleBadgeStatus(element.idNutritionalPlan, element.status)"
+          style="cursor: pointer"
+        >
+          {{ element.status ? 'Activo' : 'Inactivo' }}
+        </span>
       </td>
     </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="objectiveNutritionalPlan">
-      <th mat-header-cell *matHeaderCellDef>Objetivo</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.objectiveNutritionalPlan }}
-      </td>
-    </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="descriptionNutritionalPlan">
-      <th mat-header-cell *matHeaderCellDef>Descripción</th>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.descriptionNutritionalPlan }}
-      </td>
-    </ng-container>
+        <button
+        mat-icon-button
+        #tooltip="matTooltip"
+      matTooltip="Agregar comidas"
+        color="primary"
+      >
+        <mat-icon>assignment_add</mat-icon>
+      </button>
+        <button
+          mat-icon-button
+          #tooltip="matTooltip"
+        matTooltip="Editar"
+          color="primary"
+          [routerLink]="['update', element.idNutritionalPlan]"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="startDateNutritionalPlan">
-      <th mat-header-cell *matHeaderCellDef>Inicio</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.startDateNutritionalPlan | date : "dd/MM/yyyy" }}
-      </td>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="endDateNutritionalPlan">
-      <th mat-header-cell *matHeaderCellDef>Fin</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.endDateNutritionalPlan | date : "dd/MM/yyyy" }}
-      </td>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="recommendationsNutritionalPlan">
-      <th mat-header-cell *matHeaderCellDef>Recomendaciones</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.recommendationsNutritionalPlan }}
+        <button
+          mat-icon-button
+          color="primary"
+          #tooltip="matTooltip"
+          matTooltip="Eliminar"
+          (click)="showDeletePopup(element.idNutritionalPlan)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      [hidden]="row.hide || row.hide === undefined"
+    ></tr>
   </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+  <mat-paginator
+    #paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  >
   </mat-paginator>
 </div>

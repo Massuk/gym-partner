@@ -1,11 +1,9 @@
-import { Component,Inject  } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
 
 @Component({
   selector: 'app-dialog-popup',
-  templateUrl: './dialog-popup.component.html',
-  styleUrls: ['./dialog-popup.component.scss']
+  templateUrl: './dialog-popup.component.html'
 })
 export class DialogPopupComponent {
   confirmButtonText: string = '';
@@ -47,6 +45,4 @@ export class DialogPopupComponent {
   onConfirmClick(): void {
     this.dialogRef.close(true);
   }
-
-
 }

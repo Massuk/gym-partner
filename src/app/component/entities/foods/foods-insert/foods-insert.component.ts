@@ -1,80 +1,105 @@
 import { Component, OnInit } from '@angular/core';
 import { FoodService } from 'src/app/service/foods.service';
-import { food } from 'src/app/model/food';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Food } from 'src/app/model/food';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { NutritionixService } from 'src/app/service/nutritionix.service';
 
 @Component({
   selector: 'app-foods-insert',
   templateUrl: './foods-insert.component.html',
-  styleUrls: ['./foods-insert.component.scss']
+  styleUrls: ['./foods-insert.component.scss'],
 })
 export class FoodsInsertComponent implements OnInit {
-  id: number = 0;
-  edicion: boolean = false;
+  idFood: number = 0;
+  edit: boolean = false;
   form: FormGroup = new FormGroup({});
-  food: food= new food();
-  mensaje: string = '';
-  maxFecha: Date = moment().add(-1, 'days').toDate();
+  food: Food = new Food();
+  selectedFood: any;
+
   constructor(
     private fS: FoodService,
     private router: Router,
-    private route: ActivatedRoute
-    ) {}
+    private route: ActivatedRoute,
+    private nutritionixService: NutritionixService
+  ) {}
 
   ngOnInit(): void {
-
-      this.route.params.subscribe((data: Params) => {
-      this.id = data['id'];
-      this.edicion = data['id'] != null;
+    this.route.params.subscribe((data: Params) => {
+      this.idFood = data['id'];
+      this.edit = data['id'] != null;
       this.init();
     });
-      this.form = new FormGroup({
-      id: new FormControl(),
-      nameFood: new FormControl(),
-      portionsFood: new FormControl(),
-      caloriesFood: new FormControl(),
+    this.form = new FormGroup({
+      id: new FormControl(''),
+      name: new FormControl('', Validators.required),
+      portions: new FormControl('', Validators.required),
+      calories: new FormControl('', Validators.required),
+    });
 
+    // Suscribirse a los cambios en el campo 'name'
+    this.form.controls['name'].valueChanges.subscribe((value: string) => {
+      this.searchFoods(value);
     });
   }
-  aceptar(): void {
-    this.food.id = this.form.value['id'];
-    this.food.nameFood = this.form.value['nameFood'];
-    this.food.portionsFood = this.form.value['portionsFood'];
-    this.food.caloriesFood = this.form.value['caloriesFood'];
-    if (this.form.value['nameFood'].length > 0) {
-      if(this.edicion){
-        //guardar lo actualizado
+  accept(): void {
+    this.food.idFood = this.form.value['id'];
+    this.food.name = this.form.value['name'];
+    this.food.portions = this.form.value['portions'];
+    this.food.calories = this.form.value['calories'];
+    if (this.form.valid) {
+      if (this.edit) {
         this.fS.update(this.food).subscribe(() => {
           this.fS.list().subscribe((data) => {
             this.fS.setList(data);
           });
         });
-      }
-      else {
+      } else {
         this.fS.insert(this.food).subscribe((data) => {
           this.fS.list().subscribe((data) => {
             this.fS.setList(data);
           });
         });
       }
-      this.router.navigate(['foods']);
+      this.router.navigate(['/dashboard/foods']);
     }
-      else {
-      this.mensaje = 'Ingrese el nombre del alimento';
-     }
-   }
-   init() {
-    if (this.edicion) {
-      this.fS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          id: new FormControl(data.id),
-          nameFood: new FormControl(data.nameFood),
-          portionsFood: new FormControl(data.portionsFood),
-          caloriesFood: new FormControl(data.caloriesFood),
+  }
+  init() {
+    if (this.edit) {
+      this.fS.listId(this.idFood).subscribe((data) => {
+        this.form.patchValue({
+          id: data.idFood,
+          name: data.name,
+          portions: data.portions,
+          calories: data.calories,
         });
       });
     }
   }
+
+  // API para autorellenar valor de calorias u otras propiedades que necesitemos de un alimento
+  searchFoods(query: string) {
+    if (query.trim() === '') {
+      this.form.patchValue({
+        calories: ''
+      });
+      return;
+    }
+
+    this.nutritionixService.getFoods(query).subscribe(
+      response => {
+        this.selectedFood = response.foods[0];
+        if (this.selectedFood) {
+          this.form.patchValue({
+            calories: this.selectedFood.nf_calories
+          });
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
 }

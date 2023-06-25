@@ -10,7 +10,7 @@ export const navbarData = [
     label: 'Clientes',
   },
   {
-    routeLink: 'gym',
+    routeLink: 'gyms',
     icon: 'fal fa-sitemap',
     label: 'Gimnasios',
   },
@@ -20,7 +20,7 @@ export const navbarData = [
     label: 'Ejercicios',
   },
   {
-    routeLink: 'trainingPlans',
+    routeLink: 'training-plans',
     icon: 'fal fa-paste',
     label: 'Planes de Entrenamiento',
   },

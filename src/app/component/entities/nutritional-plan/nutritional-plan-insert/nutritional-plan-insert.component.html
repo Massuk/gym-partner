@@ -1,99 +1,130 @@
 <div class="card">
-  <div class="card-head">Registrar gimnasio</div>
+  <div class="card-head">Registrar plan nutricional</div>
   <div class="card-body">
-    <form [formGroup]="form" (submit)="aceptar()">
+    <form [formGroup]="form" (submit)="accept()">
       <div class="row">
         <div class="col">
-          <mat-form-field class="example-full-width">
-            <mat-label>Id</mat-label>
-            <input matInput placeholder="Id" formControlName="id" />
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field class="example-full-width">
-            <mat-label>Titulo</mat-label>
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Nombre</mat-label>
             <input
               matInput
-              placeholder="Titulo"
-              formControlName="titleNutritionalPlan"
+              placeholder="Nombre"
+              formControlName="title"
+              required
             />
+            <mat-error *ngIf="form.controls['title'].invalid">
+              El campo no puede estar vacío.
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col">
-          <mat-form-field appearance="fill">
-            <mat-label>Estado</mat-label>
-            <mat-select
-              placeholder="Estado"
-              formControlName="statusNutritionalPlan"
-            >
-              <mat-option value="Activo">Activo</mat-option>
-              <mat-option value="Inactivo">Inactivo</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field class="example-full-width">
-            <mat-label>Objetivo</mat-label>
-            <input
-              matInput
-              placeholder="Objetivo"
-              formControlName="objectiveNutritionalPlan"
-            />
-          </mat-form-field>
-        </div>
+      <div class="row my-3">
+        <mat-form-field
+          appearance="outline"
+          style="width: 100%"
+        >
+          <mat-label>Objetivo</mat-label>
+          <input
+            matInput
+            placeholder="Objetivo"
+            formControlName="objective"
+            required
+          />
+          <mat-error *ngIf="form.controls['objective'].invalid">
+            El campo no puede estar vacío.
+          </mat-error>
+        </mat-form-field>
       </div>
-
-      <mat-form-field class="example-full-width">
-        <mat-label>Descripcion</mat-label>
+      <mat-form-field
+        appearance="outline"
+        style="width: 100%"
+      >
+        <mat-label>Descripción</mat-label>
         <textarea
           matInput
-          placeholder="Descripcion"
-          formControlName="descriptionNutritionalPlan"
+          placeholder="Descripción"
+          formControlName="description"
+          required
+          rows="3"
         ></textarea>
+        <mat-error *ngIf="form.controls['description'].invalid">
+          El campo no puede estar vacío.
+        </mat-error>
       </mat-form-field>
 
       <div class="row">
-        <div class="col">
-          <mat-form-field appearance="fill">
-            <mat-label>Inicio de Plan</mat-label>
-            <input
-              matInput
-              [matDatepicker]="picker"
-              placeholder="Elija una fecha"
-              formControlName="startDateNutritionalPlan"
-              [max]="maxFecha"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
+        <div class="col-md-6">
+          <div class="my-3">
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Inicio del plan</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                placeholder="Elija una fecha"
+                formControlName="startDate"
+                [min]="minDate"
+                required
+                readonly
+                (dateChange)="updateEndDate($event)"
+              />
+              <mat-error *ngIf="form.controls['startDate'].invalid">
+                Elige una fecha inicial.
+              </mat-error>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="my-3">
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Fin del plan</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker2"
+                placeholder="Elija una fecha"
+                formControlName="endDate"
+                readonly
+                required
+              />
+              <mat-error *ngIf="form.controls['endDate'].invalid">
+                Se necesita fecha inicial.
+              </mat-error>
+              <mat-datepicker-toggle
+                disabled
+                matSuffix
+                [for]="picker2"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </div>
         </div>
       </div>
 
-      <mat-form-field class="example-full-width">
+      <mat-form-field
+        appearance="outline"
+        style="margin-right: 20rem; width: 100%"
+      >
         <mat-label>Recomendaciones</mat-label>
         <textarea
           matInput
           placeholder="Recomendaciones"
-          formControlName="recommendationsNutritionalPlan"
+          formControlName="recommendations"
+          required
         ></textarea>
+        <mat-error *ngIf="form.controls['recommendations'].invalid">
+          El campo no puede estar vacío.
+        </mat-error>
       </mat-form-field>
 
       <div class="button-container">
-        <div class="form-group">
-          <button class="button accept" type="submit">Agregar</button>
-          <button class="button cancel" routerLink="/nutritional-plans">
-            Cancelar
-          </button>
-        </div>
-        <div class="form-group"></div>
-        <p>{{ mensaje }}</p>
-      </div>
+        <button class="button accept" type="submit">Agregar</button>
+        <button class="button cancel" routerLink="/dashboard/nutritional-plans">Cancelar</button>
+    </div>
     </form>
 
     <div class="card separate">
@@ -192,5 +223,6 @@
         </button>
       </div>
     </div>
+
   </div>
 </div>

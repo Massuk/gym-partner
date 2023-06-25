@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { TrainingPlan } from '../model/training-plans';
-import { Subject } from 'rxjs';
+import { TrainingPlan } from '../model/training-plan';
+import { Observable, Subject } from 'rxjs';
 
 const base_url=environment.base
 
@@ -12,22 +12,73 @@ const base_url=environment.base
 export class TrainingPlansService {
 
   private url = `${base_url}/trainingPlans`;
-  private listaCambio = new Subject<TrainingPlan[]>();
+  private changeList = new Subject<TrainingPlan[]>();
+  private badgeStatus: { [key: number]: string } = {};
 
   constructor(private http: HttpClient) { }
-  
+
   list(){
-    return this.http.get<TrainingPlan[]>(this.url)
+    let token = sessionStorage.getItem('token');
+    return this.http.get<TrainingPlan[]>(this.url, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    })
   }
-  
+
   insert(tPlan: TrainingPlan) {
-    return this.http.post(this.url, tPlan);
+    let token = sessionStorage.getItem('token');
+    return this.http.post(this.url, tPlan, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   getList() {
-    return this.listaCambio.asObservable();
+    return this.changeList.asObservable();
   }
   setList(listaNueva: TrainingPlan[]) {
-    this.listaCambio.next(listaNueva);
+    this.changeList.next(listaNueva);
   }
+
+  listId(idTrainingPlan: number) {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<TrainingPlan>(`${this.url}/${idTrainingPlan}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    })
+  }
+
+  update(TrainingPlan: TrainingPlan) {
+    let token = sessionStorage.getItem('token');
+    return this.http.put(`${this.url}/update`, TrainingPlan, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
+
+  hide(idTrainingPlan: number): Observable<any> {
+    let token = sessionStorage.getItem('token');
+    const url = `${this.url}/hide/${idTrainingPlan}`;
+    return this.http.put(url, null, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
+
+  delete(idTrainingPlan: number): Observable<any> {
+    let token = sessionStorage.getItem('token');
+    const url = `${this.url}/${idTrainingPlan}`;
+    return this.http.delete(url, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
+
+
 }

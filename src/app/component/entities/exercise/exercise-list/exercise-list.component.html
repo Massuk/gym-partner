@@ -1,74 +1,83 @@
-<h1>Lista ejercicios registrados</h1>
+<h1>Ejercicios</h1>
 <div class="card">
   <div class="card-body">
-    Lista de ejercicios que has registrado bajo tu nombre. Puedes añadir tantos
-    como quieras y los podrás gestionar desde aquí
+    <div class="search-container">
+      <div class="normal-search">
+        <input
+          type="search"
+          class="search"
+          name=""
+          id=""
+          placeholder="Buscar..."
+          matInput
+          (keyup)="filter($event)"
+          (search)="clearFilter()"
+        />
+        <i class="far fa-search search-icon"></i>
+      </div>
+    </div>
 
     <div class="button-container">
-      <button class="button accept" routerLink="/exercises/exercise-insert">
+      <button class="button accept" routerLink="/dashboard/exercises/insert">
         Agregar
       </button>
     </div>
   </div>
 </div>
 
-<div class="search-container">
-  <div class="normal-search">
-    <input
-      type="search"
-      class="search"
-      name=""
-      id=""
-      placeholder="Buscar..."
-      matInput
-      (keyup)="filtrar($event)"
-    />
-    <i class="far fa-search search-icon"></i>
-  </div>
-</div>
-
 <div class="card">
   <div class="card-title">
-  <table mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>No.</th>
-      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-    </ng-container>
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.idExercise }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="nameExercise">
-      <th mat-header-cell *matHeaderCellDef>Nombre</th>
-      <td mat-cell *matCellDef="let element">{{ element.nameExercise }}</td>
-    </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="series">
-      <th mat-header-cell *matHeaderCellDef>No. Series</th>
-      <td mat-cell *matCellDef="let element">{{ element.series }}</td>
-    </ng-container>
+      <ng-container matColumnDef="series">
+        <th mat-header-cell *matHeaderCellDef>No. Series</th>
+        <td mat-cell *matCellDef="let element">{{ element.series }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="kilograms">
-      <th mat-header-cell *matHeaderCellDef>Cant. Kg</th>
-      <td mat-cell *matCellDef="let element">{{ element.kilograms }}</td>
-    </ng-container>
+      <ng-container matColumnDef="kilograms">
+        <th mat-header-cell *matHeaderCellDef>Cant. Kg</th>
+        <td mat-cell *matCellDef="let element">{{ element.kilograms }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="repetitions">
-      <th mat-header-cell *matHeaderCellDef>No. Repeticiones</th>
-      <td mat-cell *matCellDef="let element">{{ element.repetitions }}</td>
-    </ng-container>
+      <ng-container matColumnDef="repetitions">
+        <th mat-header-cell *matHeaderCellDef>Repeticiones</th>
+        <td mat-cell *matCellDef="let element">{{ element.repetitions }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="Editar">
-      <th mat-header-cell *matHeaderCellDef>Acciones</th>
-      <td mat-cell *matCellDef="let element">
-        <button
-          mat-icon-button
-          color="primary"
-          [routerLink]="['edicion', element.id]"
-        >
-          <mat-icon>edit</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button [routerLink]="['update', element.idExercise]">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="primary"
+            (click)="showDeletePopup(element.idExercise)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+
+      ></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
 </div>

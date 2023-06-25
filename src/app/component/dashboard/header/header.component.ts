@@ -1,5 +1,7 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { userItems } from './header-dummy-data';
+import { LoginService } from '../../../service/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   userItems = userItems;
 
-  constructor() {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -42,4 +44,18 @@ export class HeaderComponent implements OnInit {
       this.canShowSearchAsOverlay = false;
     }
   }
+
+  logout(): void {
+    this.loginService.logout().subscribe(
+      () => {
+        this.router.navigate(['/auth/login']);
+        console.log('Sesión cerrada exitosamente');
+      },
+      (error) => {
+        // Manejo de errores en caso de que ocurra algún problema al cerrar sesión
+        console.error('Error al cerrar sesión', error);
+      }
+    );
+  }
+
 }
