@@ -83,6 +83,7 @@ import { RoutineListComponent } from './component/entities/routine/routine-list/
 import { RoutineInsertComponent } from './component/entities/routine/routine-insert/routine-insert.component';
 import { RoutineDeleteComponent } from './component/entities/routine/routine-delete/routine-delete.component';
 import { ToastrModule } from 'ngx-toastr';
+import { GymDetailsComponent } from './component/entities/gym/gym-details/gym-details.component';
 
 @NgModule({
   declarations: [
@@ -151,7 +152,8 @@ import { ToastrModule } from 'ngx-toastr';
     RoutineComponent,
     RoutineListComponent,
     RoutineInsertComponent,
-    RoutineDeleteComponent
+    RoutineDeleteComponent,
+    GymDetailsComponent
   ],
   imports: [
     ToastrModule.forRoot({

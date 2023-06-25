@@ -46,10 +46,6 @@ export class RegisterComponent implements OnInit {
     this.owner.gender = this.form.value['gender'];
     this.owner.cellphone = this.form.value['cellphone'];
     this.owner.status = true;
-    this.owner.role = {
-      idRole: 1,
-      name: 'ADMINISTRADOR',
-    };
 
     if (this.form.valid) {
       this.oS.insert(this.owner).subscribe((data) => {

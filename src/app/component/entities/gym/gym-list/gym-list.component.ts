@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
@@ -6,9 +6,9 @@ import { Gym } from 'src/app/model/gym';
 import { GymService } from 'src/app/service/gym.service';
 import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/dialog-popup.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { GymDataService } from 'src/app/service/gym-data.service';
 import { MatSort } from '@angular/material/sort';
 import { UserDataService } from '../../../../service/user-data.service';
+import { GymDetailsComponent } from '../gym-details/gym-details.component';
 
 @Component({
   selector: 'app-gym-list',
@@ -21,19 +21,18 @@ export class GymListComponent implements OnInit {
   username: string;
   lastname: string;
   role: string;
-  gyms: Gym[] = []; // Variable para almacenar los gimnasios
+  gyms: Gym[] = [];
 
 
   constructor(
     private udS: UserDataService,
     private gS: GymService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar,
-    private gymDataService: GymDataService
+    private snackBar: MatSnackBar
   ) {
     setInterval(() => {
       this.currentTime = new Date();
-    }, 1000); // Actualiza la hora cada segundo (1000 ms)
+    }, 1000);
   }
 
   lista: Gym[] = [];
@@ -42,7 +41,7 @@ export class GymListComponent implements OnInit {
   dataSource: MatTableDataSource<Gym> = new MatTableDataSource();
 
   ngOnInit(): void {
-    this.getUserData(); // Llama al método para obtener los datos del usuario
+    this.getUserData();
     this.innerWidth = window.innerWidth;
     this.gS.getList().subscribe((data) => {
       this.gyms = data;
@@ -95,7 +94,6 @@ export class GymListComponent implements OnInit {
         showCancelButton: true,
       },
     });
-
     const snack = this.snackBar;
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -114,6 +112,19 @@ export class GymListComponent implements OnInit {
         snack.dismiss();
       }
     });
+  }
+
+  showManagePopup(): void {
+    if (this.gyms.length > 0) {
+      const gym = this.gyms[0]; // Primer elemento del arreglo gyms
+      const dialogRef = this.dialog.open(GymDetailsComponent, {
+        height: 'auto',
+        width: '630px',
+        data: {
+          gym: gym // Pasamos el objeto Gym al componente GymDetailsComponent
+        }
+      });
+    }
   }
 
   filterResults(gym: any) {
