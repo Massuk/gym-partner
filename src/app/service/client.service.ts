@@ -7,7 +7,7 @@ import { Observable, Subject } from 'rxjs';
 const urlData = environment.base;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ClientService {
   private url = `${urlData}/clients`;
@@ -18,6 +18,14 @@ export class ClientService {
   list(username: String) {
     let token = sessionStorage.getItem('token');
     return this.http.get<Client[]>(`${this.url}/${username}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
+  listId(idClient: number) {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Client>(`${this.url}/details/${idClient}`, {
       headers: new HttpHeaders()
         .set('Authorization', `Bearer ${token}`)
         .set('Content-Type', 'application/json'),
