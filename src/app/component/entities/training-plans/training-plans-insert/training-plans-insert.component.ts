@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TrainingPlan } from 'src/app/model/training-plan';
 import { TrainingPlansService } from 'src/app/service/training-plans.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import * as moment from 'moment';
+import { ClientService } from 'src/app/service/client.service';
+import { Client } from 'src/app/model/client';
 
 @Component({
   selector: 'app-training-plans-insert',
@@ -17,10 +19,11 @@ export class TrainingPlansInsertarComponent implements OnInit {
   title: string = 'Registrar plan de entrenamiento';
   form: FormGroup = new FormGroup({});
   trainingPlan: TrainingPlan = new TrainingPlan();
-  Fecha: Date = moment().add().toDate();
-  maxFecha: Date = moment().add(+30, 'days').toDate();
+  minDate: Date = moment().add().toDate();
+  maxDate: Date = moment().add(+30, 'days').toDate();
   constructor(
     private tPS: TrainingPlansService,
+    private c: ClientService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -28,6 +31,7 @@ export class TrainingPlansInsertarComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.idTrainingPlan = data['id'];
+      this.idClient = this.getIdClientFromUrl();
       this.edit = data['id'] != null;
       this.init();
     });
@@ -61,17 +65,33 @@ export class TrainingPlansInsertarComponent implements OnInit {
           data.endDate = this.trainingPlan.endDate;
           data.status = this.trainingPlan.status;
           data.hide = this.trainingPlan.hide;
-          this.tPS.update(data);
-          this.goBack();
+          this.tPS.update(data).subscribe(() => {
+            this.tPS.list(this.idClient).subscribe((data) => {
+              this.tPS.setList(data);
+            });
+          });
         });
       } else {
+        this.c.listId(this.idClient).subscribe((data) => {
+          let client = new Client();
+          this.trainingPlan.client = data;
+          console.log(this.trainingPlan);
+          this.tPS.insert(this.trainingPlan).subscribe(() => {
+            this.tPS.list(this.idClient).subscribe((data) => {
+              this.tPS.setList(data);
+            });
+          });
+        });
       }
-      this.router.navigate(['/dashboard/clients/training-plans']);
+      this.router.navigate([
+        '/dashboard/clients/' + this.idClient + '/training-plans',
+      ]);
     }
   }
 
   init() {
     if (this.edit) {
+      this.title = 'Editar plan de entrenamiento';
       this.tPS.listId(this.idTrainingPlan).subscribe((data) => {
         this.form.patchValue({
           id: data.idTrainingPlan,
@@ -86,16 +106,12 @@ export class TrainingPlansInsertarComponent implements OnInit {
       });
     }
   }
-
-  goBack() {
-    const url = this.router.url.split('/');
-    const segmentsToRemove = 2; // Número de segmentos que deseas eliminar (en este caso, "update" y el ID)
-
-    // Eliminar los segmentos "update" y el ID de la ruta
-    const urlWithoutUpdate = url
-      .slice(0, url.length - segmentsToRemove)
-      .join('/');
-
-    this.router.navigateByUrl(urlWithoutUpdate);
+  getIdClientFromUrl(): number {
+    const urlSegments = this.router.url.split('/');
+    const index = urlSegments.indexOf('clients');
+    if (index !== -1 && index + 1 < urlSegments.length) {
+      return +urlSegments[index + 1];
+    }
+    return 0;
   }
 }

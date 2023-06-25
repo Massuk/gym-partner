@@ -82,7 +82,7 @@
               [matDatepicker]="picker"
               placeholder="Elige una fecha"
               formControlName="startDate"
-              [min]="Fecha"
+              [min]="minDate"
               readonly
               required
             />
@@ -104,8 +104,8 @@
               [matDatepicker]="picker2"
               placeholder="Elige una fecha"
               formControlName="endDate"
-              [min]="Fecha"
-              [max]="maxFecha"
+              [min]="minDate"
+              [max]="maxDate"
               readonly
               required
             />
@@ -124,7 +124,10 @@
       <div class="button-container">
         <div class="form-group">
           <button class="button accept" type="submit">Agregar</button>
-          <button class="button cancel" routerLink="../">
+          <button
+            class="button cancel"
+            [routerLink]="'/dashboard/clients/' + idClient + '/training-plans'"
+          >
             Cancelar
           </button>
         </div>
