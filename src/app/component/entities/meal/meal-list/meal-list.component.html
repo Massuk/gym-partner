@@ -65,16 +65,26 @@
       <td mat-cell *matCellDef="let element">
         <button
           mat-icon-button
+          #tooltip="matTooltip"
+          matTooltip="Agregar alimentos"
+          matTooltipPosition="below"
           color="primary"
           [routerLink]="[element.idMeal, 'foods']"
         >
-          <mat-icon>visibility</mat-icon>
+          <mat-icon>egg</mat-icon>
         </button>
-        <button mat-icon-button [routerLink]="['update', element.idMeal]">
+        <button mat-icon-button
+        #tooltip="matTooltip"
+        matTooltip="Editar"
+        matTooltipPosition="below"
+        [routerLink]="['update', element.idMeal]">
           <mat-icon>edit</mat-icon>
         </button>
         <button
           mat-icon-button
+          #tooltip="matTooltip"
+          matTooltip="Eliminar"
+          matTooltipPosition="below"
           color="primary"
           (click)="showDeletePopup(element.idMeal)"
         >

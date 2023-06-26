@@ -55,16 +55,26 @@
       <td mat-cell *matCellDef="let element">
         <button
           mat-icon-button
+          #tooltip="matTooltip"
+          matTooltip="Agregar ejercicios"
+          matTooltipPosition="below"
           color="primary"
           [routerLink]="[element.idRoutine, 'exercises']"
         >
-          <mat-icon>visibility</mat-icon>
+          <mat-icon>sports_gymnastics</mat-icon>
         </button>
-        <button mat-icon-button [routerLink]="['update', element.idRoutine]">
+        <button mat-icon-button
+        #tooltip="matTooltip"
+        matTooltip="Editar"
+        matTooltipPosition="below"
+        [routerLink]="['update', element.idRoutine]">
           <mat-icon>edit</mat-icon>
         </button>
         <button
           mat-icon-button
+          #tooltip="matTooltip"
+          matTooltip="Eliminar"
+          matTooltipPosition="below"
           color="primary"
           (click)="showDeletePopup(element.idRoutine)"
         >

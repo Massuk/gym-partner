@@ -54,11 +54,18 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
-          <button mat-icon-button [routerLink]="['update', element.idExercise]">
+          <button mat-icon-button
+          #tooltip="matTooltip"
+          matTooltip="Editar"
+          matTooltipPosition="below"
+          [routerLink]="['update', element.idExercise]">
             <mat-icon>edit</mat-icon>
           </button>
           <button
             mat-icon-button
+            #tooltip="matTooltip"
+            matTooltip="Eliminar"
+            matTooltipPosition="below"
             color="primary"
             (click)="showDeletePopup(element.idExercise)"
           >

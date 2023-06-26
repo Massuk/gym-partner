@@ -57,12 +57,19 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Acciones</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-icon-button color="primary">
+          <button mat-icon-button
+          #tooltip="matTooltip"
+          matTooltip="Historial médico"
+          matTooltipPosition="below"
+          color="primary">
             <mat-icon>medical_information</mat-icon>
           </button>
           <button
             mat-icon-button
             color="primary"
+            #tooltip="matTooltip"
+            matTooltip="Planes nutricionales"
+            matTooltipPosition="below"
             [routerLink]="[element.idUser, 'nutritional-plans']"
           >
             <mat-icon>restaurant</mat-icon>
@@ -70,6 +77,9 @@
           <button
             mat-icon-button
             color="primary"
+            #tooltip="matTooltip"
+            matTooltip="Planes de entrenamiento"
+            matTooltipPosition="below"
             [routerLink]="[element.idUser, 'training-plans']"
           >
             <mat-icon>fitness_center</mat-icon>
