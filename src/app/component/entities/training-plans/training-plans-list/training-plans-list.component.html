@@ -98,7 +98,6 @@
           #tooltip="matTooltip"
           matTooltip="Agregar rutina"
           matTooltipPosition="below"
-          matTooltipHideDelay="60"
           [routerLink]="[element.idTrainingPlan, 'routines']"
         >
           <mat-icon>fitness_center</mat-icon>
@@ -108,6 +107,7 @@
           mat-icon-button
           #tooltip="matTooltip"
           matTooltip="Editar"
+          matTooltipPosition="below"
           [routerLink]="['update', element.idTrainingPlan]"
         >
           <mat-icon>edit</mat-icon>
