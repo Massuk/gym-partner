@@ -65,7 +65,6 @@ export class NutritionistInsertComponent implements OnInit {
           data.birthDate = this.nutritionist.birthDate;
           data.cellphone = this.nutritionist.cellphone;
           data.email = this.nutritionist.email;
-          data.password = this.nutritionist.password;
           data.yearHired = this.nutritionist.yearHired;
           this.nS.update(data).subscribe(() => {
             this.nS

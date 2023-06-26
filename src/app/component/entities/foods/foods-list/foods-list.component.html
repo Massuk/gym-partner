@@ -1,5 +1,4 @@
-<h1>Lista de Alimentos</h1>
-
+<h1>Ejercicios</h1>
 <div class="card">
   <div class="card-body">
     <div class="search-container">
@@ -19,64 +18,51 @@
     </div>
 
     <div class="button-container">
-      <button class="button accept" routerLink="/dashboard/foods/insert">
-        Agregar
-      </button>
+      <button class="button accept" [routerLink]="['insert']">Agregar</button>
     </div>
   </div>
 </div>
 
 <div class="card">
-  <table mat-table [dataSource]="dataSource" class="mat foods-table">
-    <!-- ID Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>ID</th>
-      <!--estatico -->
-      <td mat-cell *matCellDef="let element">{{ element.idFood }}</td>
-    </ng-container>
+  <div class="card-title">
+    <table mat-table [dataSource]="dataSource">
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Alimentos</th>
-      <!--estatico -->
-      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-    </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="portions">
-      <th mat-header-cell *matHeaderCellDef>Porciones (g)</th>
-      <!--estatico -->
-      <td mat-cell *matCellDef="let element">{{ element.portions }}</td>
-    </ng-container>
+      <ng-container matColumnDef="portions">
+        <th mat-header-cell *matHeaderCellDef>Porciones</th>
+        <td mat-cell *matCellDef="let element">{{ element.portions }}</td>
+      </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="calories">
-      <th mat-header-cell *matHeaderCellDef>Calorías (Kcal)</th>
-      <!--estatico -->
-      <td mat-cell *matCellDef="let element">{{ element.calories }}</td>
-    </ng-container>
+      <ng-container matColumnDef="calories">
+        <th mat-header-cell *matHeaderCellDef>Calorias</th>
+        <td mat-cell *matCellDef="let element">{{ element.calories }}</td>
+      </ng-container>
 
-    <!-- Edit Column -->
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element">
-        <button
-          mat-icon-button
-          color="primary"
-          [routerLink]="['edit', element.idFood]"
-        >
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button color="primary" (click)="showDeletePopup(element.idFood)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button [routerLink]="['update', element.idFood]">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="primary"
+            (click)="showDeletePopup(element.idFood)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
-  </mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
 </div>

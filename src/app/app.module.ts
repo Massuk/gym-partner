@@ -36,7 +36,7 @@ import { MatCard, MatCardActions, MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkMenuModule } from '@angular/cdk/menu';
@@ -93,6 +93,10 @@ import { EditProfileComponent } from './component/entities/gym/edit-profile/edit
 import { AllRoleGuard } from './guards/allrole-guard';
 import { ErrorPageComponent } from './component/dashboard/error-page/error-page.component';
 import { UnauthorizedComponent } from './component/dashboard/error-page/unauthorized/unauthorized.component';
+import { MealComponent } from './component/entities/meal/meal.component';
+import { MealListComponent } from './component/entities/meal/meal-list/meal-list.component';
+import { MealInsertComponent } from './component/entities/meal/meal-insert/meal-insert.component';
+import { WorkersGuard } from './guards/workers-guard';
 
 @NgModule({
   declarations: [
@@ -165,7 +169,10 @@ import { UnauthorizedComponent } from './component/dashboard/error-page/unauthor
     GymDetailsComponent,
     EditProfileComponent,
     ErrorPageComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    MealComponent,
+    MealListComponent,
+    MealInsertComponent,
   ],
   imports: [
     ToastrModule.forRoot({
@@ -201,7 +208,7 @@ import { UnauthorizedComponent } from './component/dashboard/error-page/unauthor
     MatMenuModule,
     MatTooltipModule,
     MatProgressBarModule,
-    MatDividerModule
+    MatDividerModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
@@ -209,7 +216,8 @@ import { UnauthorizedComponent } from './component/dashboard/error-page/unauthor
     TrainerGuard,
     AdminGuard,
     NutritionistGuard,
-    AllRoleGuard
+    AllRoleGuard,
+    WorkersGuard,
   ],
   bootstrap: [AppComponent],
 })

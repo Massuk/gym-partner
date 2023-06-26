@@ -21,7 +21,7 @@
     <div class="button-container">
       <button
         class="button accept"
-        routerLink="/dashboard/nutritional-plans/insert"
+        [routerLink]="['insert']"
       >
         Agregar
       </button>
@@ -31,14 +31,6 @@
 
 <div class="card">
   <table mat-table [dataSource]="dataSource">
-    <!-- Position Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>ID</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.idNutritionalPlan }}
-      </td>
-    </ng-container>
-
     <!-- Name Column -->
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef>Titulo</th>
@@ -47,7 +39,7 @@
       </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Objective Column -->
     <ng-container matColumnDef="objective">
       <th mat-header-cell *matHeaderCellDef>Objetivo</th>
       <td mat-cell *matCellDef="let element">
@@ -55,7 +47,7 @@
       </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Description Column -->
     <ng-container matColumnDef="description">
       <th mat-header-cell *matHeaderCellDef>Descripción</th>
       <td mat-cell *matCellDef="let element">
@@ -63,7 +55,7 @@
       </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- startDate Column -->
     <ng-container matColumnDef="startDate">
       <th mat-header-cell *matHeaderCellDef>Inicio</th>
       <td mat-cell *matCellDef="let element">
@@ -71,7 +63,7 @@
       </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- End date Column -->
     <ng-container matColumnDef="endDate">
       <th mat-header-cell *matHeaderCellDef>Fin</th>
       <td mat-cell *matCellDef="let element">
@@ -79,7 +71,7 @@
       </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Recommendations Column -->
     <ng-container matColumnDef="recommendations">
       <th mat-header-cell *matHeaderCellDef>Recomendaciones</th>
       <td mat-cell *matCellDef="let element">
@@ -87,47 +79,49 @@
       </td>
     </ng-container>
 
-    <!-- Weight Column -->
+    <!-- Status Column -->
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef>Estado</th>
       <td mat-cell *matCellDef="let element">
         <span
-          class="badge bg-{{ element.status ? 'success' : 'danger' }} text-white"
+          class="badge bg-{{
+            element.status ? 'success' : 'danger'
+          }} text-white"
           (click)="toggleBadgeStatus(element.idNutritionalPlan, element.status)"
           style="cursor: pointer"
         >
-          {{ element.status ? 'Activo' : 'Inactivo' }}
+          {{ element.status ? "Activo" : "Inactivo" }}
         </span>
       </td>
     </ng-container>
-
 
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let element">
         <button
-        mat-icon-button
-        #tooltip="matTooltip"
-      matTooltip="Agregar comidas"
-        color="primary"
-      >
-        <mat-icon>assignment_add</mat-icon>
-      </button>
-        <button
           mat-icon-button
           #tooltip="matTooltip"
-        matTooltip="Editar"
-          color="primary"
-          [routerLink]="['update', element.idNutritionalPlan]"
+          matTooltip="Agregar comida"
+          matTooltipPosition="below"
+          matTooltipHideDelay="60"
+          [routerLink]="[element.idNutritionalPlan, 'meals']"
         >
-          <mat-icon>edit</mat-icon>
+          <mat-icon>visibility</mat-icon>
         </button>
 
         <button
           mat-icon-button
-          color="primary"
+          #tooltip="matTooltip"
+          matTooltip="Editar"
+          [routerLink]="['update', element.idNutritionalPlan]"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
           #tooltip="matTooltip"
           matTooltip="Eliminar"
+          color="primary"
           (click)="showDeletePopup(element.idNutritionalPlan)"
         >
           <mat-icon>delete</mat-icon>
@@ -139,7 +133,6 @@
     <tr
       mat-row
       *matRowDef="let row; columns: displayedColumns"
-      [hidden]="row.hide || row.hide === undefined"
     ></tr>
   </table>
   <mat-paginator

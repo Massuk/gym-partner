@@ -20,10 +20,7 @@
       </div>
 
       <div class="row my-3">
-        <mat-form-field
-          appearance="outline"
-          style="width: 100%"
-        >
+        <mat-form-field appearance="outline" style="width: 100%">
           <mat-label>Objetivo</mat-label>
           <input
             matInput
@@ -36,10 +33,7 @@
           </mat-error>
         </mat-form-field>
       </div>
-      <mat-form-field
-        appearance="outline"
-        style="width: 100%"
-      >
+      <mat-form-field appearance="outline" style="width: 100%">
         <mat-label>Descripción</mat-label>
         <textarea
           matInput
@@ -123,8 +117,13 @@
 
       <div class="button-container">
         <button class="button accept" type="submit">Agregar</button>
-        <button class="button cancel" routerLink="/dashboard/nutritional-plans">Cancelar</button>
-    </div>
+        <button
+          class="button cancel"
+          [routerLink]="'/dashboard/clients/' + idClient + '/nutritional-plans'"
+        >
+          Cancelar
+        </button>
+      </div>
     </form>
 
     <div class="card separate">
@@ -223,6 +222,5 @@
         </button>
       </div>
     </div>
-
   </div>
 </div>

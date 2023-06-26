@@ -1,25 +1,27 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Food } from 'src/app/model/food';
-import { MatTableDataSource } from '@angular/material/table';
-import { FoodService } from 'src/app/service/foods.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/dialog-popup.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Params } from '@angular/router';
+import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/dialog-popup.component';
+import { Meal } from 'src/app/model/meal';
+import { MealService } from 'src/app/service/meal.service';
+import { NutritionalPlan } from '../../../../model/nutritional-plan';
+
 @Component({
-  selector: 'app-foods-list',
-  templateUrl: './foods-list.component.html',
-  styleUrls: ['./foods-list.component.scss'],
+  selector: 'app-meal-list',
+  templateUrl: './meal-list.component.html',
+  styleUrls: ['./meal-list.component.scss'],
 })
-export class FoodsListComponent implements OnInit {
-  idMeal: number;
-  dataSource: MatTableDataSource<Food> = new MatTableDataSource();
+export class MealListComponent implements OnInit {
+  idNutritionalPlan: number;
+  dataSource: MatTableDataSource<Meal> = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  displayedColumns: string[] = ['name', 'portions', 'calories', 'actions'];
+  displayedColumns: string[] = ['title', 'day', 'type', 'actions'];
 
   constructor(
-    private fS: FoodService,
+    private mS: MealService,
     private dialog: MatDialog,
     private snackbar: MatSnackBar,
     private route: ActivatedRoute
@@ -27,13 +29,13 @@ export class FoodsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
-      this.idMeal = data['id'];
+      this.idNutritionalPlan = data['id'];
     });
-    this.fS.getList().subscribe((data) => {
+    this.mS.getList().subscribe((data) => {
       this.dataSource.data = data;
       this.dataSource.paginator = this.paginator;
     });
-    this.fS.list(this.idMeal).subscribe((data) => {
+    this.mS.list(this.idNutritionalPlan).subscribe((data) => {
       this.dataSource.data = data;
       this.dataSource.paginator = this.paginator;
     });
@@ -45,7 +47,8 @@ export class FoodsListComponent implements OnInit {
   clearFilter() {
     this.dataSource.filter = '';
   }
-  showDeletePopup(idExercise: number): void {
+
+  showDeletePopup(idMeal: number): void {
     const dialogRef = this.dialog.open(DialogPopupComponent, {
       width: '450px',
       data: {
@@ -62,8 +65,8 @@ export class FoodsListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.fS.delete(idExercise).subscribe(() => {
-          this.fS.list(this.idMeal).subscribe((data) => {
+        this.mS.hide(idMeal).subscribe(() => {
+          this.mS.list(this.idNutritionalPlan).subscribe((data) => {
             this.dataSource = new MatTableDataSource(data);
             this.dataSource.paginator = this.paginator;
           });
