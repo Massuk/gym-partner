@@ -50,12 +50,12 @@
 <div class="overlay overlay-user overlay-fall" cdkMenu>
   <ul>
     <li *ngFor="let item of userItems" cdkMenuItem>
-      <a>
+      <a (click)="handleMenuItemClick(item)">
         <i class="icon" [ngClass]="item.icon"></i>
         <span>{{item.label}}</span>
       </a>
-
     </li>
+
   </ul>
 </div>
 </ng-template>

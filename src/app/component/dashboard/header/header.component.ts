@@ -49,16 +49,11 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  logout(): void {
-    this.loginService.logout().subscribe(
-      () => {
-        this.router.navigate(['/auth/login']);
-        console.log('Sesión cerrada exitosamente');
-      },
-      (error) => {
-        // Manejo de errores en caso de que ocurra algún problema al cerrar sesión
-        console.error('Error al cerrar sesión', error);
-      }
-    );
+  handleMenuItemClick(item: any): void {
+    if (item.label === 'Cerrar sesión') {
+      sessionStorage.clear();
+      this.router.navigate(['/auth/login']);
+    }
   }
+
 }
