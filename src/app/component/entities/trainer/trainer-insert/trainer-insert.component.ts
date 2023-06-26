@@ -11,7 +11,7 @@ import { TrainerService } from 'src/app/service/trainer.service';
 @Component({
   selector: 'app-trainer-insert',
   templateUrl: './trainer-insert.component.html',
-  styleUrls: ['./trainer-insert.component.scss']
+  styleUrls: ['./trainer-insert.component.scss'],
 })
 export class TrainerInsertComponent implements OnInit {
   idTrainer: number = 0;
@@ -25,11 +25,10 @@ export class TrainerInsertComponent implements OnInit {
     private tS: TrainerService,
     private gS: GymService,
     private router: Router,
-    private route: ActivatedRoute,
-  ) { }
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-
     this.route.params.subscribe((data: Params) => {
       this.idTrainer = data['id'];
       this.edit = data['id'] != null;
@@ -45,7 +44,7 @@ export class TrainerInsertComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
       yearHired: new FormControl('', Validators.required),
-    })
+    });
   }
 
   accept(): void {
@@ -57,7 +56,7 @@ export class TrainerInsertComponent implements OnInit {
     this.trainer.email = this.form.value['email'];
     this.trainer.status = true;
     this.trainer.password = this.form.value['password'];
-    this.trainer.yearHired = this.form.value['yearHired']
+    this.trainer.yearHired = this.form.value['yearHired'];
 
     if (this.form.valid) {
       if (this.edit) {
@@ -68,7 +67,6 @@ export class TrainerInsertComponent implements OnInit {
           data.birthDate = this.trainer.birthDate;
           data.cellphone = this.trainer.cellphone;
           data.email = this.trainer.email;
-          data.password = this.trainer.password;
           data.yearHired = this.trainer.yearHired;
           this.tS.update(data).subscribe(() => {
             this.tS
@@ -78,8 +76,7 @@ export class TrainerInsertComponent implements OnInit {
               });
           });
         });
-      }
-      else {
+      } else {
         this.gS
           .listGymByUsername(String(sessionStorage.getItem('username')))
           .subscribe((data) => {
@@ -105,13 +102,13 @@ export class TrainerInsertComponent implements OnInit {
             });
           });
       }
-      this.router.navigate(['/dashboard/trainers'])
+      this.router.navigate(['/dashboard/trainers']);
     }
   }
 
   init() {
     if (this.edit) {
-      this.title = 'Editar entrenador'
+      this.title = 'Editar entrenador';
       this.tS.listId(this.idTrainer).subscribe((data) => {
         console.log(data);
         this.form.patchValue({
@@ -124,10 +121,9 @@ export class TrainerInsertComponent implements OnInit {
           email: data.email,
           status: data.status,
           password: data.password,
-          yearHired: data.yearHired
+          yearHired: data.yearHired,
         });
       });
     }
   }
-
 }

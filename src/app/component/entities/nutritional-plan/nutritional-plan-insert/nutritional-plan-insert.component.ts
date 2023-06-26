@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { ClientService } from 'src/app/service/client.service';
 
 @Component({
   selector: 'app-nutritional-plan-insert',
@@ -12,25 +13,28 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
   styleUrls: ['./nutritional-plan-insert.component.scss'],
 })
 export class NutritionalPlanInsertComponent {
+  idClient: number = 0;
   idNutritionalPlan: number = 0;
   edit: boolean = false;
+  title: string = 'Registrar plan de nuticion';
   form: FormGroup = new FormGroup({});
   nutritionalPlan: NutritionalPlan = new NutritionalPlan();
   minDate: Date = moment().add(0, 'days').toDate();
   constructor(
     private nPS: NutritionalPlanService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private c: ClientService
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.idNutritionalPlan = data['id'];
+      this.idClient = this.getIdClientFromUrl();
       this.edit = data['id'] != null;
       this.init();
     });
     this.form = new FormGroup({
-      id: new FormControl(),
       title: new FormControl('', Validators.required),
       objective: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
@@ -42,32 +46,71 @@ export class NutritionalPlanInsertComponent {
   }
 
   accept(): void {
-    this.nutritionalPlan.idNutritionalPlan = this.form.value['id'];
     this.nutritionalPlan.title = this.form.value['title'];
-    this.nutritionalPlan.status = this.form.value['status'];
     this.nutritionalPlan.objective = this.form.value['objective'];
     this.nutritionalPlan.description = this.form.value['description'];
     this.nutritionalPlan.startDate = this.form.value['startDate'];
     this.nutritionalPlan.endDate = this.form.value['endDate'];
     this.nutritionalPlan.recommendations = this.form.value['recommendations'];
+    this.nutritionalPlan.status = true;
     this.nutritionalPlan.hide = false;
 
     if (this.form.valid) {
       if (this.edit) {
-        this.nPS.update(this.nutritionalPlan).subscribe(() => {
-          this.nPS.list().subscribe((data) => {
-            this.nPS.setList(data);
+        this.nPS.listId(this.idNutritionalPlan).subscribe((data) => {
+          data.title = this.nutritionalPlan.title;
+          data.objective = this.nutritionalPlan.objective;
+          data.description = this.nutritionalPlan.description;
+          data.startDate = this.nutritionalPlan.startDate;
+          data.endDate = this.nutritionalPlan.endDate;
+          data.recommendations = this.nutritionalPlan.recommendations;
+          this.nPS.update(data).subscribe(() => {
+            this.nPS.list(this.idClient).subscribe((data) => {
+              this.nPS.setList(data);
+            });
           });
         });
       } else {
-        this.nPS.insert(this.nutritionalPlan).subscribe(() => {
-          this.nPS.list().subscribe((data) => {
-            this.nPS.setList(data);
+        this.c.listId(this.idClient).subscribe((data) => {
+          this.nutritionalPlan.client = data;
+          this.nPS.insert(this.nutritionalPlan).subscribe(() => {
+            this.nPS.list(this.idClient).subscribe((data) => {
+              this.nPS.setList(data);
+            });
           });
         });
       }
-      this.router.navigate(['/dashboard/nutritional-plans']);
     }
+    this.router.navigate([
+      '/dashboard/clients/' + this.idClient + '/nutritional-plans',
+    ]);
+  }
+
+  init() {
+    if (this.edit) {
+      this.title = 'Editar plan de entrenamiento';
+      this.nPS.listId(this.idNutritionalPlan).subscribe((data) => {
+        this.form.patchValue({
+          id: data.idNutritionalPlan,
+          title: data.title,
+          status: data.status,
+          description: data.description,
+          objective: data.objective,
+          startDate: data.startDate,
+          endDate: data.endDate,
+          recommendations: data.recommendations,
+        });
+      });
+    }
+  }
+
+  getIdClientFromUrl(): number {
+    const urlSegments = this.router.url.split('/');
+    const index = urlSegments.indexOf('clients');
+    if (index !== -1 && index + 1 < urlSegments.length) {
+      return +urlSegments[index + 1];
+    }
+    return 0;
   }
 
   updateEndDate(event: MatDatepickerInputEvent<Date>) {
@@ -78,21 +121,4 @@ export class NutritionalPlanInsertComponent {
       this.form.controls['endDate'].setValue(endDate);
     }
   }
-  init() {
-    if (this.edit) {
-      this.nPS.listId(this.idNutritionalPlan).subscribe((data) => {
-        this.form.patchValue({
-          id: data.idNutritionalPlan,
-          title: data.title,
-          status: data.status,
-          objective: data.objective,
-          description: data.description,
-          startDate: data.startDate,
-          endDate: data.endDate,
-          recommendations: data.recommendations
-        });
-      });
-    }
-  }
-
 }

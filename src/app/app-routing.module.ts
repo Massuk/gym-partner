@@ -43,6 +43,9 @@ import { NutritionistGuard } from './guards/nutritionist-guard';
 import { TrainerGuard } from './guards/trainer-guard';
 import { AllRoleGuard } from './guards/allrole-guard';
 import { ErrorPageComponent } from './component/dashboard/error-page/error-page.component';
+import { MealComponent } from './component/entities/meal/meal.component';
+import { MealInsertComponent } from './component/entities/meal/meal-insert/meal-insert.component';
+import { WorkersGuard } from './guards/workers-guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing-page/index', pathMatch: 'full' },
@@ -74,7 +77,7 @@ const routes: Routes = [
       {
         path: 'clients',
         component: ClientComponent,
-        canActivate: [TrainerGuard],
+        canActivate: [WorkersGuard],
         children: [
           {
             path: ':id/training-plans',
@@ -120,7 +123,7 @@ const routes: Routes = [
             ],
           },
           {
-            path: 'nutritional-plans',
+            path: ':id/nutritional-plans',
             component: NutritionalPlanComponent,
             canActivate: [NutritionistGuard],
             children: [
@@ -130,8 +133,32 @@ const routes: Routes = [
               },
               { path: 'update/:id', component: NutritionalPlanInsertComponent },
               {
-                path: 'list',
-                component: NutritionalPlanListComponent,
+                path: ':id/meals',
+                component: MealComponent,
+                children: [
+                  {
+                    path: 'insert',
+                    component: MealInsertComponent,
+                  },
+                  {
+                    path: 'update/:id',
+                    component: MealInsertComponent,
+                  },
+                  {
+                    path: ':id/foods',
+                    component: FoodsComponent,
+                    children: [
+                      {
+                        path: 'insert',
+                        component: FoodsInsertComponent,
+                      },
+                      {
+                        path: 'update/:id',
+                        component: FoodsInsertComponent,
+                      },
+                    ],
+                  },
+                ],
               },
             ],
           },
@@ -145,32 +172,17 @@ const routes: Routes = [
           {
             path: 'list',
             component: GymListComponent,
-            canActivate: [AllRoleGuard]
+            canActivate: [AllRoleGuard],
           },
           {
             path: 'insert',
             component: GymInsertComponent,
-            canActivate: [AdminGuard]
+            canActivate: [AdminGuard],
           },
           {
             path: 'update/:id',
             component: GymUpdateComponent,
-            canActivate: [AdminGuard]
-          },
-        ],
-      },
-      {
-        path: 'foods',
-        component: FoodsComponent,
-        canActivate: [NutritionistGuard],
-        children: [
-          {
-            path: 'insert',
-            component: FoodsInsertComponent,
-          },
-          {
-            path: 'edit/:id',
-            component: FoodsInsertComponent,
+            canActivate: [AdminGuard],
           },
         ],
       },
@@ -214,7 +226,7 @@ const routes: Routes = [
       },
     ],
   },
-  { path: '401', component: ErrorPageComponent, canActivate: [PublicGuard]},
+  { path: '401', component: ErrorPageComponent, canActivate: [PublicGuard] },
 ];
 
 @NgModule({

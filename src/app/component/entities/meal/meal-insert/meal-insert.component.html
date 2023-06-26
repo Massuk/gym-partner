@@ -1,20 +1,39 @@
 <div class="card">
-  <div class="card-head">Agregar Ejercicio</div>
+  <div class="card-head">{{ title }}</div>
+
   <div class="card-body">
-    <form [formGroup]="form" (submit)="accept()">
+    <form [formGroup]="form" (submit)="aceptar()">
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Título</mat-label>
+            <input
+              matInput
+              placeholder="Título"
+              formControlName="title"
+              required
+            />
+            <mat-error *ngIf="form.controls['title'].invalid">
+              El campo no puede estar vacío.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
       <div class="row my-3">
         <mat-form-field
           appearance="outline"
           style="margin-right: 20rem; width: 100%"
         >
-          <mat-label>Alimento</mat-label>
-          <input
+          <mat-label>Día</mat-label>
+          <textarea
             matInput
-            placeholder="Alimento"
-            formControlName="name"
-            (input)="searchFoods(form.controls['name'].value)"
-          />
-          <mat-error *ngIf="form.controls['name'].invalid">
+            placeholder="Día"
+            formControlName="day"
+            rows="3"
+            required
+          ></textarea>
+          <mat-error *ngIf="form.controls['day'].invalid">
             El campo no puede estar vacío.
           </mat-error>
         </mat-form-field>
@@ -25,50 +44,41 @@
           appearance="outline"
           style="margin-right: 20rem; width: 100%"
         >
-          <mat-label>N° Porciones</mat-label>
-          <input
+          <mat-label>Tipo</mat-label>
+          <textarea
             matInput
-            placeholder="N° Porciones"
-            formControlName="portions"
-          />
-          <mat-error *ngIf="form.controls['portions'].invalid">
-            El campo no puede estar vacío.
-          </mat-error>
-        </mat-form-field>
-      </div>
-
-      <div class="row my-3">
-        <mat-form-field
-          appearance="outline"
-          style="margin-right: 20rem; width: 100%"
-        >
-          <mat-label>Calorías</mat-label>
-          <input matInput placeholder="Calorías" formControlName="calories" />
-          <mat-error *ngIf="form.controls['calories'].invalid">
+            placeholder="Descripción"
+            formControlName="type"
+            rows="3"
+            required
+          ></textarea>
+          <mat-error *ngIf="form.controls['type'].invalid">
             El campo no puede estar vacío.
           </mat-error>
         </mat-form-field>
       </div>
 
       <div class="button-container">
-        <button class="button accept" type="submit">Aceptar</button>
-        <button
-          class="button cancel"
-          [routerLink]="
-            '/dashboard/clients/' +
-            idClient +
-            '/nutritional-plans/' +
-            idNutritionalPlan +
-            '/meals/' +
-            idMeal +
-            '/foods'
-          "
-        >
-          Cancelar
-        </button>
+        <div class="form-group">
+          <button class="button accept" type="submit">Agregar</button>
+          <button
+            class="button cancel"
+            [routerLink]="
+              '/dashboard/clients/' +
+              idClient +
+              '/nutritional-plans/' +
+              idNutritionalPlan +
+              '/meals'
+            "
+          >
+            Cancelar
+          </button>
+        </div>
+        <div class="form-group"></div>
       </div>
     </form>
-    <div class="card separate">
+
+    <div class="card separate" style="max-width: 1200px">
       <div
         id="carouselSlideGymPartner"
         class="carousel slide"

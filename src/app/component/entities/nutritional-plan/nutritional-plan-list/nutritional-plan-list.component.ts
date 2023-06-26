@@ -6,6 +6,7 @@ import { NutritionalPlanService } from 'src/app/service/nutritional-plan.service
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/dialog-popup.component';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-nutritional-plan-list',
@@ -13,10 +14,9 @@ import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/d
   styleUrls: ['./nutritional-plan-list.component.scss'],
 })
 export class NutritionalPlanListComponent implements OnInit {
-  lista: NutritionalPlan[] = [];
+  idClient: number;
   dataSource: MatTableDataSource<NutritionalPlan> = new MatTableDataSource();
   displayedColumns: string[] = [
-    'id',
     'title',
     'description',
     'objective',
@@ -31,23 +31,24 @@ export class NutritionalPlanListComponent implements OnInit {
   constructor(
     private npS: NutritionalPlanService,
     private dialog: MatDialog,
-    private snackbar: MatSnackBar
-  ) {
-    this.npS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-    });
-  }
+    private snackbar: MatSnackBar,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe((data: Params) => {
+      this.idClient = data['id'];
+    });
     this.npS.getList().subscribe((data) => {
       this.dataSource.data = data;
+      this.dataSource.paginator = this.paginator;
     });
-
-    this.npS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
+    this.npS.list(this.idClient).subscribe((data) => {
+      this.dataSource.data = data;
       this.dataSource.paginator = this.paginator;
     });
   }
+
   filter(event: any) {
     this.dataSource.filter = event.target.value.trim();
   }
@@ -74,7 +75,7 @@ export class NutritionalPlanListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.npS.hide(idNutritionalPlan).subscribe(() => {
-          this.npS.list().subscribe((data) => {
+          this.npS.list(this.idClient).subscribe((data) => {
             this.dataSource = new MatTableDataSource(data);
           });
         });

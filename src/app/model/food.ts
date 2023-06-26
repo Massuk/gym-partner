@@ -1,6 +1,9 @@
-export class Food{
-  idFood:number = 0
-  name:string = ""
-  portions:string = ""
-  calories:string = ""
+import { Meal } from './meal';
+
+export class Food {
+  idFood: number = 0;
+  name: string = '';
+  portions: string = '';
+  calories: string = '';
+  meal: Meal = new Meal();
 }
