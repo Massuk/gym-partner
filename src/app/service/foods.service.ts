@@ -23,6 +23,7 @@ export class FoodService {
         .set('Content-Type', 'application/json'),
     });
   }
+
   insert(food: Food) {
     let token = sessionStorage.getItem('token');
     return this.http.post(this.url, food, {
@@ -40,9 +41,9 @@ export class FoodService {
   }
 
 
-  listId(id: number) {
+  listId(idFood: number) {
     let token = sessionStorage.getItem('token');
-    return this.http.get<Food>(`${this.url}/${id}`, {
+    return this.http.get<Food>(`${this.url}/${idFood}`, {
       headers: new HttpHeaders()
         .set('Authorization', `Bearer ${token}`)
         .set('Content-Type', 'application/json'),
@@ -59,10 +60,20 @@ export class FoodService {
     });
   }
 
-  // Funcion para eliminar un registro
-  delete(id: number): Observable<any> {
+  hide(idFood: number): Observable<any> {
     let token = sessionStorage.getItem('token');
-    const url = `${this.url}/${id}`;
+    const url = `${this.url}/hide/${idFood}`;
+    return this.http.put(url, null, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
+
+  // Funcion para eliminar un registro
+  delete(idFood: number): Observable<any> {
+    let token = sessionStorage.getItem('token');
+    const url = `${this.url}/${idFood}`;
     return this.http.delete(url, {
       headers: new HttpHeaders()
         .set('Authorization', `Bearer ${token}`)

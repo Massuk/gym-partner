@@ -37,6 +37,9 @@ import { NutritionistListComponent } from './component/entities/nutritionist/nut
 import { NutritionistInsertComponent } from './component/entities/nutritionist/nutritionist-insert/nutritionist-insert.component';
 import { NutritionistDetailsComponent } from './component/entities/nutritionist/nutritionist-details/nutritionist-details.component';
 import { TrainerDetailsComponent } from './component/entities/trainer/trainer-details/trainer-details.component';
+import { MealComponent } from './component/entities/meal/meal.component';
+import { MealInsertComponent } from './component/entities/meal/meal-insert/meal-insert.component';
+import { MealListComponent } from './component/entities/meal/meal-list/meal-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing-page/index', pathMatch: 'full' },
@@ -80,10 +83,6 @@ const routes: Routes = [
                 component: TrainingPlansInsertarComponent,
               },
               {
-                path: 'list',
-                component: TrainingPlansListarComponent,
-              },
-              {
                 path: ':id/routines',
                 component: RoutineComponent,
                 children: [
@@ -96,11 +95,21 @@ const routes: Routes = [
                     component: RoutineInsertComponent,
                   },
                   {
-                    path: 'list',
-                    component: RoutineListComponent,
+                    path: ':id/exercises',
+                    component: ExerciseComponent,
+                    children: [
+                      {
+                        path: 'insert',
+                        component: ExerciseInsertComponent,
+                      },
+                      {
+                        path: 'update/:id',
+                        component: ExerciseInsertComponent,
+                      },
+                    ],
                   },
                 ],
-              }
+              },
             ],
           },
           {
@@ -115,6 +124,38 @@ const routes: Routes = [
               {
                 path: 'list',
                 component: NutritionalPlanListComponent,
+              },
+              {
+                path: ':id/meals',
+                component: MealComponent,
+                children: [
+                  {
+                    path: 'insert',
+                    component: MealInsertComponent,
+                  },
+                  {
+                    path: 'update/:id',
+                    component: MealInsertComponent,
+                  },
+                  {
+                    path: 'list',
+                    component: MealListComponent,
+                  },
+                  {
+                    path: ':id/foods',
+                    component: FoodsComponent,
+                    children: [
+                      {
+                        path: 'insert',
+                        component: FoodsInsertComponent,
+                      },
+                      {
+                        path: 'edit/:id',
+                        component: FoodsInsertComponent,
+                      },
+                    ],
+                  },
+                ],
               },
             ],
           },
@@ -135,34 +176,6 @@ const routes: Routes = [
           {
             path: 'update/:id',
             component: GymUpdateComponent,
-          },
-        ],
-      },
-      {
-        path: 'foods',
-        component: FoodsComponent,
-        children: [
-          {
-            path: 'insert',
-            component: FoodsInsertComponent,
-          },
-          {
-            path: 'edit/:id',
-            component: FoodsInsertComponent,
-          },
-        ],
-      },
-      {
-        path: 'exercises',
-        component: ExerciseComponent,
-        children: [
-          {
-            path: 'insert',
-            component: ExerciseInsertComponent,
-          },
-          {
-            path: 'update/:id',
-            component: ExerciseInsertComponent,
           },
         ],
       },
