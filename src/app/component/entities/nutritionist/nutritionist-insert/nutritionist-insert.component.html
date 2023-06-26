@@ -95,7 +95,9 @@
               onkeypress="return event.charCode >= 48 && event.charCode <= 57"
               formControlName="cellphone"
               required
+              maxlength="9"
               id="cellphone"
+              #cellphone
             />
             <mat-error *ngIf="form.controls['cellphone'].invalid">
               El campo no puede estar vacío.
@@ -112,14 +114,21 @@
         >
           <mat-label for="email">Correo</mat-label>
           <input
+            type="email"
             matInput
             placeholder="usuario@example.com"
             formControlName="email"
             required
             id="email"
+            #email
           />
           <mat-error *ngIf="form.controls['email'].invalid">
-            El campo no puede estar vacío.
+            <ng-container *ngIf="form.controls['email'].errors?.['required']">
+              El correo es obligatorio
+            </ng-container>
+            <ng-container *ngIf="form.controls['email'].errors?.['email']">
+              El correo no tiene un formato válido
+            </ng-container>
           </mat-error>
         </mat-form-field>
       </div>

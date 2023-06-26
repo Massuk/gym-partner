@@ -127,7 +127,7 @@ export class GymListComponent implements OnInit {
   showEditProfilePopup(): void {
     const dialogRef = this.dialog.open(EditProfileComponent, {
       height: 'auto',
-      width: '630px',
+      width: '555px',
       data: {},
     });
   }

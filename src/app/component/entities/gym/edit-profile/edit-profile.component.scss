@@ -17,7 +17,7 @@
 .buttons-container {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .button-group {
@@ -30,4 +30,10 @@
 }
 .button span {
   margin-left: 5px;
+}
+
+.visibility-button {
+  position: absolute;
+  right: 1.19px;
+  top: calc(50% - 22px);
 }

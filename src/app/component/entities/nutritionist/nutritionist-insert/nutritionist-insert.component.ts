@@ -39,7 +39,7 @@ export class NutritionistInsertComponent implements OnInit {
       gender: new FormControl('', Validators.required),
       birthDate: new FormControl('', Validators.required),
       cellphone: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
       yearHired: new FormControl('', Validators.required),
     });
