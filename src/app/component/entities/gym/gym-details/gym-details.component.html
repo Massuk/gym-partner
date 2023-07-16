@@ -4,9 +4,10 @@
       <mat-card-title-group>
         <mat-card-title>{{ gym.name }}</mat-card-title>
         <mat-card-subtitle>Código: {{ gym.code }}</mat-card-subtitle>
-        <img
+        <img style="cursor: pointer;"
           mat-card-sm-image
           src="https://github.com/Massuk/gym-partner/blob/master/src/assets/gp_logo.png?raw=true"
+          (click)="gymReportDialog()"
         />
       </mat-card-title-group>
     </mat-card-header>
@@ -37,7 +38,6 @@
         </button>
       </div>
     </mat-card-actions>
-    <mat-card-footer>
-    </mat-card-footer>
+    <mat-card-footer> </mat-card-footer>
   </mat-card>
 </div>

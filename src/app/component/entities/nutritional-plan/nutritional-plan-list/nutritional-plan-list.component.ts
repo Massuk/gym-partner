@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogPopupComponent } from 'src/app/component/dashboard/dialog-popup/dialog-popup.component';
 import { ActivatedRoute, Params } from '@angular/router';
+import { NutritionalPlanReportComponent } from '../nutritional-plan-report/nutritional-plan-report.component';
 
 @Component({
   selector: 'app-nutritional-plan-list',
@@ -107,6 +108,12 @@ export class NutritionalPlanListComponent implements OnInit {
           this.dataSource._updateChangeSubscription(); // Notificar cambios a la tabla
         }
       });
+    });
+  }
+
+  nutritionalPlanReportDialog(): void {
+    this.dialog.open(NutritionalPlanReportComponent, {
+      width: '550px'
     });
   }
 }

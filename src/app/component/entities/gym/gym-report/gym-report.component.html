@@ -1,0 +1,96 @@
+<mat-card class="dialog-content">
+  <mat-card-header>
+    <mat-card-title-group align="center">
+      <mat-card-title>Reportes globales</mat-card-title>
+      <mat-card-subtitle>Gym Partner</mat-card-subtitle>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content class="content-container">
+
+    <div class="table-container">
+      <table class="bordered-table">
+        <thead>
+          <tr>
+            <th class="centered">Dueño</th>
+            <th class="centered">Gimnasio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let gymBy of gymByOwner">
+            <td class="centered bordered-cell">{{ gymBy.ownerName }}</td>
+            <td class="centered bordered-cell">{{ gymBy.gymName }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-container">
+      <table class="bordered-table">
+        <thead>
+          <tr>
+            <th class="centered">Gimnasio</th>
+            <th class="centered">Entrenadores</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let trainer of trainers">
+            <td class="centered bordered-cell">{{ trainer.name }}</td>
+            <td class="centered bordered-cell">{{ trainer.trainerCount }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-container">
+      <table class="bordered-table">
+        <thead>
+          <tr>
+            <th class="centered">Gimnasio</th>
+            <th class="centered">Nutricionistas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let nutritionist of nutritionists">
+            <td class="centered bordered-cell">{{ nutritionist.name }}</td>
+            <td class="centered bordered-cell">{{ nutritionist.nutritionistCount }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-container">
+      <table class="bordered-table">
+        <thead>
+          <tr>
+            <th class="centered">Entrenador</th>
+            <th class="centered">Clientes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let client of clientsByTrainer">
+            <td class="centered bordered-cell">{{ client.name }}</td>
+            <td class="centered bordered-cell">{{ client.clientCount }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-container">
+      <table class="bordered-table">
+        <thead>
+          <tr>
+            <th class="centered">Nutricionista</th>
+            <th class="centered">Clientes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let client of clientsByNutritionist">
+            <td class="centered bordered-cell">{{ client.name }}</td>
+            <td class="centered bordered-cell">{{ client.clientCount }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </mat-card-content>
+</mat-card>

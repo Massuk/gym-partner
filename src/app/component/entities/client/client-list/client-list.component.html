@@ -57,13 +57,7 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Acciones</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-icon-button
-          #tooltip="matTooltip"
-          matTooltip="Historial médico"
-          matTooltipPosition="below"
-          color="primary">
-            <mat-icon>medical_information</mat-icon>
-          </button>
+          <ng-container *ngIf="role === 'NUTRICIONISTA'">
           <button
             mat-icon-button
             color="primary"
@@ -74,6 +68,8 @@
           >
             <mat-icon>restaurant</mat-icon>
           </button>
+        </ng-container>
+        <ng-container *ngIf="role === 'ENTRENADOR'">
           <button
             mat-icon-button
             color="primary"
@@ -84,6 +80,7 @@
           >
             <mat-icon>fitness_center</mat-icon>
           </button>
+        </ng-container>
         </td>
       </ng-container>
 

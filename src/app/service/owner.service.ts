@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Owner } from '../model/owner';
 import { Observable, Subject, tap } from 'rxjs';
+import { GymByOwner } from '../model/report';
 
 const urlData = environment.base;
 
@@ -43,4 +44,14 @@ export class OwnerService {
         })
       );
   }
+  gymByOwner(): Observable<GymByOwner[]> {
+    let token = sessionStorage.getItem('token');
+    const url = `${this.url}/gymByOwners`;
+    return this.http.get<GymByOwner[]>(url, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
+
 }

@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Gym } from '../model/gym';
 import { Observable, Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { NutritionistsByGymDTO, TrainersByGymDTO } from '../model/report';
 
 const urlData = environment.base;
 
@@ -93,4 +94,41 @@ export class GymService {
         .set('Content-Type', 'application/json'),
     });
   }
+
+  getTrainersByGym(id: number): Observable<TrainersByGymDTO[]> {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<TrainersByGymDTO[]>(`${this.url}/trainersCount/${id}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
+
+  getNutritionistsByGym(id: number): Observable<NutritionistsByGymDTO[]> {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<NutritionistsByGymDTO[]>(`${this.url}/nutritionistsCount/${id}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
+
+  getAllTrainers(): Observable<TrainersByGymDTO[]> {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<TrainersByGymDTO[]>(`${this.url}/allTrainersCount`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
+
+  getAllNutritionists(): Observable<NutritionistsByGymDTO[]> {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<NutritionistsByGymDTO[]>(`${this.url}/allNutritionistsCount`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
+
 }

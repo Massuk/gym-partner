@@ -1,5 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { GymReportComponent } from '../gym-report/gym-report.component';
 import { Router } from '@angular/router';
 import { Gym } from 'src/app/model/gym';
 
@@ -15,7 +16,8 @@ export class GymDetailsComponent implements OnInit{
   constructor(
     public dialogRef: MatDialogRef<GymDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -43,5 +45,11 @@ export class GymDetailsComponent implements OnInit{
   navigateToEdit(): void {
     this.dialogRef.close();
     this.router.navigate(['/dashboard/gyms/update', this.gym.idGym]);
+  }
+
+  gymReportDialog(): void {
+    this.dialog.open(GymReportComponent, {
+      width: '1050px'
+    });
   }
 }

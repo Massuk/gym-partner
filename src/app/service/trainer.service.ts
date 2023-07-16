@@ -4,6 +4,7 @@ import { Trainer } from '../model/trainer';
 import { Subject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { userItems } from '../component/dashboard/header/header-dummy-data';
+import { ClientsByTrainer } from '../model/report';
 
 const base_url = environment.base;
 
@@ -58,6 +59,15 @@ export class TrainerService {
   update(trainer: Trainer) {
     let token = sessionStorage.getItem('token');
     return this.http.put(`${this.url}`, trainer, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
+
+  clientsByTrainer(): Observable<ClientsByTrainer[]> {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<ClientsByTrainer[]>(`${this.url}/trainersClientsCount`, {
       headers: new HttpHeaders()
         .set('Authorization', `Bearer ${token}`)
         .set('Content-Type', 'application/json'),

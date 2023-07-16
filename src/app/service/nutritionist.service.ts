@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { Nutritionist } from '../model/nutritionist';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { ClientsByNutritionist } from '../model/report';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root',
@@ -49,6 +50,15 @@ export class NutritionistService {
   update(nutritionist: Nutritionist) {
     let token = sessionStorage.getItem('token');
     return this.http.put(`${this.url}`, nutritionist, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
+
+  clientsByNutritionist(): Observable<ClientsByNutritionist[]> {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<ClientsByNutritionist[]>(`${this.url}/nutritionistClientsCount`, {
       headers: new HttpHeaders()
         .set('Authorization', `Bearer ${token}`)
         .set('Content-Type', 'application/json'),

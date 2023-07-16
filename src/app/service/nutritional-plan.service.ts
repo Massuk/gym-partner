@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { NutritionalPlan } from '../model/nutritional-plan';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { CaloriesByNutritionalPlan } from '../model/report';
 const base_url = environment.base;
 
 @Injectable({
@@ -65,4 +66,15 @@ export class NutritionalPlanService {
         .set('Content-Type', 'application/json'),
     });
   }
+
+  getCaloriesCount(): Observable<CaloriesByNutritionalPlan[]> {
+    let token = sessionStorage.getItem('token');
+    const url = `${this.url}/caloriesCount`;
+    return this.http.get<CaloriesByNutritionalPlan[]>(url, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
+
 }

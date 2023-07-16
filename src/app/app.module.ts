@@ -97,6 +97,8 @@ import { MealComponent } from './component/entities/meal/meal.component';
 import { MealListComponent } from './component/entities/meal/meal-list/meal-list.component';
 import { MealInsertComponent } from './component/entities/meal/meal-insert/meal-insert.component';
 import { WorkersGuard } from './guards/workers-guard';
+import { GymReportComponent } from './component/entities/gym/gym-report/gym-report.component';
+import { NutritionalPlanReportComponent } from './component/entities/nutritional-plan/nutritional-plan-report/nutritional-plan-report.component';
 
 @NgModule({
   declarations: [
@@ -173,6 +175,8 @@ import { WorkersGuard } from './guards/workers-guard';
     MealComponent,
     MealListComponent,
     MealInsertComponent,
+    GymReportComponent,
+    NutritionalPlanReportComponent,
   ],
   imports: [
     ToastrModule.forRoot({

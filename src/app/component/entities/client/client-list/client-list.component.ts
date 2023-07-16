@@ -5,14 +5,17 @@ import { Client } from 'src/app/model/client';
 import { ClientService } from '../../../../service/client.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { UserDataService } from 'src/app/service/user-data.service';
 @Component({
   selector: 'app-client-list',
   templateUrl: './client-list.component.html',
   styleUrls: ['./client-list.component.scss'],
 })
 export class ClientListComponent implements OnInit {
+
+  role: string;
   dataSource: MatTableDataSource<Client> = new MatTableDataSource();
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = [
     'name',
@@ -25,10 +28,12 @@ export class ClientListComponent implements OnInit {
   constructor(
     private cS: ClientService,
     private dialog: MatDialog,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private udS: UserDataService
   ) {}
 
   ngOnInit(): void {
+    this.getUserData();
     this.cS.getList().subscribe((data) => {
       this.dataSource.data = data;
       this.dataSource.paginator = this.paginator;
@@ -40,6 +45,17 @@ export class ClientListComponent implements OnInit {
         this.dataSource.data = data;
         this.dataSource.paginator = this.paginator;
       });
+  }
+
+  getUserData() {
+    this.udS.getUserData().subscribe(
+      (data: any) => {
+        this.role = data.role.name;
+      },
+      (error: any) => {
+        console.error('Error:', error);
+      }
+    );
   }
 
   filter(event: any) {

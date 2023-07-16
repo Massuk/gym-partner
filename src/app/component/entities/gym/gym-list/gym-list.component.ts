@@ -17,6 +17,7 @@ import { MatSort } from '@angular/material/sort';
 import { UserDataService } from '../../../../service/user-data.service';
 import { GymDetailsComponent } from '../gym-details/gym-details.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
+import { NutritionistsByGymDTO, TrainersByGymDTO } from 'src/app/model/report';
 
 @Component({
   selector: 'app-gym-list',
@@ -30,6 +31,10 @@ export class GymListComponent implements OnInit {
   role: string;
   progressValue: number = 0;
   gyms: Gym[] = [];
+  trainersData: TrainersByGymDTO[] = [];
+  trainersCount: number;
+  nutritionistsData: NutritionistsByGymDTO[] = [];
+  nutritionistsCount: number;
 
   constructor(
     private udS: UserDataService,
@@ -49,6 +54,14 @@ export class GymListComponent implements OnInit {
     this.gS.list().subscribe((data) => {
       this.gyms = data;
       this.calculateProgressValue();
+      this.gS.getTrainersByGym(this.gyms[0].idGym).subscribe((data) => {
+        this.trainersData = data;
+        this.trainersCount = this.trainersData[0].trainerCount;
+      });
+      this.gS.getNutritionistsByGym(this.gyms[0].idGym).subscribe((data) => {
+        this.nutritionistsData = data;
+        this.nutritionistsCount = this.nutritionistsData[0].nutritionistCount;
+      });
     });
   }
 

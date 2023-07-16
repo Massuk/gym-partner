@@ -34,8 +34,8 @@
             </ng-container>
             <ng-container *ngIf="role !== 'ADMINISTRADOR'">
               <div class="performance">
-                <div>Planes creados</div>
-                <div>NUMERO</div>
+                <div></div>
+                <div></div>
               </div>
               <div class="progress">
                 <div class="progress-bar" [style.width.%]="progressValue"></div>
@@ -58,7 +58,7 @@
       <span class="bar green"></span>
       <div class="details">
         <div>Entrenadores</div>
-        <p>7</p>
+        <p>{{ trainersCount }}</p>
       </div>
       <i class="far fa-user-ninja icon"></i>
     </div>
@@ -66,7 +66,7 @@
       <span class="bar skyblue"></span>
       <div class="details">
         <div>Nutricionistas</div>
-        <p>4</p>
+        <p>{{ nutritionistsCount }}</p>
       </div>
       <i class="far fa-user-nurse icon"></i>
     </div>

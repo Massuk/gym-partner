@@ -1,4 +1,5 @@
 export const environment={
   production:true,
-  base:"https://backend-gym-partner.onrender.com"
+  base:"http://localhost:8080"
+  //base:"https://backend-gym-partner.onrender.com"
 }

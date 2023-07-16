@@ -1,0 +1,28 @@
+<mat-card class="dialog-content">
+  <mat-card-header>
+    <mat-card-title-group align="center">
+      <mat-card-title>Reportes de planes nutricionales</mat-card-title>
+      <mat-card-subtitle>Gym Partner</mat-card-subtitle>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content class="content-container">
+    <div class="table-container">
+      <table class="bordered-table">
+        <thead>
+          <tr>
+            <th class="centered">Plan Nutricional</th>
+            <th class="centered">Calorias totales</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let nutritionalPlan of totalCaloriesByNutritionalPlan">
+            <td class="centered bordered-cell">{{ nutritionalPlan.title }}</td>
+            <td class="centered bordered-cell">{{ nutritionalPlan.count }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </mat-card-content>
+</mat-card>
