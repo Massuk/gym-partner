@@ -50,23 +50,18 @@ GymPartner es un gestor de gimnasios que permite a los dueños de los gimnasios 
 5. Una vez que hayas realizado tus cambios y estés listo para hacer un commit, utiliza el siguiente comando para agregar tus cambios al área de preparación de git:
 
 ```
-git add .
+  git add .
 
 ```
 6. A continuación, realiza un commit con tus cambios utilizando el siguiente comando:
 
 ```
-git commit -m "DESCRIPCIÓN DE TU CAMBIO"
+  git commit -m "DESCRIPCIÓN DE TU CAMBIO"
 
 ```
 7. Si quieres subir tus cambios a GitHub, asegúrate de estar en tu rama local y ejecuta el siguiente comando:
 
 ```
-git push origin NOMBRE_DE_LA_RAMA
+  git push origin NOMBRE_DE_LA_RAMA
 
 ```
-
-## Licencia 📄
-
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
-
